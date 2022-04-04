@@ -1,0 +1,132 @@
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{mathrsfs}
+\usepackage{eucal}
+\usepackage{fontenc}
+\usepackage{amsbsy}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mdframed}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amscd}
+\usepackage{faktor}
+\usepackage{mathtools}
+\usepackage{epigraph}
+\usepackage[titletoc]{appendix}
+\usepackage{centernot}
+\usepackage{bbding}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\usepackage{xspace}
+\usepackage{xparse}
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing}
+\usepackage{tikz-cd}
+
+\usepackage[backend=biber,
+	bibencoding=utf8,
+	style=alphabetic,
+	citestyle=alphabetic,
+	uniquename=false,
+	backref=true,
+	firstinits=true
+]{biblatex}
+
+\addbibresource{references.bib}
+
+% comments
+\newcommand{\kim}[1]{\textcolor{red}{#1}}
+\newcommand{\wfd}[1]{\textcolor{blue}{#1}}
+
+\theoremstyle{definition}
+
+\newtheorem{thm}{Theorem}[section] % reset theorem numbering for each section
+
+\newtheorem{defn}[thm]{Definition} % definition numbers depend on thm
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem{exmp}[thm]{Example}
+
+\ExplSyntaxOn
+\NewDocumentCommand{\makeabbrev}{mmm}
+{
+	\yoruk_makeabbrev:nnn { #1 } { #2 } { #3 }
+}
+
+\cs_new_protected:Npn \yoruk_makeabbrev:nnn #1 #2 #3
+{
+	\clist_map_inline:nn { #3 }
+	{
+		\cs_new_protected:cpn { #2 } { #1 { ##1 } }
+	}
+}
+\ExplSyntaxOff
+
+\makeabbrev{\boldsymbol}{bs#1}{a,b,c,d,e,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,%
+	A,B,C,D,E,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+
+\makeabbrev{\mathfrak}{f#1}{a,b,c,d,e,f,g,h,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,%
+	A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+
+\makeabbrev{\mathbf}{bf#1}{a,b,c,d,e,g,h,i,j,k,l,m,n,o,p,q,r,t,u,v,w,x,y,z,%
+	A,B,C,D,E,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+
+\makeabbrev{\mathcal}{c#1}{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+
+\makeabbrev{\mathsf}{sf#1}{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+
+\makeabbrev{\mathbb}{bb#1}{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+
+\DeclareFontFamily{U}{min}{}
+\DeclareFontShape{U}{min}{m}{n}{<-> udmj30}{}
+\newcommand{\yo}{\text{\usefont{U}{min}{m}{n}\symbol{'210}}}
+
+\newcommand{\exercise}[1]{\noindent {\textbf{Exercise #1}}}
+\renewcommand{\abstractname}{Abstract}
+
+\DeclareMathOperator{\sSeten}{\underline{\mathbf{sSet}}}
+\DeclareMathOperator{\sSet}{\mathbf{sSet}}
+\DeclareMathOperator{\Set}{\mathbf{Set}}
+\DeclareMathOperator{\Cat}{\mathbf{Cat}}
+\DeclareMathOperator{\FibCat}{\mathsf{FibCat}}
+\DeclareMathOperator{\Trb}{\mathsf{Trb}}
+\DeclareMathOperator{\Lexi}{\mathsf{Lex}_\infty}
+\DeclareMathOperator{\Hoi}{\mathbf{Ho}_\infty}
+\DeclareMathOperator{\Gpd}{\mathbf{Gpd}}
+\DeclareMathOperator{\Ab}{\mathbf{Ab}}
+\DeclareMathOperator{\Mon}{\mathbf{Mon}}
+\DeclareMathOperator{\CMon}{\mathbf{CMon}}
+\DeclareMathOperator{\Map}{\mathbf{Map}}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\colim}{colim}
+\DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\Disc}{\mathsf{Disc}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\op}{op}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\dimn}{dim}
+\DeclareMathOperator{\codimn}{codim}
