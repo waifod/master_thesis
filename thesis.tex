@@ -291,6 +291,19 @@ Our approach relies on defining a $\infty$-category $\FibCat_\infty$. How to do 
 
 1- Construct a $\infty$-category where objects are pairs of functors (specifying weak equivalences and fibrations) with the same codomain between $\infty$-categories, that is $\Fun(\{0\rightarrow 01\leftarrow 1\},\Cat_\infty)$. Then the morphisms are triples of functors making the proper diagram commute. We take the full subcategory of objects satisfying the axioms of a $\infty$-category with weak equivalences and fibrations, but how can we ask for pullbacks along fibrations to be preserved by the maps in this $\infty$-category? We also have to show that the hom-spaces are what we want. How to show then that a pullback along a fibration is a fibration? It may not be immediate because we are considering only triples of functors which make the diagrams commute as morphisms!
 
+What if we take pairs of functors $\coprod_W\Delta^1\rightarrow\cD$,
+$Fib\rightarrow\cC^{[1]}\rightarrow\cC$, where the composite is a Cartesian
+fibration and $Fib\rightarrow\cC^{[1]}$ preserves Cartesian morphisms?
+Essentially this is the definition of comprehension category, plus some extra
+data given by the first functor. We call fibrations the maps in the image of
+$Fib\rightarrow\cC$ and their compositions, while weak equivalences are the
+maps identified by the first functor; we then ask for the axioms of fibration
+$\infty$-category to be satisfied. This gives us more freedom when specifying
+weak equivalences then just providing the definition we give when constructing a
+tribe from a comprehension category. Also, in this way weak equivalences and
+fibrations are preserved by maps between objects in the category we are
+considering and the same goes for pullbacks along fibrations.
+
 2- Take the 1-category of $\infty$-category with fibrations and weak equivalences, then localize at categorical equivalences. What do the hom-spaces look like?
 
 It's important to relate the hom-spaces $\FibCat_\infty(\cP,\cQ)$ to the ones we want, that is $\Fun_{lex}(\cP,\cQ)$. Also, what are the ones of $\Lexi$ like?
