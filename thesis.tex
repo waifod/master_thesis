@@ -337,11 +337,55 @@ Supposedly $k(\Fun_{lex}(\cC,\cD))$.
 
 1- We could also try to get an indirect comparison by looking at the inclusion of the category of fibration categories and of the category of finitely complete $\infty$-categories into the one of $\infty$-categories with weak equivalences and fibrations. We then give to the latter the structure of a fibrations category by taking the definition above. The axioms should be easy to show because a pullback along a fibration will simply be a pullback in $\sSet$ and then we can give it the desired structure as in the context of fibration categories. Problem: showing the factorization condition.
 
-We have then to show that the inclusion functors are left exact as functors between fibration categories. This means that the pullback of left exact functors between finitely complete $\infty$-categories is again a finitely complete $\infty$-category. How to approach this? Should we use the usual projections $\cC/F\rightarrow\cC$, create a cube and somehow show that if three projections are trivial fibrations so is the last one? Should we use the filling condition for $K*\partial\Delta^n\rightarrow K*\Delta^n$? This seems more promising.
+We have then to show that the inclusion functors are left exact as functors
+between fibration categories. This means that the pullback of left exact
+functors between finitely complete $\infty$-categories is again a finitely
+complete $\infty$-category, which is proven in \cite[Lem.\ 2.11]{Szu17b}.
 
 After this we have to show that the hypothesis of \cite[Thm.\ 7.6.15]{Cis19} hold. This is easy for (i), but for (ii) it's hard when it comes to the inclusion of fibration categories into $\infty$-categories with fibrations and weak equivalences. Namely, what if the domain of the morphism is a $\infty$-category? We have to find a span linking it to a weakly equivalent fibration category!
 
-2- We can work with the 1-category of fibration $\infty$-categories and left exact functors and give it a fibrational structure. Problems: how do we show that after localizing a fibration of fibration categories we get an inner fibration? That is needed for the localization functor to be left exact. Also, how to show condition (ii) of \cite[Thm.\ 7.6.15]{Cis19} for the inclusion of fibration categories into fibration $\infty$-categories? We need to approximate a map from a fibration $\infty$-category to a fibration category by one between fibration categories, the same problem as before. Everything else should be easy.
+2- We can work with the 1-category of fibration $\infty$-categories and left
+exact functors and give it a fibrational structure. Problems: how do we show
+that after localizing a fibration of fibration categories we get an inner
+fibration? That is needed for the localization functor to be left exact and
+maybe we can use the ideas from \cite[Prop.\ 3.5]{Szu17b}. Also, how to show
+condition (ii) of \cite[Thm.\ 7.6.15]{Cis19} for the inclusion of fibration
+categories into fibration $\infty$-categories? We need to approximate a map from
+a fibration $\infty$-category to a fibration category by one between fibration
+categories, the same problem as before. Everything else should be easy.
+
+Idea: given a morphism $\cC\rightarrow L(\cP)$, we construct a finitely complete
+$\infty$-category $Dg_0\cC=\sSet_0/\cC$, which is a finitely complete category
+and can therefore be given a canonical fibrational structure. If the map
+$\lim\colon\sSet_0/\cC\rightarrow\cC$ is a weak equivalence, then we get the
+desired diagram by looking at
+\[\begin{tikzcd}
+	\cC & {L(P)} \\
+	{\sSet_0/\cC} & {\sSet_0/\cC}
+	\arrow[from=2-2, to=1-2]
+	\arrow[from=1-1, to=1-2]
+	\arrow["\lim", from=2-1, to=1-1]
+	\arrow[Rightarrow, no head, from=2-1, to=2-2]
+\end{tikzcd}.\]
+\wfd{(This quite likely doesn't work because $\lim$ should not be a weak
+equivalence in general as non-isomorphic maps $K\rightarrow\cC$ have isomorphic
+limits.)}
+
+We can also give another fibrational structure on
+$\sSet_0/\cC$ as specified in \cite[Def.\ 4.1]{Szu17b}, which allows us to
+construct a weak equivalence $\cC\rightarrow L(\sSet_0/\cC)$, $x\mapsto x$.
+We extend $\cC\rightarrow L(\cP)$ first to a functor $\sSet_0/\cC\rightarrow
+L(\cP)$, $D\colon K\rightarrow\cC\mapsto\lim_KD$ \wfd{(doubtful about doing
+this)} and then localize to get $L(\sSet_0/\cC)\rightarrow L(\cP)$, granting us a
+diagram
+\[\begin{tikzcd}
+	\cC & {L(P)} \\
+	\cC & {L(\sSet_0/\cC)}
+	\arrow[from=2-2, to=1-2]
+	\arrow[from=1-1, to=1-2]
+	\arrow[Rightarrow, no head, from=2-1, to=1-1]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}.\]
 
 \section{Plan B: LCCC}
 
