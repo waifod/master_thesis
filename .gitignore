@@ -1,2 +1,5 @@
 materials/
-*.pdf
+*aux
+*gz
+*pdf
+*xml

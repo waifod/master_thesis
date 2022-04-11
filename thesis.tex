@@ -71,7 +71,7 @@ To show that the right derived functor of $\Hoi$ induces an equivalence we
 remember that a finitely
 complete $\infty$-category has a canonical fibrational structure, where weak
 equivalences are the isomorphisms and fibrations are all the maps. Also, under
-this construction a left exact functor between the induced fibration categories
+this construction a left exact functor between the induced fibration $\infty$-categories
 is just a left exact functor in the usual sense, so we can fully embed
 $\Lexi$ into $\FibCat_\infty$. This should define a right adjoint to
 $\Hoi$, where the counit is the identity and the unit is given by the
@@ -85,8 +85,9 @@ satisfies \cite[Def.\ 7.5.2]{Cis19} (PLEASE LIST THE PROPERTIES), for which we
 only need condition (iii). It should be easy to check because it is induced by
 the nerve functor.
 
-To finally apply \cite[Thm.\ 7.6.15]{Cis19} we still need to check two more
-conditions (PLEASE LIST THEM). Notice that (a) is trivial for $\iota$.
+To finally apply \cite[Thm.\ 7.6.15]{Cis19} to $\iota$ we still need to check
+two more conditions (PLEASE LIST THEM). Notice that (a) is trivial, so we
+actually only need to check (b).
 
 \section{This is [not] a fibration}
 
@@ -138,8 +139,8 @@ as objects and left exact functors as arrows.
   \end{enumerate}
 \end{defn}
 
-The first three conditions with the map being an isofibration are necessary to
-ensure that a fibration of tribes is sent to a fibration in $\Lexi$ and
+The three conditions and the map being an isofibration are necessary to ensure
+that a fibration of fibration categories is sent to a fibration in $\Lexi$ and
 correspond to the requirement that it is a fibration on the underlying fibration
 categories.
 
@@ -215,13 +216,24 @@ fibration for $\FibCat_\infty$ and use the following one for weak equivalences, 
 make it a fibration $\infty$-category.
 
 \begin{defn}
-    A left exact functor between fibration $\infty$-categories $F\colon\cP\rightarrow\cQ$ is a weak equivalence if it induces an equivalence $ho(L(\cP))\rightarrow ho(L(\cQ))$.
+    A left exact functor between fibration $\infty$-categories
+    $F\colon\cP\rightarrow\cQ$ is a weak equivalence if it induces an
+    equivalence $ho(L(\cP))\rightarrow ho(L(\cQ))$. Equivalently, if it
+    satisfies the conditions of \cite[Thm. 7.6.15]{Cis19}.
 \end{defn}
 
 \begin{prop}
   (DESIDERATA) The $\infty$-category $\FibCat_\infty$ with the specified classes
   of maps is a fibration $\infty$-category.
 \end{prop}
+\begin{proof}
+  The problem is showing the factorization condition \wfd{(SHOW IT)}. Fibrations
+  should be stable under pullback (which are computed as in $\sSet$ if we manage
+  to describe $\FibCat_\infty$ as a full subcategory of functors with codomain
+  in $\Cat_\infty$) and the same applies to trivial fibrations, with the proof
+  being the same as the one given in the 1-categorical context. Every map to the
+  terminal fibration $\infty$-category is naturally a fibration.
+\end{proof}
 
 \section{This is [not] an adjunction}
 
@@ -313,12 +325,13 @@ between fibration categories.
 
 2- Take the 1-category of $\infty$-categories with fibrations and weak
 equivalences, then localize at categorical equivalences. What do the hom-spaces
-look like? We would get directly $L(\FibCat_\infty)$, which supposedly is the
-``true'' $\infty$-category of $\infty$-categories with fibrations and weak
-equivalences.
+look like? If instead we localized directly at weak equivalences we would get
+directly $L(\FibCat_\infty)$, which supposedly is the ``true'' $\infty$-category
+of $\infty$-categories with fibrations and weak equivalences.
 
 It's important to relate the hom-spaces $\FibCat_\infty(\cP,\cQ)$ to the ones we
-want, that is $\Fun_{lex}(\cP,\cQ)$. Also, what are the ones of $\Lexi$ like?
+want, that is $k(\Fun_{lex}(\cP,\cQ))$. Also, what are the ones of $\Lexi$ like?
+Supposedly $k(\Fun_{lex}(\cC,\cD))$.
 
 \section{Other ideas}
 
@@ -326,9 +339,9 @@ want, that is $\Fun_{lex}(\cP,\cQ)$. Also, what are the ones of $\Lexi$ like?
 
 We have then to show that the inclusion functors are left exact as functors between fibration categories. This means that the pullback of left exact functors between finitely complete $\infty$-categories is again a finitely complete $\infty$-category. How to approach this? Should we use the usual projections $\cC/F\rightarrow\cC$, create a cube and somehow show that if three projections are trivial fibrations so is the last one? Should we use the filling condition for $K*\partial\Delta^n\rightarrow K*\Delta^n$? This seems more promising.
 
-After this we have to show that the hypothesis of \cite[Thm.\ 7.6.25]{Cis19} hold. This is easy for (i), but for (ii) it's hard when it comes to the inclusion of fibration categories into $\infty$-categories with fibrations and weak equivalences. Namely, what if the domain of the morphism is a $\infty$-category? We have to find a span linking it to a weakly equivalent fibration category!
+After this we have to show that the hypothesis of \cite[Thm.\ 7.6.15]{Cis19} hold. This is easy for (i), but for (ii) it's hard when it comes to the inclusion of fibration categories into $\infty$-categories with fibrations and weak equivalences. Namely, what if the domain of the morphism is a $\infty$-category? We have to find a span linking it to a weakly equivalent fibration category!
 
-2- We can work with the 1-category of fibration $\infty$-categories and left exact functors and give it a fibrational structure. Problems: how do we show that after localizing a fibration of fibration categories we get an inner fibration? That is needed for the localization functor to be left exact. Also, how to show condition (ii) of \cite[Thm.\ 7.5.25]{Cis19} for the inclusion of fibration categories into fibration $\infty$-categories? We need to approximate a map from a fibration $\infty$-category to a fibration category by one between fibration categories, the same problem as before. Everything else should be easy.
+2- We can work with the 1-category of fibration $\infty$-categories and left exact functors and give it a fibrational structure. Problems: how do we show that after localizing a fibration of fibration categories we get an inner fibration? That is needed for the localization functor to be left exact. Also, how to show condition (ii) of \cite[Thm.\ 7.6.15]{Cis19} for the inclusion of fibration categories into fibration $\infty$-categories? We need to approximate a map from a fibration $\infty$-category to a fibration category by one between fibration categories, the same problem as before. Everything else should be easy.
 
 \section{Plan B: LCCC}
 
@@ -336,7 +349,7 @@ We can also rewrite the paper by Kapulkin about LCCC arising from TT using the l
 
 What should be included in such an overview?
 
-1- Cisinski's theory of localizations (of fibration categories)
+1- Cisinski's theory of localizations (of fibration $\infty$-categories)
 
 2- an introduction to contextual categories: where do they come from? Why are they useful? Check out Voevodsky's papers about C-systems
 
