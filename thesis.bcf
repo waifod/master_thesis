@@ -2359,14 +2359,16 @@
     <bcf:citekey order="13">Cis19</bcf:citekey>
     <bcf:citekey order="14">Cis19</bcf:citekey>
     <bcf:citekey order="15">Cis19</bcf:citekey>
-    <bcf:citekey order="16">Szu17b</bcf:citekey>
-    <bcf:citekey order="17">Cis19</bcf:citekey>
-    <bcf:citekey order="18">Szu17b</bcf:citekey>
-    <bcf:citekey order="19">Cis19</bcf:citekey>
-    <bcf:citekey order="20">Szu17b</bcf:citekey>
-    <bcf:citekey order="21">Cis19</bcf:citekey>
-    <bcf:citekey order="22">KS19</bcf:citekey>
-    <bcf:citekey order="23">Szu17b</bcf:citekey>
+    <bcf:citekey order="16">Cis19</bcf:citekey>
+    <bcf:citekey order="17">Szu17b</bcf:citekey>
+    <bcf:citekey order="18">Cis19</bcf:citekey>
+    <bcf:citekey order="19">Szu17b</bcf:citekey>
+    <bcf:citekey order="20">Cis19</bcf:citekey>
+    <bcf:citekey order="21">Szu17b</bcf:citekey>
+    <bcf:citekey order="22">Szu17b</bcf:citekey>
+    <bcf:citekey order="23">Cis19</bcf:citekey>
+    <bcf:citekey order="24">KS19</bcf:citekey>
+    <bcf:citekey order="25">Szu17b</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="anyt">

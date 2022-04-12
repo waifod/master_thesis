@@ -331,7 +331,8 @@ of $\infty$-categories with fibrations and weak equivalences.
 
 It's important to relate the hom-spaces $\FibCat_\infty(\cP,\cQ)$ to the ones we
 want, that is $k(\Fun_{lex}(\cP,\cQ))$. Also, what are the ones of $\Lexi$ like?
-Supposedly $k(\Fun_{lex}(\cC,\cD))$.
+Supposedly $k(\Fun_{lex}(\cC,\cD))$ and we may show both claims using
+\cite[Prop.\ 7.10.6]{Cis19}, but I do not think it would be easy.
 
 \section{Other ideas}
 
@@ -354,26 +355,23 @@ categories into fibration $\infty$-categories? We need to approximate a map from
 a fibration $\infty$-category to a fibration category by one between fibration
 categories, the same problem as before. Everything else should be easy.
 
-Idea: given a morphism $\cC\rightarrow L(\cP)$, we construct a finitely complete
-$\infty$-category $Dg_0\cC=\sSet_0/\cC$, which is a finitely complete category
-and can therefore be given a canonical fibrational structure. If the map
-$\lim\colon\sSet_0/\cC\rightarrow\cC$ is a weak equivalence, then we get the
-desired diagram by looking at
+Idea: given a morphism $\cC\rightarrow L(\cP)$, we consider a finitely complete
+category $\sSet_0/\cC$, which can be given a fibrational structure mimicking the
+cofibrational one specified in \cite[Def.\ 4.1]{Szu17b}. If the map
+$\widetilde{\lim}\colon L(\sSet_0/\cC)\rightarrow\cC$ is a weak equivalence,
+then we get the desired commutative square by looking at
 \[\begin{tikzcd}
-	\cC & {L(P)} \\
-	{\sSet_0/\cC} & {\sSet_0/\cC}
+	\cC & {L(\cP)} \\
+	{L(\sSet_0/\cC)} & {L(\sSet_0/\cC)}
 	\arrow[from=2-2, to=1-2]
 	\arrow[from=1-1, to=1-2]
-	\arrow["\lim", from=2-1, to=1-1]
+  \arrow["\widetilde{\lim}", from=2-1, to=1-1]
 	\arrow[Rightarrow, no head, from=2-1, to=2-2]
-\end{tikzcd}.\]
-\wfd{(This quite likely doesn't work because $\lim$ should not be a weak
-equivalence in general as non-isomorphic maps $K\rightarrow\cC$ have isomorphic
-limits.)}
+\end{tikzcd}\]
+and somehow lift the map $L(\sSet_0/\cC)\rightarrow L(\cP)$ through $L$.
 
-We can also give another fibrational structure on
-$\sSet_0/\cC$ as specified in \cite[Def.\ 4.1]{Szu17b}, which allows us to
-construct a weak equivalence $\cC\rightarrow L(\sSet_0/\cC)$, $x\mapsto x$.
+We may also specify a weak equivalence $\cC\rightarrow L(\sSet_0/\cC)$ as in
+\cite[Def.\ 4.6]{Szu17b} \wfd{(I don't really see how to adapt this)}.
 We extend $\cC\rightarrow L(\cP)$ first to a functor $\sSet_0/\cC\rightarrow
 L(\cP)$, $D\colon K\rightarrow\cC\mapsto\lim_KD$ \wfd{(doubtful about doing
 this)} and then localize to get $L(\sSet_0/\cC)\rightarrow L(\cP)$, granting us a
