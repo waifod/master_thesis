@@ -1,6 +1,12 @@
 materials/
 *aux
 *bbl
-*gz
+*bcf
+*blg
+*fdb_latexmk
+*fls
+*log
+*out
 *pdf
-*xml
+*run.xml
+*synctex.gz
