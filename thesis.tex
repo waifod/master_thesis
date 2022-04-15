@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,openany]{scrartcl}
+\documentclass[a4paper,12pt]{scrartcl}
 \usepackage{reg2021}
 \usepackage{quiver}
 \usepackage{bbold}
@@ -36,7 +36,7 @@
 
 \section{This is [not] an outline}
 
-The goal of this thesis is to redefine the functor $F\colon
+The goal of this thesis is to redefine the functor: $F\colon
 N(\FibCat)\rightarrow\Lexi$, from the nerve of the homotopical category of
 fibration categories to $\infty$-category of finitely complete
 $\infty$-categories and left exact functors, and prove that it induces an
@@ -297,7 +297,7 @@ $\iota$.
   under which it is a weak equivalence.
 \end{proof}
 
-\section{This is [not] a $\infty$-category}
+\section{This is [not] a \texorpdfstring{$\infty$}{∞}-category}
 
 Our approach relies on defining a $\infty$-category $\FibCat_\infty$. How to do this?
 
@@ -355,25 +355,29 @@ categories into fibration $\infty$-categories? We need to approximate a map from
 a fibration $\infty$-category to a fibration category by one between fibration
 categories, the same problem as before. Everything else should be easy.
 
-Idea: given a morphism $\cC\rightarrow L(\cP)$, we consider a finitely complete
-category $\sSet_0/\cC$, which can be given a fibrational structure mimicking the
-cofibrational one specified in \cite[Def.\ 4.1]{Szu17b}. If the map
-$\widetilde{\lim}\colon L(\sSet_0/\cC)\rightarrow\cC$ is a weak equivalence,
+3- Starting from the fibration categories $\FibCat$ and $\Lexi$ and the functor
+$\Hoi$ between them we can show the approximation properties of \cite[Thm.\
+7.6.15]{Cis19}. The problems are the same as in (2), that is  how can we prove
+that localizing a fibration in $\FibCat$ gives a fibration in $\Lexi$? Also, the
+approximation property (i) is easy, while for (ii) given a morphism
+$\cC\rightarrow L(\cP)$, we may try to consider a finitely complete
+category $\sSet_0/\cC$, whose fibrational structure is essentially the dual of
+the one specified in \cite[Def.\ 4.1]{Szu17b}, specifically the fibrations are
+given by monomorphisms and weak equivalences by maps sent to isomorphisms under
+the functor $\lim\colon(\sSet_0/\cC)^{\op}\rightarrow\cC$; the proof that this
+is indeed a fibration category is the same as the one concerning
+$\sSet_\kappa/\cC$ provided in \cite[Prop.\ 4.2]{Szu17b}. If the map
+$\widetilde{\lim}\colon L(\sSet_0/\cC)^{\op}\rightarrow\cC$ is a weak equivalence,
 then we get the desired commutative square by looking at
 \[\begin{tikzcd}
 	\cC & {L(\cP)} \\
-	{L(\sSet_0/\cC)} & {L(\sSet_0/\cC)}
+  {L(\sSet_0/\cC)}^{\op} & {L(\sSet_0/\cC)^{\op}}
 	\arrow[from=2-2, to=1-2]
 	\arrow[from=1-1, to=1-2]
   \arrow["\widetilde{\lim}", from=2-1, to=1-1]
 	\arrow[Rightarrow, no head, from=2-1, to=2-2]
 \end{tikzcd}\]
-and somehow lift the map $L(\sSet_0/\cC)\rightarrow L(\cP)$ through $L$.
-
-How to mimick that cofibrational structure? Weak equivalences are obviously the
-maps sent by the functor $\lim$ to isomorphisms, but what about fibrations? We
-need something such that the pullback of a trivial fibration is again a trivial
-fibration.
+and somehow lift the map $L(\sSet_0/\cC)^{\op}\rightarrow L(\cP)$ through $L$.
 
 We may also specify a weak equivalence $\cC\rightarrow L(\sSet_0/\cC)$ as in
 \cite[Def.\ 4.6]{Szu17b} \wfd{(I don't really see how to adapt this)}.

@@ -2364,11 +2364,13 @@
     <bcf:citekey order="18">Cis19</bcf:citekey>
     <bcf:citekey order="19">Szu17b</bcf:citekey>
     <bcf:citekey order="20">Cis19</bcf:citekey>
-    <bcf:citekey order="21">Szu17b</bcf:citekey>
+    <bcf:citekey order="21">Cis19</bcf:citekey>
     <bcf:citekey order="22">Szu17b</bcf:citekey>
-    <bcf:citekey order="23">Cis19</bcf:citekey>
-    <bcf:citekey order="24">KS19</bcf:citekey>
-    <bcf:citekey order="25">Szu17b</bcf:citekey>
+    <bcf:citekey order="23">Szu17b</bcf:citekey>
+    <bcf:citekey order="24">Szu17b</bcf:citekey>
+    <bcf:citekey order="25">Cis19</bcf:citekey>
+    <bcf:citekey order="26">KS19</bcf:citekey>
+    <bcf:citekey order="27">Szu17b</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="anyt">
