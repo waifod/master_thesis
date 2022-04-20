@@ -140,12 +140,10 @@ as objects and left exact functors as arrows.
 \end{defn}
 
 The three conditions and the map being an isofibration are necessary to ensure
-that a fibration of fibration categories is sent to a fibration in $\Lexi$ and
-correspond to the requirement that it is a fibration on the underlying fibration
-categories.
+that a fibration of fibration categories is sent to a fibration in $\Lexi$.
 
 Notice that this is just taken from \cite[Def.\ 4.3]{KS19} and, under our
-definition, every map to the terminal fibration category if a fibration.
+definition, every map to the terminal fibration category is a fibration.
 
 \begin{prop}
   These classes of maps specify a fibration category structure on $\FibCat$.
@@ -361,6 +359,17 @@ $\Hoi$ between them we can show the approximation properties of \cite[Thm.\
 that localizing a fibration in $\FibCat$ gives a fibration in $\Lexi$? Also, the
 approximation property (i) is easy, while for (ii) given a morphism
 $\cC\rightarrow L(\cP)$, we may try to consider a finitely complete
+<<<<<<< HEAD
+category $(\sSet_0/\cC)^{\op}$, whose fibrational structure is the dual of
+the cofibrational one specified in \cite[Def.\ 4.1]{Szu17b}, specifically the
+fibrations are given by monomorphisms and weak equivalences by maps sent to
+isomorphisms under the functor $\lim\colon(\sSet_0/\cC)^{\op}\rightarrow\cC$;
+the proof that this is indeed a fibration category is the same as the one
+concerning $\sSet_\kappa/\cC$ provided in \cite[Prop.\ 4.2]{Szu17b}. If the map
+$\widetilde{\lim}\colon L(\sSet_0/\cC)^{\op}\rightarrow\cC$ is a weak
+equivalence (check the following proposition!), then we get the desired
+commutative square by looking at
+=======
 category $\sSet_0/\cC$, whose fibrational structure is essentially the dual of
 the one specified in \cite[Def.\ 4.1]{Szu17b}, specifically the fibrations are
 given by monomorphisms and weak equivalences by maps sent to isomorphisms under
@@ -369,6 +378,7 @@ is indeed a fibration category is the same as the one concerning
 $\sSet_\kappa/\cC$ provided in \cite[Prop.\ 4.2]{Szu17b}. If the map
 $\widetilde{\lim}\colon L(\sSet_0/\cC)^{\op}\rightarrow\cC$ is a weak equivalence,
 then we get the desired commutative square by looking at
+>>>>>>> 1ec446aacab0c480b70982ec08fc5c331a7c94e5
 \[\begin{tikzcd}
 	\cC & {L(\cP)} \\
   {L(\sSet_0/\cC)}^{\op} & {L(\sSet_0/\cC)^{\op}}
@@ -378,6 +388,32 @@ then we get the desired commutative square by looking at
 	\arrow[Rightarrow, no head, from=2-1, to=2-2]
 \end{tikzcd}\]
 and somehow lift the map $L(\sSet_0/\cC)^{\op}\rightarrow L(\cP)$ through $L$.
+<<<<<<< HEAD
+
+\begin{prop}
+  The map $\widetilde{\lim}$ is a categorical equivalence.
+\end{prop}
+\begin{proof}
+  We shall verify that the hypothesis of \cite[Prop.\ 7.6.15]{Cis19} are
+  satisfied.
+
+  First of all, the functor $\lim$ preserves finite limits as they commute with
+  finite limits, therefore it is left exact. Also, a morphism in
+  $(\sSet_0/\cC)^{\op}$ is a weak equivalence if and only if it is mapped to an
+  isomorphism, thus condition (i) is trivially satisfied.
+
+  We are only missing condition (ii), so let's consider a morphism
+  $\phi\colon c\rightarrow\lim_K D$ in $\cC$. This corresponds to an object
+  $(c,\hat{\phi})$ in $\cC/D$, that is a map
+  $\hat{\phi}\colon\Delta^0*K\rightarrow\cC$ such that $\hat{\phi}|_K=D$,
+  $\hat{\phi}|_{\Delta^0}=c$. We have then a map $D\rightarrow\hat{\phi}$ in
+  $\sSet_0/\cC$ given
+  by the inclusion $K\rightarrow\Delta^0*K$ and inducing the morphism
+  $\phi\colon c=\lim_{\Delta^0*K}\hat{\phi}\rightarrow\lim_KD$, which allows us
+  to construct the desired commutative square.
+\end{proof}
+=======
+>>>>>>> 1ec446aacab0c480b70982ec08fc5c331a7c94e5
 
 We may also specify a weak equivalence $\cC\rightarrow L(\sSet_0/\cC)$ as in
 \cite[Def.\ 4.6]{Szu17b} \wfd{(I don't really see how to adapt this)}.
