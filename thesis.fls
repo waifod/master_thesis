@@ -1,4 +1,4 @@
-PWD /home/wfd/math/thesis
+PWD /home/wfd/math/master_thesis
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
 INPUT thesis.tex
@@ -1524,6 +1524,7 @@ INPUT /usr/share/texmf-dist/fonts/type1/public/lm/lmmi12.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/lm/lmmi8.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/lm/lmr12.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/lm/lmr17.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/lm/lmr6.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/lm/lmr8.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/lm/lmri12.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/lm/lmss12.pfb
