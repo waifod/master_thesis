@@ -368,9 +368,8 @@ the proof that this is indeed a fibration category is the same as the one
 concerning $\sSet_\kappa/\cC$ provided in \cite[Prop.\ 4.2]{Szu17b}. If the map
 $\widetilde{\lim}\colon L(\sSet_0/\cC)^{\op}\rightarrow\cC$ is a weak
 equivalence (check the following proposition!), then we get the desired
-commutative square by looking at
-=======
-category $\sSet_0/\cC$, whose fibrational structure is essentially the dual of
+commutative square by looking at the category $\sSet_0/\cC$, whose fibrational
+structure is essentially the dual of
 the one specified in \cite[Def.\ 4.1]{Szu17b}, specifically the fibrations are
 given by monomorphisms and weak equivalences by maps sent to isomorphisms under
 the functor $\lim\colon(\sSet_0/\cC)^{\op}\rightarrow\cC$; the proof that this
@@ -378,7 +377,6 @@ is indeed a fibration category is the same as the one concerning
 $\sSet_\kappa/\cC$ provided in \cite[Prop.\ 4.2]{Szu17b}. If the map
 $\widetilde{\lim}\colon L(\sSet_0/\cC)^{\op}\rightarrow\cC$ is a weak equivalence,
 then we get the desired commutative square by looking at
->>>>>>> 1ec446aacab0c480b70982ec08fc5c331a7c94e5
 \[\begin{tikzcd}
 	\cC & {L(\cP)} \\
   {L(\sSet_0/\cC)}^{\op} & {L(\sSet_0/\cC)^{\op}}
@@ -387,8 +385,16 @@ then we get the desired commutative square by looking at
   \arrow["\widetilde{\lim}", from=2-1, to=1-1]
 	\arrow[Rightarrow, no head, from=2-1, to=2-2]
 \end{tikzcd}\]
-and somehow lift the map $L(\sSet_0/\cC)^{\op}\rightarrow L(\cP)$ through $L$.
-<<<<<<< HEAD
+and somehow lift the map $L(\sSet_0/\cC)^{\op}\rightarrow L(\cP)$ through $L$,
+
+\wfd{(I do not believe this lift to always exist. Indeed, take the $\infty$-groupoid
+$\cC=N(\{0\leftrightarrows 1\})$ and $\cP=[1]$ with the minimal fibrational
+structure making $0\rightarrow 1$ a weak equivalence. Given in
+$(\sSet/\cC)^{\op}$ the objects
+$0\colon\Delta^0\rightarrow\cC$, $(1\rightarrow 0)\colon\Delta^1\rightarrow\cC$
+and the obvious morphism $f$ between them, we see that the lifted map
+$(\sSet/\cC)^{\op}\rightarrow\cP$ would send $f$ to a morphism with domain $1$
+and codomain $0$, which does not exist.)}
 
 \begin{prop}
   The map $\widetilde{\lim}$ is a categorical equivalence.
@@ -412,8 +418,6 @@ and somehow lift the map $L(\sSet_0/\cC)^{\op}\rightarrow L(\cP)$ through $L$.
   $\phi\colon c=\lim_{\Delta^0*K}\hat{\phi}\rightarrow\lim_KD$, which allows us
   to construct the desired commutative square.
 \end{proof}
-=======
->>>>>>> 1ec446aacab0c480b70982ec08fc5c331a7c94e5
 
 We may also specify a weak equivalence $\cC\rightarrow L(\sSet_0/\cC)$ as in
 \cite[Def.\ 4.6]{Szu17b} \wfd{(I don't really see how to adapt this)}.
