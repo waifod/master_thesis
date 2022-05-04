@@ -493,6 +493,38 @@ Why all of this is interesting: we are proving Kapulkin's result internalizing
 all of the discussion within the language of $\infty$-category theory and
 relying only on its simplicial model.
 
+\section{Pushforward}
+
+One may ask whether cocartesian fibrations in $\sSet$ model Pi types, which is a
+piece needed to understand a novel model of dependent type theory provided by
+$\sSet$. To answer this question, an explicit description of the right adjoint
+$p_!$ of the pullback functor $p^*\colon\sSet/Y\rightarrow\sSet/X$ induced by a
+morphism $p\colon X\rightarrow Y$ is needed.
+
+Consider an object $f\colon T\rightarrow X$ in $\sSet/X$. What is $p_!(f)\colon
+T'\rightarrow Y$? We know that a $n$-simplex $t'$ of $T'$ corresponds
+bijectively to a map $t'\colon\Delta^n\rightarrow T'$, which in turn corresponds
+bijectively to a commutative diagram
+\[\begin{tikzcd}
+	{\Delta^n} & {} & {T'} \\
+	& Y
+	\arrow["{t'}", from=1-1, to=1-3]
+	\arrow["y"', from=1-1, to=2-2]
+	\arrow["{p_!(f)}", from=1-3, to=2-2]
+\end{tikzcd}\]
+and, under the adjunction $p^*\dashv p_!$, we get bijectively another
+commutative diagram
+\[\begin{tikzcd}
+	U & {} & T \\
+	& X
+	\arrow["t", from=1-1, to=1-3]
+	\arrow["{p^*(y)}"', from=1-1, to=2-2]
+	\arrow["f", from=1-3, to=2-2]
+\end{tikzcd},\]
+from which follows that $T'_n\cong\{(y,t)\ |\ y\in Y_n,\
+t\in\sSet/X(p^*(y),f)\}$. The map $p_!(f)$ then sends $(y,t)\in T'_n$ to $y\in
+Y_n$.
+
 \printbibliography
 
 \end{document}
