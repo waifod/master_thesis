@@ -494,6 +494,491 @@ Why all of this is interesting: we are proving Kapulkin's result internalizing
 all of the discussion within the language of $\infty$-category theory and
 relying only on its simplicial model.
 
+\section{Localizations of \texorpdfstring{$\infty$}{∞}-Categories}
+
+To prove the that localizing a categorical model of type theory we get a locally
+cartesian closed $\infty$-category we need a theory of localizations. We shall
+provide one in the general context of $\infty$-categories as developed by
+Cisinski in \emph{Higher Categories and Homotopical Algebra} with the aim of
+proving \cite[Thm.\ 7.6.16]{Cis19}, which will do the heavy lifting in showing
+the desired result. Those familiar with the theory may skip the entire chapter
+while keeping in mind yadda yadda \wfd{(LIST THE MAJOR RESULTS)}.
+
+\begin{defn}
+  Let $X$ be a simplicial set and $W\subset X$ a simplicial subset. Given an
+  $\infty$-category $\cC$, we define $\Home_W(X,\cC)$ to be the full simplicial
+  subset of $\Home(X,\cC)$ whose objects are the morphisms $f\colon
+  X\rightarrow\cC$ sending the 1-simplices in $W$ to isomorphisms.
+\end{defn}
+
+\begin{rmk}
+  The above definition induces a canonical pullback square
+  \[\begin{tikzcd}
+    {\Home_W(X,\cC)} & {\Home(X,\cC)} \\
+    {\Home_W(W,\cC)} & {\Home(W,\cC)}
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=1-2, to=2-2]
+    \arrow[from=1-1, to=1-2]
+    \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+  \end{tikzcd}\]
+  given by the inclusion $W\rightarrow X$.
+\end{rmk}
+
+\begin{defn}
+  Given an $\infty$-category $\cC$ and $W\subset\cC$, a \emph{localization of
+  $\cC$ by $W$} is a functor $\gamma\colon\cC\rightarrow L(\cC)$ such that:
+  \begin{enumerate}
+    \item $L(\cC)$ is an $\infty$-category;
+    \item $\gamma$ sends the 1-simplices of $W$ to isomorphisms in $L(\cC)$;
+    \item for any $\infty$-category $\cD$ there is an equivalence of
+      $\infty$-categories
+      \[\Home(L(\cC),\cD)\rightarrow\Home_W(\cC,\cD)\]
+      given by precomposing with $\gamma$.
+  \end{enumerate}
+\end{defn}
+
+\wfd{(CISINSKI DOES NOT ASK FOR $\cC$ TO BE AN $\infty$-CATEGORY. SHOULD WE
+BE LESS GENERAL AS WE HAVE DONE?)}
+
+\begin{prop}
+  Given an $\infty$-category $\cC$ and a subsimplicial set $W$, the localization
+  of $\cC$ by $W$ always exists and it is essentially unique.
+\end{prop}
+\begin{proof}
+  We begin by proving that a localization exists in the case where $W=\cC$.
+
+  In this context, $\Home_W(\cC,\cD)\cong\Home(\cC,\cD^{\cong})$ canonically,
+  where $\cD^{\cong}$ is the maximal sub-$\infty$-subgroupoid of $\cD$.
+  Factoring $\cC\rightarrow\Delta^0$ in the Kan model structure, we find an
+  anodyne map $\gamma\colon\cC\rightarrow L(\cC)$.
+
+  Remember that for any anodyne map $A\rightarrow B$ we get a trivial fibration
+  $\Home(B,\cD^{\cong})\rightarrow\Home(A,\cD^{\cong})$. Looking then at the
+  commutative diagram
+  \[\begin{tikzcd}
+    {\Hom(L(\cC),\cD^{\cong})} & {\Hom_W(\cC,\cD^{\cong})} \\
+    {\Home(L(\cC),\cD)} & {\Home_W(\cC,\cD)}
+    \arrow["\gamma^*", "\sim"', two heads, from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow["{\gamma^*}"', from=2-1, to=2-2]
+    \arrow["\cong", from=1-2, to=2-2]
+    \arrow["\cong"', from=1-1, to=2-1]
+  \end{tikzcd},\]
+  by the 2-out-of-3 property we see that the lower $\gamma^*$ is an equivalence.
+  
+  We now move on to the general case. First of all, notice that as a particular
+  case of the previous one we get that localizing $\Delta^1$ at its non-trivial
+  morphism we obtain $\Delta^1\rightarrow J=L(\Delta^1)\sim\Delta^0$. Taking
+  then $W\subset\cC$, we consider the commutative diagram
+  \[\begin{tikzcd}
+    {\coprod_{f\in W_1}\Delta^1} & \cC \\
+    {\coprod_{f\in W_1}J} & {\cC'} \\
+    && {L(\cC)}
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=1-2, to=2-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow["\sim"', hook, from=2-2, to=3-3]
+    \arrow["\gamma", curve={height=-12pt}, from=1-2, to=3-3]
+    \arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+  \end{tikzcd},\]
+  where $\cC'\rightarrow L(\cC)$ is an inner anodyne map obtained by taking the
+  fibrant replacement of $\cC'$ in the Joyal model structure. This can be done
+  functorially via the small object argument.
+
+  For any $\infty$-category $\cD$, we get a trivial fibration
+  $\Home(L(\cC),\cD)\rightarrow\Home(\cC',\cD)$ and a pullback square
+  \[\begin{tikzcd}
+    {\Home(\cC',\cD)} & {\Home(\cC,\cD)} \\
+    {\Pi_{f\in W_1}\Home(J,\cD)} & {\Pi_{f\in W_1}\Home(\Delta^1,\cD)}
+    \arrow[from=1-2, to=2-2]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=1-1, to=1-2]
+  \end{tikzcd},\]
+  which together with the pullback
+  \[\begin{tikzcd}
+    {\Home_W(\cC,\cD)} & {\Home(\cC,\cD)} \\
+    {\Pi_{f\in W_1}\Home(\Delta^1,\cD^{\cong})} & {\Pi_{f\in W_1}\Home(\Delta^1,\cD)}
+    \arrow[from=1-2, to=2-2]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=1-1, to=1-2]
+  \end{tikzcd}\]
+  implies by pasting that
+  \[\begin{tikzcd}
+    {\Home(\cC',\cD)} & {\Home_W(\cC,\cD)} \\
+    {\Pi_{f\in W_1}\Home(J,\cD)} & {\Pi_{f\in W_1}\Home(\Delta^1,\cD^{\cong})}
+    \arrow[from=1-2, to=2-2]
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow["\sim", two heads, from=2-1, to=2-2]
+    \arrow[from=1-2, to=2-2]
+  \end{tikzcd}\]
+  is also a pullback and therefore the upper arrow is a trivial fibration.
+  Composing it with the other one we get
+  $\gamma^*\colon\Home(L(\cC),\cD)\rightarrow\Home_W(\cC,\cD)$, which is then a
+  trivial fibration and therefore an equivalence of $\infty$-categories.
+
+  7.1.4 Observe that, through this construction, one can always construct
+  $L(\cC)$ so that $\gamma$ is a bijection on objects because $\cC'\rightarrow
+  L(\cC)$ is an inner anodyne extension and therefore a retract of a countable
+  composition of sums of pushouts of maps which are the identity on objects,
+  that is the inner horn inclusions.
+
+  We now move on to proving that the localization is essentially unique. For
+  this, we notice that $\gamma$ establishes then an isomorphism between
+  $\pi_0(k(\Home_W(\cC,-)))$ and $\pi_0(\Home(L(\cC),-))=ho(\sSet)(L(\cC),-)$
+  with respect to the Joyal model structure, thus by Yoneda $(L(\cC),\gamma)$ is
+  unique up to unique isomorphism in $ho(\sSet)$ and up to a contractible space
+  of equivalences in $\sSet$.
+\end{proof}
+
+\begin{rmk}
+  7.1.5
+
+  In this context, we may define $\overline{W}$, the saturation of $W$ in $\cC$,
+  as the cartesian square
+
+  such that $\overline{W}$ is precisely the maximal simplicial subset of $\cC$
+  whose morphisms are the ones which become invertible in $L(\cC)$.
+
+  We have then inclusions $Sk_1(W)\subset W\subset\overline{W}$ and, for any
+  $\infty$-category $\cD$, this induces equalities
+  \[\Home_{Sk_1(W)}(\cC,\cD)=\Home_{W}(\cC,\cD)\Home_{\overline{W}}(\cC,\cD),\]
+  implying that $(L(\cC),\gamma)$ is also the localization of $\cC$ by $Sk_1(W)$
+  and the one by $\overline{W}$, however the inclusion $W\rightarrow\cC$ is a
+  fibration in the Joyal model category as it is the pullback of one, implying
+  that $\overline{W}$ is itself an $\infty$-category.
+
+  We shall say that $W$ is saturated if $W=\overline{W}$.
+\end{rmk}
+
+\begin{rmk}
+  7.1.6
+
+  The functor $ho(\cC)\rightarrow ho(L(\cC))$ exibits $ho(L(\cC))$ as the
+  1-categorical localization of $\cC$ at $\Arr(\tau(W))$, as can be seen by
+  using the universal property.
+
+  On the other hand, given a 1-category $\cC$ and localizing at a set of
+  morphisms $W$, not necessarily the induced map $L(N(\cC))\rightarrow
+  N(L(\cC))$ is an isomorphism. Indeed, $L(N(\cC))$ can have much better
+  properties, as can be seen for example from yadda yadda \wfd{(PROPOSITION
+  ABOUT FINITE COMPLETENESS)} and in fact localizing 1-categories after taking
+  their nerves gives every $\infty$-category \wfd{(MORE
+  PRECISE STATEMENT)}.
+\end{rmk}
+
+\begin{prop}
+  7.1.9
+
+  Given a universe $\bfU$ and $W$ a simplicial subset of a $\bfU$-small
+  $\infty$-category $\cC$, let $\gamma\colon\cC\rightarrow L(\cC)$ be the
+  associated localization. Then the functor
+  $\gamma^*\colon\Home(L(\cC)^{\op},\cS)\rightarrow\Home(\cC^{\op},\cS)$ is
+  fully faithful and its essential image consists of all presheaves
+  $F\colon\cC^{\op}\rightarrow\cS$ sending maps $u\colon x\rightarrow y$ in $W$
+  to invertible maps $u^*\colon Fy\rightarrow Fx$ in $\cS$.
+\end{prop}
+\begin{prop}
+  The map $\gamma$ gives us a morphism
+  \[\gamma^*\colon\Home(L(\cC)^{\op},\cS)\simeq\Home_{W^{\op}}(\cC^{\op})\rightarrow\Home(\cC^{\op},\cS),\]
+  which has a left adjoint $\gamma_!$ and a right adjoint $\gamma_*$. Now, for
+  any presheaf $F\colon L(\cC)^{\op}\rightarrow\cS$, the unit map
+  $F\rightarrow\gamma_*\gamma^*F$ is invertible and, by adjunction, the same
+  goes for the counit map $\gamma_!\gamma^*F\rightarrow F$, which means that
+  $u^*$ is fully faithful. On the other hand, given a presheaf
+  $F\colon\cC^{\op}\rightarrow\cS$ sending 1-simplices in $W$ to invertible maps,
+  the counit $\gamma^*\gamma_*F\rightarrow F$ and the unit
+  $F\rightarrow\gamma^*\gamma_!F$ are both invertible since the restrictions of
+  these adjunctions to $\Home_{W^{\op}}(\cC^{\op},\cS)$ form adjoint
+  equivalences of $\infty$-categories as $\gamma^*$ is an equivalence.
+\end{prop}
+
+\begin{prop}
+  7.1.10
+
+  Given an $\infty$-category $\cC$ and a simplicial subset $W$, the localization
+  functor $\gamma\colon\cC\rightarrow L(\cC)$ is final and cofinal.
+\end{prop}
+
+\begin{cor}
+  7.1.11
+   Let's fix a universe $\bfU$, a $\bfU$-small $\infty$-category $\cC$ and a
+   simplicial subset $W$. Consider then a functor $f\colon\cC\rightarrow\cD$,
+   where $X$ is a small $\infty$-category. Then $f$ exhibits $\cD$ as the
+   localization of $\cC$ by $W$ if and only if the following conditions hold:
+   \begin{enumerate}
+     \item the functor $f$ sends the 1-simplices of $W$ to invertible maps of
+       $\cD$;
+     \item the functor $f$ is essentially surjective;
+     \item the functor $f^*$ induces an equivalence of $\infty$-categories
+       \[f^*\colon\Home(\cD^{\op},\cS)\rightarrow\Home_{W^{\op}}(\cC^{\op},\cS).\]
+   \end{enumerate}
+\end{cor}
+
+\begin{cor}
+  7.1.14
+\end{cor}
+
+\begin{cor}
+  7.1.18
+\end{cor}
+\begin{proof}
+  7.1.9
+\end{proof}
+
+\begin{cor}
+  7.2.5
+\end{cor}
+\begin{proof}
+  7.1.5
+\end{proof}
+
+\begin{cor}
+  7.2.8
+\end{cor}
+\begin{proof}
+  7.1.5, 7.1.18, 7.2.5
+\end{proof}
+
+\begin{cor}
+  7.2.10
+\end{cor}
+
+\begin{cor}
+  7.2.15
+\end{cor}
+
+\begin{cor}
+  7.2.16
+\end{cor}
+
+\begin{cor}
+  7.2.18
+\end{cor}
+\begin{proof}
+  7.2.16
+\end{proof}
+
+\begin{cor}
+  7.2.25
+\end{cor}
+\begin{proof}
+  7.2.8, 7.2.10, 7.2.15
+\end{proof}
+
+\begin{cor}
+  7.3.2
+\end{cor}
+
+\begin{cor}
+  7.3.4
+\end{cor}
+
+\begin{cor}
+  7.3.5
+\end{cor}
+\begin{proof}
+  7.1.10, 7.3.2, 7.3.4
+\end{proof}
+
+\begin{cor}
+  7.3.8
+\end{cor}
+\begin{proof}
+  7.1.10, 7.1.12
+\end{proof}
+
+\begin{cor}
+  7.3.9
+\end{cor}
+\begin{proof}
+  7.3.8
+\end{proof}
+
+\begin{cor}
+  7.3.10
+\end{cor}
+\begin{proof}
+  7.3.9
+\end{proof}
+
+\begin{prop}
+  7.3.11
+\end{prop}
+
+\begin{cor}
+  7.3.15
+\end{cor}
+\begin{proof}
+  7.1.12, 7.3.9, 7.3.10
+\end{proof}
+
+\begin{cor}
+  7.3.16
+\end{cor}
+\begin{proof}
+  7.3.5, 7.3.15
+\end{proof}
+
+\begin{cor}
+  7.3.26
+\end{cor}
+
+\begin{cor}
+  7.3.27
+\end{cor}
+\begin{proof}
+  7.3.16, 7.3.26
+\end{proof}
+
+\begin{cor}
+  7.3.28
+\end{cor}
+
+\begin{cor}
+  7.3.29
+\end{cor}
+\begin{proof}
+  7.3.27, 7.3.28
+\end{proof}
+
+\begin{prop}
+  7.4.2
+\end{prop}
+
+\begin{prop}
+  7.4.11
+\end{prop}
+\begin{proof}
+  7.3.11, 7.4.2
+\end{proof}
+
+\begin{prop}
+  7.4.13
+\end{prop}
+
+\begin{cor}
+  7.4.14
+\end{cor}
+\begin{proof}
+  7.4.13
+\end{proof}
+
+\begin{prop}
+  7.4.16
+\end{prop}
+\begin{proof}
+  7.4.13
+\end{proof}
+
+\begin{prop}
+  7.4.19
+\end{prop}
+\begin{proof}
+  7.4.11
+\end{proof}
+
+\begin{prop}
+  7.5.5
+\end{prop}
+
+\begin{prop}
+  7.5.6
+\end{prop}
+\begin{proof}
+  7.1.10, 7.2.18, 7.2.25, 7.3.27, 7.4.13, 7.4.16
+\end{proof}
+
+\begin{prop}
+  7.5.17
+\end{prop}
+
+\begin{prop}
+  7.5.18
+\end{prop}
+\begin{proof}
+  7.5.6, 7.5.17
+\end{proof}
+
+\begin{prop}
+  7.5.19
+\end{prop}
+\begin{proof}
+  7.5.18
+\end{proof}
+
+\begin{prop}
+  7.5.22
+\end{prop}
+\begin{proof}
+  7.5.19
+\end{proof}
+
+\begin{prop}
+  7.5.24
+\end{prop}
+
+\begin{prop}
+  7.5.28
+\end{prop}
+\begin{proof}
+  7.5.6
+\end{proof}
+
+\begin{lem}
+  7.6.2
+\end{lem}
+\begin{proof}
+  7.2.10.4, 7.2.18, 7.4.13
+\end{proof}
+
+\begin{lem}
+  7.6.4
+\end{lem}
+\begin{proof}
+  7.2.10.4, 7.2.18, 7.4.13
+\end{proof}
+
+\begin{lem}
+  7.6.5
+\end{lem}
+\begin{proof}
+  4.2.9
+\end{proof}
+
+\begin{lem}
+  7.6.7
+\end{lem}
+\begin{proof}
+  4.3.15, 7.4.19, 7.5.5
+\end{proof}
+
+\begin{thm}
+  7.6.10
+\end{thm}
+\begin{proof}
+  7.3.29, 7.6.2, 7.6.5, 7.6.7
+\end{proof}
+
+\begin{cor}
+  7.6.13
+\end{cor}
+\begin{proof}
+  7.5.18, 7.5.22, 7.5.24, 7.5.28, 7.6.4, 7.6.10
+\end{proof}
+
+\begin{thm}
+  7.6.16
+\end{thm}
+\begin{proof}
+  6.1.6, 6.1.7, 6.1.8, 7.1.14, 7.4.14, 7.5.18, 7.6.13
+\end{proof}
+
 \section{Categorical Models of TT as Locally Cartesian Closed Fibration
 Categories}
 
@@ -586,13 +1071,24 @@ commutative diagram
 	\arrow["{p^*(y)}"', from=1-1, to=2-2]
 	\arrow["f", from=1-3, to=2-2]
 \end{tikzcd},\]
-from which follows that $T'_n\cong\{(y,t)\ |\ y\in Y_n,\
-t\in\sSet/X(p^*(y),f)\}$. The map $p_*(f)$ then sends $(y,t)\in T'_n$ to $y\in
-Y_n$.
+from which follows that
+\[T'_n\cong\{(y,t)\ |\ y\in Y_n,\ t\in\sSet/X(p^*(y),f)\}\]
+and the map $p_*(f)$ then sends $(y,t)\in T'_n$ to $y\in Y_n$.
 
-We know that $p^*\dashv p_*$ defines a Quillen adjunction with respect to some
-model structure. What are their derived functors? We need to specify a canonical
-fibrant replacement.
+The same method can be extended to give us the pushforward along a map of marked
+simplicial sets $p\colon (X,E_X)\rightarrow (Y,E_Y)$ in $\mSet$. Specifically,
+our previous construction can be adapted to give us the $n$-simplices by
+starting from maps $(\Delta^n)_\flat\rightarrow p_*(T,E_T)=(T',E_{T'})$, telling
+us again that
+\[T'_n\cong\{(y,t)\ |\ y\in Y_n,\ t\in\mSet/X(p^*(y),f)\},\]
+while to get the markings we notice that every marked edge in $p_*(T,E_T)$
+corresponds to a unique map $(\Delta^1)_\natural\rightarrow p_*(T,E_T)$ and the
+same procedure allows us to write
+\[E_{T'}=\{(y,t)\ |\ y\in E_Y,\ t\in\mSet/X(p^*(y),f)\},\]
+which fully specifies the needed data.
+
+Now, under which conditions on $p$ does this specify a Quillen adjunction when
+the slices of $\mSet$ are equipped with the contravariant model structure?
 
 \printbibliography
 
