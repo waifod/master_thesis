@@ -541,7 +541,7 @@ while keeping in mind yadda yadda \wfd{(LIST THE MAJOR RESULTS)}.
 \wfd{(CISINSKI DOES NOT ASK FOR $\cC$ TO BE AN $\infty$-CATEGORY. SHOULD WE
 BE LESS GENERAL AS WE HAVE DONE?)}
 
-\begin{prop}
+\begin{prop}\label{exuniq}
   Given an $\infty$-category $\cC$ and a subsimplicial set $W$, the localization
   of $\cC$ by $W$ always exists and it is essentially unique.
 \end{prop}
@@ -705,20 +705,41 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   functor $\gamma\colon\cC\rightarrow L(\cC)$ is final and cofinal.
 \end{prop}
 
-\begin{cor}
+\begin{prop}
   7.1.11
-   Let's fix a universe $\bfU$, a $\bfU$-small $\infty$-category $\cC$ and a
-   simplicial subset $W$. Consider then a functor $f\colon\cC\rightarrow\cD$,
-   where $X$ is a small $\infty$-category. Then $f$ exhibits $\cD$ as the
-   localization of $\cC$ by $W$ if and only if the following conditions hold:
-   \begin{enumerate}
-     \item the functor $f$ sends the 1-simplices of $W$ to invertible maps of
-       $\cD$;
-     \item the functor $f$ is essentially surjective;
-     \item the functor $f^*$ induces an equivalence of $\infty$-categories
-       \[f^*\colon\Home(\cD^{\op},\cS)\rightarrow\Home_{W^{\op}}(\cC^{\op},\cS).\]
-   \end{enumerate}
-\end{cor}
+  Let's fix a universe $\bfU$, a $\bfU$-small $\infty$-category $\cC$ and a
+  simplicial subset $W$. Consider then a functor $f\colon\cC\rightarrow\cD$,
+  where $X$ is a small $\infty$-category. Then $f$ exhibits $\cD$ as the
+  localization of $\cC$ by $W$ if and only if the following conditions hold:
+  \begin{enumerate}
+    \item the functor $f$ sends the 1-simplices of $W$ to invertible maps of
+      $\cD$;
+    \item the functor $f$ is essentially surjective;
+    \item the functor $f^*$ induces an equivalence of $\infty$-categories
+      \[f^*\colon\Home(\cD^{\op},\cS)\rightarrow\Home_{W^{\op}}(\cC^{\op},\cS).\]
+  \end{enumerate}
+\end{prop}
+\begin{proof}
+  One implication is trivial (for (2) look at the construction in \ref{exuniq}).
+  For the converse, let's pick a localization $\gamma\colon\cC\rightarrow
+  L(\cC)$ and, through condition (1), we get a factorization $g\colon
+  L(\cC)\rightarrow\cD$ such that $g\cdot\gamma\cong f$, giving us a triangle
+  \[\begin{tikzcd}
+    {\Home(\cD^{\op},\cE)} && {\Home(L(\cC)^{\op},\cE)} \\
+                           & {\Home_{W^{\op}}(\cC^{\op},\cE)}
+    \arrow["{g^*}", from=1-1, to=1-3]
+    \arrow["{f^*}"', from=1-1, to=2-2]
+    \arrow["{\gamma^*}", from=1-3, to=2-2]
+  \end{tikzcd}\]
+  commuting up to $J$-homotopy for any $\infty$-category $\cE$. Picking
+  $\cE=\cS$, $\gamma^*$ and $f^*$ are equivalences
+  of $\infty$-categories, the latter by (3). It follows by 2-out-of-3 that $g^*$
+  is one too, and therefore the same applies to its left adjoint $g_!$, which is
+  then fully faithful. This is equivalent to $g$ being fully faithful \wfd{(FUN
+  THEOREM, MAYBE STATE IT AT LEAST 6.1.5)} and, since
+  $f$ is essentially surjective by (2), the same goes for $g$. It follows that
+  $g$ is an equivalence of $\infty$-categories.
+\end{proof}
 
 \begin{cor}
   7.1.14
@@ -995,6 +1016,30 @@ cartesian closed fibration category?
 First of all, he refers to AKL15 to show that $\cP$ has a fibrational structure,
 then he goes on to show the following results, whose proofs are extremely terse
 and therefore should be expanded.
+
+\wfd{(I DON'T UNDERSTAND WHAT $f^*b$ SHOULD BE IN 1211.2851, DEF. 1.2.4. WHAT
+FOLLOWS IS MY IDEA.)}
+
+\begin{defn}
+  Given $p_A\colon\Gamma.A\rightarrow\Gamma$, a section
+  $a\colon\Gamma\rightarrow\Gamma.A$ and $f\colon\Delta\rightarrow\Gamma$, we
+  look at the commutative diagram
+  \[\begin{tikzcd}
+    \Delta \\
+    & {\Delta.f^*A} & {\Gamma.A} \\
+    & \Delta & \Gamma \\
+    \arrow["{p_A}", from=2-3, to=3-3]
+    \arrow["f"', from=3-2, to=3-3]
+    \arrow["{p_{f^*A}}", from=2-2, to=3-2]
+    \arrow["{q(f,A)}"', from=2-2, to=2-3]
+    \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow["{a\cdot f}", curve={height=-12pt}, from=1-1, to=2-3]
+    \arrow["{f^*a}"{description}, dotted, from=1-1, to=2-2]
+  \end{tikzcd},\]
+  which gives us $f^*a$ as the factorization through the pullback square of the
+  pair $(\id_\Delta,a\cdot f)$.
+\end{defn}
 
 \begin{lem}
   For any dependent projection $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ in
