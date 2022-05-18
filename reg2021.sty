@@ -28,6 +28,7 @@
 \usepackage{xparse}
 \usepackage{enumitem}
 \usepackage{csquotes}
+\usepackage{pict2e}
 
 \usepackage{tikz}
 \usetikzlibrary{matrix,arrows,decorations.pathmorphing}
@@ -58,6 +59,7 @@
 \newtheorem{cor}[thm]{Corollary}
 \newtheorem{rmk}[thm]{Remark}
 \newtheorem{exmp}[thm]{Example}
+\newtheorem{construction}[thm]{Construction}
 
 \ExplSyntaxOn
 \NewDocumentCommand{\makeabbrev}{mmm}
@@ -95,6 +97,41 @@
 
 \newcommand{\exercise}[1]{\noindent {\textbf{Exercise #1}}}
 \renewcommand{\abstractname}{Abstract}
+
+\newcommand{\adjunction}[4]{%
+  % #1 : #2 <arrows> #3 : #4
+  #1\colon #2%
+  \mathrel{\vcenter{%
+    \offinterlineskip\m@th
+    \ialign{%
+      \hfil$##$\hfil\cr
+      \longrightharpoonup\cr
+      \noalign{\kern-.3ex}
+      \smallbot\cr
+      \longleftharpoondown\cr
+    }%
+  }}%
+  #3 \noloc #4%
+}
+\newcommand{\longrightharpoonup}{\relbar\joinrel\rightharpoonup}
+\newcommand{\longleftharpoondown}{\leftharpoondown\joinrel\relbar}
+\newcommand\noloc{%
+  \nobreak
+  \mspace{6mu plus 1mu}
+  {:}
+  \nonscript\mkern-\thinmuskip
+  \mathpunct{}
+  \mspace{2mu}
+}
+\newcommand{\smallbot}{%
+  \begingroup\setlength\unitlength{.15em}%
+  \begin{picture}(1,1)
+  \roundcap
+  \polyline(0,0)(1,0)
+  \polyline(0.5,0)(0.5,1)
+  \end{picture}%
+  \endgroup
+}
 
 \DeclareMathOperator{\sSeten}{\underline{\mathbf{sSet}}}
 \DeclareMathOperator{\sSet}{\mathbf{sSet}}

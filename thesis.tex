@@ -698,12 +698,17 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   equivalences of $\infty$-categories as $\gamma^*$ is an equivalence.
 \end{proof}
 
-\begin{prop}
+\begin{prop}\label{final}
   7.1.10
 
   Given an $\infty$-category $\cC$ and a simplicial subset $W$, the localization
-  functor $\gamma\colon\cC\rightarrow L(\cC)$ is final and cofinal.
+  functor $\gamma\colon\cC\rightarrow L(\cC)$ is final and cofinal. In
+  particular, if $e\colon\Delta^0\rightarrow\cC$ encodes a final or a cofinal
+  object, so does $\gamma(e)$.
 \end{prop}
+\begin{proof}
+  1702.02681, prop.\ 5.13.
+\end{proof}
 
 \begin{prop}
   7.1.11
@@ -741,15 +746,83 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   $g$ is an equivalence of $\infty$-categories.
 \end{proof}
 
-\begin{cor}
+\begin{prop}
   7.1.14
-\end{cor}
 
-\begin{cor}
-  7.1.18
-\end{cor}
+  Let $f\colon\cC\rightarrow\cD$ be a functors between $\infty$-categories with
+  a right adjoint $g\colon\cD\rightarrow\cC$ and suppose that we are given
+  simplicial subsets $V\subset\cC$, $W\subset\cD$ such that $f(V)\subset W$,
+  $g(W)\subset V$. Then we can lift them to an adjunction
+  $\adjunction{\overline{f}}{L(\cC)}{L(\cD)}{\overline{g}}$ such that the
+  diagrams
+  \[\begin{tikzcd}
+    \cC & \cD \\
+    {L(\cC)} & {L(\cD)}
+    \arrow["{\gamma_\cD}", from=1-2, to=2-2]
+    \arrow["{\gamma_\cC}"', from=1-1, to=2-1]
+    \arrow["{\overline{f}}"', from=2-1, to=2-2]
+    \arrow["f", from=1-1, to=1-2]
+  \end{tikzcd},
+  \quad
+  \begin{tikzcd}
+    \cD & \cC \\
+    {L(\cD)} & {L(\cC)}
+    \arrow["{\gamma_\cC}", from=1-2, to=2-2]
+    \arrow["{\gamma_\cD}"', from=1-1, to=2-1]
+    \arrow["{\overline{g}}"', from=2-1, to=2-2]
+    \arrow["g", from=1-1, to=1-2]
+  \end{tikzcd}
+  \]
+\end{prop}
 \begin{proof}
-  7.1.9
+  Let's write $\Home_V^W(\cC,\cD)$ for the full subcategory of $\Home(\cC,\cD)$
+  whose objects are functors $\phi$ such that $\phi(V)\subset W$. The
+  equivalence
+  $\gamma^*_\cC\colon\Hom(L(\cC),L(\cD))\rightarrow\Home_V(\cC,L(\cD))$ allows
+  us to construct a functor
+  $\Home^W_V(\cC,\cD)\rightarrow\Home_V(\cC,L(\cD))\rightarrow\Home(L(\cC,\cD))$
+  which associates to any $\phi$ as above a functor $\overline{\phi}$ making the
+  square
+  \[\begin{tikzcd}
+    \cD & \cC \\
+    {L(\cD)} & {L(\cC)}
+    \arrow["{\gamma_\cC}", from=1-2, to=2-2]
+    \arrow["{\gamma_\cD}"', from=1-1, to=2-1]
+    \arrow["{\overline{\phi}}"', from=2-1, to=2-2]
+    \arrow["\phi", from=1-1, to=1-2]
+  \end{tikzcd}\]
+  commute up to $J$-homotopy.
+
+  The proof works by observing that our map also lifts natural transformations
+  functorially, which allows us to show the triangle identities for the lifted
+  unit and counit.
+\end{proof}
+
+\begin{prop}
+  7.1.18
+
+  Let $u\colon\cC\rightarrow\cD$ be a functor between $\infty$-categories with a
+  fully faithful right adjoint $v$ and consider $W=k(\cD)\times_\cD\cC$, the
+  subcategory of maps of $\cC$ which become invertible in $\cD$. Then $u$
+  exhibits $\cD$ as the localization of $\cC$ by $W$>
+\end{prop}
+\begin{proof}
+  Given a localization $\gamma\colon\cC\rightarrow L(\cC)$ by $W$, we get a
+  functor $\gamma\cdot v\colon\cD\rightarrow L(\cC)$ which, paired with the
+  $\overline{u}$ obtained from the construction in the previous proof, lifts the
+  adjunction $u\dashv v$ to the localizations (where $L(\cD)\cong\cD$ as we
+  localize at the identities). Lifting maintains the counit invertible, which
+  allows us to conclude that $\gamma\cdot v$ is fully faithful.
+
+  Essential surjectivity
+  follows from the fact that, for any object $c$ in $\cC$, the unit $\eta_c$ is
+  such that $\epsilon_{u(c)}\cdot u(\eta_c)=\id_{u(c)}$ and, since $\epsilon$ is
+  invertible, so is $u(\eta_c)$, thus $\eta_c$ becomes invertible in $L(\cC)$
+  and shows that $(\gamma_{\cC}\cdot v)(u(c))=\gamma_{\cC}(vu(c))\cong c$.
+  Notice that here we used that $L(\cC)_0=\cC_0$, which is permissible up to
+  equivalence as previously noted.
+
+  \wfd{(PLEASE CHECK PROOF)}
 \end{proof}
 
 \begin{cor}
@@ -879,6 +952,35 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   7.3.11, 7.4.2
 \end{proof}
 
+\begin{defn}
+  An \emph{$\infty$-category with weak equivalences and fibrations} is a triple
+  $(\cC,W,Fib)$ where $\cC$ is an $\infty$-category with a final object,
+  $W\subset\cC$ is a subcategory with the 2-out-of-3 property whose maps are
+  called weak equivalences and $Fib\subset\cC$ is a class of fibrations such
+  that:
+  \begin{enumerate}
+    \item for any pullback square of $\cC$
+      \[\begin{tikzcd}
+        {x'} & x \\
+        {y'} & y
+        \arrow["p", from=1-2, to=2-2]
+        \arrow["{p'}"', from=1-1, to=2-1]
+        \arrow["v"', from=2-1, to=2-2]
+        \arrow["u", from=1-1, to=1-2]
+      \end{tikzcd}\]
+      in which $y$ is fibrant and $p$ lies in $Fib$ (and $W$), the same goes
+      for $p'$;
+    \item for any map $f\colon x\rightarrow y$ with fibrant codomain can be
+      factored as a map in $W$ followed by one in $Fib$.
+  \end{enumerate}
+  By \emph{fibrant object} we mean an object whose map to the terminal one is in
+  $Fib$.
+
+  We shall call \emph{weak equivalences} the maps in $W$ and \emph{fibrations}
+  the ones in $Fib$. Maps which are both shall be referred to as \emph{trivial
+  fibrations}.
+\end{defn}
+
 \begin{prop}
   7.4.13
 \end{prop}
@@ -908,47 +1010,220 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   7.5.5
 \end{prop}
 
-\begin{prop}
+\begin{prop}\label{756}
   7.5.6
+
+  Given an $\infty$-category with weak equivalences and fibrations $\cC$, the
+  localization $L(\cC_f)$ has finite limites and the localization functor
+  $\cC_f\rightarrow L(\cC_f)$ is left exact. Moreover, for any $\infty$-category
+  $\cD$ with finite limits and any left exact functor
+  $f\colon\cC_f\rightarrow\cD$, the induced functor $\overline{F}\colon
+  L(\cC_f)\rightarrow\cD$ is left exact.
 \end{prop}
 \begin{proof}
+  Maybe do not prove it? It relies on a bunch of results from ch. 7.2, 7.3, 7.4
+  which we do not really want to prove.
+
   7.1.10, 7.2.18, 7.2.25, 7.3.27, 7.4.13, 7.4.16
 \end{proof}
 
-\begin{prop}
-  7.5.17
+\begin{defn}
+  An $\infty$-category of fibrant objects is an $\infty$-category with weak
+  equivalences and fibrations $\cC$ in which all objects are fibrant.
+\end{defn}
+
+\begin{exmp}
+  For any $\infty$-category with weak equivalences and fibrations $\cC$, its
+  full subcategory given by fibrant objects is an $\infty$-category of fibrant
+  objects. We shall denote it by $\cC_f$.
+\end{exmp}
+
+\begin{prop}\label{7516}
+  7.5.16
+
+  Let $x$ be a fibrant object in an $\infty$-category with weak equivalences and
+  fibrations $\cC$. The induced functor
+  $\cC_f/\gamma_f(x)\rightarrow\cC/\gamma(x)$ is final.
 \end{prop}
+\begin{proof}
+  We have that $\cC_f/\gamma_f(x)=L(\cC_f)/\gamma_f(x)\times_{L(\cC_f)}\cC_f$
+  and $\cC/\gamma(x)=L(\cC)/\gamma(x)\times_{L(\cC)}\cC$ and the functor we are
+  considering is induced by $\overline{\iota}\colon L(\cC_f)\rightarrow L(\cC)$.
+  
+  To prove that it is final, it is sufficient to show that for any object
+  $(c,u)$ of $L(\cC)/\gamma(x)$ the coslice $(c,u)\\(\cC_f/\gamma_f(x))$ is
+  weakly contractible and, to do this, by \cite[Lem.\ 4.3.15]{Cis19} we can show
+  that any functor $F\colon E\rightarrow (c,u)\\(\cC_f/\gamma_f(x))$, where $E$
+  is the nerve of a finite partially ordered set, is $\Delta^1$-homotopic to a
+  constant functor. This can be done through the theory of Reedy fibrant
+  diagrams developed in \cite[Ch.\ 7.4]{Cis19}.
+\end{proof}
+
+\begin{prop}\label{7517}
+  7.5.17
+
+  Let $\bfU$ be a universe and $\cC$ a $\bfU$-small $\infty$-category with weak
+  equivalences and fibrations. For any $\infty$-category $\cD$ with $\bfU$-small
+  colimits and any functor $F\colon\cC\rightarrow\cD$, we have an isomorphism
+  \[(\gamma_f)_!\iota^*(F)\cong\overline{\iota}^*\gamma_!(F)\]
+  induced by the square
+  \[\begin{tikzcd}
+    {\cC_f} & \cC \\
+    {L(\cC_f)} & {L(\cC)}
+    \arrow["\gamma", from=1-2, to=2-2]
+    \arrow["{\gamma_f}"', from=1-1, to=2-1]
+    \arrow["\iota", from=1-1, to=1-2]
+    \arrow["{\overline{\iota}}"', from=2-1, to=2-2]
+  \end{tikzcd},\]
+  which commutes up to $J$-homotopy.
+\end{prop}
+\begin{proof}
+  We only need to prove that the evaluation of the canonical map
+  $(\gamma_f)_!\iota^*(F)\cong\overline{\iota}^*\gamma_!(F)$ at any object $x$
+  of $\cC_f$ is invertible. This evaluation is equivalent by \cite[Prop.\
+  6.4.9]{Cis19} to the map
+  \[\colim_{\cC_f/\gamma_f(x)}i^*(F)/\gamma_f(x)\rightarrow\colim_{\cC/\gamma(x)}F/\gamma(x),\]
+  where $F/\gamma(x)$ is define by composing $F$ with the canonical projection
+  $\cC/\gamma(x)\rightarrow\cC$ and similarly for $i^*(F)/\gamma_f(x)$. Using
+  \ref{7516} and the commutativity of the square above, we get that the desired
+  map is indeed invertible for all $x$.
+\end{proof}
 
 \begin{prop}
   7.5.18
 \end{prop}
 \begin{proof}
   7.5.6, 7.5.17
+
+  We already know that $\overline{\iota}$ is essentially surjective as every
+  object in $\cC$ is weakly equivalent to one in $\cC_f$ and the localization
+  functors are essentially surjective themselves, thus it is enough to prove
+  that it is fully faithful. To do this, we may fix a universe $\bfU$ such that
+  $\cC$ is $\bfU$-small and prove that the functor
+  \[\overline{\iota}_!\colon\Home(L(\cC_f),\cS)\rightarrow\Home(L(\cC),\cS)\]
+  is fully faithful by \cite[Prop.\ 6.1.15]{Cis19}, which is equivalent to
+  proving that the unit map $1\rightarrow\overline{\iota}^*\overline{\iota}_!$
+  of the adjunction $\overline{\iota}^*\dashv\overline{\iota}_!$ is invertible.
+
+  We know that $\overline{\iota}_*$ and $\overline{\iota}^*$ both have right
+  adjoints, thus they preserve colimits. Also, every $\cS$-valued functor
+  indexed by a $\bfU$-small $\infty$-category can be obtained as a colimit of
+  representable ones, hence it is enough to check that the condition holds for
+  any representable functor $F$. Also, $\gamma_f$ is essentially surjective,
+  which means that it is sufficient to check that map
+  $(\gamma_f)_!\rightarrow\overline{\iota}^*\overline{\iota}_!(\gamma_f)_!$
+  which we get by precomposing the unit with $(\gamma_f)_!$ is invertible.
+
+  We have then the chain of isomorphisms
+  \begin{align*}
+    (\gamma_f)_! &\cong(\gamma_f)_!\overline{\iota}^*\overline{\iota}_! \\
+                 &\cong\overline{\iota}^*\gamma_f\iota_! \\
+                 \overline{\iota}^*\overline{\iota}_!(\gamma_f)_!,
+  \end{align*}
+  where the first isomorphism comes from the full faithfulness of $\iota$, the
+  second one from \ref{7517} and the last one the fact that
+  $\overline{\iota}\cdot\gamma_f\cong\gamma\cdot\iota$, as noted in \ref{7517}.
+
+  The second claim follows directly from the first one and \ref{756}.
 \end{proof}
 
-\begin{prop}
+\begin{cor}
   7.5.19
-\end{prop}
+
+  Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. For a
+  morphism between fibrant objects $p\colon x\rightarrow y$, the following
+  conditions are equivalent:
+  \begin{enumerate}
+    \item the morphism $p$ has a section in $ho(L(\cC))$;
+    \item there exists a morphism $p'\colon x'\rightarrow x$ s.t.\ the
+      composition of $p'$ and $p$ is a weak equivalence;
+    \item there exists a fibration $p'\colon x'\rightarrow x$ s.t.\ the
+      composition of $p'$ and $p$ is a weak equivalence.
+  \end{enumerate}
+\end{cor}
 \begin{proof}
   7.5.18
+
+  Should we prove it? Uses right calculus of fractions, but it's rather simple.
 \end{proof}
 
-\begin{prop}
+\begin{construction}\label{7522}
   7.5.22
+\end{construction}
+\begin{proof}
+  7.5.19, 7.5.20
+\end{proof}
+
+\begin{rmk}
+  Let $\cC$ be an $\infty$-category with weak equivalences $W$ and
+  $F\colon\cC\rightarrow\cD$ be a functor. The precomposition functor
+  $\gamma^*\colon\Home(L(\cC),\cD)\rightarrow\Home(\cC,\cD)$ does not have a
+  left adjoint in general, but we may ask whether $\Hom(F,\gamma^*(-))$ is
+  representable in $\Home(L(\cC),\cD)$. If it is, a representative is denoted by
+  $\bfR F\colon L(\cC)\rightarrow\cD$ and is called the \emph{right derived
+  functor of $F$}. Beware that to be precise one would have to specify the
+  natural transformation $F\rightarrow\bfR F\cdot\gamma$ exhibiting it as such.
+  Dually, a representative of $\Hom(\gamma^*(-),F)$ is the \emph{left derived
+  functor of $F$}.
+\end{rmk}
+
+\begin{prop}\label{7524}
+  7.5.24
+
+  If $F\colon\cC\rightarrow\cD$ sends weak equivalences to isomorphisms, then
+  the functor $\overline{F}\colon L(\cC)\rightarrow\cD$, associated to $F$ by
+  the universal property of $L(\cC)$, is the right derived functor of $F$.
 \end{prop}
 \begin{proof}
-  7.5.19
+  Let's fix a universe $\bfU$ such that $\cC$ and $\cD$ are $\bfU$-small and let
+  $G\colon L(\cC)\rightarrow\cD$ be any functor. Then the invertible map
+  $\overline{F}\cdot\gamma\cong F$ and the equivalence of $\infty$-categories
+  $\Home(L(\cC),\cD)\simeq\Home_W(\cC,\cD)$ induce invertible maps
+  $\Hom(\overline{F},G)\simeq\Hom(\overline{F}\cdot\gamma,G\cdot\gamma)\simeq\Hom(F,G\cdot\gamma)$
+  in $\cS$, functorially in $G$.
 \end{proof}
 
-\begin{prop}
-  7.5.24
-\end{prop}
+\begin{construction}\label{7525}
+  \wfd{(NOT COMPLETE)}
+
+  Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. Given
+  any functor $F\colon\cC\rightarrow\cD$ sending weak equivalences between
+  fibrant objects to invertible maps then has a right derived functor $\bfR F$,
+  which may be constructed as follows.
+
+  First we choose a quasi-inverse $R\colon L(\cC)\rightarrow L(\cC_f)$ of the
+  equivalence of $\infty$-categories specified in \ref{7518}, then we choose a
+  functor $\overline{F}\colon L(\cC_f)\rightarrow\cD$ and a natural isomorphism
+  $j\colon\overline{F}\cdot\gamma_f\rightarrow F\cdot\iota$. We set then $\bfR
+  F=\overline{F}\cdot R$.
+\end{construction}
+
+There are some interesting remarks which may be included!!!!
 
 \begin{prop}
   7.5.28
+
+  For any left exact functor $F\colon\cC\rightarrow\cD$ between
+  $\infty$-categories with weak equivalences and fibrations, the right derived
+  functor $\bfR F\colon L(\cC)\rightarrow L(\cD)$ is left exact.
 \end{prop}
 \begin{proof}
   7.5.6
+
+  We have a square
+  \[\begin{tikzcd}
+    {L(\cC_f)} & {L(\cD_f)} \\
+    {L(\cC)} & {L(\cD)}
+    \arrow["{\overline{F}}", from=1-1, to=1-2]
+    \arrow[from=1-2, to=2-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow["{\bfR F}"', from=2-1, to=2-2]
+  \end{tikzcd}\]
+  commuting up to $J$-homotopy, where the vertical maps are equivalences of
+  $\infty$-categories and $\overline{F}$ is the functor obtained by restricting
+  $F$ to the subcategories of fibrant objects $\cC_f$ and $\cD_f$. It therefore
+  suffices to show that $\overline{F}$ is left exact, but this follows from
+  \ref{756}.
 \end{proof}
 
 \begin{lem}
@@ -1133,7 +1408,68 @@ same procedure allows us to write
 which fully specifies the needed data.
 
 Now, under which conditions on $p$ does this specify a Quillen adjunction when
-the slices of $\mSet$ are equipped with the contravariant model structure?
+the slices of $\mSet$ are equipped with the contravariant model structure? If
+it is a coCartesian fibration, it generally doesn't, but it does when it is a
+Cartesian fibration. How can we specify an approximation $q$ of $p_*$ such that,
+after localizing in the infinity-sense, we get an adjunction $p^*\dashv q$?
+
+Idea: use the theory of bifibrations. From a coCartesian fibration $\phi\colon
+X\rightarrow Y$ we can construct a bifibration $E\rightarrow X\times Y$ by
+constructing the maps $p\colon E\rightarrow X$, $q\colon E\rightarrow Y$ by
+first taking the pullback of $\phi$ along $ev_0\colon Y^{\Delta^1}\rightarrow Y$
+and then composing the map $E\rightarrow Y^{\Delta^1}$ with $ev_1$.
+\[\begin{tikzcd}
+	E & X \\
+	{Y^{\Delta^1}} & Y \\
+	Y
+	\arrow["\phi", from=1-2, to=2-2]
+	\arrow["{ev_0}", from=2-1, to=2-2]
+	\arrow["p", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{ev_1}", from=2-1, to=3-1]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+	\arrow["q"', curve={height=20pt}, from=1-1, to=3-1]
+\end{tikzcd}\]
+
+We want to show that, for any (coCartesian?)\ morphism $f\colon A\rightarrow X$,
+we have an isomorphism between $\phi_*(f)$ and $q_*p^*(f)$.
+
+Canonically, we have
+\[E_n=\{(x,\Delta^n\times\Delta^1\xrightarrow{g}Y)\ |\ x\in X_n,\
+\phi(x)=g|_{\Delta^n\times\{0\}}\}\]
+and, by pasting the pullback squares, we also get
+\[(\dom(p^*f))_n=\{(a,\Delta^n\times\Delta^1\xrightarrow{g} Y)\ |\ a\in A_n,\
+f(a)=g|_{\Delta^n\times\{0\}}\}\]
+and therefore
+\begin{align*}
+  (\dom(q_*p^*(f)))_n &=\{(y,q^*(y)\xrightarrow{g} p^*(f))\ |\ y\in Y_n\} \\
+                      &=\{(y,p_!q^*(y)\xrightarrow{g} f)\ |\ y\in Y_n\},
+\end{align*}
+which we want to relate to $\phi_*(f)$.
+
+To do this, we want to understand the maps $p_!q^*(y)\xrightarrow{g} f$ and
+somehow relate them to $\phi^*(y)\rightarrow f$. By definition,
+\begin{align*}
+  \dom(p_!q^*(y))_k&=\dom(q^*(y))_k \\
+                   &=\{(x,\Delta^k\times\Delta^1\xrightarrow{h}Y,t)\ |\ x\in
+                     X_k,\ \phi(x)=h|_{\Delta^k\times\{0\},\ t\in
+                   (\Delta^n)_k},\ y(t)=h|_{\Delta^k\times\{1\}}\},
+\end{align*}
+with $q^*(y)(x,h,t)=(x,h)$, thus $p_!q^*(y)(x,h,t)=x$.
+
+On the other hand, we have
+\[\dom(\phi^*(y))_k=\{(x,t)\ |\ x\in X_k,\ t\in(\Delta^n)_k,\ \phi(x)=y(t)\}\]
+and $\phi^*(y)(t,x)=x$.
+
+If we can create a bijection between morphisms of the form $p_!q^*(y)\rightarrow
+f$ and $\phi^*(y)\rightarrow f$ we are done. Unfortunately, I do not see how we
+can do this: any morphism $p_!q^*(y)\rightarrow f$ induces a
+morphism $\phi^*(y)\rightarrow f$ by precomposing with the inclusion
+$\phi^*(y)\rightarrow p_!q^*(y)$, $(x,t)\mapsto(x,h_{\phi(x)},t)$, where
+$h_{\phi(x)}$ is obtained by precomposing $\phi(x)\colon\Delta^k\rightarrow Y$
+with $p_{\Delta^k}\colon\Delta^k\times\Delta^1\rightarrow\Delta^k$, but this
+association is only surjective, not injective, and I have no good idea about how
+to construct others.
 
 \printbibliography
 
