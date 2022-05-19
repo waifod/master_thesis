@@ -1452,8 +1452,8 @@ somehow relate them to $\phi^*(y)\rightarrow f$. By definition,
 \begin{align*}
   \dom(p_!q^*(y))_k&=\dom(q^*(y))_k \\
                    &=\{(x,\Delta^k\times\Delta^1\xrightarrow{h}Y,t)\ |\ x\in
-                     X_k,\ \phi(x)=h|_{\Delta^k\times\{0\},\ t\in
-                   (\Delta^n)_k},\ y(t)=h|_{\Delta^k\times\{1\}}\},
+                     X_k,\ \phi(x)=h|_{\Delta^k\times\{0\}},\ t\in(\Delta^n)_k,\
+                   y(t)=h|_{\Delta^k\times\{1\}}\},
 \end{align*}
 with $q^*(y)(x,h,t)=(x,h)$, thus $p_!q^*(y)(x,h,t)=x$.
 
@@ -1468,7 +1468,7 @@ morphism $\phi^*(y)\rightarrow f$ by precomposing with the inclusion
 $\phi^*(y)\rightarrow p_!q^*(y)$, $(x,t)\mapsto(x,h_{\phi(x)},t)$, where
 $h_{\phi(x)}$ is obtained by precomposing $\phi(x)\colon\Delta^k\rightarrow Y$
 with $p_{\Delta^k}\colon\Delta^k\times\Delta^1\rightarrow\Delta^k$, but this
-association is only surjective, not injective, and I have no good idea about how
+association is only injective, not surjective, and I have no good idea about how
 to construct others.
 
 To construct the bijection I may start from a morphism $p_!q^*(y)->f$ and
@@ -1479,9 +1479,18 @@ and I would have to do so coherently to define a morphism of simplicial sets as
 desired. Perhaps these restrictions actually allow a solution, but I do not
 believe so.
 
-It may also be possible that the surjective morphism we mentioned earlier is a
+It may also be possible that the injective morphism we mentioned earlier is a
 weak equivalence with respect to our model structure, which may be enough.
+
+We provide a counterexample to the previous claim. Consider
+$\phi\colon\partial\Delta^1\rightarrow\Delta^1$, $i\mapsto 0$. We have that
+$\phi^*(1)=0$, the empty simplicial set, thus
+$\phi_*(f)^{-1}(1)\cong\Delta^0$. On the other hand, $(p_!q^*)(1)=U\amalg V$,
+thus $q_*p^*(f)^{-1}(1)$ can be a disjoint union of non-zero simplicial sets,
+which would then not be equivalent. It follows that our map is not, in general,
+a weak equivalence in our model structure.
 
 \printbibliography
 
 \end{document}
+
