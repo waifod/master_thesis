@@ -1482,13 +1482,31 @@ believe so.
 It may also be possible that the injective morphism we mentioned earlier is a
 weak equivalence with respect to our model structure, which may be enough.
 
-We provide a counterexample to the previous claim. Consider
+We provide a counterexample to the previous claim in the context of right
+fibrations. Consider
 $\phi\colon\partial\Delta^1\rightarrow\Delta^1$, $i\mapsto 0$, which is a right
 fibration. We have that $\phi^*(1)=0$, the empty simplicial set, thus
 $\phi_*(f)^{-1}(1)\cong\Delta^0$. On the other hand, $(p_!q^*)(1)=U\amalg V$,
 thus $q_*p^*(f)^{-1}(1)$ can be a disjoint union of non-zero simplicial sets,
-which would then not be equivalent. It follows that our map is not, in general,
-a weak equivalence in our model structure.
+which would then not be an equivalent $\infty$-groupoid. It follows that our map
+is not, in general, a weak equivalence in the model structure of right
+fibrations on slices of $\sSet$.
+
+If instead from a right fibration $\phi$ we first take the opposites of $\phi$
+and $f$, then do the pushforward and finally we take again the opposites we get
+$\phi_*(f)$, which is encoded in the following commutative diagram where the
+vertical maps are isomorphisms.
+\[\begin{tikzcd}
+	{f\colon Z\rightarrow X} & {\sSet/X} & {\sSet/Y} & {f\colon Z\rightarrow Y} \\
+	{f^{\op}\colon Z^{\op}\rightarrow X^{\op}} & {\sSet/X^{\op}} & {\sSet/Y^{\op}} & {f^{\op}\colon Z^{\op}\rightarrow Y^{\op}}
+	\arrow["\op", from=1-3, to=2-3]
+	\arrow["\op"', from=1-2, to=2-2]
+	\arrow["{\phi^{\op}_*}"', from=2-2, to=2-3]
+	\arrow["{\phi_*}", from=1-2, to=1-3]
+	\arrow[maps to, from=1-1, to=2-1]
+	\arrow[maps to, from=1-4, to=2-4]
+\end{tikzcd}\]
+
 
 \printbibliography
 
