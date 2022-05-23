@@ -37,13 +37,18 @@
 
 \section{This is [not] an outline}
 
-We can also rewrite the paper by Kapulkin about LCCC arising from TT using the language of localizations of quasi-categories. There they develop the relevant theory showing that under some conditions the frame associated to a fibration category is locally cartesian closed, but using Cisinski's results we can prove the same theorem directly using a more mainstream theory.
+We can also rewrite the paper by Kapulkin about LCCC arising from TT using the
+language of localizations of quasi-categories. There they develop the relevant
+theory showing that under some conditions the frame associated to a fibration
+category is locally cartesian closed, but using Cisinski's results we can prove
+the same theorem directly using a more mainstream theory.
 
 What should be included in such an overview?
 
 1- Cisinski's theory of localizations (of fibration $\infty$-categories)
 
-2- an introduction to contextual categories: where do they come from? Why are they useful? Check out Voevodsky's papers about C-systems
+2- an introduction to contextual categories: where do they come from? Why are
+they useful? Check out Voevodsky's papers about C-systems
 
 We explain what dependent type theory is (Martin-Lof's notes from 1984) and why
 it's an interesting foundation of mathematics. We mention Homotopy Type Theory
@@ -237,7 +242,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   of equivalences in $\sSet$.
 \end{proof}
 
-\begin{rmk}
+\begin{rmk}\label{715}
   7.1.5
 
   In this context, we may define $\overline{W}$, the saturation of $W$ in $\cC$,
@@ -286,8 +291,8 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 \end{prop}
 \begin{proof}
   The map $\gamma$ gives us a morphism
-  \[\gamma^*\colon\Home(L(\cC)^{\op},\cS)\simeq\Home_{W^{\op}}(\cC^{\op})\rightarrow\Home(\cC^{\op},\cS),\]
-  which has a left adjoint $\gamma_!$ and a right adjoint $\gamma_*$. Now, for
+  \[\gamma^*\colon\Home(L(\cC)^{\op},\cS)\simeq\Home_{W^{\op}}(\cC^{\op},\cS)\rightarrow\Home(\cC^{\op},\cS),\]
+  which has a left adjoint $\gamma_!$ and a right adjoint $\gamma_*$. Now, or
   any presheaf $F\colon L(\cC)^{\op}\rightarrow\cS$, the unit map
   $F\rightarrow\gamma_*\gamma^*F$ is invertible and, by adjunction, the same
   goes for the counit map $\gamma_!\gamma^*F\rightarrow F$, which means that
@@ -308,8 +313,6 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   object, so does $\gamma(e)$.
 \end{prop}
 \begin{proof}
-  1702.02681, prop.\ 5.13.
-
   First of all, the functor $\gamma^{\op}$ is also a localization, so it
   suffices to prove that $\gamma$ is final. To do this, we look at the
   commutative diagram of $\infty$-categories
@@ -344,7 +347,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   $\gamma_!\dashv\gamma^*$ is a natural isomorphism by full faithfulness of
   $\gamma^*$ and therefore we have the chain of isomorphisms
   \[\colim_\cD F\cong\colim_\cD(\gamma_!\gamma^*F)\cong\colim_\cC (\gamma^*F),\]
-  which proves our claim.
+  for any functor $F\colon\cD\rightarrow\cS$, which proves our claim.
 \end{proof}
 
 \begin{prop}
@@ -462,139 +465,138 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   \wfd{(PLEASE CHECK PROOF)}
 \end{proof}
 
-\begin{cor}
-  7.2.5
-\end{cor}
-\begin{proof}
-  7.1.5
-\end{proof}
+%\begin{cor}
+%  7.2.5
+%\end{cor}
+%\begin{proof}
+%  7.1.5
+%\end{proof}
 
-\begin{cor}
-  7.2.8
-\end{cor}
-\begin{proof}
-  7.1.5, 7.1.18, 7.2.5
-\end{proof}
+%\begin{cor}
+%  7.2.8
+%\end{cor}
+%\begin{proof}
+%  7.1.5, 7.1.18, 7.2.5
+%\end{proof}
 
-\begin{cor}
-  7.2.10
-\end{cor}
+%\begin{cor}
+%  7.2.10
+%\end{cor}
 
-\begin{cor}
-  7.2.15
-\end{cor}
+%\begin{cor}
+%  7.2.15
+%\end{cor}
 
-\begin{cor}
-  7.2.16
-\end{cor}
+%\begin{cor}
+%  7.2.16
+%\end{cor}
 
-\begin{cor}
-  7.2.18
-\end{cor}
-\begin{proof}
-  7.2.16
-\end{proof}
+%\begin{cor}
+%  7.2.18
+%\end{cor}
+%\begin{proof}
+%  7.2.16
+%\end{proof}
 
-\begin{cor}
-  7.2.25
-\end{cor}
-\begin{proof}
-  7.2.8, 7.2.10, 7.2.15
-\end{proof}
+%\begin{cor}
+%  7.2.25
+%\end{cor}
+%\begin{proof}
+%  7.2.8, 7.2.10, 7.2.15
+%\end{proof}
 
-\begin{cor}
-  7.3.2
-\end{cor}
+%\begin{cor}
+%  7.3.2
+%\end{cor}
 
-\begin{cor}
-  7.3.4
-\end{cor}
+%\begin{cor}
+%  7.3.4
+%\end{cor}
 
-\begin{cor}
-  7.3.5
-\end{cor}
-\begin{proof}
-  7.1.10, 7.3.2, 7.3.4
-\end{proof}
+%\begin{cor}
+%  7.3.5
+%\end{cor}
+%\begin{proof}
+%  7.1.10, 7.3.2, 7.3.4
+%\end{proof}
 
-\begin{cor}
-  7.3.8
-\end{cor}
-\begin{proof}
-  7.1.10, 7.1.12
-\end{proof}
+%\begin{cor}
+%  7.3.8
+%\end{cor}
+%\begin{proof}
+%  7.1.10, 7.1.12
+%\end{proof}
 
-\begin{cor}
-  7.3.9
-\end{cor}
-\begin{proof}
-  7.3.8
-\end{proof}
+%\begin{cor}
+%  7.3.9
+%\end{cor}
+%\begin{proof}
+%  7.3.8
+%\end{proof}
 
-\begin{cor}
-  7.3.10
-\end{cor}
-\begin{proof}
-  7.3.9
-\end{proof}
+%\begin{cor}
+%  7.3.10
+%\end{cor}
+%\begin{proof}
+%  7.3.9
+%\end{proof}
 
-\begin{prop}
-  7.3.11
-\end{prop}
+%\begin{prop}
+%  7.3.11
+%\end{prop}
 
-\begin{cor}
-  7.3.15
-\end{cor}
-\begin{proof}
-  7.1.12, 7.3.9, 7.3.10
-\end{proof}
+%\begin{cor}
+%  7.3.15
+%\end{cor}
+%\begin{proof}
+%  7.1.12, 7.3.9, 7.3.10
+%\end{proof}
 
-\begin{cor}
-  7.3.16
-\end{cor}
-\begin{proof}
-  7.3.5, 7.3.15
-\end{proof}
+%\begin{cor}
+%  7.3.16
+%\end{cor}
+%\begin{proof}
+%  7.3.5, 7.3.15
+%\end{proof}
 
-\begin{cor}
-  7.3.26
-\end{cor}
+%\begin{cor}
+%  7.3.26
+%\end{cor}
 
-\begin{cor}
-  7.3.27
-\end{cor}
-\begin{proof}
-  7.3.16, 7.3.26
-\end{proof}
+%\begin{cor}
+%  7.3.27
+%\end{cor}
+%\begin{proof}
+%  7.3.16, 7.3.26
+%\end{proof}
 
-\begin{cor}
-  7.3.28
-\end{cor}
+%\begin{cor}
+%  7.3.28
+%\end{cor}
 
-\begin{cor}
-  7.3.29
-\end{cor}
-\begin{proof}
-  7.3.27, 7.3.28
-\end{proof}
+%\begin{cor}
+%  7.3.29
+%\end{cor}
+%\begin{proof}
+%  7.3.27, 7.3.28
+%\end{proof}
 
-\begin{prop}
-  7.4.2
-\end{prop}
+%\begin{prop}
+%  7.4.2
+%\end{prop}
 
-\begin{prop}
-  7.4.11
-\end{prop}
-\begin{proof}
-  7.3.11, 7.4.2
-\end{proof}
+%\begin{prop}
+%  7.4.11
+%\end{prop}
+%\begin{proof}
+%  7.3.11, 7.4.2
+%\end{proof}
 
 \begin{defn}
   An \emph{$\infty$-category with weak equivalences and fibrations} is a triple
   $(\cC,W,Fib)$ where $\cC$ is an $\infty$-category with a final object,
-  $W\subset\cC$ is a subcategory with the 2-out-of-3 property whose maps are
-  called weak equivalences and $Fib\subset\cC$ is a class of fibrations such
-  that:
+  $W\subset\cC$ is a subcategory with the 2-out-of-3 property and
+  $Fib\subset\cC$ a subsimplicial set such that:
   \begin{enumerate}
     \item for any pullback square of $\cC$
       \[\begin{tikzcd}
@@ -618,30 +620,30 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   fibrations}.
 \end{defn}
 
-\begin{prop}
-  7.4.13
-\end{prop}
+%\begin{prop}
+%  7.4.13
+%\end{prop}
 
-\begin{cor}
-  7.4.14
-\end{cor}
-\begin{proof}
-  7.4.13
-\end{proof}
+%\begin{cor}
+%  7.4.14
+%\end{cor}
+%\begin{proof}
+%  7.4.13
+%\end{proof}
 
-\begin{prop}
-  7.4.16
-\end{prop}
-\begin{proof}
-  7.4.13
-\end{proof}
+%\begin{prop}
+%  7.4.16
+%\end{prop}
+%\begin{proof}
+%  7.4.13
+%\end{proof}
 
-\begin{prop}
-  7.4.19
-\end{prop}
-\begin{proof}
-  7.4.11
-\end{proof}
+%\begin{prop}
+%  7.4.19
+%\end{prop}
+%\begin{proof}
+%  7.4.11
+%\end{proof}
 
 \begin{prop}
   7.5.5
@@ -651,7 +653,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   7.5.6
 
   Given an $\infty$-category with weak equivalences and fibrations $\cC$, the
-  localization $L(\cC_f)$ has finite limites and the localization functor
+  localization $L(\cC_f)$ has finite limits and the localization functor
   $\cC_f\rightarrow L(\cC_f)$ is left exact. Moreover, for any $\infty$-category
   $\cD$ with finite limits and any left exact functor
   $f\colon\cC_f\rightarrow\cD$, the induced functor $\overline{F}\colon
@@ -726,8 +728,14 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   map is indeed invertible for all $x$.
 \end{proof}
 
-\begin{prop}
+\begin{prop}\label{7518}
   7.5.18
+
+  Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. The
+  canonical functor $\overline{\iota}\colon L(\cC_f)\rightarrow L(\cC)$ is an
+  equivalence of $\infty$-categories, hence the $\infty$-category $L(\cC)$ has
+  finite limits and the localization functor $\gamma\colon\cC\rightarrow L(\cC)$
+  is left exact.
 \end{prop}
 \begin{proof}
   7.5.6, 7.5.17
@@ -755,7 +763,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   \begin{align*}
     (\gamma_f)_! &\cong(\gamma_f)_!\overline{\iota}^*\overline{\iota}_! \\
                  &\cong\overline{\iota}^*\gamma_f\iota_! \\
-                 \overline{\iota}^*\overline{\iota}_!(\gamma_f)_!,
+                 &\cong\overline{\iota}^*\overline{\iota}_!(\gamma_f)_!,
   \end{align*}
   where the first isomorphism comes from the full faithfulness of $\iota$, the
   second one from \ref{7517} and the last one the fact that
@@ -781,11 +789,22 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 \begin{proof}
   7.5.18
 
-  Should we prove it? Uses right calculus of fractions, but it's rather simple.
+  We see that (iii) trivially implies (ii), therefore we shall focus on the
+  other implication. Given then such a morphism $p'$, we factor it as $qi=p'$, a
+  weak equivalence followed by a fibration. Since $p\cdot p'=p\cdot(q\cdot
+  i)=(p\cdot q)\cdot i$, by 2-out-of-3 $p\cdot q$ is a weak equivalence, giving
+  us what we wanted.
+
+  Should we prove (i)? Uses right calculus of fractions, but it's rather simple.
 \end{proof}
 
 \begin{construction}\label{7522}
   7.5.22
+  
+  Given an $\infty$-category $\cC$ with weak equivalences and fibrations, we can
+  get another one $\overline{\cC}$ with the same underlying $\infty$-category
+  and class of fibrations, but where the weak equivalences are given by the
+  saturation $\overline{W}$ as described in \ref{715}.
 \end{construction}
 \begin{proof}
   7.5.19, 7.5.20
