@@ -11,7 +11,8 @@
 \rule{\linewidth}{1pt}
 \begin{center}
 \Large
-    \textbf{On Fibration Categories and\\ Finitely Complete $(\infty,1)$-categories} \\
+    \textbf{From Dependent Type Theory to Locally Cartesian Closed
+    $(\infty,1)$-Categories} \\
 \end{center}
 \rule{\linewidth}{1pt}
 \\
@@ -35,406 +36,6 @@
 \newcommand{\ihom}{\underline{\Hom}}
 
 \section{This is [not] an outline}
-
-The goal of this thesis is to redefine the functor: $F\colon
-N(\FibCat)\rightarrow\Lexi$, from the nerve of the homotopical category of
-fibration categories to $\infty$-category of finitely complete
-$\infty$-categories and left exact functors, and prove that it induces an
-equivalence after localizing the domain at its weak equivalences.
-
-The functor $F$ is simply defined as the composite of the full embedding
-$\iota\colon N(\FibCat)\rightarrow \FibCat_\infty$, induced by the nerve
-functor, \wfd{(should we instead work with a stronger notion of fibration
-$\infty$-category? also we need to define this $\infty$-category)} and the functor $\Hoi\colon
-\FibCat_\infty\rightarrow\Lexi$ given by localizing fibration
-$\infty$-categories. We know by \cite[Thm.\ 7.5.6]{Cis19} that localizing a
-fibration $\infty$-category gives a finitely complete $\infty$-category and the
-mapping on the maps is specified by the universal property of localizations.
-A map between fibration $\infty$-categories is a left exact functor as defined
-in \cite[Def.\ 7.5.2]{Cis19} and \cite[Thm.\ 7.5.28]{Cis19} guarantees that it
-is indeed sent to a left exact functor, as needed.
-
-To prove that $F$ induces the desired equivalence of $\infty$-categories we
-define a (weak) fibrational structure on $\FibCat$ and $\FibCat_\infty$ and
-verify that the right derived functors associated to $\iota$ and
-$\Hoi$ are equivalences.
-
-We already have notions of weak equivalence and fibration
-internal to $\FibCat$ as provided in \cite{KS19}, so we only need to specify
-ones internal to $\FibCat_\infty$ satisfying the definition of (weak)
-fibration category given in \cite[Def.\ 7.4.12]{Cis19} (PLEASE LIST THE
-PROPERTIES). To do so, we try to extend the definition given in the
-1-categorical context, so that the functor $\iota$ will preserve the desired
-structure. Hopefully we can just take the same definitions, without adaptations.
-
-To show that the right derived functor of $\Hoi$ induces an equivalence we
-remember that a finitely
-complete $\infty$-category has a canonical fibrational structure, where weak
-equivalences are the isomorphisms and fibrations are all the maps. Also, under
-this construction a left exact functor between the induced fibration $\infty$-categories
-is just a left exact functor in the usual sense, so we can fully embed
-$\Lexi$ into $\FibCat_\infty$. This should define a right adjoint to
-$\Hoi$, where the counit is the identity and the unit is given by the
-localization maps $\cP\rightarrow L(\cP)$. We observe that such maps are weak
-equivalences in $\FibCat_\infty$, so localizing this $\infty$-category gives us
-an equivalence $L(\FibCat_\infty)\cong\Lexi$ involving the right derived
-functor of $\Hoi$, as we desired.
-
-Once we have done this, we need to check that $\iota$ is left exact, i.e.\ it
-satisfies \cite[Def.\ 7.5.2]{Cis19} (PLEASE LIST THE PROPERTIES), for which we
-only need condition (iii). It should be easy to check because it is induced by
-the nerve functor.
-
-To finally apply \cite[Thm.\ 7.6.15]{Cis19} to $\iota$ we still need to check
-two more conditions (PLEASE LIST THEM). Notice that (a) is trivial, so we
-actually only need to check (b).
-
-\section{This is [not] a fibration}
-
-One piece of the issue is to define a fibration $\infty$-category structure on
-$\FibCat_\infty$ and to do so we need to first provide the definitions of the
-elements at play.
-
-\begin{defn}
-  A \emph{fibration category} is a category $\cP$ with a subcategory whose
-  morphisms are called \emph{weak equivalences} (denoted by
-  $\xrightarrow{\sim}$) and one of \emph{fibrations} (denoted by
-  $\twoheadrightarrow$) subject to the following axioms:
-  \begin{enumerate}
-    \item $\cP$ has a terminal object 1 and all objects are fibrant, that is
-      every map to the terminal object is a fibration;
-    \item pullbacks along fibrations exist in $\cP$ and (acyclic) fibrations are
-      stable under pullback;
-    \item every morphism in $\cP$ factors as a weak equivalence followed by a
-      fibration;
-    \item weak equivalences satisfy the 2-out-of-6 property.
-  \end{enumerate}
-\end{defn}
-
-\begin{defn}
-  A functor between fibration categories is \emph{left exact} if it preserves weak
-  equivalences, fibrations, terminal objects and pullbacks along fibrations.
-\end{defn}
-
-Notice that this corresponds to the definition of \emph{exact functor} given
-in \cite[Def.\ 2.7]{KS19}, however it also coincides with the one given in the
-more general context of fibration $\infty$-categories in \cite[Def.\
-7.5.2]{Cis19} (whose results we rely on), therefore to avoid conclusion I
-adopted the naming given in the latter.
-
-The category $\FibCat$ is then constructed by taking small fibration categories
-as objects and left exact functors as arrows.
-
-\begin{defn}
-  A morphism in $\FibCat$ is a \emph{weak equivalence} if it induces an
-  equivalence of categories on the associated homotopy categories.
-\end{defn}
-
-\begin{defn}
-  A morphism $P\colon\cE\rightarrow\cD$ in $\FibCat$ is a \emph{fibration} if:
-  \begin{enumerate}
-    \item it is an isofibration;
-    \item it lifts weak factorizations;
-    \item it lifts pseudo-factorizations.
-  \end{enumerate}
-\end{defn}
-
-The three conditions and the map being an isofibration are necessary to ensure
-that a fibration of fibration categories is sent to a fibration in $\Lexi$.
-
-Notice that this is just taken from \cite[Def.\ 4.3]{KS19} and, under our
-definition, every map to the terminal fibration category is a fibration.
-
-\begin{prop}
-  These classes of maps specify a fibration category structure on $\FibCat$.
-\end{prop}
-\begin{proof}
-  Check \cite{KS19}.
-\end{proof}
-
-We want to switch to the $\infty$-categorical context, so let's introduce the
-corresponding notions.
-
-\begin{defn}
-  A fibration $\infty$-category is a triple $(\cC,W,Fib)$ where $W\subset\cC$
-  is a sub-$\infty$-category with the 2-out-of-3 property and $Fib$ is a class
-  of fibrations such that:
-  \begin{enumerate}
-    \item for any pullback square
-      \[\begin{tikzcd}
-        {x'} & x \\
-        {y'} & y
-        \arrow["p", from=1-2, to=2-2]
-        \arrow["{p'}"', from=1-1, to=2-1]
-        \arrow["v"', from=2-1, to=2-2]
-        \arrow["u", from=1-1, to=1-2]
-      \end{tikzcd}\]
-      in $\cC$ in which $p$ is a fibration between fibrant objects, if $p\in W$
-      then $p'\in W$;
-    \item given a map $f\colon x\rightarrow y$ in $\cC$ with $y$ fibrant, there
-      exists a map $w\colon x\rightarrow x'$ in $W$ and a fibration $p\colon
-      x'\rightarrow y$ that $f=p\cdot w$.
-  \end{enumerate}
-  The maps in $W$ are generally called \emph{weak equivalences}, while
-  fibrations which are also in $W$ are \emph{trivial fibrations}.
-\end{defn}
-
-\begin{defn}
-  Let $\cC,\cD$ be fibration $\infty$-categories. A functor
-  $F\colon\cC\rightarrow\cD$ is \emph{left exact} if it has the following
-  properties:
-  \begin{enumerate}
-    \item it preserves terminal objects;
-    \item it preserves fibrations and trivial fibrations;
-    \item given a pullback square
-      \[\begin{tikzcd}
-        {x'} & x \\
-        {y'} & y
-        \arrow["p", from=1-2, to=2-2]
-        \arrow["{p'}"', from=1-1, to=2-1]
-        \arrow["v"', from=2-1, to=2-2]
-        \arrow["u", from=1-1, to=1-2]
-      \end{tikzcd}\]
-      in $\cC$ where $p$ is a fibration and $y$ and $y'$ are fibrant, the square
-      \[\begin{tikzcd}
-        {Fx'} & Fx \\
-        {Fy'} & Fy
-        \arrow["Fp", from=1-2, to=2-2]
-        \arrow["{Fp'}"', from=1-1, to=2-1]
-        \arrow["Fv"', from=2-1, to=2-2]
-        \arrow["Fu", from=1-1, to=1-2]
-      \end{tikzcd}\]
-      is a pullback in $\cD$.
-  \end{enumerate}
-\end{defn}
-
-Let's then consider $\FibCat_\infty$, the $\infty$-category of small fibration
-$\infty$-categories and left exact functors. We can take the same definition of
-fibration for $\FibCat_\infty$ and use the following one for weak equivalences, which then should (CHECK!)
-make it a fibration $\infty$-category.
-
-\begin{defn}
-    A left exact functor between fibration $\infty$-categories
-    $F\colon\cP\rightarrow\cQ$ is a weak equivalence if it induces an
-    equivalence $ho(L(\cP))\rightarrow ho(L(\cQ))$. Equivalently, if it
-    satisfies the conditions of \cite[Thm. 7.6.15]{Cis19}.
-\end{defn}
-
-\begin{prop}
-  (DESIDERATA) The $\infty$-category $\FibCat_\infty$ with the specified classes
-  of maps is a fibration $\infty$-category.
-\end{prop}
-\begin{proof}
-  The problem is showing the factorization condition \wfd{(SHOW IT)}. Fibrations
-  should be stable under pullback (which are computed as in $\sSet$ if we manage
-  to describe $\FibCat_\infty$ as a full subcategory of functors with codomain
-  in $\Cat_\infty$) and the same applies to trivial fibrations, with the proof
-  being the same as the one given in the 1-categorical context. Every map to the
-  terminal fibration $\infty$-category is naturally a fibration.
-\end{proof}
-
-\section{This is [not] an adjunction}
-
-In this section we provide a right adjoint to the localization functor $\Hoi$.
-
-\begin{rmk}
-  Given a finitely complete $\infty$-category, we can provide a fibrational
-  structure on it by defining weak equivalences to be the isomorphisms and
-  fibrations to be all of the maps. Under this construction we see that, given
-  two finitely complete $\infty$-categories, a functor between the induced
-  fibration $\infty$-categories is left exact if and only if it is left exact
-  when seen as a functor between the underlying $\infty$-categories.
-\end{rmk}
-
-\begin{prop}\label{adj}
-  There is an adjunction $\Hoi\colon\FibCat_\infty\rightleftarrows\Lexi\colon
-  i$, where $i$ is a full embedding, the unit is given by the
-  localization maps $\gamma_{\cP}\colon\cP\rightarrow L(\cP)$ and the counit is
-  the identity. This exhibits $\Lexi$ as a reflexive sub-$\infty$-category of
-  $\FibCat_\infty$.
-\end{prop}
-\begin{proof}
-  Let's consider for any finitely complete $\infty$-category $\cC$ the pullback
-  diagram
-  \[\begin{tikzcd}
-    {\Hoi/\cC} & {\Lexi/\cC} \\
-    {\FibCat_\infty} & {\Lexi}
-    \arrow["\Hoi"', from=2-1, to=2-2]
-    \arrow[from=1-2, to=2-2]
-    \arrow[from=1-1, to=2-1]
-    \arrow[from=1-1, to=1-2]
-  \end{tikzcd}.\]
-  We see that $\Hoi/\cC$ has a terminal object, namely the pair $(\cC,\id_\cC)$,
-  where $\cC$ has the fibrational structure specified above: indeed, given any
-  other object $(\cP,F)$, the space of maps
-  $(\Hoi/\cC)((\cP,F),(\cC,\id_\cC))$ is contractible as it corresponds to the
-  fiber at $F$ of the equivalence
-  $\FibCat_\infty(\cP,\cC)\cong\Lexi(L(\cP),\cC)$ given by \cite[Prop.\
-  7.5.11]{Cis19}.
-
-  Unravelling everything, the constructed right adjoint is then the full
-  embedding mapping everything in $\Lexi$ to its copy in $\FibCat_\infty$.
-\end{proof}
-
-Given this adjunction we present the following result, which reduces the
-problem of proving that the functor we constructed initially between $L(\FibCat)$
-and $\Lexi$ is an equivalence to showing it for the right derived functor of
-$\iota$.
-
-\begin{prop}
-  The right derived functor of $\Hoi$ is an equivalence of $\infty$-categories
-  $L(\FibCat_\infty)\cong\Lexi$.
-\end{prop}
-\begin{proof}
-  By \ref{adj} we know that $\Hoi$ has a fully faithful right adjoint, so by
-  \cite[Prop.\ 7.1.18]{Cis19} it is enough to show that a map in
-  $\FibCat_\infty$ is mapped by $\Hoi$ to an isomorphism if and only if it is a
-  weak equivalence. By \cite[Prop.\ 7.6.11]{Cis19} a left exact functor between
-  fibration $\infty$-categories induces an equivalences on the localizations if
-  and only if it does so on the homotopy categories, which is also the condition
-  under which it is a weak equivalence.
-\end{proof}
-
-\section{This is [not] a \texorpdfstring{$\infty$}{∞}-category}
-
-Our approach relies on defining a $\infty$-category $\FibCat_\infty$. How to do this?
-
-1- Construct a $\infty$-category where objects are pairs of functors (specifying weak equivalences and fibrations) with the same codomain between $\infty$-categories, that is $\Fun(\{0\rightarrow 01\leftarrow 1\},\Cat_\infty)$. Then the morphisms are triples of functors making the proper diagram commute. We take the full subcategory of objects satisfying the axioms of a $\infty$-category with weak equivalences and fibrations, but how can we ask for pullbacks along fibrations to be preserved by the maps in this $\infty$-category? We also have to show that the hom-spaces are what we want. How to show then that a pullback along a fibration is a fibration? It may not be immediate because we are considering only triples of functors which make the diagrams commute as morphisms!
-
-What if we take pairs of functors $\coprod_W\Delta^1\rightarrow\cD$,
-$Fib\rightarrow\cC^{[1]}\rightarrow\cC$, where the composite is a Cartesian
-fibration and $Fib\rightarrow\cC^{[1]}$ preserves Cartesian morphisms?
-Essentially this is the definition of comprehension category, plus some extra
-data given by the first functor. We call fibrations the maps in the image of
-$Fib\rightarrow\cC$ and their compositions, while weak equivalences are the
-maps identified by the first functor; we then ask for the axioms of fibration
-$\infty$-category to be satisfied. This gives us more freedom when specifying
-weak equivalences then just providing the definition we give when constructing a
-tribe from a comprehension category. Also, in this way weak equivalences are
-preserved.
-
-Problem: maps between such objects may not be what we want! Namely, I want the
-functor $\cC^{[1]}\rightarrow\cD^{[1]}$ to be induced by post-composing with
-$\cC\rightarrow\cD$, but I don't know how to specify this. This (with the
-condition of $Fib\rightarrow\cC$ being a cartesian fibration and the
-factorization $Fib\rightarrow\cC^{[1]}\rightarrow\cC$ preserving cartesian
-morphisms) would guarantee that pullbacks along fibrations are preserved by maps
-between fibration categories.
-
-2- Take the 1-category of $\infty$-categories with fibrations and weak
-equivalences, then localize at categorical equivalences. What do the hom-spaces
-look like? If instead we localized directly at weak equivalences we would get
-directly $L(\FibCat_\infty)$, which supposedly is the ``true'' $\infty$-category
-of $\infty$-categories with fibrations and weak equivalences.
-
-It's important to relate the hom-spaces $\FibCat_\infty(\cP,\cQ)$ to the ones we
-want, that is $k(\Fun_{lex}(\cP,\cQ))$. Also, what are the ones of $\Lexi$ like?
-Supposedly $k(\Fun_{lex}(\cC,\cD))$ and we may show both claims using
-\cite[Prop.\ 7.10.6]{Cis19}, but I do not think it would be easy.
-
-\section{Other ideas}
-
-1- We could also try to get an indirect comparison by looking at the inclusion of the category of fibration categories and of the category of finitely complete $\infty$-categories into the one of $\infty$-categories with weak equivalences and fibrations. We then give to the latter the structure of a fibrations category by taking the definition above. The axioms should be easy to show because a pullback along a fibration will simply be a pullback in $\sSet$ and then we can give it the desired structure as in the context of fibration categories. Problem: showing the factorization condition.
-
-We have then to show that the inclusion functors are left exact as functors
-between fibration categories. This means that the pullback of left exact
-functors between finitely complete $\infty$-categories is again a finitely
-complete $\infty$-category, which is proven in \cite[Lem.\ 2.11]{Szu17b}.
-
-After this we have to show that the hypothesis of \cite[Thm.\ 7.6.15]{Cis19} hold. This is easy for (i), but for (ii) it's hard when it comes to the inclusion of fibration categories into $\infty$-categories with fibrations and weak equivalences. Namely, what if the domain of the morphism is a $\infty$-category? We have to find a span linking it to a weakly equivalent fibration category!
-
-2- We can work with the 1-category of fibration $\infty$-categories and left
-exact functors and give it a fibrational structure. Problems: how do we show
-that after localizing a fibration of fibration categories we get an inner
-fibration? That is needed for the localization functor to be left exact and
-maybe we can use the ideas from \cite[Prop.\ 3.5]{Szu17b}. Also, how to show
-condition (ii) of \cite[Thm.\ 7.6.15]{Cis19} for the inclusion of fibration
-categories into fibration $\infty$-categories? We need to approximate a map from
-a fibration $\infty$-category to a fibration category by one between fibration
-categories, the same problem as before. Everything else should be easy.
-
-3- Starting from the fibration categories $\FibCat$ and $\Lexi$ and the functor
-$\Hoi$ between them we can show the approximation properties of \cite[Thm.\
-7.6.15]{Cis19}. The problems are the same as in (2), that is  how can we prove
-that localizing a fibration in $\FibCat$ gives a fibration in $\Lexi$? Also, the
-approximation property (i) is easy, while for (ii) given a morphism
-$\cC\rightarrow L(\cP)$, we may try to consider a finitely complete
-<<<<<<< HEAD
-category $(\sSet_0/\cC)^{\op}$, whose fibrational structure is the dual of
-the cofibrational one specified in \cite[Def.\ 4.1]{Szu17b}, specifically the
-fibrations are given by monomorphisms and weak equivalences by maps sent to
-isomorphisms under the functor $\lim\colon(\sSet_0/\cC)^{\op}\rightarrow\cC$;
-the proof that this is indeed a fibration category is the same as the one
-concerning $\sSet_\kappa/\cC$ provided in \cite[Prop.\ 4.2]{Szu17b}. If the map
-$\widetilde{\lim}\colon L(\sSet_0/\cC)^{\op}\rightarrow\cC$ is a weak
-equivalence (check the following proposition!), then we get the desired
-commutative square by looking at the category $\sSet_0/\cC$, whose fibrational
-structure is essentially the dual of
-the one specified in \cite[Def.\ 4.1]{Szu17b}, specifically the fibrations are
-given by monomorphisms and weak equivalences by maps sent to isomorphisms under
-the functor $\lim\colon(\sSet_0/\cC)^{\op}\rightarrow\cC$; the proof that this
-is indeed a fibration category is the same as the one concerning
-$\sSet_\kappa/\cC$ provided in \cite[Prop.\ 4.2]{Szu17b}. If the map
-$\widetilde{\lim}\colon L(\sSet_0/\cC)^{\op}\rightarrow\cC$ is a weak equivalence,
-then we get the desired commutative square by looking at
-\[\begin{tikzcd}
-	\cC & {L(\cP)} \\
-  {L(\sSet_0/\cC)}^{\op} & {L(\sSet_0/\cC)^{\op}}
-	\arrow[from=2-2, to=1-2]
-	\arrow[from=1-1, to=1-2]
-  \arrow["\widetilde{\lim}", from=2-1, to=1-1]
-	\arrow[Rightarrow, no head, from=2-1, to=2-2]
-\end{tikzcd}\]
-and somehow lift the map $L(\sSet_0/\cC)^{\op}\rightarrow L(\cP)$ through $L$,
-
-\wfd{(I do not believe this lift to always exist. Indeed, take the $\infty$-groupoid
-$\cC=N(\{0\leftrightarrows 1\})$, $\cP=[1]$ with the minimal fibrational
-structure making $0\rightarrow 1$ a weak equivalence and the identity as the
-upper map. Given in $(\sSet/\cC)^{\op}$ the objects
-$0\colon\Delta^0\rightarrow\cC$, $(1\rightarrow 0)\colon\Delta^1\rightarrow\cC$
-and the obvious morphism $f$ between them, we see that the lifted map
-$(\sSet/\cC)^{\op}\rightarrow\cP$ would send $f$ to a morphism with domain $1$
-and codomain $0$, which does not exist.)}
-
-\begin{prop}
-  The map $\widetilde{\lim}$ is a categorical equivalence.
-\end{prop}
-\begin{proof}
-  We shall verify that the hypothesis of \cite[Prop.\ 7.6.15]{Cis19} are
-  satisfied.
-
-  First of all, the functor $\lim$ preserves finite limits as they commute with
-  finite limits, therefore it is left exact. Also, a morphism in
-  $(\sSet_0/\cC)^{\op}$ is a weak equivalence if and only if it is mapped to an
-  isomorphism, thus condition (i) is trivially satisfied.
-
-  We are only missing condition (ii), so let's consider a morphism
-  $\phi\colon c\rightarrow\lim_K D$ in $\cC$. This corresponds to an object
-  $(c,\hat{\phi})$ in $\cC/D$, that is a map
-  $\hat{\phi}\colon\Delta^0*K\rightarrow\cC$ such that $\hat{\phi}|_K=D$,
-  $\hat{\phi}|_{\Delta^0}=c$. We have then a map $D\rightarrow\hat{\phi}$ in
-  $\sSet_0/\cC$ given
-  by the inclusion $K\rightarrow\Delta^0*K$ and inducing the morphism
-  $\phi\colon c=\lim_{\Delta^0*K}\hat{\phi}\rightarrow\lim_KD$, which allows us
-  to construct the desired commutative square.
-\end{proof}
-
-We may also specify a weak equivalence $\cC\rightarrow L(\sSet_0/\cC)$ as in
-\cite[Def.\ 4.6]{Szu17b} \wfd{(I don't really see how to adapt this)}.
-We extend $\cC\rightarrow L(\cP)$ first to a functor $\sSet_0/\cC\rightarrow
-L(\cP)$, $D\colon K\rightarrow\cC\mapsto\lim_KD$ \wfd{(doubtful about doing
-this)} and then localize to get $L(\sSet_0/\cC)\rightarrow L(\cP)$, granting us a
-diagram
-\[\begin{tikzcd}
-	\cC & {L(P)} \\
-	\cC & {L(\sSet_0/\cC)}
-	\arrow[from=2-2, to=1-2]
-	\arrow[from=1-1, to=1-2]
-	\arrow[Rightarrow, no head, from=2-1, to=1-1]
-	\arrow[from=2-1, to=2-2]
-\end{tikzcd}.\]
-
-\section{Plan B: LCCC}
 
 We can also rewrite the paper by Kapulkin about LCCC arising from TT using the language of localizations of quasi-categories. There they develop the relevant theory showing that under some conditions the frame associated to a fibration category is locally cartesian closed, but using Cisinski's results we can prove the same theorem directly using a more mainstream theory.
 
@@ -496,7 +97,7 @@ relying only on its simplicial model.
 
 \section{Localizations of \texorpdfstring{$\infty$}{∞}-Categories}
 
-To prove the that localizing a categorical model of type theory we get a locally
+To prove that localizing a categorical model of type theory we get a locally
 cartesian closed $\infty$-category we need a theory of localizations. We shall
 provide one in the general context of $\infty$-categories as developed by
 Cisinski in \emph{Higher Categories and Homotopical Algebra} with the aim of
@@ -549,7 +150,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   We begin by proving that a localization exists in the case where $W=\cC$.
 
   In this context, $\Home_W(\cC,\cD)\cong\Home(\cC,\cD^{\cong})$ canonically,
-  where $\cD^{\cong}$ is the maximal sub-$\infty$-subgroupoid of $\cD$.
+  where $\cD^{\cong}$ is the maximal subgroupoid of $\cD$.
   Factoring $\cC\rightarrow\Delta^0$ in the Kan model structure, we find an
   anodyne map $\gamma\colon\cC\rightarrow L(\cC)$.
 
@@ -708,6 +309,42 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 \end{prop}
 \begin{proof}
   1702.02681, prop.\ 5.13.
+
+  First of all, the functor $\gamma^{\op}$ is also a localization, so it
+  suffices to prove that $\gamma$ is final. To do this, we look at the
+  commutative diagram of $\infty$-categories
+  \[\begin{tikzcd}
+    \cC && {L(\cC)} \\
+    & {\Delta^0}
+    \arrow["\gamma", from=1-1, to=1-3]
+    \arrow[from=1-1, to=2-2]
+    \arrow[from=1-3, to=2-2]
+  \end{tikzcd},\]
+  which induces the commutative diagram
+  \[\begin{tikzcd}
+    & {\Home(\Delta^0,\cS)\cong\cS} \\
+    {\Home(L(\cC),\cS)} && {\Home(\cC,\cS)}
+    \arrow["\gamma^*"', from=2-1, to=2-3]
+    \arrow[from=1-2, to=2-1]
+    \arrow[from=1-2, to=2-3]
+  \end{tikzcd}\]
+  where the lower map is fully faithful. Also, $\gamma^*$ is the right adjoint
+  of $\gamma_!$, hence taking left adjoints of the above maps gives us the
+  diagram
+  \[\begin{tikzcd}
+    {\Home(\cC,\cS)} & {} & {\Home(L(\cC),\cS)} \\
+    & \cS
+    \arrow["\colim"', from=1-1, to=2-2]
+    \arrow["\colim", from=1-3, to=2-2]
+    \arrow["{\gamma_!}", from=1-1, to=1-3]
+  \end{tikzcd},\]
+  which commutes up to natural isomorphism.
+  
+  The unit $\id\rightarrow\gamma^*\gamma_!$ of the adjunction
+  $\gamma_!\dashv\gamma^*$ is a natural isomorphism by full faithfulness of
+  $\gamma^*$ and therefore we have the chain of isomorphisms
+  \[\colim_\cD F\cong\colim_\cD(\gamma_!\gamma^*F)\cong\colim_\cC (\gamma^*F),\]
+  which proves our claim.
 \end{proof}
 
 \begin{prop}
