@@ -249,7 +249,8 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   as the cartesian square
 
   such that $\overline{W}$ is precisely the maximal simplicial subset of $\cC$
-  whose morphisms are the ones which become invertible in $L(\cC)$.
+  whose morphisms are the ones which become invertible in $L(\cC)$, that is
+  $W\cong k(L(\cC))\times_{L(\cC)}\cC$ canonically.
 
   We have then inclusions $Sk_1(W)\subset W\subset\overline{W}$ and, for any
   $\infty$-category $\cD$, this induces equalities
@@ -444,7 +445,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   Let $u\colon\cC\rightarrow\cD$ be a functor between $\infty$-categories with a
   fully faithful right adjoint $v$ and consider $W=k(\cD)\times_\cD\cC$, the
   subcategory of maps of $\cC$ which become invertible in $\cD$. Then $u$
-  exhibits $\cD$ as the localization of $\cC$ by $W$>
+  exhibits $\cD$ as the localization of $\cC$ by $W$.
 \end{prop}
 \begin{proof}
   Given a localization $\gamma\colon\cC\rightarrow L(\cC)$ by $W$, we get a
@@ -772,7 +773,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   The second claim follows directly from the first one and \ref{756}.
 \end{proof}
 
-\begin{cor}
+\begin{cor}\label{7519}
   7.5.19
 
   Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. For a
@@ -804,11 +805,14 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   Given an $\infty$-category $\cC$ with weak equivalences and fibrations, we can
   get another one $\overline{\cC}$ with the same underlying $\infty$-category
   and class of fibrations, but where the weak equivalences are given by the
-  saturation $\overline{W}$ as described in \ref{715}.
+  saturation $\overline{W}$ as described in \ref{715}. We have that $L(\cC)\cong
+  L(\overline{\cC})$, hence in general we can substitute $\cC$ by
+  $\overline{\cC}$ with no issues. Also, the substitution commutes with the
+  formation of slices over fibrant objects, that is, for any fibrant object $x$
+  of $\cC$, a map in $\cC/x$ induces an invertible map in $L(\cC/x)$ if and only
+  if its image becomes invertible in $L(\cC)$, which can be seen as a
+  consequence of \ref{7519}.
 \end{construction}
-\begin{proof}
-  7.5.19, 7.5.20
-\end{proof}
 
 \begin{rmk}
   Let $\cC$ be an $\infty$-category with weak equivalences $W$ and
@@ -840,7 +844,8 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 \end{proof}
 
 \begin{construction}\label{7525}
-  \wfd{(NOT COMPLETE)}
+  \wfd{(NOT COMPLETE, ONE MAY SHOW THAT OUR CONSTRUCTION DOES GIVE THE RIGHT
+  DERIVED FUNCTOR)}
 
   Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. Given
   any functor $F\colon\cC\rightarrow\cD$ sending weak equivalences between
@@ -851,8 +856,22 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   equivalence of $\infty$-categories specified in \ref{7518}, then we choose a
   functor $\overline{F}\colon L(\cC_f)\rightarrow\cD$ and a natural isomorphism
   $j\colon\overline{F}\cdot\gamma_f\rightarrow F\cdot\iota$. We set then $\bfR
-  F=\overline{F}\cdot R$.
+  F=\overline{F}\cdot R$. Also, for any other functor
+  $G\colon\cD\rightarrow\cE$, we have that $G\cdot\bfR F=\bfR(G\cdot F)$.
 \end{construction}
+
+\begin{defn}
+  Given an $\infty$-category with weak equivalences and fibrations $\cC$ and an
+  $\infty$-category with weak equivalences $\cD$, let's consider a functor
+  $F\colon\cC\rightarrow\cD$ preserving weak equivalences between fibrant
+  objects of $\cC$. We call the \emph{right derived functor of} $F$ the right
+  derived functor of the composition
+  \[\cC\xrightarrow{F}\cD\xrightarrow{\gamma_{\cD}}L(\cD),\]
+  where $\gamma_\cD$ is the localization functor of of $\cD$ at its weak
+  equivalences. This right derived functor of $F$ is denoted by $\bfR F$, that
+  is $\bfR F=\bfR(\gamma_{\cD}\cdot F)\colon L(\cC)\rightarrow L(\cD)$, which
+  makes sense since we can apply the construction \ref{7525}.
+\end{defn}
 
 There are some interesting remarks which may be included!!!!
 
@@ -881,6 +900,20 @@ There are some interesting remarks which may be included!!!!
   suffices to show that $\overline{F}$ is left exact, but this follows from
   \ref{756}.
 \end{proof}
+
+\begin{rmk}
+  \wfd{(WHY DO WE NEED TO SPECIFY THIS?)}
+
+  For the remainder of this chapter, given an $\infty$-category $\cC$,
+  subcategories of weak equivalences $W\subset\cC$ are such that the inclusion
+  $W\rightarrow\cC$ is an inner fibration. This means that a simplex
+  $x\colon\Delta^n\rightarrow\cC$ lies in $W$ if and only if its edges
+  $x|_{\Delta^{\{i,i+1\}}}\colon \{i,i+1\}\rightarrow\cC$ lie in $W$ for $0\leq
+  i<n$.
+
+  $W$ then contains all invertible maps of $\cC$ if and only if the
+  aforementioned inclusion is an isofibration.
+\end{rmk}
 
 \begin{lem}
   7.6.2
