@@ -347,7 +347,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   The unit $\id\rightarrow\gamma^*\gamma_!$ of the adjunction
   $\gamma_!\dashv\gamma^*$ is a natural isomorphism by full faithfulness of
   $\gamma^*$ and therefore we have the chain of isomorphisms
-  \[\colim_\cD F\cong\colim_\cD(\gamma_!\gamma^*F)\cong\colim_\cC (\gamma^*F),\]
+  \[\colim_\cD F\cong\colim_\cD(\gamma_!\gamma^*F)\cong\colim_\cC (\gamma^*F)\]
   for any functor $F\colon\cD\rightarrow\cS$, which proves our claim.
 \end{proof}
 
@@ -421,7 +421,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   equivalence
   $\gamma^*_\cC\colon\Hom(L(\cC),L(\cD))\rightarrow\Home_V(\cC,L(\cD))$ allows
   us to construct a functor
-  $\Home^W_V(\cC,\cD)\rightarrow\Home_V(\cC,L(\cD))\rightarrow\Home(L(\cC,\cD))$
+  $\Home^W_V(\cC,\cD)\rightarrow\Home_V(\cC,L(\cD))\rightarrow\Home(L(\cC),L(\cD))$
   which associates to any $\phi$ as above a functor $\overline{\phi}$ making the
   square
   \[\begin{tikzcd}
@@ -621,6 +621,18 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   fibrations}.
 \end{defn}
 
+\begin{defn}
+  An $\infty$-category of fibrant objects is an $\infty$-category with weak
+  equivalences and fibrations $\cC$ in which all objects are fibrant.
+\end{defn}
+
+\begin{exmp}
+  For any $\infty$-category with weak equivalences and fibrations $\cC$, its
+  full subcategory given by fibrant objects is an $\infty$-category of fibrant
+  objects. We shall denote it by $\cC_f$.
+\end{exmp}
+
+
 %\begin{prop}
 %  7.4.13
 %\end{prop}
@@ -667,17 +679,6 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   7.1.10, 7.2.18, 7.2.25, 7.3.27, 7.4.13, 7.4.16
 \end{proof}
 
-\begin{defn}
-  An $\infty$-category of fibrant objects is an $\infty$-category with weak
-  equivalences and fibrations $\cC$ in which all objects are fibrant.
-\end{defn}
-
-\begin{exmp}
-  For any $\infty$-category with weak equivalences and fibrations $\cC$, its
-  full subcategory given by fibrant objects is an $\infty$-category of fibrant
-  objects. We shall denote it by $\cC_f$.
-\end{exmp}
-
 \begin{prop}\label{7516}
   7.5.16
 
@@ -691,9 +692,9 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   considering is induced by $\overline{\iota}\colon L(\cC_f)\rightarrow L(\cC)$.
   
   To prove that it is final, it is sufficient to show that for any object
-  $(c,u)$ of $L(\cC)/\gamma(x)$ the coslice $(c,u)\\(\cC_f/\gamma_f(x))$ is
+  $(c,u)$ of $L(\cC)/\gamma(x)$ the coslice $(c,u)\backslash(\cC_f/\gamma_f(x))$ is
   weakly contractible and, to do this, by \cite[Lem.\ 4.3.15]{Cis19} we can show
-  that any functor $F\colon E\rightarrow (c,u)\\(\cC_f/\gamma_f(x))$, where $E$
+  that any functor $F\colon E\rightarrow (c,u)\backslash(\cC_f/\gamma_f(x))$, where $E$
   is the nerve of a finite partially ordered set, is $\Delta^1$-homotopic to a
   constant functor. This can be done through the theory of Reedy fibrant
   diagrams developed in \cite[Ch.\ 7.4]{Cis19}.
@@ -747,9 +748,10 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   that it is fully faithful. To do this, we may fix a universe $\bfU$ such that
   $\cC$ is $\bfU$-small and prove that the functor
   \[\overline{\iota}_!\colon\Home(L(\cC_f),\cS)\rightarrow\Home(L(\cC),\cS)\]
-  is fully faithful by \cite[Prop.\ 6.1.15]{Cis19}, which is equivalent to
-  proving that the unit map $1\rightarrow\overline{\iota}^*\overline{\iota}_!$
-  of the adjunction $\overline{\iota}^*\dashv\overline{\iota}_!$ is invertible.
+  is fully faithful and use \cite[Prop.\ 6.1.15]{Cis19}. Remember that this full
+  faithfulness condition is equivalent to the unit map
+  $1\rightarrow\overline{\iota}^*\overline{\iota}_!$ of the adjunction
+  $\overline{\iota}_!\dashv\overline{\iota}^*$ being invertible.
 
   We know that $\overline{\iota}_*$ and $\overline{\iota}^*$ both have right
   adjoints, thus they preserve colimits. Also, every $\cS$-valued functor
