@@ -250,17 +250,19 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 
   such that $\overline{W}$ is precisely the maximal simplicial subset of $\cC$
   whose morphisms are the ones which become invertible in $L(\cC)$, that is
-  $W\cong k(L(\cC))\times_{L(\cC)}\cC$ canonically.
+  $\overline{W}\cong k(L(\cC))\times_{L(\cC)}\cC$ canonically.
 
   We have then inclusions $Sk_1(W)\subset W\subset\overline{W}$ and, for any
   $\infty$-category $\cD$, this induces equalities
-  \[\Home_{Sk_1(W)}(\cC,\cD)=\Home_{W}(\cC,\cD)\Home_{\overline{W}}(\cC,\cD),\]
+  \[\Home_{Sk_1(W)}(\cC,\cD)=\Home_{W}(\cC,\cD)=\Home_{\overline{W}}(\cC,\cD),\]
   implying that $(L(\cC),\gamma)$ is also the localization of $\cC$ by $Sk_1(W)$
-  and the one by $\overline{W}$, however the inclusion $W\rightarrow\cC$ is a
-  fibration in the Joyal model category as it is the pullback of one, implying
-  that $\overline{W}$ is itself an $\infty$-category.
+  and the one by $\overline{W}$, however the inclusion
+  $\overline{W}\rightarrow\cC$ is a fibration in the Joyal model category as it
+  is the pullback of one, implying that $\overline{W}$ is itself an
+  $\infty$-category.
 
-  We shall say that $W$ is saturated if $W=\overline{W}$.
+  We shall say that $W$ is saturated if the canonical inclusion
+  $W\rightarrow\overline{W}$ is an equivalence of $\infty$-categories.
 \end{rmk}
 
 \begin{rmk}
@@ -315,40 +317,16 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 \end{prop}
 \begin{proof}
   First of all, the functor $\gamma^{\op}$ is also a localization, so it
-  suffices to prove that $\gamma$ is final. To do this, we look at the
-  commutative diagram of $\infty$-categories
-  \[\begin{tikzcd}
-    \cC && {L(\cC)} \\
-    & {\Delta^0}
-    \arrow["\gamma", from=1-1, to=1-3]
-    \arrow[from=1-1, to=2-2]
-    \arrow[from=1-3, to=2-2]
-  \end{tikzcd},\]
-  which induces the commutative diagram
-  \[\begin{tikzcd}
-    & {\Home(\Delta^0,\cS)\cong\cS} \\
-    {\Home(L(\cC),\cS)} && {\Home(\cC,\cS)}
-    \arrow["\gamma^*"', from=2-1, to=2-3]
-    \arrow[from=1-2, to=2-1]
-    \arrow[from=1-2, to=2-3]
-  \end{tikzcd}\]
-  where the lower map is fully faithful. Also, $\gamma^*$ is the right adjoint
-  of $\gamma_!$, hence taking left adjoints of the above maps gives us the
-  diagram
-  \[\begin{tikzcd}
-    {\Home(\cC,\cS)} & {} & {\Home(L(\cC),\cS)} \\
-    & \cS
-    \arrow["\colim"', from=1-1, to=2-2]
-    \arrow["\colim", from=1-3, to=2-2]
-    \arrow["{\gamma_!}", from=1-1, to=1-3]
-  \end{tikzcd},\]
-  which commutes up to natural isomorphism.
-  
-  The unit $\id\rightarrow\gamma^*\gamma_!$ of the adjunction
-  $\gamma_!\dashv\gamma^*$ is a natural isomorphism by full faithfulness of
-  $\gamma^*$ and therefore we have the chain of isomorphisms
-  \[\colim_\cD F\cong\colim_\cD(\gamma_!\gamma^*F)\cong\colim_\cC (\gamma^*F)\]
-  for any functor $F\colon\cD\rightarrow\cS$, which proves our claim.
+  suffices to prove that $\gamma$ is final. To do this, first we fix a universe
+  $\bfU$ such that $\cC$ is $\bfU$-small and then we remember that there
+  is an adjunction
+  $\adjunction{\gamma^*}{\Home(L(\cC),\cS)}{\Home(\cC,\cS)}{\gamma_*}$. Since
+  $\gamma^*$ induces an equivalence when restricting the codomain to
+  $\Home_W(\cC,\cS)$, we know that it is fully faithful, thus the unit of the
+  adjunction is invertible, hence $1\cong\gamma_*\gamma^*$. This gives us that
+  \[\lim_{\cC}F\cong\lim_{\cC}\gamma_*\gamma^*F\cong\lim_{L(\cC)}\gamma^*F,\]
+  for any presheaf $F\colon\cC\rightarrow\cS$, which is enough to prove that
+  $\gamma$ is final (\cite[Thm.\ 6.4.5]{Cis19}).
 \end{proof}
 
 \begin{prop}
@@ -621,17 +599,31 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   fibrations}.
 \end{defn}
 
+\begin{construction}
+  Any finitely complete $\infty$-category $\cC$ can be given the structure of an
+  $\infty$-category with weak equivalences and fibrations by setting $W=k(\cC)$,
+  $Fib=\cC$.
+\end{construction}
+
+\begin{construction}
+  For any $\infty$-category with weak equivalences and fibrations $\cC$ and a
+  fibrant object $c$, we can give to the slice category $\cC/c$ the structure of an
+  $\infty$-category with weak equivalences and fibrations by specifying as weak
+  equivalences the morphisms which are mapped to weak equivalences of $\cC$ by
+  the projection $\cC/c\rightarrow\cC$ and similarly for the fibrations.
+\end{construction}
+
 \begin{defn}
   An $\infty$-category of fibrant objects is an $\infty$-category with weak
   equivalences and fibrations $\cC$ in which all objects are fibrant.
 \end{defn}
 
-\begin{exmp}
+\begin{construction}
   For any $\infty$-category with weak equivalences and fibrations $\cC$, its
-  full subcategory given by fibrant objects is an $\infty$-category of fibrant
-  objects. We shall denote it by $\cC_f$.
-\end{exmp}
-
+  full subcategory given by fibrant objects is canonically an $\infty$-category
+  of fibrant objects. We shall denote it by $\cC_f$ and its weak equivalences
+  are given by $W_f=W\cap\cC_f$, its fibrations by $Fib_f=Fib\cap\cC_f$.
+\end{construction}
 
 %\begin{prop}
 %  7.4.13
@@ -658,10 +650,6 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 %  7.4.11
 %\end{proof}
 
-\begin{prop}
-  7.5.5
-\end{prop}
-
 \begin{prop}\label{756}
   7.5.6
 
@@ -677,6 +665,10 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   which we do not really want to prove.
 
   7.1.10, 7.2.18, 7.2.25, 7.3.27, 7.4.13, 7.4.16
+
+  We know by \ref{7110} that $L(\cC_f)$ has a final object, hence to show
+  completeness it is enough to prove that it also has pullbacks (\cite[Thm.\
+  7.3.27]{Cis19}).
 \end{proof}
 
 \begin{prop}\label{7516}
@@ -880,7 +872,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 
 There are some interesting remarks which may be included!!!!
 
-\begin{prop}
+\begin{prop}\label{7528}
   7.5.28
 
   For any left exact functor $F\colon\cC\rightarrow\cD$ between
@@ -920,42 +912,165 @@ There are some interesting remarks which may be included!!!!
   aforementioned inclusion is an isofibration.
 \end{rmk}
 
-\begin{lem}
+\begin{defn}
+  Let $\cC$, $\cD$ be $\infty$-categories with subcategories of weak
+  equivalences $W\subset\cC$, $W'\subset\cD$. A functor
+  $f\colon\cC\rightarrow\cD$ has the \emph{right approximation property} if the
+  following conditions hold:
+  \begin{enumerate}
+    \item a morphism in $\cC$ is in $W$ if and only if its image under $f$ is in
+      $W'$;
+    \item given objects $c$, $d$ in $\cC$, $\cD$ respectively and a map
+      $\psi\colon d\rightarrow f(c)$ in $\cD$, there is a map $\phi\colon
+      c'\rightarrow c$ in $\cC$ and a weak equivalence $u\colon d\rightarrow
+      f(c')$ in $\cD$ such that  the triangle
+      \[\begin{tikzcd}
+        d & {f(c)} \\
+        {f(c')}
+        \arrow["\psi", from=1-1, to=1-2]
+        \arrow["u"', from=1-1, to=2-1]
+        \arrow["{f(\phi)}"', from=2-1, to=1-2]
+      \end{tikzcd}\]
+      commutes.
+  \end{enumerate}
+\end{defn}
+
+\begin{prop}\label{762}
   7.6.2
-\end{lem}
+
+  A functor $f\colon\cC\rightarrow\cD$ between $\infty$-categories such that the
+  induced functor on the homotopy categories $ho(f)\colon ho(\cC)\rightarrow
+  ho(\cD)$ is an equivalence of categories has the right approximation property.
+\end{prop}
 \begin{proof}
-  7.2.10.4, 7.2.18, 7.4.13
+  Consider a map $\psi\colon d\rightarrow f(c)$. Since $ho(f)$ is essentially
+  surjective, there exists an invertible map $d\rightarrow ho(f)(c')=f(c')$ in
+  $ho(\cD)$, which comes from an invertible map $d\rightarrow f(c')$ of $\cD$.
+  In $ho(\cD)$ we can then complete this to a triangle
+  \[\begin{tikzcd}
+    d & {f(c)} \\
+    {f(c')}
+    \arrow["{[\psi]}", from=1-1, to=1-2]
+    \arrow["\sim"', from=1-1, to=2-1]
+    \arrow["{[\phi]}"', from=2-1, to=1-2]
+  \end{tikzcd}\]
+  and, since $ho(f)$ is fully faithful, $\phi$ can be lifted to
+  $\tilde{\phi}\colon c'\rightarrow c$ in $ho(\cC)$. This gives us a commutative
+  triangle
+  \[\begin{tikzcd}
+    d & {f(c)} \\
+    {f(c')}
+    \arrow["\psi", from=1-1, to=1-2]
+    \arrow["\sim"', from=1-1, to=2-1]
+    \arrow["{f(\tilde{\phi})}"', from=2-1, to=1-2]
+  \end{tikzcd}\]
+  in $\cD$.
 \end{proof}
 
-\begin{lem}
-  7.6.4
-\end{lem}
-\begin{proof}
-  7.2.10.4, 7.2.18, 7.4.13
-\end{proof}
+\begin{exmp}
+  Given an $\infty$-category with weak equivalences and fibrations $\cC$, the
+  inclusion $\cC_f\rightarrow\cC$ has the right approximation property.
+\end{exmp}
 
-\begin{lem}
-  7.6.5
-\end{lem}
-\begin{proof}
-  4.2.9
-\end{proof}
+\begin{exmp}\label{764}
+  Given a saturated $\infty$-category with weak equivalences and fibrations
+  $\cC$, the localization functor $\cC\rightarrow L(\cC)$ has the right
+  approximation property (\cite[Ex.\ 7.6.4]{Cis19}).
+\end{exmp}
 
-\begin{lem}
-  7.6.7
-\end{lem}
-\begin{proof}
-  4.3.15, 7.4.19, 7.5.5
-\end{proof}
+%\begin{lem}
+%  7.6.5
+%\end{lem}
+%\begin{proof}
+%  4.2.9
+%\end{proof}
 
-\begin{thm}
+%\begin{lem}
+%  7.6.7
+%\end{lem}
+%\begin{proof}
+%  4.3.15, 7.4.19, 7.5.5
+%\end{proof}
+
+\begin{thm}\label{7610}
   7.6.10
+
+  Let $f\colon\cC\rightarrow\cD$ be a functor between $\infty$-categories with
+  finite limits. If $f$ commutes with them, then the following conditions are
+  equivalent:
+  \begin{enumerate}
+    \item the functor $f$ is an equivalence of $\infty$-categories;
+    \item the functor $ho(f)\colon\cC\rightarrow\cD$ is an equivalence of
+      categories;
+    \item the functor $f$ has the right approximation property.
+  \end{enumerate}
 \end{thm}
 \begin{proof}
   7.3.29, 7.6.2, 7.6.5, 7.6.7
+
+  We trivially have that (i) implies (ii) and, by \ref{762}, (iii) follows from
+  (ii), hence we only have to show that (iii) gives (i). Let's assume then that
+  $f$ has the right approximation property.
+
+  Given a final object $e$ of $\cC$, $f(e)$ is still final in $\cD$ by
+  \ref{7110}, thus for any object $d$ of $\cD$ we have a map $d\rightarrow f(e)$
+  and, by the right approximation property, we get a commutative triangle with
+  an isomorphism \wfd{(SPECIFY WHICH STRUCTURE YOU ARE CONSIDERING ON THE
+  $\infty$-CATEGORIES)} $d\rightarrow f(c)$ for some $c$ in $\cC$, which gives
+  us essential surjectivity.
+
+  We are still missing full faithfulness. To do this, we use that the right
+  approximation property implies that we have an equivalence of
+  $\infty$-groupoids $k(f)\colon k(\cC)\rightarrow k(\cD)$ (\cite[Lem.\
+  7.6.7]{Cis19}) and that, for any object $c$ of $\cC$, the map
+  $\cC/c\rightarrow\cD/f(c)$ induced on the slices still has the right
+  approximation property (\cite[Prop.\ 7.6.7]{Cis19}), therefore again we get an
+  equivalence of $\infty$-groupoids $k(\cC/c)\rightarrow k(\cD/f(c))$.
+
+  Keeping these facts in mind, let's look at the projection
+  $\cC/c\rightarrow\cC$. This functor is conservative, thus the square
+  \[\begin{tikzcd}
+    {k(\cC/c)} & {\cC/c} \\
+    {k(\cC)} & \cC
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=1-2, to=2-2]
+    \arrow[from=1-1, to=1-2]
+  \end{tikzcd}\]
+  is a pullback. We observe by pasting that the pullback of $k(\cC/c)\rightarrow
+  k(\cC)$ along $c'\colon\Delta^0\rightarrow k(\cC)$ is $\cC(c',c)$, as it is
+  clear from the diagram
+  \[\begin{tikzcd}
+    {\cC(x,y)} & {k(\cC/c)} & {\cC/c} \\
+    {\Delta^0} & {k(\cC)} & \cC
+    \arrow[from=1-2, to=2-2]
+    \arrow[from=2-2, to=2-3]
+    \arrow[from=1-3, to=2-3]
+    \arrow[from=1-2, to=1-3]
+    \arrow["{c'}"', from=2-1, to=2-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=1-1, to=1-2]
+  \end{tikzcd}.\]
+  In the same way, we get that the pullback of $k(\cD/f(c))\rightarrow k(\cD)$
+  along $f(c')\colon\Delta^0\rightarrow k(\cD)$ is $\cD(f(c'),f(c))$. Since we
+  have a commutative square
+  \[\begin{tikzcd}
+    {k(\cC/c)} & {k(\cD/f(c))} \\
+    {k(\cC)} & {k(\cD)}
+    \arrow[from=1-2, to=2-2]
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=1-1, to=2-1]
+  \end{tikzcd}\]
+  where the horizontal maps are equivalences of $\infty$-groupoids, the
+  induced map $\cC(c',c)\rightarrow\cD(f(c'),f(c))$ is again an equivalence of
+  $\infty$-groupoids, which is what we wanted.
+
+  Since $f$ is essentially surjective and fully faithful, it is an equivalence
+  of $\infty$-categories.
 \end{proof}
 
-\begin{cor}
+\begin{cor}\label{7613}
   7.6.13
 
   Let $\cC$ be an $\infty$-category with weak equivalences and fibrations and
@@ -967,16 +1082,18 @@ There are some interesting remarks which may be included!!!!
 \begin{proof}
   7.5.18, 7.5.22, 7.5.24, 7.5.28, 7.6.4, 7.6.10
 
-  Let's assume that $\cC$ is saturated, which can be done as pointed out in
-  \ref{7522}. Our objective is to show that the induced functor $\phi\colon
-  L(\cC/x)\rightarrow L(\cC)/\gamma(x)$ has the right approximation property and
-  it preserves finite limits, which will allow us to apply \ref{7610} and
-  conclude.
+  By \ref{7522}, we can assume that $\cC$ is saturated. Our objective is to show
+  that the induced functor $\phi\colon L(\cC/x)\rightarrow L(\cC)/\gamma(x)$ has
+  the right approximation property and it preserves finite limits, which will
+  allow us to apply \ref{7610} and conclude.
 
-  To show condition (i) we only need to prove that $\phi$ is conservative, which
+  To show condition (1) we only need to prove that $\phi$ is conservative, which
   can be reduced to showing that a map in $\cC/x$ becomes invertible in
-  $L(\cC/x)$ if and only if it becomes in $L(\cC)$. This however is true by
-  saturation of $\cC$. After this, we still need to check condition (ii), which can be done on $\cC/x\rightarrow L(\cC)/\gamma(x)$. One can prove this by first showing that $\gamma$ has the same property.
+  $L(\cC/x)$ if and only if it becomes an insomorphism in $L(\cC)$. This however
+  is true by
+  saturation of $\cC$. We still need to check condition (2), which can be done
+  on $\cC/x\rightarrow L(\cC)/\gamma(x)$, but this follows from the fact that
+  $\gamma$ has it, as mentioned in \ref{764}.
 
   To apply \ref{7610} we still need to show that $\phi$ preserves limits. To do
   this, we use the fact that $\cC/x$ has the structure of an
