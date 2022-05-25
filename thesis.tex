@@ -261,8 +261,8 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   is the pullback of one, implying that $\overline{W}$ is itself an
   $\infty$-category.
 
-  We shall say that $W$ is saturated if the canonical inclusion
-  $W\rightarrow\overline{W}$ is an equivalence of $\infty$-categories.
+  We shall say that $\cC$ is saturated if the canonical inclusion
+  $W\rightarrow\overline{W}$ is an isomorphism of $\infty$-categories.
 \end{rmk}
 
 \begin{rmk}
@@ -625,9 +625,46 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   are given by $W_f=W\cap\cC_f$, its fibrations by $Fib_f=Fib\cap\cC_f$.
 \end{construction}
 
-%\begin{prop}
-%  7.4.13
-%\end{prop}
+\begin{prop}[Brown's Lemma]\label{7413}
+  7.4.13
+
+  For any map $f\colon x\rightarrow y$ between fibrant objects in an
+  $\infty$-category with weak equivalences and fibrations $\cC$, there exists a
+  commutative diagram of the form
+  \[\begin{tikzcd}
+    & x \\
+    x & z & y
+    \arrow[Rightarrow, no head, from=1-2, to=2-1]
+    \arrow["s", from=1-2, to=2-2]
+    \arrow["p", "\sim"', two heads, from=2-2, to=2-1]
+    \arrow["q"', two heads, from=2-2, to=2-3]
+    \arrow["f", from=1-2, to=2-3]
+  \end{tikzcd},\]
+  where $p$ is a trivial fibration and $q$ is a fibration.
+\end{prop}
+\begin{proof}
+  Since $x$ and $y$ are fibrant, the pullback of $x\rightarrow e$ and
+  $y\rightarrow e$ exists and it corresponds to $x\times y$. The maps $\id_x$,
+  $f$ define a cone over our cospan which induces a map $g\colon x\rightarrow
+  x\times y$ and we then
+  factor the latter as a weak equivalence $s\colon x\rightarrow z$ followed by a
+  fibration $\pi\colon z\rightarrow x\times y$. We get then the desired maps
+  $p=p_x\cdot\pi$, $q=p_y\cdot\pi$, where $p_x$, $p_y$ denote the projections
+  $x\times y\rightarrow x$, $x\times y\rightarrow y$ respectively.
+\end{proof}
+
+\begin{construction}
+  Given an $\infty$-category with weak equivalences and fibrations $\cC$ and a
+  fibrant object $z$ in it, we write $\cC(z)$ for $(\cC/z)_f$, that is the
+  full subcategory $\cC/z$ given by the fibrations $x\rightarrow z$ of $\cC$.
+  For any morphism $f\colon x\rightarrow y$, we have a left exact functor
+  $f^*\colon\cC(y)\rightarrow\cC(x)$ induced pulling back along $f$
+  \wfd{(CAREFUL WITH THIS! YOU ARE USING IT LATER ON; CHECK \cite[Prop.\
+  7.4.15]{Cis19})}. This follows from the fact that limits commute, pullbacks of
+  fibrations are again fibrations and weak equivalences are preserved as a
+  consequence of Brown's Lemma \ref{7413} \wfd{(MAYBE SPECIFY THE COROLLARY, YOU
+  USE IT AGAIN)}.
+\end{construction}
 
 %\begin{cor}
 %  7.4.14
@@ -668,7 +705,13 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 
   We know by \ref{7110} that $L(\cC_f)$ has a final object, hence to show
   completeness it is enough to prove that it also has pullbacks (\cite[Thm.\
-  7.3.27]{Cis19}).
+  7.3.27]{Cis19}). This can be done using the fact that any morphism in
+  $L(\cC_f)$ can be seen as a composition $\gamma(p)\cdot\gamma(s)^{-1}$, where
+  $s$ is a trivial fibration, for which Cisinski uses the theory of the
+  \emph{right calculus of fractions}, and the fact that $\gamma_f$ preserves
+  pullbacks along fibrations. The proof also shows us that all pullback squares
+  in $L(\cC_f)$ are isomorphic to images of pullback squares in $\cC_f$ in which
+  all maps are fibrations.
 \end{proof}
 
 \begin{prop}\label{7516}
