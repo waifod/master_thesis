@@ -387,7 +387,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   $g$ is an equivalence of $\infty$-categories.
 \end{proof}
 
-\begin{prop}
+\begin{prop}\label{7114}
   7.1.14
 
   Let $f\colon\cC\rightarrow\cD$ be a functors between $\infty$-categories with
@@ -849,17 +849,20 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   \wfd{(NOT COMPLETE, ONE MAY SHOW THAT OUR CONSTRUCTION DOES GIVE THE RIGHT
   DERIVED FUNCTOR)}
 
-  Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. Given
-  any functor $F\colon\cC\rightarrow\cD$ sending weak equivalences between
-  fibrant objects to invertible maps then has a right derived functor $\bfR F$,
-  which may be constructed as follows.
+  Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. Any
+  functor $F\colon\cC\rightarrow\cD$ sending weak equivalences between fibrant
+  objects to invertible maps then has a right derived functor $\bfR F$, which
+  may be constructed as follows.
 
   First we choose a quasi-inverse $R\colon L(\cC)\rightarrow L(\cC_f)$ of the
   equivalence of $\infty$-categories specified in \ref{7518}, then we choose a
   functor $\overline{F}\colon L(\cC_f)\rightarrow\cD$ and a natural isomorphism
   $j\colon\overline{F}\cdot\gamma_f\rightarrow F\cdot\iota$. We set then $\bfR
-  F=\overline{F}\cdot R$. Also, for any other functor
-  $G\colon\cD\rightarrow\cE$, we have that $G\cdot\bfR F=\bfR(G\cdot F)$.
+  F=\overline{F}\cdot R$. What we are doing in this construction is selecting
+  for every object in $\cC$ a fibrant replacement, exactly like when we talk
+  about right derived functors in the context of model categories. Also, for any
+  other functor $G\colon\cD\rightarrow\cE$, we have that $G\cdot\bfR
+  F=\bfR(G\cdot F)$.
 \end{construction}
 
 \begin{defn}
@@ -954,16 +957,76 @@ There are some interesting remarks which may be included!!!!
 
 \begin{cor}
   7.6.13
+
+  Let $\cC$ be an $\infty$-category with weak equivalences and fibrations and
+  consider a localization functor $\gamma\colon\cC\rightarrow L(\cC)$. For any
+  fibrant object $x$ of $\cC$, the canonical functor $\cC/x\rightarrow
+  L(\cC)/\gamma(x)$, $t\mapsto\gamma(t)$, induces an equivalence of
+  $\infty$-categories $L(\cC/x)\simeq L(\cC)/\gamma(x)$.
 \end{cor}
 \begin{proof}
   7.5.18, 7.5.22, 7.5.24, 7.5.28, 7.6.4, 7.6.10
+
+  Let's assume that $\cC$ is saturated, which can be done as pointed out in
+  \ref{7522}. Our objective is to show that the induced functor $\phi\colon
+  L(\cC/x)\rightarrow L(\cC)/\gamma(x)$ has the right approximation property and
+  it preserves finite limits, which will allow us to apply \ref{7610} and
+  conclude.
+
+  To show condition (i) we only need to prove that $\phi$ is conservative, which
+  can be reduced to showing that a map in $\cC/x$ becomes invertible in
+  $L(\cC/x)$ if and only if it becomes in $L(\cC)$. This however is true by
+  saturation of $\cC$. After this, we still need to check condition (ii), which can be done on $\cC/x\rightarrow L(\cC)/\gamma(x)$. One can prove this by first showing that $\gamma$ has the same property.
+
+  To apply \ref{7610} we still need to show that $\phi$ preserves limits. To do
+  this, we use the fact that $\cC/x$ has the structure of an
+  $\infty$-category with weak equivalences and fibrations. Given that $\gamma$
+  is left exact, the functor $\cC/x\rightarrow L(\cC)/\gamma(x)$ maps weak
+  equivalences to isomorphisms and we can apply \ref{7524} to prove that $\phi$
+  is its right derived functor. Finally, through \ref{7528} we get that $\phi$
+  is also left exact.
 \end{proof}
 
 \begin{thm}
   7.6.16
+
+  Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. Given
+  a fibrant object $x$, let $\cC(x)$ be the full subcategory of fibrant objects
+  of $\cC/x$ \wfd{(INCLUDE 7.6.12)}, which will be an $\infty$-category of
+  fibrant objects. Assume that, for any fibration between fibrant objects
+  $p\colon x\rightarrow y$, the pullback functor
+  $p^*\colon\cC(y)\rightarrow\cC(x)$, $(y'\rightarrow y)\mapsto(y'\times_y
+  x\rightarrow x)$ has a right adjoint $p_*\colon\cC(x)\rightarrow\cC(y)$
+  preserving trivial fibrations. Then, for any map $p\colon x\rightarrow y$ in
+  $L(\cC)$, the pullback functor $p^*\colon\cC(y)\rightarrow\cC(x)$ has a right
+  adjoint.
 \end{thm}
 \begin{proof}
   6.1.6, 6.1.7, 6.1.8, 7.1.14, 7.4.14, 7.5.18, 7.6.13
+
+  Given a localization functor $\gamma\colon\cC\rightarrow L(\cC)$, one reduces
+  the problem to proving that, for any fibration between fibrant objects
+  $p\colon x\rightarrow y$, the pullback functor
+  \[\gamma(p)^*\colon L(\cC)/\gamma(y)\rightarrow L(\cC)/\gamma(x)\]
+  has a right adjoint.
+
+  A consequence of Brown's Lemma \ref{7413} is that any functor preserving
+  trivial fibrations between fibrant objects also preserves weak equivalences,
+  and, since $p^*\colon\cC(y)\rightarrow\cC(x)$ has both a right and a left
+  adjoint named $p_*$ and $p_!$ (the latter given by post-composing with $p$)
+  which do preserve them, by \ref{7114} we have a pair of adjunctions on the
+  localizations, namely
+  \[\adjunction{\overline{p}^*}{L(\cC(y))}{L(\cC(x))}{\overline{p}_*},\]
+  \[\adjunction{\overline{p}_!}{L(\cC(x))}{L(\cC(y))}{\overline{p}^*}.\]
+
+  Given that $(\cC/z)_f=\cC(z)$ for all fibrant objects $z$ of $\cC$, by
+  \ref{7518} we have that $L(\cC(z))\simeq L(\cC/z)$ and, by $\ref{7613}$, we
+  also know that $L(\cC/z)\simeq L(\cC)/\gamma(z)$, hence $L(\cC(z))\simeq
+  L(\cC)/\gamma(z)$. Notice that $\overline{p}_!$ is equivalent to
+  $\gamma(p)_!\colon L(\cC)/\gamma(x)\rightarrow L(\cC)/\gamma(y)$ and, by
+  essential uniqueness of the adjoints, this extends to $\gamma(p)^*$ and
+  $\overline{p}^*$, therefore $\gamma(p)^*$ has a right adjoint induced by
+  $\overline{p}_*$.
 \end{proof}
 
 \section{Categorical Models of TT as Locally Cartesian Closed Fibration
@@ -1122,8 +1185,9 @@ and then composing the map $E\rightarrow Y^{\Delta^1}$ with $ev_1$.
 	\arrow["q"', curve={height=20pt}, from=1-1, to=3-1]
 \end{tikzcd}\]
 
-We want to show that, for any (coCartesian?)\ morphism $f\colon A\rightarrow X$,
-we have an isomorphism between $\phi_*(f)$ and $q_*p^*(f)$.
+We want to show that, for any coCartesian morphisms $f\colon A\rightarrow Y$,
+$g\colon A\rightarrow X$, we have an equivalence between $\Map_(\phi^*f,g)$ and
+$\Map(f,q_*p^*(g))$.
 
 Canonically, we have
 \[E_n=\{(x,\Delta^n\times\Delta^1\xrightarrow{g}Y)\ |\ x\in X_n,\
