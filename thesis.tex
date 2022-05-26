@@ -576,7 +576,8 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   $W\subset\cC$ is a subcategory with the 2-out-of-3 property and
   $Fib\subset\cC$ a subsimplicial set such that:
   \begin{enumerate}
-    \item for any pullback square of $\cC$
+    \item for any morphism $p\colon x\rightarrow y$ in $Fib$ (and $W$) with $y$
+      fibrant, there is in $\cC$ a pullback square
       \[\begin{tikzcd}
         {x'} & x \\
         {y'} & y
@@ -585,8 +586,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
         \arrow["v"', from=2-1, to=2-2]
         \arrow["u", from=1-1, to=1-2]
       \end{tikzcd}\]
-      in which $y$ is fibrant and $p$ lies in $Fib$ (and $W$), the same goes
-      for $p'$;
+      where $p'$ also lies in $Fib$ (and $W$);
     \item for any map $f\colon x\rightarrow y$ with fibrant codomain can be
       factored as a map in $W$ followed by one in $Fib$.
   \end{enumerate}
@@ -681,14 +681,16 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   Given an $\infty$-category with weak equivalences and fibrations $\cC$ and a
   fibrant object $z$ in it, we write $\cC(z)$ for $(\cC/z)_f$, that is the
   full subcategory $\cC/z$ given by the fibrations $x\rightarrow z$ of $\cC$.
-  For any morphism $f\colon x\rightarrow y$, we have a left exact functor
+  For any morphism $f\colon x\rightarrow y$ between fibrant objects, we have a
+  left exact functor
   $f^*\colon\cC(y)\rightarrow\cC(x)$ induced pulling back along $f$
   \wfd{(CAREFUL WITH THIS! YOU ARE USING IT LATER ON; CHECK \cite[Prop.\
-  7.4.15]{Cis19})}. This follows from the fact that limits commute, pullbacks of
-  fibrations are again fibrations and weak equivalences are preserved as a
-  consequence of Brown's Lemma \ref{7414} \wfd{(MAYBE SPECIFY THE COROLLARY, YOU
-  USE IT AGAIN)}.
+  7.4.15]{Cis19})}. The existence follows from the fact that pullbacks along
+  fibrations with fibrant codomain exist, while left exactness comes from limits
+  commuting and weak equivalences being preserved as a consequence of
+  \ref{7414}. \wfd{(PERHAPS MORE DETAIL?)}
 \end{construction}
+
 
 %\begin{cor}
 %  7.4.14
