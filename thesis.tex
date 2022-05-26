@@ -1219,7 +1219,7 @@ There are some interesting remarks which may be included!!!!
   is also left exact.
 \end{proof}
 
-\begin{thm}
+\begin{thm}\label{7616}
   7.6.16
 
   Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. Given
@@ -1278,8 +1278,6 @@ First of all, he refers to AKL15 to show that $\cP$ has a fibrational structure,
 then he goes on to show the following results, whose proofs are extremely terse
 and therefore should be expanded.
 
-\wfd{(I DON'T UNDERSTAND WHAT $f^*b$ SHOULD BE IN 1211.2851, DEF. 1.2.4. WHAT
-FOLLOWS IS MY IDEA.)}
 
 \begin{defn}
   Given $p_A\colon\Gamma.A\rightarrow\Gamma$, a section
@@ -1300,6 +1298,9 @@ FOLLOWS IS MY IDEA.)}
   \end{tikzcd},\]
   which gives us $f^*a$ as the factorization through the pullback square of the
   pair $(\id_\Delta,a\cdot f)$.
+
+  \wfd{(THIS CAN BE JUSTIFIED BY LOOKING AT LEMMA 2.15 IN 1706.03605. THE
+  FOLLOWING RESULT SHOWS THAT THIS ASSIGNMENT IS ALSO FUNCTORIAL.)}
 \end{defn}
 
 \begin{lem}
@@ -1309,17 +1310,35 @@ FOLLOWS IS MY IDEA.)}
   admits a right adjoint.
 \end{lem}
 \begin{proof}
-  Kapulkin 1507.02648, Lemma 5.5.
+  Kapulkin 1507.02648, Lemma 5.5. We need to understand $\mathsf{app}$ for this,
+  which requires studying 1211.2851, Appendix B.1.1 and 1706.03605. The map
+  $app$ is specified in the latter, Remark 4.4, however you should notice that
+  there $app$ does not take a pair of morphisms as input but an object
+  $\Gamma.A.B$ and a section $f$ of
+  $p_{\Pi(A,B)}\colon\Gamma.\Pi(A,B)\rightarrow\Gamma$ and it returns a section
+  $app(f,-)$ of $p_{B}\colon\Gamma.A.B\rightarrow\Gamma.A$. Then, $app(f,a)$ is
+  specified by $app(f,-)\cdot a$. Remember that
+  $\lambda\colon\tilde{\Ob}_2\rightarrow\tilde{\Ob}_1$ is assigning to a term
+  $b(a):B$ depending on the context $[\Gamma,a:A]$
+  the corresponding map $\Gamma\rightarrow\Gamma.\Pi(A,B)$. A
+  morphism in the fiber product used when defining $app$ is a pair
+  $(\Gamma.A.B,f\colon\Gamma\rightarrow\Gamma.\Pi(A,B))$, which corresponds by
+  isomorphism with $\tilde{\Ob}_2$ to a unique section
+  $g\colon\Gamma.A\rightarrow\Gamma.A.B$ of $p_B$. This means that
+  $\lambda(g)=f$! Is this right? I think that $\lambda$ is the lambda
+  abstraction, not the map associating to a term of $B$ the corresponding
+  constant map.
 \end{proof}
 
 We know that every fibration in $\cC$ is isomorphic to a composite of dependent
 projections , so this tells us that every fibration induces an adjunction
-between fibrational slices \wfd{(YOU SHOULD DEFINE THEM)}.
+between fibrational slices \wfd{(YOU SHOULD DEFINE THEM, MAYBE AS INFTY-CATS OF
+FIBRANT OBJECTS INDUCED FROM THE SLICES)}.
 
 \begin{lem}
   Consider an iterated context extension $\Gamma.\Delta.\Theta.\Psi$ in a
   categorical model of type theory $\cC$. Then the contexts
-  \[\Gamma.\Pi(\Delta,\Theta).\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta.app^*_{\Delta,\Theta}.\Psi)
+  \[\Gamma.\Pi(\Delta,\Theta).\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta,app^*_{\Delta,\Theta}\Psi)
     \text{ and }
   \Gamma.\Pi(\Delta,\Theta.\Psi)\]
   are isomorphic (actually equal) in $\cC$.
@@ -1345,8 +1364,8 @@ We are finally ready to prove the result leading to the final one we want.
 \end{thm}
 \begin{proof}
   Since a fibration category is more generally a $\infty$-category with
-  fibrations and weak equivalences, we can apply \cite[Prop.\ 7.6.16]{Cis19} as
-  the hypothesis are satisfied by \ref{lccfc}.
+  fibrations and weak equivalences, we can apply \ref{7616} as the hypothesis
+  are satisfied by \ref{lccfc}.
 \end{proof}
 
 \section{Pushforward}
