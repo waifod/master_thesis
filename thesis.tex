@@ -268,17 +268,16 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 \begin{rmk}
   7.1.6
 
-  The functor $ho(\cC)\rightarrow ho(L(\cC))$ exibits $ho(L(\cC))$ as the
+  The functor $ho(\cC)\rightarrow ho(L(\cC))$ exhibits $ho(L(\cC))$ as the
   1-categorical localization of $\cC$ at $\Arr(\tau(W))$, as can be seen by
   using the universal property.
 
   On the other hand, given a 1-category $\cC$ and localizing at a set of
   morphisms $W$, not necessarily the induced map $L(N(\cC))\rightarrow
   N(L(\cC))$ is an isomorphism. Indeed, $L(N(\cC))$ can have much better
-  properties, as can be seen for example from yadda yadda \wfd{(PROPOSITION
-  ABOUT FINITE COMPLETENESS)} and in fact localizing 1-categories after taking
-  their nerves gives every $\infty$-category \wfd{(MORE
-  PRECISE STATEMENT)}.
+  properties, as can be seen for example from \ref{756}, and in fact localizing
+  1-categories after taking their nerves gives every $\infty$-category as shown
+  in \cite[Prop.\ 7.3.15]{Cis19}.
 \end{rmk}
 
 \begin{prop}
@@ -307,7 +306,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   equivalences of $\infty$-categories as $\gamma^*$ is an equivalence.
 \end{proof}
 
-\begin{prop}\label{final}
+\begin{prop}\label{7110}
   7.1.10
 
   Given an $\infty$-category $\cC$ and a simplicial subset $W$, the localization
@@ -599,10 +598,10 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   fibrations}.
 \end{defn}
 
-\begin{construction}
+\begin{construction}\label{fincomplarefib}
   Any finitely complete $\infty$-category $\cC$ can be given the structure of an
   $\infty$-category with weak equivalences and fibrations by setting $W=k(\cC)$,
-  $Fib=\cC$.
+  $Fib=\cC$, which we will be doing henceforth.
 \end{construction}
 
 \begin{construction}
@@ -640,7 +639,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
     \arrow["q"', two heads, from=2-2, to=2-3]
     \arrow["f", from=1-2, to=2-3]
   \end{tikzcd},\]
-  where $p$ is a trivial fibration and $q$ is a fibration.
+  where $s$ is a weak equivalence, $p$ a trivial fibration and $q$ a fibration.
 \end{prop}
 \begin{proof}
   Since $x$ and $y$ are fibrant, the pullback of $x\rightarrow e$ and
@@ -653,6 +652,31 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   $x\times y\rightarrow x$, $x\times y\rightarrow y$ respectively.
 \end{proof}
 
+\begin{cor}\label{7414}
+  Let $\cC$ be an $\infty$-category with weak equivalences and fibrations, $\cD$
+  an $\infty$-category and $V\subset \cD$ a subcategory with the 2-out-of-3
+  property. If $F$ sends trivial fibrations between fibrant objects into $V$,
+  then it also sends weak equivalences between fibrant objects into $V$.
+\end{cor}
+\begin{proof}
+  Looking at the commutative diagram
+  \[\begin{tikzcd}
+    x \\
+    {} & z & y \\
+    x
+    \arrow["s"', from=1-1, to=2-2]
+    \arrow["p"', two heads, from=2-2, to=3-1]
+    \arrow[Rightarrow, no head, from=1-1, to=3-1]
+    \arrow["f"', curve={height=12pt}, from=3-1, to=2-3]
+    \arrow["f", curve={height=-12pt}, from=1-1, to=2-3]
+    \arrow["q", from=2-2, to=2-3]
+  \end{tikzcd},\]
+  given by Brown's Lemma \ref{7413} we see that $Fp$ lies in $V$ and therefore
+  the same goes for $Fs$. Also, since $f$ and $s$ are weak equivalences we know
+  that $q$ is too, hence it is a trivial fibration. It follows that $Fq$ is in
+  $V$ and the same goes for $Ff=Fq\cdot Fs$.
+\end{proof}
+
 \begin{construction}
   Given an $\infty$-category with weak equivalences and fibrations $\cC$ and a
   fibrant object $z$ in it, we write $\cC(z)$ for $(\cC/z)_f$, that is the
@@ -662,7 +686,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   \wfd{(CAREFUL WITH THIS! YOU ARE USING IT LATER ON; CHECK \cite[Prop.\
   7.4.15]{Cis19})}. This follows from the fact that limits commute, pullbacks of
   fibrations are again fibrations and weak equivalences are preserved as a
-  consequence of Brown's Lemma \ref{7413} \wfd{(MAYBE SPECIFY THE COROLLARY, YOU
+  consequence of Brown's Lemma \ref{7414} \wfd{(MAYBE SPECIFY THE COROLLARY, YOU
   USE IT AGAIN)}.
 \end{construction}
 
@@ -686,6 +710,37 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 %\begin{proof}
 %  7.4.11
 %\end{proof}
+
+\begin{defn}
+  Let $\cC$, $\cD$ be $\infty$-categories with weak equivalences and fibrations.
+  A functor $F\colon\cC\rightarrow\cD$ is \emph{left exact} if it has the
+  following properties:
+  \begin{enumerate}
+    \item the functor $F$ preserves final objects;
+    \item the functor $F$ sends (trivial) fibrations between fibrant objects to
+      (trivial) fibrations;
+    \item the functor $F$ preserves any pullback square in $\cC$
+      \[\begin{tikzcd}
+        {x'} & x \\
+        {y'} & y
+        \arrow["{p'}"', from=1-1, to=2-1]
+        \arrow["p", from=1-2, to=2-2]
+        \arrow["u", from=1-1, to=1-2]
+        \arrow["v"', from=2-1, to=2-2]
+      \end{tikzcd}\]
+      where $p$ is a fibration and $y$, $y'$ are fibrant objects.
+  \end{enumerate}
+\end{defn}
+
+\begin{rmk}
+  By Brown's Lemma, a left exact functor preserves weak equivalences between
+  fibrant objects.
+\end{rmk}
+
+\begin{rmk}
+  When considering a functor $F$ between finitely complete $\infty$-categories,
+  left exactness is equivalent to preserving finite limits.
+\end{rmk}
 
 \begin{prop}\label{756}
   7.5.6
@@ -770,9 +825,9 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 
   Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. The
   canonical functor $\overline{\iota}\colon L(\cC_f)\rightarrow L(\cC)$ is an
-  equivalence of $\infty$-categories, hence the $\infty$-category $L(\cC)$ has
-  finite limits and the localization functor $\gamma\colon\cC\rightarrow L(\cC)$
-  is left exact.
+  equivalence of $\infty$-categories, hence the $\infty$-category $L(\cC)$ is
+  finitely complete and the localization functor $\gamma\colon\cC\rightarrow
+  L(\cC)$ is left exact.
 \end{prop}
 \begin{proof}
   7.5.6, 7.5.17
@@ -809,6 +864,16 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 
   The second claim follows directly from the first one and \ref{756}.
 \end{proof}
+
+\begin{rmk}
+  Here we see that the theory of localizations of $\infty$-categories with weak
+  equivalences and fibrations provides much better results the 1-categorical
+  equivalent, embodied by the homotopy theory of model categories and fibration
+  categories (which we will define in the next chapter): indeed, these are
+  particular cases of the $\infty$-analogue, however their homotopy categories,
+  i.e.\ their 1-categorical localizations by weak equivalences, are almost never
+  finitely complete.
+\end{rmk}
 
 \begin{cor}\label{7519}
   7.5.19
@@ -890,12 +955,17 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   may be constructed as follows.
 
   First we choose a quasi-inverse $R\colon L(\cC)\rightarrow L(\cC_f)$ of the
-  equivalence of $\infty$-categories specified in \ref{7518}, then we choose a
+  equivalence of $\infty$-categories specified in \ref{7518}, then we pick a
   functor $\overline{F}\colon L(\cC_f)\rightarrow\cD$ and a natural isomorphism
   $j\colon\overline{F}\cdot\gamma_f\rightarrow F\cdot\iota$. We set then $\bfR
-  F=\overline{F}\cdot R$. What we are doing in this construction is selecting
+  F=\overline{F}\cdot R$.
+
+  What we are doing in this construction is selecting
   for every object in $\cC$ a fibrant replacement, exactly like when we talk
-  about right derived functors in the context of model categories. Also, for any
+  about right derived functors in the context of model categories. This is
+  necessary because, a priori, we are not sending all weak equivalences to
+  invertible maps in $\cD$, hence we would have to show that before applying the
+  universal property of localizations. Also, for any
   other functor $G\colon\cD\rightarrow\cE$, we have that $G\cdot\bfR
   F=\bfR(G\cdot F)$.
 \end{construction}
