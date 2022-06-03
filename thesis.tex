@@ -1368,6 +1368,95 @@ We are finally ready to prove the result leading to the final one we want.
   are satisfied by \ref{lccfc}.
 \end{proof}
 
+\section{What the hell are these things?}
+
+In the proofs various objects are mentioned. Here we explain the constructions.
+
+First of all, in 1211, Section B.1.1, to specify what it means to have a $\Pi$
+structure they define the $app$ map taking sections
+$a\colon\Gamma\rightarrow\Gamma.A$ and $f\colon\Gamma\rightarrow\Gamma.\Pi(A,B)$
+of the obvious dependent projections and returning a section
+$app(f,a)\colon\Gamma\rightarrow\Gamma.A.B$ such that $p_b\cdot app(f,a)=a$.
+This tells us that $app(f,a):B(a)$ is essentially what we get when we apply the
+map $f:\Pi(A,B)$ to $a:A$.
+
+Also, given a section $b\colon\Gamma.A\rightarrow\Gamma.A.B$ we have a map
+$\lambda(b)\colon\Gamma\rightarrow\Gamma.\Pi(A,B)$. This turns a term $b:B(x)$
+dependent on $x:A$ into a map $\lambda(b)\Pi(A,B)$ associating $x:A$ to $b$ and
+indeed we have that $app(\lambda(b),a)=b\cdot a$.
+
+The context substitution properties are as expected.
+
+We want to describe explicitly what the map
+$app_{A,B}\colon\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A\rightarrow\Gamma.A.B$ is.
+Intuitively, it should model the map sending a term $f:\Pi(A,B)$ and a term
+$a:A$ to $f(a):B$. To construct it we first need to specify a few things.
+
+We know that $app_{A,B}$ is given by:
+\begin{align*}
+  q(q(p_{\Pi(A,B)}\cdot & p_{p^*_{\Pi(A,B)}A},A),B)\cdot \\
+  app(&(1_{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A},p_{p^*_{\Pi(A,B)}A})),
+  (1_{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A},q(p_{\Pi(A,B)},A)) \\
+      &\colon\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A\rightarrow\Gamma.A.B
+\end{align*}
+
+Notice that here we did not specify any subscripts for $app$, unlike in 1211:
+indeed, they are given only to clarify what the arguments are.
+
+We now focus on $(1_{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A},p_{p^*_{\Pi(A,B)}A})$.
+This is given as the factorization through the pullback of the cone given by the
+two maps, as we will show in a moment.
+\[\begin{tikzcd}
+	{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} \\
+	& {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*\Pi(A,B)} && {\Gamma.\Pi(A,B)} \\
+	& {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.\Pi(A,B)} & \Gamma \\
+	& {}
+	\arrow["{p_{p^*_{\Pi(A,B)}A}}"', from=3-2, to=3-3]
+	\arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+	\arrow["{p_{\Pi(A,B)}}", from=2-4, to=3-4]
+	\arrow["{p_{p^*_{\Pi(A,B)}A}}", curve={height=-12pt}, from=1-1, to=2-4]
+	\arrow["{p_{\Pi(A,B)}}"', from=3-3, to=3-4]
+	\arrow["{p_{(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*\Pi(A,B)}}", from=2-2, to=3-2]
+	\arrow["{q(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A},\Pi(A,B))}"', from=2-2, to=2-4]
+	\arrow[dotted, from=1-1, to=2-2]
+\end{tikzcd}\]
+
+Similarly, we obtain the other section in the argument.
+\[\begin{tikzcd}
+	{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} \\
+	& {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*A} & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.A} \\
+	& {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.\Pi(A,B)} & \Gamma \\
+	&& {}
+	\arrow["{p_{p^*_{\Pi(A,B)}A}}"', from=3-2, to=3-3]
+	\arrow["{p_{p^*_{\Pi(A,B)}A}}"', from=2-2, to=3-2]
+	\arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+	\arrow["{q(p_{\Pi(A,B)},A)}", curve={height=-12pt}, from=1-1, to=2-4]
+	\arrow["{p_A}", from=2-4, to=3-4]
+	\arrow["{p_{\Pi(A,B)}}"', from=3-3, to=3-4]
+	\arrow[from=2-3, to=2-4]
+	\arrow["{p_{p^*_{\Pi(A,B)}A}}", from=2-3, to=3-3]
+	\arrow[from=2-2, to=2-3]
+	\arrow[dotted, from=1-1, to=2-2]
+\end{tikzcd}\]
+
+The map $app$ with the arguments specified above then specifies a map
+$\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A\rightarrow\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.p^*_{p^*_{\Pi(A,B)}A}A.stuffB$.
+What follows is the other map appearing in the definition of $app_{A,B}$.
+
+\[\begin{tikzcd}
+	{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B}A})^*A.stuffB} && {\Gamma.A.B} \\
+	{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B}A})^*A} && {\Gamma.A} \\
+	{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.\Pi(A,B)} & \Gamma
+	\arrow["{q(q(p_{\Pi(A,B)}\cdot p_{p^*(A,B)A},A),B)}", from=1-1, to=1-3]
+	\arrow["{p_B}", from=1-3, to=2-3]
+	\arrow["{p_A}", from=2-3, to=3-3]
+	\arrow["{p_{\Pi(A,B)}}"', from=3-2, to=3-3]
+	\arrow["{p_{p^*_{\Pi(A,B)}A}}"', from=3-1, to=3-2]
+	\arrow["{q(p_{\Pi(A,B)}\cdot p_{p^*(A,B)A},A)}"', from=2-1, to=2-3]
+	\arrow["{p_{(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B}A})^*A}}"', from=2-1, to=3-1]
+	\arrow["{p_{stuffB}}"', from=1-1, to=2-1]
+\end{tikzcd}\]
+
 \section{Pushforward}
 
 One may ask whether cocartesian fibrations in $\sSet$ model Pi types, which is a
