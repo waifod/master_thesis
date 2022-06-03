@@ -1328,6 +1328,25 @@ and therefore should be expanded.
   $\lambda(g)=f$! Is this right? I think that $\lambda$ is the lambda
   abstraction, not the map associating to a term of $B$ the corresponding
   constant map.
+
+  Things would be solved if I provided a unit map
+  $\eta_{\Gamma.\Psi}\colon\Gamma.\Psi\rightarrow\Gamma.\Pi(\Delta,p^*_{\Delta}\Psi)$.
+
+  Given a section $a\colon\Gamma\rightarrow\Gamma.\Psi$, we can consider a map
+  in the desired direction by first taking the pullback along $p^*_\Delta$, then
+  applying the right adjoint $(p_{\Delta})_*$ and finally precomposing with
+  $p_{\Psi}$, which gives us a map making the diagram
+  \[\begin{tikzcd}
+	{\Gamma.\Psi} & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi)} \\
+	& \Gamma
+	\arrow["{p_{\Pi(\Delta,p^*_\Delta\Psi)}}"{description}, from=1-2, to=2-2]
+	\arrow["{p_\Psi}"{description}, from=1-1, to=2-2]
+	\arrow["a", curve={height=-12pt}, from=2-2, to=1-1]
+	\arrow["{(p_\Delta)_*p^*_\Delta(a)\cdot p_\Psi}", from=1-1, to=1-2]
+	\arrow["{(p_\Delta)_*p^*(a)}"', curve={height=18pt}, from=2-2, to=1-2]
+\end{tikzcd}\]
+  commute. For it to be a good candidate unit, we need it to be independent from
+  $a$.
 \end{proof}
 
 We know that every fibration in $\cC$ is isomorphic to a composite of dependent
@@ -1346,6 +1365,23 @@ FIBRANT OBJECTS INDUCED FROM THE SLICES)}.
 \begin{proof}
   Kapulchin 1507.02648, Lemma 5.5. It simply refers to the construction of the
   $\Pi$-structure on $\cC^{cxt}$.
+
+  We construct the following commutative diagram
+  \[\begin{tikzcd}
+    {\Gamma.\Pi(\Delta,\Theta).p^*_{\Pi(\Delta,\Theta)}\Delta.app^*_{\Delta,\Theta}\Psi} & {\Gamma.\Delta.\Theta.\Psi} \\
+    & {\Gamma.\Delta.\Theta} \\
+    {\Gamma.\Pi(\Delta,\Theta).p^*_{\Pi(\Delta,\Theta)}\Delta} & {\Gamma.\Delta} \\
+    {\Gamma.\Pi(\Delta,\Theta)} & \Gamma
+    \arrow["{p_\Psi}", from=1-2, to=2-2]
+    \arrow["{p_{\Theta}}", from=2-2, to=3-2]
+    \arrow["{p_{\Delta}}", from=3-2, to=4-2]
+    \arrow["{p_{app^*_{\Delta,\Theta}\Psi}}"', from=1-1, to=3-1]
+    \arrow["{p_{\Pi(\Delta,\Theta)}}"', from=4-1, to=4-2]
+    \arrow["{p_{p^*_{\Pi(\Delta,\Theta)}\Delta}}"', from=3-1, to=4-1]
+    \arrow["{q(p_{\Pi(\Delta,\Theta)},\Delta)}"', from=3-1, to=3-2]
+    \arrow["{app_{\Delta,\Theta}}", from=3-1, to=2-2]
+    \arrow["{q(app_{\Delta,\Theta},\Psi)}", from=1-1, to=1-2]
+  \end{tikzcd}\]
 \end{proof}
 
 We are finally ready to prove the result leading to the final one we want.
