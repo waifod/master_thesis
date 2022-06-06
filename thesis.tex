@@ -3,6 +3,14 @@
 \usepackage{quiver}
 \usepackage{bbold}
 
+% Gotta find a better solution to be able to show all of the diagrams properly
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
 \begin{document}
 \noindent\textbf{Author}\hfill\textbf{Year} \linebreak
 \vspace*{-.1cm} Matteo Durante\hfill 2022 \\
@@ -1332,22 +1340,47 @@ and therefore should be expanded.
   Things would be solved if I provided a unit map
   $\eta_{\Gamma.\Psi}\colon\Gamma.\Psi\rightarrow\Gamma.\Pi(\Delta,p^*_{\Delta}\Psi)$.
 
-  Given a section $a\colon\Gamma\rightarrow\Gamma.\Psi$, we can consider a map
-  in the desired direction by first taking the pullback along $p^*_\Delta$, then
-  applying the right adjoint $(p_{\Delta})_*$ and finally precomposing with
-  $p_{\Psi}$, which gives us a map making the diagram
+  Let's consider the commutative square
   \[\begin{tikzcd}
-	{\Gamma.\Psi} & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi)} \\
-	& \Gamma
-	\arrow["{p_{\Pi(\Delta,p^*_\Delta\Psi)}}"{description}, from=1-2, to=2-2]
-	\arrow["{p_\Psi}"{description}, from=1-1, to=2-2]
-	\arrow["a", curve={height=-12pt}, from=2-2, to=1-1]
-	\arrow["{(p_\Delta)_*p^*_\Delta(a)\cdot p_\Psi}", from=1-1, to=1-2]
-	\arrow["{(p_\Delta)_*p^*(a)}"', curve={height=18pt}, from=2-2, to=1-2]
-\end{tikzcd}\]
-  commute. For it to be a good candidate unit, we need it to be independent from
-  $a$. Unfortunately, it isn't. Namely, it associates any term $a':\Psi$ to the
-  same one, $const_a:\Pi(\Delta,p^*_\Delta\Psi)$.
+    {\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)} & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi)} \\
+    {\Gamma.\Psi} & \Gamma
+    \arrow["{p_{\Pi(\Delta,p^*_\Delta\Psi)}}"', from=1-1, to=2-1]
+    \arrow["{p_{\Psi}}"', from=2-1, to=2-2]
+    \arrow["{p_{\Pi(\Delta,p^*_\Delta\Psi)}}", from=1-2, to=2-2]
+    \arrow["{q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))}", from=1-1, to=1-2]
+  \end{tikzcd}\]
+  where the map $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))$ acts by forgetting the
+  term of $\Psi$. If we can provide a section of the vertical map on the left
+  pointing to the term $\lambda a.const_a$, we are done as we can then compose
+  it with $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))$ to get our unit.
+  
+  We construct it by looking at the commutative square
+  \[\begin{tikzcd}
+    {\Gamma.\Psi} \\
+    & {\Gamma.\Psi.p^*_\Psi\Psi} & {\Gamma.\Psi} \\
+    & {\Gamma.\Psi} & \Gamma
+    \arrow["{p_\Psi}", from=2-3, to=3-3]
+    \arrow["{p_\Psi}"', from=3-2, to=3-3]
+    \arrow["{p_{p^*_\Psi\Psi}}", from=2-2, to=3-2]
+    \arrow["{q(p_\Psi,\Psi)}"', from=2-2, to=2-3]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow[curve={height=-12pt}, Rightarrow, no head, from=1-1, to=2-3]
+    \arrow["{(1_\Psi,1_\Psi)}"{description}, dotted, from=1-1, to=2-2]
+  \end{tikzcd},\]
+  which gives us the term $[\Gamma,x:\Psi,x:\Psi]$. Then, we pull back along
+  $p_{p^*_\Psi\Delta}$, getting a section
+  $p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi)\colon\Gamma.\Psi.p^*_\Psi\Delta\rightarrow\Gamma.\Psi.p^*_\Psi\Delta.p^*_{p^*_\Psi\Delta}\Psi$.
+  We then apply $\lambda$, which gives us a section
+  \[\lambda(p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi))=\lambda(1_{p^*_\Psi\Delta},q(p_\Psi\cdot
+  p_{p^*_\Psi\Delta}))
+\colon\Gamma.\Psi\rightarrow\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)\]
+  and we can then conclude by post-composing with
+  $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))\colon\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pi(\Delta,p^*_\Delta\Psi)$,
+  which provides our candidate unit.
+
+  Reasoning in
+  terms of sets, this works, so we only need to show the triangle identities or
+  the existence of a universal lift.
 
   Another possibility is given by looking, for any map
   $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$, at the
@@ -1393,6 +1426,8 @@ FIBRANT OBJECTS INDUCED FROM THE SLICES)}.
     \arrow["{app_{\Delta,\Theta}}", from=3-1, to=2-2]
     \arrow["{q(app_{\Delta,\Theta},\Psi)}", from=1-1, to=1-2]
   \end{tikzcd}\]
+  and then somehow use the fact that $(p_\Delta)_*$ is a right adjoint, thus it
+  preserves limits.
 \end{proof}
 
 We are finally ready to prove the result leading to the final one we want.
