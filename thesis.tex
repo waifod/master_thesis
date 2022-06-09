@@ -1371,12 +1371,12 @@ and therefore should be expanded.
   $p_{p^*_\Psi\Delta}$, getting a section
   $p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi)\colon\Gamma.\Psi.p^*_\Psi\Delta\rightarrow\Gamma.\Psi.p^*_\Psi\Delta.p^*_{p^*_\Psi\Delta}\Psi$.
   We then apply $\lambda$, which gives us a section
-  \[\lambda(p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi))=\lambda(1_{p^*_\Psi\Delta},q(p_\Psi\cdot
-  p_{p^*_\Psi\Delta}))
+  \[\lambda(p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi))=\lambda(1_{p^*_\Psi\Delta},p_{p^*_\Psi\Delta})
 \colon\Gamma.\Psi\rightarrow\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)\]
   and we can then conclude by post-composing with
   $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))\colon\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pi(\Delta,p^*_\Delta\Psi)$,
-  which provides our candidate unit.
+  which provides our candidate unit. One triangle identity follows by
+  $\beta$-reduction, while the universality of the lift by $\Pi$-$\eta$.
 
   Reasoning in
   terms of sets, this works, so we only need to show the triangle identities or
@@ -1428,6 +1428,18 @@ FIBRANT OBJECTS INDUCED FROM THE SLICES)}.
   \end{tikzcd}\]
   and then somehow use the fact that $(p_\Delta)_*$ is a right adjoint, thus it
   preserves limits.
+
+  Let's think about what the terms of the context
+  $\Gamma.\Pi(\Delta,\Theta).p^*_{\Pi(\Delta,\Theta)}\Delta.app^*_{\Delta,\Theta}\Psi$
+  are. We know that they are given by
+$[\Gamma,f:\Pi(\Delta,\Theta),x:\Delta,y:\Psi(x,f(x))]$ and
+$\Psi(x,f(x))=\Psi(app_{\Delta,\Theta}(f,x))$. This corresponds to a term
+$[\Gamma,f:\Pi(\Delta,\Theta),\lambda x:\Delta.y:\Pi(z:\Delta,\Psi(app(f,z)))]$,
+that is a term of
+$\Gamma.\Pi(\Delta,\Theta).\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta,app^*_{\Delta,\Theta}\Psi)$,
+and to $[\Gamma,x:\Delta,f(x):\Theta(x),y:\Psi(x,f(x))]$, which should translate
+to $[\Gamma,\lambda x:\Delta.(f(x),y):\Theta.\Psi(x,f(x))]$, which should be a
+term of $\Gamma.\Pi(\Delta,\Theta.\Psi)$.
 \end{proof}
 
 We are finally ready to prove the result leading to the final one we want.
