@@ -216,6 +216,12 @@ a term corresponds to a choice of a section of a basic dependent projection.
   that this approach is indeed equivalent we would need to prove an initiality
   condition, that is show that the \emph{syntactic category of a dependent type
   theory} is the initial object in the category of its contextual models.
+  Similar results have been proven for some simple dependent type theory in
+  STREICHER91 and HOFMANN95, however we still do not have a general statement.
+  Such a statement would first require a general notion of dependent type
+  theory, which has been worked on in 1904.04097, 2009.05539, 2205.00798, and
+  there is an ongoing effort to provide a formalization and a proof of some
+  variants of the statement via proof assistants \wfd{(HOTTEST TALK SLIDES)}.
 \end{rmk}
 
 \begin{construction}
@@ -248,10 +254,17 @@ a term corresponds to a choice of a section of a basic dependent projection.
       basic dependent projections.
   \end{enumerate}
 
+  As we can see, any object in $\Ob_{n+1}\cC^{cxt}$ is isomorphic to one in
+  $\Ob_1\cC$, that is the one which we get by looking at the associated object
+  in $\cC$ and then taking the dependent projection from it to the terminal
+  object, which exhibits it as a 1-iterated context extension. The isomorphism
+  is then given by the map in $\cC^{cxt}$ corresponding to the identity of the
+  object in $\cC$.
+
   The endofunctor of the monad is defined on morphisms as one would expect \wfd{(HOW?)} and there is
   a natural unit $\cC\rightarrow\cC^{cxt}$ sending every $n$-object in $\cC$ to
   the corresponding $n$-iterated (simple) context extension and every morphism
-  to its corresponding one.
+  to the one it represents.
 
   Before we construct the multiplication, let's study this contextual functor.
   Every $n$-iterated
@@ -296,6 +309,84 @@ $\cC^{cxt}$ by following the syntactic rules stated by Gambino and Streicher in
 REFS. Unfortunately, they state only how to generalize $Id$-types to iterated
 contexts, therefore we shall construct the $\Pi$-structure ourselves.
 
+\section{$\Pi$-Types of Iterated Contexts}
+
+\begin{construction}
+  Our objective for this section is, as anticipated, to construct a
+  $\Pi$-structure on $\cC^{cxt}$ when $\cC$ is a contextual category with a
+  $\Pi$-structure. To do so, given a context $\Gamma.\Delta.\Theta.\Psi$, we
+  reduce the definition to the $\Pi$-structure of $\cC$ by breaking
+  down the context extensions in $\cC^{cxt}$, which we do by defining
+  \[\Gamma.\Pi(\Delta.\Theta,\Psi):=\Gamma.\Pi(\Delta,\Pi(\Theta,\Psi)),\quad
+  \Gamma.\Pi(\Delta,\Theta.\Psi):=\Gamma.\Pi(\Delta,\Theta).\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi).\]
+  Notice that this requires us to construct an $\app$ map on iterated contexts,
+  which is again done inductively. This is possible because our construction
+  will rely on constructions on shorter context extensions, therefore the
+  process eventually ends when we get to simple context extension, on which as
+  we said the $\Pi$-structure coincides with the one on $\cC$.
+
+  Given a section
+  $a\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Delta.\Theta.\Psi$, we
+  construct a section
+  $\lambda_{\Delta.\Theta,\Psi}(a)\colon\Gamma\rightarrow\Gamma.\Pi(\Delta.\Theta,\Psi)$ in
+  $\cC^{cxt}$ by taking first
+  $\lambda_{\Theta,\Psi}(a)\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Pi(\Theta,\Psi)$
+  and then
+  $\lambda_{\Delta,\Pi(\Theta,\Psi)}(\lambda_{\Theta,\Psi}(a))\colon\Gamma\rightarrow\Gamma.\Pi(\Delta,\Pi(\Theta,\Psi))$.
+  As mentioned earlier, if $\Delta=A,\Theta=B$ and therefore we are working with
+  simple extensions, then $\lambda_{A,B}=\lambda$, i.e.\ it is directly defined
+  by the $\Pi$-structure on $\cC$. By construction,
+  \[
+    p_{\Pi(\Delta.\Theta,\Psi)}\cdot\lambda_{\Delta.\Theta,\Psi}(a) =
+    p_{\Pi(\Delta,\Pi(\Theta,\Psi))}\cdot\lambda_{\Delta,\Pi(\Theta,\Psi)}(\lambda_{\Theta,\Psi}(a))
+    =\Id_\Gamma.
+  \]
+
+  On the other hand, given a section
+  $a\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta.\Psi$, first we get a
+  section $\lambda_{\Delta,\Theta}(p_{\Theta.\Psi}\cdot
+  a)\colon\Gamma\rightarrow\Gamma.\Pi(\Delta,\Theta)$ and then, looking at the
+  commutative diagram \wfd{(IT WORKS BECAUSE that TRIANGLE COMMUTES)}
+  \[\begin{tikzcd}
+    {\Gamma.\Pi(\Delta,\Theta).p^*_{\Pi(\Delta,\Theta)}\Delta.\app^*_{\Delta,\Theta}\Psi} & {\Gamma.\Delta.\Theta.\Psi} \\
+    & {\Gamma.\Delta.\Theta} \\
+    {\Gamma.\Pi(\Delta,\Theta).p^*_{\Pi(\Delta,\Theta)}\Delta} & {\Gamma.\Delta} \\
+    {\Gamma.\Pi(\Delta,\Theta)} & \Gamma
+    \arrow["{p_\Psi}"', from=1-2, to=2-2]
+    \arrow["{p_{\Theta}}"', from=2-2, to=3-2]
+    \arrow["{p_{\Delta}}", from=3-2, to=4-2]
+    \arrow["{p_{\app^*_{\Delta,\Theta}\Psi}}", from=1-1, to=3-1]
+    \arrow["{p_{\Pi(\Delta,\Theta)}}"', from=4-1, to=4-2]
+    \arrow["{p_{p^*_{\Pi(\Delta,\Theta)}\Delta}}"', from=3-1, to=4-1]
+    \arrow["{q(p_{\Pi(\Delta,\Theta)},\Delta)}"', from=3-1, to=3-2]
+    \arrow["{\app_{\Delta,\Theta}}", from=3-1, to=2-2]
+    \arrow["{q(\app_{\Delta,\Theta},\Psi)}", from=1-1, to=1-2]
+    \arrow["c"', curve={height=24pt}, from=3-2, to=1-2]
+    \arrow["{q(p_{\Pi(\Delta,\Theta)},\Delta)^*c}", curve={height=-24pt}, from=3-1, to=1-1]
+  \end{tikzcd},\]
+  we also get a section
+  $\lambda_{p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi}(q(p_{\Pi(\Delta,\Theta)},\Delta)^*c)\colon\Gamma.\Pi(\Delta,\Psi)\rightarrow\Gamma.\Pi(\Delta,\Theta).\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi)$.
+  We finally set
+  \[
+    \lambda_{\Delta,\Theta.\Psi}(a):=
+    \lambda_{p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi}(q(p_{\Pi(\Delta,\Theta)},\Delta)^*c)\cdot
+    \lambda_{\Delta,\Theta}(p_{\Theta.\Psi}\cdot a)
+  \]
+  and, once more,
+  \begin{align*}
+    p_{\Pi(\Delta,\Theta.\Psi)}\cdot \lambda_{\Delta,\Theta.\Psi}(a) &=
+    p_{\Pi(\Delta,\Theta)}\cdot
+    p_{\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi)}\cdot
+    \lambda_{p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi}(q(p_{\Pi(\Delta,\Theta)},\Delta)^*c)\cdot
+    \lambda_{\Delta,\Theta}(p_{\Theta.\Psi}\cdot a) \\
+    &=p_{\Pi(\Delta,\Theta)}\cdot
+    \lambda_{\Delta,\Theta}(p_{\Theta.\Psi}\cdot a) \\
+    &=\id_\Gamma
+  \end{align*}
+
+  We now want to define the map $\app_{\Delta,\Theta}$, from which we will
+  derive $\app(f,a)$.
+\end{construction}
 
 
 \section{Localizations of \texorpdfstring{$\infty$}{∞}-Categories}
