@@ -19,8 +19,7 @@
 \rule{\linewidth}{1pt}
 \begin{center}
 \Large
-    \textbf{From Dependent Type Theory to Locally Cartesian Closed
-    $(\infty,1)$-Categories} \\
+    \textbf{Localizations of Models of Dependent Type Theory} \\
 \end{center}
 \rule{\linewidth}{1pt}
 \\
@@ -240,7 +239,9 @@ a term corresponds to a choice of a section of a basic dependent projection.
       are morphisms between them seen as objects of $\cC$; \wfd{(KAPULKIN HERE
       WRITES n INSTEAD OF M, BUT THEN I DON'T THINK WE HAVE THE DESIRED
       EQUIVALENCE WITH C; ON THE OTHER HAND, * DOESN'T HAVE AN ISOMORPHIC OBJECT
-    WITH GRADING 1, WHICH WE ALSO WANT, SO WE HAVE TO FIX THIS DISCREPANCY)}
+      WITH GRADING 1, WHICH IS NOT NECESSARY BUT THEN IF ABSENT NOT EVERY OBJECT
+      CAN BE SEEN AS A 1-OBJECT, CONTRADICTING KAPULKIN; WE HAVE TO FIX THIS
+      DISCREPANCY)}
     \item $*$ is the only element of $\Ob_0\cC^{cxt}$;
     \item
       $ft(\Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1})=\Gamma_1.\Gamma_2.\ldots.\Gamma_n$;
@@ -323,7 +324,8 @@ contexts, therefore we shall construct the $\Pi$-structure ourselves.
   which is again done inductively. This is possible because our construction
   will rely on constructions on shorter context extensions, therefore the
   process eventually ends when we get to simple context extension, on which as
-  we said the $\Pi$-structure coincides with the one on $\cC$.
+  we said the $\Pi$-structure coincides with the one on $\cC$. Similar
+  considerations shall hold for all of our constructions.
 
   Given a section
   $a\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Delta.\Theta.\Psi$, we
@@ -346,7 +348,7 @@ contexts, therefore we shall construct the $\Pi$-structure ourselves.
   $a\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta.\Psi$, first we get a
   section $\lambda_{\Delta,\Theta}(p_{\Theta.\Psi}\cdot
   a)\colon\Gamma\rightarrow\Gamma.\Pi(\Delta,\Theta)$ and then, looking at the
-  commutative diagram \wfd{(IT WORKS BECAUSE that TRIANGLE COMMUTES)}
+  commutative diagram \wfd{(IT WORKS BECAUSE THAT TRIANGLE COMMUTES)}
   \[\begin{tikzcd}
     {\Gamma.\Pi(\Delta,\Theta).p^*_{\Pi(\Delta,\Theta)}\Delta.\app^*_{\Delta,\Theta}\Psi} & {\Gamma.\Delta.\Theta.\Psi} \\
     & {\Gamma.\Delta.\Theta} \\
@@ -361,15 +363,15 @@ contexts, therefore we shall construct the $\Pi$-structure ourselves.
     \arrow["{q(p_{\Pi(\Delta,\Theta)},\Delta)}"', from=3-1, to=3-2]
     \arrow["{\app_{\Delta,\Theta}}", from=3-1, to=2-2]
     \arrow["{q(\app_{\Delta,\Theta},\Psi)}", from=1-1, to=1-2]
-    \arrow["c"', curve={height=24pt}, from=3-2, to=1-2]
-    \arrow["{q(p_{\Pi(\Delta,\Theta)},\Delta)^*c}", curve={height=-24pt}, from=3-1, to=1-1]
+    \arrow["a"', curve={height=24pt}, from=3-2, to=1-2]
+    \arrow["{q(p_{\Pi(\Delta,\Theta)},\Delta)^*a}=p_{\Pi(\Delta,\Theta)}^*a", curve={height=-24pt}, from=3-1, to=1-1]
   \end{tikzcd},\]
   we also get a section
-  $\lambda_{p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi}(q(p_{\Pi(\Delta,\Theta)},\Delta)^*c)\colon\Gamma.\Pi(\Delta,\Psi)\rightarrow\Gamma.\Pi(\Delta,\Theta).\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi)$.
+  $\lambda_{p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi}(p_{\Pi(\Delta,\Theta)}^*a)\colon\Gamma.\Pi(\Delta,\Psi)\rightarrow\Gamma.\Pi(\Delta,\Theta).\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi)$.
   We finally set
   \[
     \lambda_{\Delta,\Theta.\Psi}(a):=
-    \lambda_{p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi}(q(p_{\Pi(\Delta,\Theta)},\Delta)^*c)\cdot
+    \lambda_{p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi}(p_{\Pi(\Delta,\Theta)}^*a)\cdot
     \lambda_{\Delta,\Theta}(p_{\Theta.\Psi}\cdot a)
   \]
   and, once more,
@@ -377,15 +379,72 @@ contexts, therefore we shall construct the $\Pi$-structure ourselves.
     p_{\Pi(\Delta,\Theta.\Psi)}\cdot \lambda_{\Delta,\Theta.\Psi}(a) &=
     p_{\Pi(\Delta,\Theta)}\cdot
     p_{\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi)}\cdot
-    \lambda_{p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi}(q(p_{\Pi(\Delta,\Theta)},\Delta)^*c)\cdot
+    \lambda_{p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi}(p_{\Pi(\Delta,\Theta)}^*a)\cdot
     \lambda_{\Delta,\Theta}(p_{\Theta.\Psi}\cdot a) \\
     &=p_{\Pi(\Delta,\Theta)}\cdot
     \lambda_{\Delta,\Theta}(p_{\Theta.\Psi}\cdot a) \\
-    &=\id_\Gamma
+    &=\id_\Gamma.
   \end{align*}
 
   We now want to define the map $\app_{\Delta,\Theta}$, from which we will
-  derive $\app(f,a)$.
+  derive $\app(f,a)$. In order to do so, we shall suppress some subscripts to
+  avoid making the notation too cumbersome when there are no ambiguities.
+  We begin by providing
+  $\app_{\Delta.\Theta,\Psi}\colon\Gamma.\Pi(\Delta.\Theta,\Psi).p^*_{\Pi(\Delta.\Theta,\Psi)}(\Delta.\Theta)\rightarrow\Gamma.\Delta.\Theta.\Psi$
+  as the following composition
+  \[\begin{tikzcd}
+    {\Gamma.\Pi(\Delta,\Pi(\Theta,\Psi)).\Delta.\Theta} & {\Gamma.\Delta.\Pi(\Theta,\Psi).\Theta} & {\Gamma.\Delta.\Theta.\Psi} \\
+    \arrow["{\app_{\Theta,\Psi}}", from=1-2, to=1-3]
+    \arrow["{q(\app_{\Pi(\Delta,\Pi(\Theta,\Psi)),\Delta},\Theta)}", from=1-1, to=1-2]
+  \end{tikzcd}.\]
+  We also define $\app_{\Delta,\Theta.\Psi}$ as the composition
+  \[\begin{tikzcd}
+    {\Gamma.\Pi(\Delta,\Theta).\Pi(\Delta,\app^*_{\Delta,\Theta}\Psi).\Delta} & {\Gamma.\Pi(\Delta,\Theta).\Delta.\app^*_{\Delta,\Theta}\Psi} & {\Gamma.\Delta.\Theta.\Psi} \\
+    \arrow["{q(\app_{\Delta,\Theta},\Psi)}", from=1-2, to=1-3]
+    \arrow["{\app_{\Delta,\app^*_{\Delta,\Theta}\Psi}}", from=1-1, to=1-2]
+  \end{tikzcd}\]
+  Now, given $f\colon\Gamma\rightarrow\Gamma.\Pi(\Delta,\Theta)$,
+  $a\colon\Gamma\rightarrow\Gamma.\Delta$, we define $\app(f,a)$ as the map
+  \[\Gamma\xrightarrow{f}\Gamma.\Pi(\Delta,\Theta)\xrightarrow{p^*_{\Pi(\Delta,\Theta)}a}\Gamma.\Pi(\Delta,\Theta).\Delta\xrightarrow{\app_{\Delta,\Theta}}\Gamma.\Delta.\Theta.\]
+
+  We also see that
+  $p_\Theta\cdot\app_{\Delta,\Theta}=q(p_{\Pi(\Delta,\Theta)},\Delta)$
+  \wfd{(CHECK)}, thus, given sections $a\colon\Gamma\rightarrow\Gamma.\Delta$,
+  $b\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta$, the commutativity of
+  the diagram
+  \[\begin{tikzcd}
+    & {\Gamma.\Delta.\Theta} \\
+    {\Gamma.\Pi(\Delta,\Theta).\Delta} & {\Gamma.\Delta} \\
+    {\Gamma.\Pi(\Delta,\Theta)} & \Gamma
+    \arrow["{q(p_{\Pi(\Delta,\Theta)},\Delta)}"', from=2-1, to=2-2]
+    \arrow["a"', from=3-2, to=2-2]
+    \arrow["{p_\Delta}"', from=2-1, to=3-1]
+    \arrow["{p_{\Pi(\Delta,\Theta)}}", from=3-1, to=3-2]
+    \arrow["{p_\Theta}"', from=1-2, to=2-2]
+    \arrow["b"', curve={height=12pt}, from=2-2, to=1-2]
+    \arrow["{\lambda(b)}", curve={height=-12pt}, from=3-2, to=3-1]
+    \arrow["{\app_{\Delta,\Theta}}", from=2-1, to=1-2]
+  \end{tikzcd}\]
+  implies that
+  \begin{align*}
+    \app(\lambda(b),a)
+    &=\app_{\Delta,\Theta}\cdot p^*_{\Pi(\Delta,\Theta)}a\cdot\lambda(b) \\
+    &=b\cdot p_\Theta\cdot\app_{\Delta,\Theta}\cdot
+    p^*_{\Pi(\Delta,\Theta)}a\cdot\lambda(b) \\
+    &=b\cdot q(p_{\Pi(\Delta,\Theta)},\Delta)\cdot
+    p^*_{\Pi(\Delta,\Theta)}a\cdot\lambda(b) \\
+    &=b\cdot a\cdot p_{\Pi(\Delta,\Theta)}\cdot\lambda(b) \\
+    &=b\cdot a,
+  \end{align*}
+  and, given a section $f\colon\Gamma\rightarrow\Gamma.\Pi(\Delta,\Theta)$,
+  \begin{align*}
+    p_\Theta\cdot\app(f,a)
+    &=p_\Theta\cdot\app_{\Delta,\Theta}\cdot p^*_{\Pi(\Delta,\Theta)}a\cdot f \\
+    &=q(p_{\Pi(\Delta,\Theta)},\Delta)\cdot p^*_{\Pi(\Delta,\Theta)}a\cdot f \\
+    &=a\cdot p_{\Pi(\Delta,\Theta)}\cdot f \\
+    &=a,
+  \end{align*}
+  which is what we needed.
 \end{construction}
 
 
