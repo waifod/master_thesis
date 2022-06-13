@@ -108,6 +108,163 @@ Why all of this is interesting: we are proving Kapulkin's result internalizing
 all of the discussion within the language of $\infty$-category theory and
 relying only on its simplicial model.
 
+\section{Contextual categories}
+
+There are many models of dependent type theory given through category theory in
+the literature, like
+\emph{category with attributes}, \emph{comprehension categories} which are
+fairly similar among them, as shown by the adjunctions between their categories,
+however the most established notion is that of \emph{contextual
+category}, which was first explored by Cartmell and Streicher in
+\wfd{(INSERT REFS)} and later by Voevodsky, under the name $C$\emph{-systems},
+in \wfd{(MORE REFS)}.
+
+\begin{defn}
+  A \emph{contextual category} $\cC$ is a category with the following data:
+  \begin{enumerate}
+    \item a small category, which we also call $\cC$, with a grading on objects
+      $\Ob\cC=\coprod_{n\in\bbN}\Ob_n\cC$;
+    \item an object $*\in\Ob_0\cC$;
+    \item for each $n\in\bbN$, a map
+      $ft_n\colon\Ob_{n+1}\cC\rightarrow\Ob_n\cC$;
+    \item for each $n\in\bbN$ and $X\in\Ob_{n+1}\cC$, a map $p_X\colon
+      X\rightarrow ftX$;
+    \item for each $n\in\bbN$, $X\in\Ob_{n+1}\cC$ and $f\colon Y\rightarrow
+      ftX$, an object $f^*X$ and a map $q(f,X)\colon f^*X\rightarrow X$;
+  \end{enumerate}
+  such that:
+  \begin{enumerate}
+    \item $*$ is the unique element of $\Ob_0\cC$;
+    \item $*$ is terminal;
+    \item for each $n$, $X\in\Ob_{n+1}\cC$ and $f\colon Y\rightarrow ftX$, we
+      have $ft f^*X=Y$ and the following square is a pullback:
+      \wfd{(DRAW IT)}
+    \item for each $n\in\bbN$, $X\in\Ob_{n+1}\cC$ and pair of maps $f\colon
+      Y\rightarrow ft X$,$g\colon Z\rightarrow Y$, we have $(fg)^*X=g^*f^*X$,
+      $1^*_{ftX}X=X$, $q(fg,X)=q(f,X)\cdot q(g,f^*X)$ and $q(1_{ftX},X)=1_X$.
+  \end{enumerate}
+\end{defn}
+
+\begin{rmk}
+  The last condition in the definition means that our choice of pullbacks is
+  functorial, which allows us to see contextual categories as a strict model of
+  dependent type theory. Other models, like comprehension categories, do not
+  have such requirements, which makes them more general but also makes
+  interpretation harder, unless they are first strictified \wfd{(HOW DO YOU
+  STRICTIFY THEM?)}. Famously, we also have homotopical models of dependent type
+  theories, like tribes and fibration categories \wfd{(REFERENCE)}, whose
+  internal languages are precisely dependent type theories with intensional
+  $\Id$-types and $\Sigma$-types.
+\end{rmk}
+
+\begin{rmk}
+  Given a contextual category $\cC$, the maps $p_X\colon X\rightarrow ftX$ are
+  called \emph{basic dependent projections} and a \emph{dependent projection}
+  is a map which is a composite of basic dependent projections. Its objects are
+  often referred to as \emph{contexts}, denoted by Greek letters and, given
+  $\Gamma\in\Ob_n\cC$, we will
+  write $\Gamma.\Delta$ for an object $X\in\Ob_{n+m}\cC$, with a
+  dependent projection $X\rightarrow\Gamma$, which will then be denoted
+  $p_\Delta$ while $\Gamma.\Delta$ will be a \emph{context extension of}
+  $\Gamma$. In the case where $m=1$ and therefore $ftX=\Gamma$, we shall use
+  the Latin letters instead of Greek ones and call $\Gamma.A$ a \emph{simple
+  context extension of} $\Gamma$.
+\end{rmk}
+
+\begin{defn}
+  A \emph{contextual functor} between contextual categories
+  $F\colon\cC\rightarrow\cD$ is a functor on the underlying categories which
+  preserves the grading, basic dependent projections and such that
+  $q(Ff,FX)=F(q(f,X))$.
+\end{defn}
+
+\begin{rmk}
+  These definitions allow us to see contextual categories as models for an
+  essentially algebraic theory with sorts indexed by $\bbN+\bbN\times\bbN$. In
+  that context, we get a notion of morphisms between models of this theory,
+  which coincides with the one we have just provided. The category of models for
+  this theory will be the category of contextual category, denoted by $Cxl$.
+\end{rmk}
+
+\begin{construction}
+  Following Lumsdaine in \wfd{(PHD THESIS)}, we see that contextual categories
+  are categories with attributes (henceforth $CwA$). There, he presents a monad
+  on the category of $CwA$, which induces a monad on $Cxl$ as we will show.
+
+  Given a contextual category $\cC$, we define a contextual category $\cC^{cxt}$
+  in the following way:
+  \begin{enumerate}
+    \item the set $\Ob_n\cC^{cxt}$ is given by $n$-iterated context extensions
+      \[\Gamma_1.\Gamma_2.\ldots.\Gamma.n\]
+      in $\cC$;
+    \item morphisms
+      $\Gamma_1.\Gamma_2.\ldots.\Gamma_n\rightarrow\Delta_1.\Delta_2.\ldots.\Delta_m$
+      are morphisms between them seen as objects of $\cC$; \wfd{(KAPULKIN HERE
+      WRITES n INSTEAD OF M, BUT THEN I DON'T THINK WE HAVE THE DESIRED
+      EQUIVALENCE WITH C)}
+    \item $*$ is the only element of $\Ob_0\cC^{cxt}$;
+    \item
+      $ft(\Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1})=\Gamma_1.\Gamma_2.\ldots.\Gamma_n$;
+    \item the map $p_{\Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1}}\colon
+      \Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1}\rightarrow
+      \Gamma_1.\Gamma_2.\ldots.\Gamma_n$ is the dependent projection defining
+      $\Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1}$ as a context extension of
+      $\Gamma_1.\Gamma_2.\ldots.\Gamma_n$ and will be denoted by
+      $p_{\Gamma_{n+1}}$ unless there is ambiguity;
+    \item the chosen pullbacks are given by iterating the pullbacks along the
+      basic dependent projections.
+  \end{enumerate}
+
+  The endofunctor of the monad is defined on morphisms as one would expect \wfd{(HOW?)} and there is
+  a natural unit $\cC\rightarrow\cC^{cxt}$ sending every $n$-object in $\cC$ to
+  the corresponding $n$-iterated (simple) context extension and every morphism
+  to its corresponding one.
+
+  Before we construct the multiplication, let's study this contextual functor.
+  Every $n$-iterated
+  context in $\cC^{cxt}$ is isomorphic to one in the image of the unit, namely
+  the one which we get by reducing it to an iterated simple context extension,
+  meaning that the functor is essentially surjective on the
+  underlying categories. Also, it is fully faithful by construction and
+  therefore it defines an equivalence of categories.
+
+  Let's construct the multiplication. An $n$-object of $(\cC^{cxt})^{cxt}$ is an
+  $n$-iterated context extension where each extension is itself an iterated
+  context extension, that is
+  \[(\Gamma_1.\ldots.\Gamma_{i_1}).(\Gamma_{i_1+1}.\ldots.\Gamma_{i_2}).\ldots.(\Gamma_{i_{n-1}+1}.\ldots.\Gamma_{i_n}).\]
+  Since composing dependent projections still gives dependent projections,
+  writing $\Delta_j=\Gamma_{i_{j-1}+1}.\ldots.\Gamma_{i_j}$, we can naturally
+  map it to $\Delta_1.\ldots.\Delta_n$ in $\cC^{cxt}$ and, again, every morphism
+  in $(\cC^{cxt})^{cxt}$ corresponds to a unique one in $\cC^{cxt}$ once we
+  specify domain and codomain. By construction, this functor is again contextual
+  and an equivalence of categories.
+
+  The monad axioms follow from the fact that, essentially, both unit and counit
+  are ``identities'' on objects and morphisms, which concludes our construction.
+\end{construction}
+
+\wfd{(HERE WE DEFINE SIGMA, PI AND Id-STRUCTURE ON $\cC$)}
+
+\begin{construction}
+  Given a categorical model of type theory $\cC$, we can
+  lift the $\Sigma$-structure to $\cC^{cxt}$ as shown by Lumsdaine in \wfd{(PHD
+  THESIS)}. There, we get a strong $\Sigma$-structure, that is such that
+  $\Gamma.\Delta.\Theta=\Gamma.\Sigma(\Delta,\Theta)$. This is possible because,
+  as we noted, every dependent projection is canonically isomorphic to a basic
+  one (and in a sense equal since they correspond to the same dependent
+  projection in $\cC$ and the map exhibiting the isomorphism is the
+  identity there). This construction is preserved by the monad we described,
+  which then restricts to $Cxl_\Sigma$.
+\end{construction}
+
+In REFS, Lumsdaine also claims that it is possible to lift an $Id$-structure
+(albeit it is not strictly preserved by the monad) and a $\Pi$-structure to
+$\cC^{cxt}$ by following the syntactic rules stated by Gambino and Streicher in
+REFS. Unfortunately, they state only how to generalize $Id$-types to iterated
+contexts, therefore we shall construct the $\Pi$-structure ourselves.
+
+
+
 \section{Localizations of \texorpdfstring{$\infty$}{∞}-Categories}
 
 To prove that localizing a categorical model of type theory we get a locally
