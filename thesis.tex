@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{scrartcl}
+\documentclass[a4paper,fontsize=12pt]{scrartcl}
 \usepackage{reg2021}
 \usepackage{quiver}
 \usepackage{bbold}
@@ -110,14 +110,15 @@ relying only on its simplicial model.
 
 \section{Contextual categories}
 
-There are many models of dependent type theory given through category theory in
+There are many models of dependent type theory from category theory in
 the literature, like
-\emph{category with attributes}, \emph{comprehension categories} which are
+\emph{category with attributes} and \emph{comprehension categories}, which are
 fairly similar among them, as shown by the adjunctions between their categories,
 however the most established notion is that of \emph{contextual
 category}, which was first explored by Cartmell and Streicher in
 \wfd{(INSERT REFS)} and later by Voevodsky, under the name $C$\emph{-systems},
-in \wfd{(MORE REFS)}.
+in \wfd{(MORE REFS)}. Lumsdaine in his phd thesis claims that contextual
+categories are the right framework PROP 1.2.5.
 
 \begin{defn}
   A \emph{contextual category} $\cC$ is a category with the following data:
@@ -148,7 +149,8 @@ in \wfd{(MORE REFS)}.
 \begin{rmk}
   The last condition in the definition means that our choice of pullbacks is
   functorial, which allows us to see contextual categories as a strict model of
-  dependent type theory. Other models, like comprehension categories, do not
+  dependent type theory, not requiring keeping track of coherency maps.
+  Other models, like comprehension categories, do not
   have such requirements, which makes them more general but also makes
   interpretation harder, unless they are first strictified \wfd{(HOW DO YOU
   STRICTIFY THEM?)}. Famously, we also have homotopical models of dependent type
@@ -171,6 +173,24 @@ in \wfd{(MORE REFS)}.
   context extension of} $\Gamma$.
 \end{rmk}
 
+A motivating example for contextual categories is the \emph{syntactic category
+of a dependent type theory}, which constructs from a dependent type theory $T$ a
+contextual category $Syn(T)$ explicitly modeling it, as we will show.
+
+\begin{construction}
+  Given a dependent type theory $T$ with the structural rules specified in REFS,
+  its syntactic category $Syn(T)$ has:
+  \begin{enumerate}
+    \item $\Ob_nSyn(T)$ given by contexts $[x_1:A_1,\ldots,x_n:A_n]$ of length
+      $n$, modulo definitional equality and renaming of free variables;
+    \item maps are \emph{context morphisms}, or \emph{substitutions}
+  \end{enumerate}
+\end{construction}
+
+This also tells us how to think about contextual categories: pulling back along
+a dependent projection corresponds to substituting variables, while a choice of
+a term corresponds to a choice of a section of a basic dependent projection.
+
 \begin{defn}
   A \emph{contextual functor} between contextual categories
   $F\colon\cC\rightarrow\cD$ is a functor on the underlying categories which
@@ -184,6 +204,18 @@ in \wfd{(MORE REFS)}.
   that context, we get a notion of morphisms between models of this theory,
   which coincides with the one we have just provided. The category of models for
   this theory will be the category of contextual category, denoted by $Cxl$.
+\end{rmk}
+
+\begin{rmk}
+  An advantage of studying dependent type theories by looking at their algebraic
+  models is that, once we specify the algebraic structure, we do not have to
+  deal with context substitution, variable binding, variable substitution and so
+  on since the algebraic structure takes care of them for us. This is a great
+  plus since, in general, specifying all of those structural rules in the
+  theory and dealing with them is rather cumbersome. Unfortunately, to be sure
+  that this approach is indeed equivalent we would need to prove an initiality
+  condition, that is show that the \emph{syntactic category of a dependent type
+  theory} is the initial object in the category of its contextual models.
 \end{rmk}
 
 \begin{construction}
@@ -201,14 +233,15 @@ in \wfd{(MORE REFS)}.
       $\Gamma_1.\Gamma_2.\ldots.\Gamma_n\rightarrow\Delta_1.\Delta_2.\ldots.\Delta_m$
       are morphisms between them seen as objects of $\cC$; \wfd{(KAPULKIN HERE
       WRITES n INSTEAD OF M, BUT THEN I DON'T THINK WE HAVE THE DESIRED
-      EQUIVALENCE WITH C)}
+      EQUIVALENCE WITH C; ON THE OTHER HAND, * DOESN'T HAVE AN ISOMORPHIC OBJECT
+    WITH GRADING 1, WHICH WE ALSO WANT, SO WE HAVE TO FIX THIS DISCREPANCY)}
     \item $*$ is the only element of $\Ob_0\cC^{cxt}$;
     \item
       $ft(\Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1})=\Gamma_1.\Gamma_2.\ldots.\Gamma_n$;
     \item the map $p_{\Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1}}\colon
-      \Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1}\rightarrow
-      \Gamma_1.\Gamma_2.\ldots.\Gamma_n$ is the dependent projection defining
-      $\Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1}$ as a context extension of
+      \Gamma_1.\Gamma_2.\ldots.\Gamma_{n+1}\rightarrow
+      \Gamma_1.\Gamma_2.\ldots.\Gamma_n$ is the dependent projection exhibiting
+      $\Gamma_1.\Gamma_2.\ldots.\Gamma_{n+1}$ as a context extension of
       $\Gamma_1.\Gamma_2.\ldots.\Gamma_n$ and will be denoted by
       $p_{\Gamma_{n+1}}$ unless there is ambiguity;
     \item the chosen pullbacks are given by iterating the pullbacks along the
