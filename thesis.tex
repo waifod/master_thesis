@@ -110,8 +110,8 @@ relying only on its simplicial model.
 \section{Contextual categories}
 
 There are many models of dependent type theory from category theory in
-the literature, like
-\emph{category with attributes} and \emph{comprehension categories}, which are
+the literature, like \emph{category with attributes}, \emph{categories with
+families} and \emph{comprehension categories}, which are
 fairly similar among them, as shown by the adjunctions between their categories,
 however the most established notion is that of \emph{contextual
 category}, which was first explored by Cartmell and Streicher in
@@ -161,7 +161,8 @@ categories are the right framework PROP 1.2.5.
 \begin{rmk}
   Given a contextual category $\cC$, the maps $p_X\colon X\rightarrow ftX$ are
   called \emph{basic dependent projections} and a \emph{dependent projection}
-  is a map which is a composite of basic dependent projections. Its objects are
+  is a map which is a composite of basic dependent projections or an identity.
+  Its objects are
   often referred to as \emph{contexts}, denoted by Greek letters and, given
   $\Gamma\in\Ob_n\cC$, we will
   write $\Gamma.\Delta$ for an object $X\in\Ob_{n+m}\cC$, with a
@@ -169,7 +170,8 @@ categories are the right framework PROP 1.2.5.
   $p_\Delta$ while $\Gamma.\Delta$ will be a \emph{context extension of}
   $\Gamma$. In the case where $m=1$ and therefore $ftX=\Gamma$, we shall use
   the Latin letters instead of Greek ones and call $\Gamma.A$ a \emph{simple
-  context extension of} $\Gamma$.
+  context extension of} $\Gamma$, while if $m=0$ it shall be a
+  \emph{trivial context extension}.
 \end{rmk}
 
 A motivating example for contextual categories is the \emph{syntactic category
@@ -183,6 +185,7 @@ contextual category $Syn(T)$ explicitly modeling it, as we will show.
     \item $\Ob_nSyn(T)$ given by contexts $[x_1:A_1,\ldots,x_n:A_n]$ of length
       $n$, modulo definitional equality and renaming of free variables;
     \item maps are \emph{context morphisms}, or \emph{substitutions}
+    \item \wfd{(FINISH)}
   \end{enumerate}
 \end{construction}
 
@@ -236,12 +239,7 @@ a term corresponds to a choice of a section of a basic dependent projection.
       in $\cC$;
     \item morphisms
       $\Gamma_1.\Gamma_2.\ldots.\Gamma_n\rightarrow\Delta_1.\Delta_2.\ldots.\Delta_m$
-      are morphisms between them seen as objects of $\cC$; \wfd{(KAPULKIN HERE
-      WRITES n INSTEAD OF M, BUT THEN I DON'T THINK WE HAVE THE DESIRED
-      EQUIVALENCE WITH C; ON THE OTHER HAND, * DOESN'T HAVE AN ISOMORPHIC OBJECT
-      WITH GRADING 1, WHICH IS NOT NECESSARY BUT THEN IF ABSENT NOT EVERY OBJECT
-      CAN BE SEEN AS A 1-OBJECT, CONTRADICTING KAPULKIN; WE HAVE TO FIX THIS
-      DISCREPANCY)}
+      are morphisms between them seen as objects of $\cC$;
     \item $*$ is the only element of $\Ob_0\cC^{cxt}$;
     \item
       $ft(\Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1})=\Gamma_1.\Gamma_2.\ldots.\Gamma_n$;
@@ -255,7 +253,7 @@ a term corresponds to a choice of a section of a basic dependent projection.
       basic dependent projections.
   \end{enumerate}
 
-  As we can see, any object in $\Ob_{n+1}\cC^{cxt}$ is isomorphic to one in
+  As we can see, any object of $\cC^{cxt}$ is isomorphic to one in
   $\Ob_1\cC$, that is the one which we get by looking at the associated object
   in $\cC$ and then taking the dependent projection from it to the terminal
   object, which exhibits it as a 1-iterated context extension. The isomorphism
@@ -312,20 +310,161 @@ contexts, therefore we shall construct the $\Pi$-structure ourselves.
 
 \section{$\Pi$-Types of Iterated Contexts}
 
+The reason why we introduced the contextual category of iterated contexts
+$\cC^{cxt}$ is that we would like to extend the $\Sigma$, $\Id$
+and $\Pi$ structures of a contextual category $\cC$ from simple context
+extensions to iterated ones, which we shall heavily exploit in the last part of
+this thesis. To do this, we have to lift these structures from the original
+contextual category compatibly with the contextual functor
+$\cC\rightarrow\cC^{cxt}$ which we specified earlier, so that we will get a new
+contextual functor in $Cxl_{\Sigma,\Id(,\Pi)}$.
+
+On the type theoretical side, extensions of logical rules for identity types to
+identity contexts were explored by Str93 and Gambino \wfd{(REFS)} and Lumsdaine
+refers to them in his PhD thesis, mentioning that it is also possible to
+model this extension and similar ones for $\Sigma$ and $\Pi$ types in
+$\cC^{cxt}$, however he only explains how to do so for $\Sigma$ structures. At
+the time Kapulkin wrote 1507, nothing further was available in the literature
+and only in 1808.01816 him and Lumsdaine gave more details on these matters,
+however they still didn't flesh out the constructions in their entirety. In this
+section we aim to fix that for $\Pi$ types specifically.
+
+\begin{rmk}
+  In Lumsdaine's PhD thesis it is noted that the lift of $\Id$ and $\Pi$
+  structures is not compatible with the monad we provided earlier. On the other
+  hand, the lifted $\Sigma$-structure is compatible, meaning that we have a
+  monad $(-)^{cxt}$ on $Cxl_\Sigma$.
+\end{rmk}
+
 \begin{construction}
-  Our objective for this section is, as anticipated, to construct a
-  $\Pi$-structure on $\cC^{cxt}$ when $\cC$ is a contextual category with a
-  $\Pi$-structure. To do so, given a context $\Gamma.\Delta.\Theta.\Psi$, we
-  reduce the definition to the $\Pi$-structure of $\cC$ by breaking
-  down the context extensions in $\cC^{cxt}$, which we do by defining
-  \[\Gamma.\Pi(\Delta.\Theta,\Psi):=\Gamma.\Pi(\Delta,\Pi(\Theta,\Psi)),\quad
-  \Gamma.\Pi(\Delta,\Theta.\Psi):=\Gamma.\Pi(\Delta,\Theta).\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi).\]
-  Notice that this requires us to construct an $\app$ map on iterated contexts,
-  which is again done inductively. This is possible because our construction
-  will rely on constructions on shorter context extensions, therefore the
-  process eventually ends when we get to simple context extension, on which as
-  we said the $\Pi$-structure coincides with the one on $\cC$. Similar
-  considerations shall hold for all of our constructions.
+  Let $\cC$ be a contextual category with a $\Pi$-structure. Our objective for
+  this section is, as anticipated, to construct one on $\cC^{cxt}$. We will do
+  so by induction on the length of the context extensions involved, taking the
+  one from $\cC$ in case we are working with objects corresponding to simple
+  extensions. Remember however that in $\cC^{cxt}$ we also have objects
+  representing trivial extensions, which will require some minor attention from
+  us.
+
+  To avoid ambiguity, we shall specify subscripts to express the domain and the
+  codomain of the objects we will be dealing with. Namely, we will write
+  $\lambda_{\Delta,\Theta}$ for the function associating to a section
+  $b\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta$ another section
+  $\lambda_{\Delta,\Theta}(b)\colon\Gamma\rightarrow\Gamma.\Pi(\Delta,\Theta)$.
+
+  Let us consider then $\Gamma.\Theta.\Psi$ in $\cC^{cxt}$. If
+  $l(\Gamma.\Theta)=l(\Gamma)$ in $\cC$, i.e.\ $\Gamma.\Theta$ is a trivial
+  extension of $\Gamma$, then we set
+  \begin{align*}
+    \Gamma.\Pi(\Delta,\Theta) &=\Gamma.\Theta, \\
+    \app_{\Delta,\Theta} &=\id_{\Gamma.\Theta}, \\
+    \lambda_{\Delta,\Theta}(b) &=b.
+  \end{align*}
+  Similarly, if $l(\Gamma.\Theta.\Psi)=l(\Gamma.\Theta)$ in $\cC$, then
+  \begin{align*}
+    \Gamma.\Pi(\Delta,\Theta) &=\Gamma, \\
+    \app_{\Delta,\Theta} &=\id_{\Gamma.\Delta}, \\
+    \lambda_{\Delta,\Theta}(b) &=\id_\Gamma.
+  \end{align*}
+  Notice that the only possible $b$ in the latter case is given by
+  $\id_{\Gamma.\Theta}$. Also, the two constructions are compatible in the case
+  where $l(\Gamma)=l(\Gamma.\Theta)=l(\Gamma.\Theta.\Psi)$.
+
+  We now work with the case where $l(\Gamma.\Delta)=l(\Gamma)+n$, $n>0$,
+  and $\Gamma.\Delta.\Theta=\Gamma.\Delta.B$. In the base case, $n=1$, we have
+  $\Gamma.\Delta=\Gamma.A$ and therefore we set
+  \begin{align*}
+    \Gamma.\Pi(A,B)&=\Gamma.\Pi(A,B), \\
+    \app_{A,B} &=\app_{A,B}, \\
+    \lambda_{A,B}(b) &=\lambda(b)
+  \end{align*}
+  where as we mentioned the objects on the right are given by looking at the
+  objects in $\cC$ and using its $\Pi$-structure.
+
+  If we have already given the construction for $n-1>0$, we can write
+  $\Gamma.\Delta$ as $\Gamma.\Delta'.A$ and then
+  $l(\Gamma.\Delta')=l(\Gamma)+n-1$, which allows us to define
+  \begin{align*}
+    \Gamma.\Pi(\Delta,B)
+    &=\Gamma.\Pi(\Delta'.A,B)=\Gamma.\Pi(\Delta',\Pi(A,B)) \\
+    \app_{\Delta,B} &\colon
+                    \Gamma.\Pi(\Delta',\Pi(A,B)).\Delta'.A
+                    \xrightarrow{q(\app_{\Delta',\Pi(A,B)},p^*_{\Pi(A,B)}A)}\Gamma.\Delta'.\Pi(A,B).A
+                    \xrightarrow{\app_{A,B}}\Gamma.\Delta'.A.B \\
+    \lambda_{\Delta,B}(b)
+    &\colon
+    \Gamma
+    \xrightarrow{\lambda_{\Delta',\Pi(A,B)}(\lambda_{A,B}(b))}
+    \Gamma.\Pi(\Delta',\Pi(A,B)).
+  \end{align*}
+  The idea here is to replicate the adjunction $\Set(A\times
+  B,C)\cong\Set(A,\Set(B,C))$. The map $\app_{\Delta,B}$ is then naturally
+  interpreted as a sequence of partial evaluations and the phenomenon is
+  commonly known as \emph{currying-uncurrying}.
+
+  This fully specifies the construction when
+  $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+1$ in $\cC$, hence we shall move on
+  to the case where $\Delta$ has arbitrary length and construct the necessary
+  structure by inducting on the length of $\Theta$. Suppose then that
+  $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n$, $n>1$, and we have already
+  provided the relevant constructions up to $n-1$. We again decompose
+  the context as $\Gamma.\Delta.\Theta'.B$.
+  \begin{align*}
+    \Gamma.\Pi(\Delta,\Theta)
+    &=\Gamma.\Pi(\Delta,\Theta'.B)=\Gamma.\Pi(\Delta,\app^*_{\Delta,\Theta'}B) \\
+    \app_{\Delta,\Theta}
+    &\colon\Gamma.\Pi(\Delta,\Theta').\Pi(\Delta,\app^*_{\Delta,\Theta'}B).\Delta
+    \xrightarrow{\app_{\Delta,\app^*_{\Delta,\Theta'}B}}
+    \Gamma.\Pi(\Delta,\Theta').\Delta.\app^*_{\Delta,\Theta'}B
+    \xrightarrow{q(\app_{\Delta,\Theta'},B)}
+    \Gamma.\Delta.\Theta'.B \\
+    \lambda_{\Delta,\Theta}(b)
+    &\colon\Gamma
+    \xrightarrow{\lambda_{\Delta,\Theta'}(p_{\Theta'.B}\cdot b)}
+    \Gamma.\Pi(\Delta,\Theta')
+    \xrightarrow{\lambda_{p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi}(p_{\Pi(\Delta,\Theta)}^*a)}
+    \Gamma.\Pi(\Delta,\Theta).\Pi(\Delta,\app^*_{\Delta,\Theta'}B)
+  \end{align*}
+
+  This fully specifies the data needed for a $\Pi$-structure on $\cC^{cxt}$,
+  however we still have to check that it is indeed one.
+\end{construction}
+
+\begin{prop}
+  Given a contextual category with a $\Pi$-structure $\cC$, the above data
+  defines a $\Pi$-structure on $\cC^{cxt}$ which is compatible with the natural
+  contextual functor $\cC\rightarrow\cC^{cxt}$.
+\end{prop}
+\begin{proof}
+  The compatibility follows directly from the base case, hence we only have to
+  show that it is a $\Pi$-structure, which we will do inductively by verifying
+  that at every step our proposed construction maintains the desired properties.
+
+  Let's consider an object $\Gamma.\Delta.\Theta$ in $\cC^{cxt}$. The only
+  interesting case is the one where both $\Delta$ and $\Theta$
+  specify non-trivial context extensions in $\cC$ and at least one of them is
+  not basic: indeed, the desired properties in the other cases are either
+  trivial or follow directly from the fact that they hold in $\cC$.
+
+  We start as before by working on $\Delta$, supposing that
+  $\Gamma.\Delta.\Theta=\Gamma.\Delta.B=\Gamma.\Delta'.A.B$ and that
+  the desired properties for context extensions over $\Gamma$ of length
+  up to $l(\Gamma.\Delta')-l(\Gamma)$.
+  We can then write
+  \begin{align*}
+    p_B\cdot\app_{\Delta,B}
+    &=p_B\cdot
+    \app_{A,B}\cdot
+    q(\app_{\Delta',\Pi(A,B)},p^*_{\Pi(A,B)}A) \\
+    &=q(p_{\Pi(A,B)},A)\cdot
+    q(\app_{\Delta',\Pi(A,B)},p^*_{\Pi(A,B)}A) \\
+    &=q(p_{\Pi(A,B)}\cdot\app_{\Delta',\Pi(A,B)},A) \\
+    &=q(q(p_{\Pi(\Delta',\Pi(A,B))},\Delta'),A) \\
+    &=q(p_B,\Delta'.A) \\
+    &=q(p_B,\Delta), \\
+    p_B\cdot\app(f,a) &=p_B\cdot\app_{\Delta'.A,B}\cdot ...
+  \end{align*}
+  \wfd{PLEASE VERIFY, LIKELY WRONG}
+\end{proof}
 
   Given a section
   $a\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Delta.\Theta.\Psi$, we
@@ -445,7 +584,6 @@ contexts, therefore we shall construct the $\Pi$-structure ourselves.
     &=a,
   \end{align*}
   which is what we needed.
-\end{construction}
 
 
 \section{Localizations of \texorpdfstring{$\infty$}{∞}-Categories}
