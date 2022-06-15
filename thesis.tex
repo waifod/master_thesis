@@ -545,17 +545,63 @@ section we aim to partially fix that for $\Pi$ types specifically.
   compatible with context substitution.
 \end{proof}
 
+\begin{construction}
+  Given a map $f\colon\Gamma.\Delta.\Psi\rightarrow\Gamma.\Delta.\Theta$ over
+  $\Gamma.\Delta$, we shall construct a map
+  $(p_\Delta)_*(f)\colon\Gamma.\Pi(\Delta,\Psi)\rightarrow\Gamma.\Pi(\Delta,\Theta)$
+  over $\Gamma$ and functorially in the second argument of $\Pi$.
+
+  We do so by looking at the commutative diagram
+  \[\begin{tikzcd}
+    {\Gamma.\Pi(\Delta,p^*_\Delta\Psi).p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta} && {\Gamma.\Delta.p^*_\Delta\Psi} \\
+    & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi).\Delta.\Theta} & {\Gamma.\Delta.\Theta} \\
+    & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi).p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta} & {\Gamma.\Delta}
+    \arrow["{q(p_{\Pi(\Delta,p^*_\Delta\Psi)},\Delta)}"', from=3-2, to=3-3]
+    \arrow["{p_\Psi}"', from=2-3, to=3-3]
+    \arrow["{q(q(p_{\Pi(\Delta,p^*_\Delta\Psi)},\Delta),\Theta)}", from=2-2, to=2-3]
+    \arrow["{p_{p^*_{p^*_\Delta\Theta}\Psi}}", from=2-2, to=3-2]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow["f", from=1-3, to=2-3]
+    \arrow["{p_{p^*_\Delta\Psi}}", curve={height=-24pt}, from=1-3, to=3-3]
+    \arrow["{\app_{\Delta,p^*_\Delta\Psi}}", from=1-1, to=1-3]
+    \arrow["{(1_{p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta},f\cdot
+    \app_{\Delta,p^*_\Delta\Psi})}"{pos=1}, from=1-1, to=2-2, dotted]
+  \end{tikzcd}\]
+  and then applying $\lambda_{\Delta,\Theta}$ to the map given by the universal
+  property of the pullback, which gives us a section
+  $\lambda(1_{p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta},f\cdot\app_{\Delta,p^*_\Delta\Psi})\colon\Gamma.\Pi(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pi(\Delta,p^*_\Delta\Psi).\Pi(\Delta,\Theta)$.
+  All we have to do now is post-compose with
+  $q(p_{\Pi(\Delta,\Psi)},\Pi(\Delta,\Theta))$.
+\end{construction}
+
 We shall also need the following lemma in the proof of FINAL THEOREM.
 
 \begin{lem}
   Given an iterated context extension $\Gamma.\Delta.\Theta.\Psi$ in a
   contextual category with $\Pi$-types $\cC$, the contexts
   \[\Gamma.\Pi(\Delta,\Theta.\Psi),\quad\Gamma.\Pi(\Delta,\Theta).\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi)\]
-  are equal in $\cC$.
+  are equal in $\cC$. Also,
+  $(p_\Delta)_*(p_{\Psi})=p_{\Pi(\Delta,\app^*_{\Delta,\Theta}\Psi)}$.
 \end{lem}
 \begin{proof}
-  It is enough to notice that the two contexts reduce to the same one in $\cC$
-  after applying the inductive construction we defined on $\cC^{cxt}$.
+  For the first claim, it is enough to notice that the two contexts reduce to
+  the same one in $\cC$ after applying the inductive construction we defined on
+  $\cC^{cxt}$.
+
+  For the second claim instead we consider the chain of equalities
+  \begin{align*}
+    (p_\Delta)_*(p_{\Psi})
+    &=q(p_{\Pi(\Delta,\Theta.\Psi)},\Pi(\Delta,\Theta))\cdot
+    \lambda_{\Delta,\Theta}(1_{p^*_{\Pi(\Delta,\Theta)}\Delta},p_\Psi\cdot\app_{\Delta,\Theta.\Psi}) \\
+    &=p_{\Pi(\Delta,\app^*_{\Delta,\Theta})}\cdot
+    p_{\Pi(\Delta,\Theta)}\cdot
+    \lambda_{\Delta,\Theta}(1_{p^*_{\Pi(\Delta,\Theta)}\Delta},p_\Psi\cdot\app_{\Delta,\Theta.\Psi}) \\
+    &=p_{\Pi(\Delta,\app^*_{\Delta,\Theta})},
+  \end{align*}
+  where the second equality is justified by the fact that the two maps
+  coincide when precomposed with the term
+  $\lambda_{\Delta,\Theta}(1_{p^*_{\Pi(\Delta,\Theta)}\Delta},p_\Psi\cdot\app_{\Delta,\Theta.\Psi})$.
+  \wfd{(PLEASE CHECK)}
 \end{proof}
 
 \begin{prop}\cite[Prop.\ 3.3.1]{Gar09b}
@@ -1807,8 +1853,9 @@ and therefore should be expanded.
   \[\epsilon_{\Gamma.\Delta.\Theta}\colon\Gamma.\Delta.p^*_\Delta\Pi(\Delta,\Theta)
   \xrightarrow{exch_{\Delta,\Pi(\Delta,\Theta}}\Gamma.\Pi(\Delta,\Theta).p^*_{\Pi(\Delta,\Theta)}\Delta
   \xrightarrow{\app_{\Delta,\Theta}}\Gamma.\Delta.\Theta\]
-  and it is then sufficient to prove that, for any
-  $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$, there is
+  and it is then sufficient to prove that, for any context morphism
+  $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$ over
+  $\Gamma.\Delta$, there is
   a unique $\tilde{f}\colon\Gamma.\Psi\rightarrow\Gamma.\Pi(\Delta,\Theta)$
   making the diagram
   \[\begin{tikzcd}
@@ -1861,66 +1908,13 @@ and therefore should be expanded.
   $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))\colon\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pi(\Delta,p^*_\Delta\Psi)$,
   which provides our unit.
 
-  We can now construct our $\tilde{f}$. We do so by looking at the commutative
-  diagram
-  \[\begin{tikzcd}
-    {\Gamma.\Pi(\Delta,p^*_\Delta\Psi).p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta} && {\Gamma.\Delta.p^*_\Delta\Psi} \\
-    & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi).\Delta.\Theta} & {\Gamma.\Delta.\Theta} \\
-    & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi).p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta} & {\Gamma.\Delta}
-    \arrow["{q(p_{\Pi(\Delta,p^*_\Delta\Psi)},\Delta)}"', from=3-2, to=3-3]
-    \arrow["{p_\Psi}"', from=2-3, to=3-3]
-    \arrow["{q(q(p_{\Pi(\Delta,p^*_\Delta\Psi)},\Delta),\Theta)}", from=2-2, to=2-3]
-    \arrow["{p_{p^*_{p^*_\Delta\Theta}\Psi}}", from=2-2, to=3-2]
-    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
-    \arrow["f", from=1-3, to=2-3]
-    \arrow["{p_{p^*_\Delta\Psi}}", curve={height=-24pt}, from=1-3, to=3-3]
-    \arrow["{\app_{\Delta,p^*_\Delta\Psi}}", from=1-1, to=1-3]
-    \arrow["{(1_{p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta},f\cdot
-    \app_{\Delta,p^*_\Delta\Psi})}"{pos=1}, from=1-1, to=2-2, dotted]
-  \end{tikzcd}\]
-  and then applying $\lambda$, which gives us a section
-  $\lambda(1_{p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta},f\cdot\app_{\Delta,p^*_\Delta\Psi})\colon\Gamma.\Pi(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pi(\Delta,p^*_\Delta\Psi).\Pi(\Delta,\Theta)$.
   Postcomposing with
   $q(p_{\Pi(\Delta,p^*_\Delta\Psi)},\Pi(\Delta,\Theta))\colon
   \Gamma.\Pi(\Delta,\Psi).\Pi(\Delta,\Theta)\rightarrow
   \Gamma.\Pi(\Delta,\Theta)$ we get a map which shall correspond to
-  $(p_\Delta)_*(f)$, which then we precomspose with $\eta_{\Gamma.\Psi}$ to get
+  $(p_\Delta)_*(f)$ \wfd{(SHOULD WE GIVE THIS CONSTRUCTION IN THE SECTION ABOUT
+  ITERATED CONTEXTS?)}, which then we precomspose with $\eta_{\Gamma.\Psi}$ to get
   our candidate $\tilde{f}$.
-
-
-  Kapulkin 1507.02648, Lemma 5.5. We need to understand $\mathsf{app}$ for this,
-  which requires studying 1211.2851, Appendix B.1.1 and 1706.03605. The map
-  $app$ is specified in the latter, Remark 4.4, however you should notice that
-  there $app$ does not take a pair of morphisms as input but an object
-  $\Gamma.A.B$ and a section $f$ of
-  $p_{\Pi(A,B)}\colon\Gamma.\Pi(A,B)\rightarrow\Gamma$ and it returns a section
-  $app(f,-)$ of $p_{B}\colon\Gamma.A.B\rightarrow\Gamma.A$. Then, $app(f,a)$ is
-  specified by $app(f,-)\cdot a$. Remember that
-  $\lambda\colon\tilde{\Ob}_2\rightarrow\tilde{\Ob}_1$ is assigning to a term
-  $b(a):B$ depending on the context $[\Gamma,a:A]$
-  the corresponding map $\Gamma\rightarrow\Gamma.\Pi(A,B)$. A
-  morphism in the fiber product used when defining $app$ is a pair
-  $(\Gamma.A.B,f\colon\Gamma\rightarrow\Gamma.\Pi(A,B))$, which corresponds by
-  isomorphism with $\tilde{\Ob}_2$ to a unique section
-  $g\colon\Gamma.A\rightarrow\Gamma.A.B$ of $p_B$. This means that
-  $\lambda(g)=f$! Is this right? I think that $\lambda$ is the lambda
-  abstraction, not the map associating to a term of $B$ the corresponding
-  constant map.
-
-  Things would be solved if I provided a unit map
-
-  Reasoning in
-  terms of sets, this works, so we only need to show the triangle identities or
-  the existence of a universal lift.
-
-  Another possibility is given by looking, for any map
-  $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$, at the
-  map given by $\lambda(1,app_{\Delta,\Theta}\cdot
-  p^*\Delta((p_\Delta)_*(f)))\colon\Gamma.\Pi(\Delta,p^*_{\Delta}\Psi)\rightarrow\Gamma.\Pi(\Delta,p^*_\Delta\Psi).\Pi(p^*_{\Pi}\Delta,p^*_{p^*_\Delta\Psi}\Theta)$,
-  which can also be written as
-  $(p^*_\Delta((p_\Delta)^*(f)))^*(\lambda(1,app_{\Delta,\Theta}))$, which makes
-  use of the map $\lambda(1,app_{\Delta,\Theta})$ appearing in the
-  $\Pi$-$\eta$ property.
 \end{proof}
 
 We know that every fibration in $\cC$ is isomorphic to a composite of dependent
@@ -1936,6 +1930,18 @@ We are finally ready to prove the result leading to the final one we want.
 \end{prop}
 \begin{proof}
   Kapulkin 1507.02648, Proposition 5.4.
+
+  We already know that the a contextual category with an $\Id$-structure is a
+  fibration category by REFS. Also, for any basic dependent projection
+  $\Gamma.A\rightarrow\Gamma$ the pullback functor between fibrant slices
+  $p^*_A$ has a right adjoint $(p_A)_*$, thus the same holds for arbitrary
+  dependent projections. We only need to check that this right adjoint is
+  compatible with the fibrational structure.
+
+  As a right adjoint, $(p_A)_*$ preserves limits and in particular pullbacks and
+  the terminal object. Also, by LEMMA ABOUT PI OBJECTS BEING EQUAL, it preserves
+  dependent projections and, by LEMMA ABOUT PRESERVING BIEQUIVALENCES, weak
+  equivalences.
 \end{proof}
 
 \begin{thm}
