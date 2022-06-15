@@ -290,30 +290,12 @@ a term corresponds to a choice of a section of a basic dependent projection.
 
 \wfd{(HERE WE DEFINE SIGMA, PI AND Id-STRUCTURE ON $\cC$)}
 
-\begin{construction}
-  Given a categorical model of type theory $\cC$, we can
-  lift the $\Sigma$-structure to $\cC^{cxt}$ as shown by Lumsdaine in \wfd{(PHD
-  THESIS)}. There, we get a strong $\Sigma$-structure, that is such that
-  $\Gamma.\Delta.\Theta=\Gamma.\Sigma(\Delta,\Theta)$. This is possible because,
-  as we noted, every dependent projection is canonically isomorphic to a basic
-  one (and in a sense equal since they correspond to the same dependent
-  projection in $\cC$ and the map exhibiting the isomorphism is the
-  identity there). This construction is preserved by the monad we described,
-  which then restricts to $Cxl_\Sigma$.
-\end{construction}
-
-In REFS, Lumsdaine also claims that it is possible to lift an $Id$-structure
-(albeit it is not strictly preserved by the monad) and a $\Pi$-structure to
-$\cC^{cxt}$ by following the syntactic rules stated by Gambino and Streicher in
-REFS. Unfortunately, they state only how to generalize $Id$-types to iterated
-contexts, therefore we shall construct the $\Pi$-structure ourselves.
-
-\section{$\Pi$-Types of Iterated Contexts}
+\section{Structures on Iterated Contexts}
 
 The reason why we introduced the contextual category of iterated contexts
 $\cC^{cxt}$ is that we would like to extend the $\Sigma$, $\Id$
 and $\Pi$ structures of a contextual category $\cC$ from simple context
-extensions to iterated ones, which we shall heavily exploit in the last part of
+extensions to general ones, which we shall heavily exploit in the last part of
 this thesis. To do this, we have to lift these structures from the original
 contextual category compatibly with the contextual functor
 $\cC\rightarrow\cC^{cxt}$ which we specified earlier, so that we will get a new
@@ -325,18 +307,11 @@ On the type theoretical side, extensions of logical rules for identity types to
 identity contexts were explored by Str93 and Gambino \wfd{(REFS)} and Lumsdaine
 refers to them in his PhD thesis, mentioning that it is also possible to
 model this extension and similar ones for $\Sigma$ and $\Pi$ types in
-$\cC^{cxt}$, however he only explains how to do so for $\Sigma$-structures. At
+$\cC^{cxt}$. At
 the time Kapulkin wrote 1507, nothing further was available in the literature
 and only in 1808.01816 him and Lumsdaine gave more details on these matters,
 however they still didn't flesh out the constructions in their entirety. In this
 section we aim to partially fix that for $\Pi$ types specifically.
-
-\begin{rmk}
-  In Lumsdaine's PhD thesis it is noted that the lift of $\Id$ and $\Pi$
-  structures is not compatible with the monad we provided earlier. On the other
-  hand, the lifted $\Sigma$-structure is compatible, meaning that we have a
-  monad $(-)^{cxt}$ on $Cxl_\Sigma$.
-\end{rmk}
 
 \begin{construction}
   Let $\cC$ be a contextual category with a $\Pi$-structure. Our objective for
@@ -450,6 +425,10 @@ section we aim to partially fix that for $\Pi$ types specifically.
   where the construction works because (as we shall verify in the next
   proposition) the triangle commutes.
 
+  Given $a\colon\Gamma\rightarrow\Gamma.\Delta$,
+  $f\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta$, we construct
+  $\app(f,a)$ as in the definition of $\Pi$-structures.
+
   This fully specifies the data needed for a $\Pi$-structure on $\cC^{cxt}$,
   however we still have to check that it is indeed one.
 \end{construction}
@@ -457,12 +436,16 @@ section we aim to partially fix that for $\Pi$ types specifically.
 \begin{prop}
   Given a contextual category with a $\Pi$-structure $\cC$, the above data
   defines a $\Pi$-structure on $\cC^{cxt}$ which is compatible with the natural
-  contextual functor $\cC\rightarrow\cC^{cxt}$.
+  contextual functor $\cC\rightarrow\cC^{cxt}$. Also, if the original
+  $\Pi$-structure has the $\Pi_\eta$ property, the same goes for the one on
+  $\cC^{cxt}$.
 \end{prop}
 \begin{proof}
-  The compatibility follows directly from the base case, hence we only have to
+  We have to
   show that it is a $\Pi$-structure, which we will do inductively by verifying
   that at every step our proposed construction maintains the desired properties.
+  The compatibility with the contextual functor will then follow directly from
+  the way we defined the base case.
 
   Let's consider an object $\Gamma.\Delta.\Theta$ in $\cC^{cxt}$. The only
   interesting case is the one where both $\Delta$ and $\Theta$
@@ -571,15 +554,43 @@ We shall also need the following lemma in the proof of FINAL THEOREM.
   are equal in $\cC$.
 \end{lem}
 \begin{proof}
-  It is enough to notice that the two contexts reduce to the same one
+  It is enough to notice that the two contexts reduce to the same one in $\cC$
   after applying the inductive construction we defined on $\cC^{cxt}$.
 \end{proof}
 
-\begin{prop}
-  If the original contextual category $\cC$ has a $\Pi_\eta$-structure, then the
-  lifted $\Pi$-structure also has the $\Pi_\eta$-property. \wfd{(PROVE IT OR
-  GIVE REFERENCE)}
+\begin{prop}\cite[Prop.\ 3.3.1]{Gar09b}
+  Given a contextual category with an $\Id$-structure $\cC$, $\cC^{cxt}$ also
+  carries a natural $\Id$-structure compatible with the contextual functor
+  $\cC\rightarrow\cC^{cxt}$ as described in REFS 0808.
 \end{prop}
+
+\begin{lem}\cite[Lemma 2.28]{1808}
+  Given a contextual category with $\Id$, $\Pi$ structures and function
+  extensionality $\cC$, the latter can also be extended to $\cC^{cxt}$
+  compatibly with the $\Id$ and $\Pi$ structures specified above. In particular,
+  if we have two sections
+  $b,b'\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta$ and a homotopy
+  $h:b\sim b'$, that is a section
+  $h\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.(b,b')^*\Id_{\Theta}$,
+  then there is also a homotopy between $\lambda_{\Delta,\Theta}(b)$ and
+  $\lambda_{\Delta,\Theta}(b')$ and these constructions are functorial in $\cC$.
+\end{lem}
+
+\begin{cor}\cite[Lemma 2.29]{1808}
+  Under the conditions of the previous theorem, if
+  $f\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Delta.\Psi$ is a
+  biequivalence over $\Gamma.\Delta$, then the same goes for the induced map
+  $\Gamma.\Pi(\Delta,\Theta)\rightarrow\Gamma.\Pi(\Delta,\Psi)$.
+\end{cor}
+
+\begin{rmk}
+  In Lumsdaine's PhD thesis it is noted that the lift of $\Id$ and $\Pi$
+  structures is not compatible with the monad we provided earlier because they
+  are not compatible with the multiplication. On the other
+  hand, with a strategy along the line of the one we presented for
+  $\Pi$-structures we can also lift $\Sigma$-structures compatibly with the
+  monad, meaning that $(-)^{cxt}$ restricts to one on $Cxl_\Sigma$.
+\end{rmk}
 
 \section{Localizations of \texorpdfstring{$\infty$}{∞}-Categories}
 
@@ -1791,26 +1802,26 @@ and therefore should be expanded.
   admits a right adjoint.
 \end{lem}
 \begin{proof}
-  Kapulkin 1507.02648, Lemma 5.5. We need to understand $\mathsf{app}$ for this,
-  which requires studying 1211.2851, Appendix B.1.1 and 1706.03605. The map
-  $app$ is specified in the latter, Remark 4.4, however you should notice that
-  there $app$ does not take a pair of morphisms as input but an object
-  $\Gamma.A.B$ and a section $f$ of
-  $p_{\Pi(A,B)}\colon\Gamma.\Pi(A,B)\rightarrow\Gamma$ and it returns a section
-  $app(f,-)$ of $p_{B}\colon\Gamma.A.B\rightarrow\Gamma.A$. Then, $app(f,a)$ is
-  specified by $app(f,-)\cdot a$. Remember that
-  $\lambda\colon\tilde{\Ob}_2\rightarrow\tilde{\Ob}_1$ is assigning to a term
-  $b(a):B$ depending on the context $[\Gamma,a:A]$
-  the corresponding map $\Gamma\rightarrow\Gamma.\Pi(A,B)$. A
-  morphism in the fiber product used when defining $app$ is a pair
-  $(\Gamma.A.B,f\colon\Gamma\rightarrow\Gamma.\Pi(A,B))$, which corresponds by
-  isomorphism with $\tilde{\Ob}_2$ to a unique section
-  $g\colon\Gamma.A\rightarrow\Gamma.A.B$ of $p_B$. This means that
-  $\lambda(g)=f$! Is this right? I think that $\lambda$ is the lambda
-  abstraction, not the map associating to a term of $B$ the corresponding
-  constant map.
+  Let's set $(p_\Delta)_*(\Gamma.\Delta.\Theta)=\Gamma.\Pi(\Delta.\Theta)$. Our
+  counit shall be given by
+  \[\epsilon_{\Gamma.\Delta.\Theta}\colon\Gamma.\Delta.p^*_\Delta\Pi(\Delta,\Theta)
+  \xrightarrow{exch_{\Delta,\Pi(\Delta,\Theta}}\Gamma.\Pi(\Delta,\Theta).p^*_{\Pi(\Delta,\Theta)}\Delta
+  \xrightarrow{\app_{\Delta,\Theta}}\Gamma.\Delta.\Theta\]
+  and it is then sufficient to prove that, for any
+  $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$, there is
+  a unique $\tilde{f}\colon\Gamma.\Psi\rightarrow\Gamma.\Pi(\Delta,\Theta)$
+  making the diagram
+  \[\begin{tikzcd}
+    {\Gamma.\Delta.p^*_\Delta\Psi} \\
+    {\Gamma.\Delta.p^*_\Delta\Pi(\Delta,\Theta)} & {\Gamma.\Delta.\Theta}
+    \arrow["f", from=1-1, to=2-2]
+    \arrow["{\epsilon_{\Gamma.\Delta.\Theta}}"', from=2-1, to=2-2]
+    \arrow["{p^*_\Delta\tilde{f}}"', dotted, from=1-1, to=2-1]
+  \end{tikzcd}\]
+  commute. This will then uniquely specify how the right adjoint acts on the
+  morphisms.
 
-  Things would be solved if I provided a unit map
+  We start by specifying the unit
   $\eta_{\Gamma.\Psi}\colon\Gamma.\Psi\rightarrow\Gamma.\Pi(\Delta,p^*_{\Delta}\Psi)$.
 
   Let's consider the commutative square
@@ -1848,8 +1859,55 @@ and therefore should be expanded.
 \colon\Gamma.\Psi\rightarrow\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)\]
   and we can then conclude by post-composing with
   $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))\colon\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pi(\Delta,p^*_\Delta\Psi)$,
-  which provides our candidate unit. One triangle identity follows by
-  $\beta$-reduction, while the universality of the lift by $\Pi$-$\eta$.
+  which provides our unit.
+
+  We can now construct our $\tilde{f}$. We do so by looking at the commutative
+  diagram
+  \[\begin{tikzcd}
+    {\Gamma.\Pi(\Delta,p^*_\Delta\Psi).p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta} && {\Gamma.\Delta.p^*_\Delta\Psi} \\
+    & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi).\Delta.\Theta} & {\Gamma.\Delta.\Theta} \\
+    & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi).p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta} & {\Gamma.\Delta}
+    \arrow["{q(p_{\Pi(\Delta,p^*_\Delta\Psi)},\Delta)}"', from=3-2, to=3-3]
+    \arrow["{p_\Psi}"', from=2-3, to=3-3]
+    \arrow["{q(q(p_{\Pi(\Delta,p^*_\Delta\Psi)},\Delta),\Theta)}", from=2-2, to=2-3]
+    \arrow["{p_{p^*_{p^*_\Delta\Theta}\Psi}}", from=2-2, to=3-2]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow["f", from=1-3, to=2-3]
+    \arrow["{p_{p^*_\Delta\Psi}}", curve={height=-24pt}, from=1-3, to=3-3]
+    \arrow["{\app_{\Delta,p^*_\Delta\Psi}}", from=1-1, to=1-3]
+    \arrow["{(1_{p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta},f\cdot
+    \app_{\Delta,p^*_\Delta\Psi})}"{pos=1}, from=1-1, to=2-2, dotted]
+  \end{tikzcd}\]
+  and then applying $\lambda$, which gives us a section
+  $\lambda(1_{p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta},f\cdot\app_{\Delta,p^*_\Delta\Psi})\colon\Gamma.\Pi(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pi(\Delta,p^*_\Delta\Psi).\Pi(\Delta,\Theta)$.
+  Postcomposing with
+  $q(p_{\Pi(\Delta,p^*_\Delta\Psi)},\Pi(\Delta,\Theta))\colon
+  \Gamma.\Pi(\Delta,\Psi).\Pi(\Delta,\Theta)\rightarrow
+  \Gamma.\Pi(\Delta,\Theta)$ we get a map which shall correspond to
+  $(p_\Delta)_*(f)$, which then we precomspose with $\eta_{\Gamma.\Psi}$ to get
+  our candidate $\tilde{f}$.
+
+
+  Kapulkin 1507.02648, Lemma 5.5. We need to understand $\mathsf{app}$ for this,
+  which requires studying 1211.2851, Appendix B.1.1 and 1706.03605. The map
+  $app$ is specified in the latter, Remark 4.4, however you should notice that
+  there $app$ does not take a pair of morphisms as input but an object
+  $\Gamma.A.B$ and a section $f$ of
+  $p_{\Pi(A,B)}\colon\Gamma.\Pi(A,B)\rightarrow\Gamma$ and it returns a section
+  $app(f,-)$ of $p_{B}\colon\Gamma.A.B\rightarrow\Gamma.A$. Then, $app(f,a)$ is
+  specified by $app(f,-)\cdot a$. Remember that
+  $\lambda\colon\tilde{\Ob}_2\rightarrow\tilde{\Ob}_1$ is assigning to a term
+  $b(a):B$ depending on the context $[\Gamma,a:A]$
+  the corresponding map $\Gamma\rightarrow\Gamma.\Pi(A,B)$. A
+  morphism in the fiber product used when defining $app$ is a pair
+  $(\Gamma.A.B,f\colon\Gamma\rightarrow\Gamma.\Pi(A,B))$, which corresponds by
+  isomorphism with $\tilde{\Ob}_2$ to a unique section
+  $g\colon\Gamma.A\rightarrow\Gamma.A.B$ of $p_B$. This means that
+  $\lambda(g)=f$! Is this right? I think that $\lambda$ is the lambda
+  abstraction, not the map associating to a term of $B$ the corresponding
+  constant map.
+
+  Things would be solved if I provided a unit map
 
   Reasoning in
   terms of sets, this works, so we only need to show the triangle identities or
@@ -1869,51 +1927,6 @@ We know that every fibration in $\cC$ is isomorphic to a composite of dependent
 projections , so this tells us that every fibration induces an adjunction
 between fibrational slices \wfd{(YOU SHOULD DEFINE THEM, MAYBE AS INFTY-CATS OF
 FIBRANT OBJECTS INDUCED FROM THE SLICES)}.
-
-\begin{lem}
-  Consider an iterated context extension $\Gamma.\Delta.\Theta.\Psi$ in a
-  categorical model of type theory $\cC$. Then the contexts
-  \[\Gamma.\Pi(\Delta,\Theta).\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta,app^*_{\Delta,\Theta}\Psi)
-    \text{ and }
-  \Gamma.\Pi(\Delta,\Theta.\Psi)\]
-  are isomorphic (actually equal) in $\cC$. \wfd{(NOTICE: KAPULKIN WRITES
-  SOMETHING ELSE FOR THE OBJECT ON THE LEFT, BUT I THINK IT'S A TYPO)}
-\end{lem}
-\begin{proof}
-  Kapulchin 1507.02648, Lemma 5.5. It simply refers to the construction of the
-  $\Pi$-structure on $\cC^{cxt}$.
-
-  We construct the following commutative diagram
-  \[\begin{tikzcd}
-    {\Gamma.\Pi(\Delta,\Theta).p^*_{\Pi(\Delta,\Theta)}\Delta.app^*_{\Delta,\Theta}\Psi} & {\Gamma.\Delta.\Theta.\Psi} \\
-    & {\Gamma.\Delta.\Theta} \\
-    {\Gamma.\Pi(\Delta,\Theta).p^*_{\Pi(\Delta,\Theta)}\Delta} & {\Gamma.\Delta} \\
-    {\Gamma.\Pi(\Delta,\Theta)} & \Gamma
-    \arrow["{p_\Psi}", from=1-2, to=2-2]
-    \arrow["{p_{\Theta}}", from=2-2, to=3-2]
-    \arrow["{p_{\Delta}}", from=3-2, to=4-2]
-    \arrow["{p_{app^*_{\Delta,\Theta}\Psi}}"', from=1-1, to=3-1]
-    \arrow["{p_{\Pi(\Delta,\Theta)}}"', from=4-1, to=4-2]
-    \arrow["{p_{p^*_{\Pi(\Delta,\Theta)}\Delta}}"', from=3-1, to=4-1]
-    \arrow["{q(p_{\Pi(\Delta,\Theta)},\Delta)}"', from=3-1, to=3-2]
-    \arrow["{app_{\Delta,\Theta}}", from=3-1, to=2-2]
-    \arrow["{q(app_{\Delta,\Theta},\Psi)}", from=1-1, to=1-2]
-  \end{tikzcd}\]
-  and then somehow use the fact that $(p_\Delta)_*$ is a right adjoint, thus it
-  preserves limits.
-
-  Let's think about what the terms of the context
-  $\Gamma.\Pi(\Delta,\Theta).p^*_{\Pi(\Delta,\Theta)}\Delta.app^*_{\Delta,\Theta}\Psi$
-  are. We know that they are given by
-$[\Gamma,f:\Pi(\Delta,\Theta),x:\Delta,y:\Psi(x,f(x))]$ and
-$\Psi(x,f(x))=\Psi(app_{\Delta,\Theta}(f,x))$. This corresponds to a term
-$[\Gamma,f:\Pi(\Delta,\Theta),\lambda x:\Delta.y:\Pi(z:\Delta,\Psi(app(f,z)))]$,
-that is a term of
-$\Gamma.\Pi(\Delta,\Theta).\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta,app^*_{\Delta,\Theta}\Psi)$,
-and to $[\Gamma,x:\Delta,f(x):\Theta(x),y:\Psi(x,f(x))]$, which should translate
-to $[\Gamma,\lambda x:\Delta.(f(x),y):\Theta.\Psi(x,f(x))]$, which should be a
-term of $\Gamma.\Pi(\Delta,\Theta.\Psi)$.
-\end{proof}
 
 We are finally ready to prove the result leading to the final one we want.
 
