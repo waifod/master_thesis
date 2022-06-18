@@ -425,6 +425,43 @@ the only original contribution of this work.
   where the construction works because (as we shall verify in the next
   proposition) the triangle commutes.
 
+  Here we construct the actual $\lambda_{\Delta,\Theta}$. First, we consider a
+  section $p_B\cdot b\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta'$, to
+  which we apply $\lambda_{\Delta,\Theta'}$ to get
+  $\lambda_{\Delta,\Theta'}\colon\Gamma\rightarrow\Gamma.\Pi(\Delta,\Theta')$.
+  After this, we look at the factorization
+  \[\begin{tikzcd}
+    {\Gamma.\Delta} \\
+    & {\Gamma.\Delta.\Pi(\Delta,\Theta').\epsilon^*_{\Gamma.\Delta.\Theta'}B} & {\Gamma.\Delta.\Theta'.B} \\
+    & {\Gamma.\Delta.\Pi(\Delta,\Theta')} & {\Gamma.\Delta.\Theta'} \\
+    & {\Gamma.\Delta} & {}
+    \arrow["{p_{\Pi(\Delta,\Theta'})}", from=3-2, to=4-2]
+    \arrow[curve={height=18pt}, Rightarrow, no head, from=1-1, to=4-2]
+    \arrow["{(\lambda_{\Delta,\Theta'}(p_B\cdot b),q(\epsilon_{\Delta,\Theta'},B))}"{description, pos=0.7}, dotted, from=1-1, to=2-2]
+    \arrow[from=2-2, to=3-2]
+    \arrow["{\lambda_{\Delta,\Theta'}(p_B\cdot b)}"{description, pos=0.8}, curve={height=12pt}, from=1-1, to=3-2]
+    \arrow["b", curve={height=-12pt}, from=1-1, to=2-3]
+    \arrow["{p_B}", from=2-3, to=3-3]
+    \arrow["{q(\epsilon_{\Delta,\Theta'},B)}"', from=2-2, to=2-3]
+    \arrow["{\epsilon_{\Delta,\Theta'}}"', from=3-2, to=3-3]
+  \end{tikzcd},\]
+  getting then
+  $\lambda_{\Delta,\Pi(\Delta,\Theta').\epsilon^*_{\Delta,\Theta'}B}
+  (\lambda_{\Delta,\Theta'} (p_B\cdot b),q(\epsilon_{\Delta,\Theta'},B))
+  \colon\Gamma
+  \rightarrow\Gamma.\Pi(\Delta,\Pi(\Delta,\Theta').\epsilon^*_{\Gamma.\Delta.\Theta'}B)$.
+
+  Rewriting
+  $\Gamma.\Pi(\Delta,\Pi(\Delta,\Theta').\epsilon_{\Gamma.\Delta.\Theta'}B)$ as
+  $\Gamma.\Pi(\Delta,\Pi(\Delta,\Theta')).
+  \Pi(\Delta,\app^*_{\Delta,\Pi(\Delta,\Theta')}\epsilon^*_{\Gamma.\Delta.\Theta'}B)$,
+  we see that we can postcompose the section with the map
+  $q(\Gamma.\Pi(\Delta,
+  \epsilon_{\Gamma.\Delta.\Theta'}),\Pi(\Delta,\app^*_{\Delta,\Theta'}B))\colon
+  \Gamma.\Pi(\Delta,\Pi(\Delta,\Theta')).\Pi(\Delta,\app^*_{\Delta,\Pi(\Delta,\Theta')}\epsilon^*_{\Gamma.\Delta.\Theta'}B)
+  \rightarrow\Gamma.\Pi(\Delta,\Theta').\Pi(\Delta,\app^*_{\Delta,\Theta'}B)$,
+  which gives us our $\lambda_{\Delta,\Theta}(b)$.
+
   Given $a\colon\Gamma\rightarrow\Gamma.\Delta$,
   $f\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta$, we construct
   $\app(f,a)$ as in the definition of $\Pi$-structures.
