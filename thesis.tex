@@ -260,8 +260,7 @@ a term corresponds to a choice of a section of a basic dependent projection.
   is then given by the map in $\cC^{cxt}$ corresponding to the identity of the
   object in $\cC$.
 
-  The endofunctor of the monad is defined on morphisms as one would expect \wfd{(HOW?)} and there is
-  a natural unit $\cC\rightarrow\cC^{cxt}$ sending every $n$-object in $\cC$ to
+  The unit $\cC\rightarrow\cC^{cxt}$ sends every $n$-object in $\cC$ to
   the corresponding $n$-iterated (simple) context extension and every morphism
   to the one it represents.
 
@@ -484,7 +483,7 @@ the only original contribution of this work.
     &=a \\
     \app(\lambda_{\Delta,B}(b),a)
     &=\app_{A,B}\cdot
-    q(\app_{\Pi(\Delta',\Pi(A,B))},A)\cdot
+    q(\app_{\Delta',\Pi(A,B)},A)\cdot
     p^*_{\Pi(\Delta',\Pi(A,B))}a\cdot
     \lambda_{\Delta,B}(b) \\
     &=\app_{A,B}\cdot
@@ -550,8 +549,8 @@ the only original contribution of this work.
   Given a map $f\colon\Gamma.\Delta.\Psi\rightarrow\Gamma.\Delta.\Theta$ over
   $\Gamma.\Delta$, we shall construct a map
   $\Gamma.\Pi(\Delta,f)\colon\Gamma.\Pi(\Delta,\Psi)\rightarrow\Gamma.\Pi(\Delta,\Theta)$
-  over $\Gamma$ and functorially in the second argument of $\Pi$ corresponding
-  to postcomposition by $f$.
+  over $\Gamma$ in the second argument of $\Pi$ corresponding to postcomposition
+  by $f$.
 
   We do so by looking at the commutative diagram
   \[\begin{tikzcd}
@@ -571,7 +570,7 @@ the only original contribution of this work.
   \end{tikzcd}\]
   and then applying $\lambda_{\Delta,\Theta}$ to the map given by the universal
   property of the pullback, which gives us a section
-  $\lambda(1_{p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta},f\cdot\app_{\Delta,p^*_\Delta\Psi})\colon\Gamma.\Pi(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pi(\Delta,p^*_\Delta\Psi).\Pi(\Delta,\Theta)$.
+  $\lambda_{\Delta,\Theta}(1_{p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta},f\cdot\app_{\Delta,p^*_\Delta\Psi})\colon\Gamma.\Pi(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pi(\Delta,p^*_\Delta\Psi).\Pi(\Delta,\Theta)$.
   All we have to do now is post-compose with
   $q(p_{\Pi(\Delta,\Psi)},\Pi(\Delta,\Theta))$.
 \end{construction}
@@ -603,6 +602,37 @@ We shall also need the following lemma in the proof of FINAL THEOREM.
   \wfd{(PLEASE CHECK)}
 \end{proof}
 
+We now do the same for an $\Id$-structure on a contextual category.
+
+\begin{construction}
+  Let $\cC$ be a contextual category with an $\Id$-structure. Given a dependent
+  context $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ with
+  $l(\Gamma.\Delta)=l(\Gamma)+n$ in $\cC$ we proceed by induction on $n$.
+
+  If $n=0$, then
+  \begin{align*}
+    \Gamma.\Id_\Delta &=\Gamma, \\
+    r_\Delta &=1_\Gamma, \\
+    J_{\Theta,C,d} &=d.
+  \end{align*}
+
+  If $n=1$,
+  \begin{align*}
+    \Gamma.\Id_A &=\Gamma.\Id_A, \\
+    r_A &=r_A, \\
+    J_{\Theta,C,d} &=J(\Theta,C,d),
+  \end{align*}
+  where the objects on the right are the ones given by the $\Id$-structure on
+  $\cC$.
+
+  If $n>1$, assuming to have extended the $\Id$-structure to shorter context
+  extensions in $\cC$, we write instead
+  \begin{align*}
+    \Gamma.\Id_{\Delta} &=\Gamma.\Id_{\Delta'.A}=\Gamma.\Id_{\Delta'}.\Id_A \\
+    r_{\Delta} &= q(,)\cdot r_A
+  \end{align*}
+\end{construction}
+
 \begin{prop}\cite[Prop.\ 3.3.1]{Gar09b}
   Given a contextual category with an $\Id$-structure $\cC$, $\cC^{cxt}$ also
   carries a natural $\Id$-structure compatible with the contextual functor
@@ -610,7 +640,7 @@ We shall also need the following lemma in the proof of FINAL THEOREM.
 \end{prop}
 
 \begin{lem}\cite[Lemma 2.28]{1808}
-  Given a contextual category with $\Id$, $\Pi$ structures and function
+  Given a contextual category with $\Id$, $\Pi_\eta$ structures and function
   extensionality $\cC$, the latter can also be extended to $\cC^{cxt}$
   compatibly with the $\Id$ and $\Pi$ structures specified above. In particular,
   if we have two sections
@@ -623,18 +653,20 @@ We shall also need the following lemma in the proof of FINAL THEOREM.
 
 \begin{cor}\cite[Lemma 2.29]{1808}
   Under the conditions of the previous theorem, if
-  $f\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Delta.\Psi$ is a
-  biequivalence over $\Gamma.\Delta$, then the same goes for the induced map
+  $f\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Delta.\Psi$ is
+  bi-invertible over $\Gamma.\Delta$, then the same goes for the induced map
   $\Gamma.\Pi(\Delta,\Theta)\rightarrow\Gamma.\Pi(\Delta,\Psi)$.
 \end{cor}
 
 \wfd{(WE COULD ALSO REFER TO 5.9 FROM 1203.3253, WHERE THEY GIVE A PROOF FOR
-TRIBES WHICH MAY BE ADAPTED)}
+TRIBES WHICH MAY BE ADAPTED; THM 4.8 FROM THERE TELLS US THAT THEY ARE
+CANONICALLY SPLIT TYPE-THEORETIC FIBRATION CATEGORIES, WHICH ALLOWS US TO APPLY
+THE RESULT)}
 
 \wfd{(MAYBE INTRODUCE THE LAST TWO RESULTS LATER? THEY HOLD FOR SIMPLE
 EXTENSIONS IN ANY CONTEXTUAL CATEGORY, HENCE THEY ALSO HOLD FOR SIMPLE
 EXTENSIONS IN THE ITERATED CONTEXTUAL CAT AND FOR ITERATED EXTENSIONS IN ANY
-CONTEXTUAL CAT. ALSO, WE NEED TO SAY WHAT BIEQUIVALENCES ARE, WHICH I WOULD LIKE
+CONTEXTUAL CAT. ALSO, WE NEED TO SAY WHAT BI-INVERTIBLE MAPS ARE, WHICH I WOULD LIKE
 TO DO LATER; LET'S KEEP THIS SECTION ABOUT STUFF STRICTLY ABOUT ITERATED
 CONTEXTS)}
 
@@ -1883,12 +1915,14 @@ as usual with $\cC^{cxt}$.
   the translation into the language of contextual category of the notion of
   bi-invertible map in type theory MORE REFS.
 
-  It is important to note that, while bi-invertibility is a more lax notion than
-  isomorphism in the context of dependent type theory, it is preferred
-  because it can be shown that the type $isHIso(f)$ is a \emph{mere
-  proposition} \wfd{(UNDER WHICH HYPOTHESIS?)}, unlike $isIso(f)$. Also, every
-  bi-equivalent morphism can be given the structure of an isomorphism and
-  viceversa, hence they are closely related.
+  It is important to note that, while type theory has no way to encode
+  internally the concept of isomorphism of the contextual model, it does have
+  its own internal notion of isomorphism. However, given a map $f$, the type
+  $isIso(f)$ is not, in general, a \emph{mere proposition}. On the other hand,
+  the more lax notion of bi-invertibility is such that $isHIso(f)$ is a mere
+  proposition \wfd{(UNDER WHICH HP? LEMMA 5.12 from 1203.3253)}, which makes it
+  preferable. Also, every bi-equivalent map can be given the structure of an
+  isomorphism and viceversa, hence they are closely related.
 \end{rmk}
 
 \begin{prop}\wfd{(REFS, 1507, AKL15, 1610.00037)}
@@ -2019,7 +2053,8 @@ and therefore should be expanded.
   giving the desired factorization by the $\Pi_\eta$-property. \wfd{(PLEASE
   PROVE IT)}
 
-  This also shows that $(p_{\Delta})_*(f)=\Gamma.\Pi(\Delta,f)$.
+  This also shows that $(p_{\Delta})_*(f)=\Gamma.\Pi(\Delta,f)$, meaning that
+  the construction of $\Gamma.\Pi(\Delta,f)$ is functorial.
 \end{proof}
 
 We know that every fibration in $\cC$ is isomorphic to a composite of dependent
@@ -2045,7 +2080,7 @@ We are finally ready to prove the result leading to the final one we want.
 
   As a right adjoint, $(p_\Delta)_*$ preserves limits and in particular pullbacks and
   the terminal object. Also, by LEMMA ABOUT PI OBJECTS BEING EQUAL, it preserves
-  dependent projections and, by LEMMA ABOUT PRESERVING BIEQUIVALENCES, weak
+  dependent projections and, by LEMMA ABOUT PRESERVING BI-INVERTIBLE MAPS, weak
   equivalences.
 \end{proof}
 
