@@ -158,36 +158,100 @@ categories are the right framework PROP 1.2.5.
   $\Id$-types and $\Sigma$-types.
 \end{rmk}
 
-\begin{rmk}
-  Given a contextual category $\cC$, the maps $p_X\colon X\rightarrow ftX$ are
-  called \emph{basic dependent projections} and a \emph{dependent projection}
-  is a map which is a composite of basic dependent projections or an identity.
-  Its objects are
-  often referred to as \emph{contexts}, denoted by Greek letters and, given
-  $\Gamma\in\Ob_n\cC$, we will
-  write $\Gamma.\Delta$ for an object $X\in\Ob_{n+m}\cC$, with a
-  dependent projection $X\rightarrow\Gamma$, which will then be denoted
-  $p_\Delta$ while $\Gamma.\Delta$ will be a \emph{context extension of}
-  $\Gamma$. In the case where $m=1$ and therefore $ftX=\Gamma$, we shall use
-  the Latin letters instead of Greek ones and call $\Gamma.A$ a \emph{simple
-  context extension of} $\Gamma$, while if $m=0$ it shall be a
-  \emph{trivial context extension}.
-\end{rmk}
-
 A motivating example for contextual categories is the \emph{syntactic category
 of a dependent type theory}, which constructs from a dependent type theory $T$ a
 contextual category $Syn(T)$ explicitly modeling it, as we will show.
 
 \begin{construction}
+  REF 1211
+
   Given a dependent type theory $T$ with the structural rules specified in REFS,
   its syntactic category $Syn(T)$ has:
   \begin{enumerate}
     \item $\Ob_nSyn(T)$ given by contexts $[x_1:A_1,\ldots,x_n:A_n]$ of length
       $n$, modulo definitional equality and renaming of free variables;
-    \item maps are \emph{context morphisms}, or \emph{substitutions}
-    \item \wfd{(FINISH)}
+    \item maps are \emph{context morphisms}, or \emph{substitutions}, modulo
+      definitional equalities and renaming of free variables. This means that a
+      map
+      \[f\colon[x_1:A_1,\ldots,x_n:A_n]\rightarrow[y_1:B_1,\ldots,y_m:B_m(y_1,\ldots,y_{m-1})]\]
+      is an equivalence class of sequences of terms $f_1,\ldots,f_m$ such that
+      \begin{align*}
+        x_1:A_1,\ldots,x_n:A_n &\vdash f_1:B_1, \\
+        \vdots & \\
+        x_1:A_1,\ldots,x_n:A_n &\vdash f_m:B_m(f_1,\ldots,f_{m-1}), \\
+      \end{align*}
+      are all derivable judgements and two such sequences $f,g$ are equivalent
+      if we have
+      \[x_1:A_1,\ldots,x_n:A_n\vdash f_i\equiv g_i\:B_i(f_1,\ldots,f_{i-1})\]
+      for every $i$, where $\equiv$ represents judgemental equality; we shall
+      henceforth write $[f_i]$ for such sequences of terms up to equivalence
+      specifying maps between contexts;
+    \item composition is given by substitution, that is given
+      $[f]\colon\Gamma\rightarrow\Delta$, $[g]\colon\Delta\rightarrow\Theta$ we
+      have a map $[g]\colon\Gamma\rightarrow\Theta$ induced by the same sequence
+      of terms;
+    \item the identity $\Gamma\rightarrow\Gamma$ is given by the variables of
+      $\Gamma$, considered as
+      terms, that is we take the sequence $[x_i]$ given by
+      \begin{align*}
+        x_1:A_1,\ldots,x_n:A_n &\vdash x_1:A_1, \\
+        \vdots & \\
+        x_1:A_1,\ldots,x_n:A_n &\vdash x_n:A_n(x_1,\ldots,x_{n-1});
+      \end{align*}
+    \item the terminal object is the empty context $[]$;
+    \item
+      $ft([x_1:A_1,\ldots,x_{n+1}:A_{n+1}])=[x_1:A_1,\ldots,x_n:A_n]$;
+    \item for $\Gamma=[x_1:A_1,\ldots,x_n:A_{n+1}]$,
+      $p_{\Gamma}\colon\Gamma\rightarrow ft\Gamma$ given by the \emph{dependent
+      projection} context morphism $[x_1,\ldots,x_n]$, defined by
+      \begin{align*}
+        x_1:A_1,\ldots,x_{n+1}:A_{n+1} &\vdash x_1:A_1, \\
+        \vdots & \\
+        x_1:A_1,\ldots,x_{n+1}:A_{n+1} &\vdash x_n:A_n(x_1,\ldots,x_n)
+      \end{align*}
+      and thereby simply forgetting the last variable of $\Gamma$;
+    \item given contexts
+      \begin{align*}
+        \Gamma &=[x_1:A_1,\ldots,x_{n+1}:A_{n+1}(x_1,\ldots,x_n)], \\
+        \Delta &=[y_1:B_1,\ldots,y_m:B_m(y_1,\ldots,y_{m-1})]
+      \end{align*}
+      and a map $f=[f_i(y)]\colon\Delta\rightarrow ft\Gamma$ (where $y$ is a
+      vector of variables of length $m$), the pullback $f^*\Gamma$ is the
+      context
+      \[y_1:B_1,\ldots,y_m:B_m(y_1,\ldots,y_{m-1}),y_{m+1}:A_{n+1}(f_1(y),\ldots,f_n(y))\]
+      for some new variable $y_{m+1}$, while $q(\Gamma,f)\colon
+      f^*\Gamma\rightarrow\Gamma'$ is specified by $[f_1,\ldots,f_n,y_{m+1}]$.
   \end{enumerate}
 \end{construction}
+
+\begin{rmk}
+  Given a dependent type theory $T$, the terms $t:A$ of a type over a context
+  $\Gamma$ can be recovered (up to definitional equality) from the syntactic
+  category $Syn(T)$ by looking at sections of the basic dependent projection
+  $p_{[\Gamma,x:A]}\colon[\Gamma,x:A]\rightarrow[\Gamma]$, which indeed act as
+  identities over $\Gamma$ and furthermore specify a term $\Gamma\dashv t:A$.
+  Given the importance of such maps, we shall often simply write ``sections'' to
+  refer to sections of basic dependent projections, without specifying which ones
+  unless it creates ambiguity.
+\end{rmk}
+
+\begin{rmk}
+  We shall also make use of other conventions inspired by this construction.
+  Namely, given a contextual category $\cC$ and an object $\Ob_n\cC$, we shall
+  write $(\Gamma,A_1,\ldots,A_k)$, $\Gamma.A_1.\ldots.A_k$ or $\Gamma.\Delta$
+  for an object $X$ in $\Ob_{n+k}\cC$ with $ft^kX=\Gamma$ and call it a
+  \emph{context extension of $\Gamma$ of length $k$}. We shall
+  also write $p_{(A_1,\ldots,A_k)}$, $p_{A_1.\ldots.A_k}$ or $p_\Delta$ for the
+  composition of the basic dependent projections
+  $p_{\Gamma.A_1.\ldots.A_i}$, with $i$
+  ranging from $1$ to $k$, and the resulting map will be called a \emph{dependent
+  projection}. In the case where $k=1$, $p_{A_1}=p_A$ corresponds to a basic
+  dependent projection and the context extension of $\Gamma$ will be
+  \emph{simple}, while if $k=0$ we have $p=\Id_{\Gamma}$ and then the context
+  extension will be \emph{trivial}. Greek letters shall be
+  used to indicate context extensions of arbitrary length, while Latin ones will
+  be reserved to simple extensions.
+\end{rmk}
 
 This also tells us how to think about contextual categories: pulling back along
 a dependent projection corresponds to substituting variables, while a choice of
