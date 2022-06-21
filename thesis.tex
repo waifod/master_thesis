@@ -268,15 +268,17 @@ contextual category $Syn(T)$ explicitly modeling it as we will show.
   \emph{dependent projection}. In the case where $k=1$, $p_{A_1}$ corresponds to
   a basic dependent projection and the context extension of $\Gamma$ will be
   \emph{simple}, while if $k=0$ we have $p=\Id_{\Gamma}$ and then the context
-  extension will be \emph{trivial}. Greek letters shall be
-  used to indicate context extensions of arbitrary length, while Latin ones will
-  be reserved to simple extensions.
+  extension will be \emph{trivial}. We shall also write $1_\Delta$,
+  $1_{A_1.\ldots.A_k}$, $1_{A_k}$ and anything in between for
+  $1_{\Gamma.\Delta}$, depending on what we want to emphasize. Greek letters
+  shall be used to indicate context extensions of arbitrary length, while Latin
+  ones will be reserved to simple extensions.
 
   Continuing, given a dependent projection $p_{A_1.\ldots.A_k}=p_\Theta$ as
   above and a context morphism $f\colon\Delta\rightarrow\Gamma$, we define
-  inductively $\Delta.f^*A_1.\ldots.f^*A_k=\Delta.f^*\Theta$ and
-  $q(f,A_1.\ldots.A_k)=q(f,\Theta)$ by looking at the pasting of pullback
-  squares
+  inductively $f^*(\Gamma.\Theta)=\Delta.f^*\Theta=\Delta.f^*A_1.\ldots.f^*A_k$
+  and $q(f,\Gamma.\Theta)=q(f,\Theta)=q(f,A_1.\ldots.A_k)$ by looking at the
+  pasting of pullback squares
   \[\begin{tikzcd}
     {\Delta.f^*A_1.\ldots.f^*A_k} & {\Delta.f^*A_1.\ldots.f^*A_{k-1}} & \cdots & {\Delta.f^*A_1} & \Delta \\
     {\Gamma.A_1.\ldots.A_k} & {\Gamma.A_1.\ldots.A_{k-1}} & \cdots & {\Gamma.A_1} & \Gamma
@@ -298,7 +300,8 @@ contextual category $Syn(T)$ explicitly modeling it as we will show.
   where
   $q(f,A_1.\ldots.A_k)=q(q(f,A_1),A_2.\ldots.A_k)=q(q(f,A_1.\ldots.A_{k-1}),A_k)$.
   As usual, if $k=0$ we have $q(f,\Theta)=f$, $f^*(\Gamma.\Theta)=\Gamma$, while
-  for $k=1$ we have $q(f,A_1)=q(f,\Gamma.A_1)$, $\Delta.f^*A_1=f^*(\Gamma.A_1)$.
+  for $k=1$ we have $q(f,A_1)=q(f,\Gamma.A_1)$, $\Delta.f^*A_1=f^*(\Gamma.A_1)$
+  agreeing with the base structure of $\cC$.
 
   Finally, given a section $a\colon\Gamma\rightarrow\Gamma.A$ and a context
   morphism $f\colon\Delta\rightarrow\Gamma$, we also want to specify $f^*a$,
@@ -488,8 +491,8 @@ earlier. Our definitions shall be taken from 1211, 1808.
   we expressed, from which they then construct a map $\app_{A,B}$ as the
   composite
   \begin{align*}
-    q(q(p_{\Pi(A,B)}\cdot & p_{p^*_{\Pi(A,B)}A},A),B)\cdot \\
-    app(&(1_{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A},p_{p^*_{\Pi(A,B)}A})),
+    q(p_{\Pi(A,B)}\cdot & p_{p^*_{\Pi(A,B)}A},A.B)\cdot \\
+    \app_{A,B}(&(1_{p^*_{\Pi(A,B)}A},p_{p^*_{\Pi(A,B)}A}),
     (1_{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A},q(p_{\Pi(A,B)},A)) \\
         &\colon\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A\rightarrow\Gamma.A.B,
   \end{align*}
@@ -549,6 +552,46 @@ earlier. Our definitions shall be taken from 1211, 1808.
   \end{tikzcd}\]
 \end{rmk}
 
+\begin{construction}
+  Let $\cC$ be a contextual category with a $\Pi$-type structure,
+  $f\colon\Gamma.A.B\rightarrow\Gamma.A.B'$ a morphism over
+  $\Gamma.A$. We want to construct a morphism
+  $\Gamma.\Pi(A,f)\colon\Gamma.\Pi(A,B)\rightarrow\Gamma.\Pi(A,B')$ modeling the
+  postcomposition by $f$.
+
+  We do so by looking at the commutative diagram
+  \[\begin{tikzcd}[column sep=large]
+    {\Gamma.\Pi(A,B\Psi).p^*_{\Pi(A,B)}A} && {\Gamma.A.B} \\
+                                          &
+    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.p^*_{\Pi(A,B)}B'} & {\Gamma.A.B'} \\
+    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.A}
+    \arrow["{q(p_{\Pi(A,B)},A)}"', from=3-2, to=3-3]
+    \arrow["{p_{B'}}"', from=2-3, to=3-3]
+    \arrow["{q(p_{\Pi(A,B)},A.B')}"', from=2-2, to=2-3]
+    \arrow["{p_{p^*_{\Pi(A,B)}B'}}", from=2-2, to=3-2]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow["f"', from=1-3, to=2-3]
+    \arrow["{p_B}", curve={height=-36pt}, from=1-3, to=3-3]
+    \arrow["{\app_{A,B}}", from=1-1, to=1-3]
+    \arrow["{(1_{p^*_{\Pi(A,B)}A},f\cdot\app_{A,B})}"{pos=1}, from=1-1, to=2-2, dotted]
+  \end{tikzcd}\]
+  and then applying $\lambda_{p^*_{\Pi(A,B)}A,p^*_{\Pi(A,B)}B'}$ to the map
+  given by the universal property of the pullback, which provides us with the
+  section
+  \[\lambda_{p^*_{\Pi(A,B)}A,p^*_{\Pi(A,B)}B'}
+  (1_{p^*_{\Pi(A,B)}A},
+  f\cdot\app_{A,B})\colon
+  \Gamma.\Pi(A,B)\rightarrow
+  \Gamma.\Pi(A,B).\Pi(A,B')\]
+  All we have to do now is postcompose with
+  $q(p_{\Pi(A,B)},\Pi(A,B'))$.
+\end{construction}
+
+\begin{rmk}
+  The previous construction is such that $\Gamma.\Pi(A,1_B)=1_{\Pi(A,B)}$ for
+  every context $\Gamma.A.B$ in $\cC$ if and only if the $\Pi$-structure
+  satisfies the $\Pi_\eta$-rule.
+\end{rmk}
 
 \section{Structures on Iterated Context Extensions}
 
@@ -892,35 +935,6 @@ We are now ready to extend the $\Pi$-structure.
   compatible with context substitution.
 \end{proof}
 
-\begin{construction}
-  Given a map $f\colon\Gamma.\Delta.\Psi\rightarrow\Gamma.\Delta.\Theta$ over
-  $\Gamma.\Delta$, we shall construct a map
-  $\Gamma.\Pi(\Delta,f)\colon\Gamma.\Pi(\Delta,\Psi)\rightarrow\Gamma.\Pi(\Delta,\Theta)$
-  over $\Gamma$ in the second argument of $\Pi$ corresponding to postcomposition
-  by $f$.
-
-  We do so by looking at the commutative diagram
-  \[\begin{tikzcd}
-    {\Gamma.\Pi(\Delta,p^*_\Delta\Psi).p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta} && {\Gamma.\Delta.p^*_\Delta\Psi} \\
-    & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi).\Delta.\Theta} & {\Gamma.\Delta.\Theta} \\
-    & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi).p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta} & {\Gamma.\Delta}
-    \arrow["{q(p_{\Pi(\Delta,p^*_\Delta\Psi)},\Delta)}"', from=3-2, to=3-3]
-    \arrow["{p_\Psi}"', from=2-3, to=3-3]
-    \arrow["{q(q(p_{\Pi(\Delta,p^*_\Delta\Psi)},\Delta),\Theta)}", from=2-2, to=2-3]
-    \arrow["{p_{p^*_{p^*_\Delta\Theta}\Psi}}", from=2-2, to=3-2]
-    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
-    \arrow["f", from=1-3, to=2-3]
-    \arrow["{p_{p^*_\Delta\Psi}}", curve={height=-24pt}, from=1-3, to=3-3]
-    \arrow["{\app_{\Delta,p^*_\Delta\Psi}}", from=1-1, to=1-3]
-    \arrow["{(1_{p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta},f\cdot
-    \app_{\Delta,p^*_\Delta\Psi})}"{pos=1}, from=1-1, to=2-2, dotted]
-  \end{tikzcd}\]
-  and then applying $\lambda_{\Delta,\Theta}$ to the map given by the universal
-  property of the pullback, which gives us a section
-  $\lambda_{\Delta,\Theta}(1_{p^*_{\Pi(\Delta,p^*_\Delta\Psi)}\Delta},f\cdot\app_{\Delta,p^*_\Delta\Psi})\colon\Gamma.\Pi(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pi(\Delta,p^*_\Delta\Psi).\Pi(\Delta,\Theta)$.
-  All we have to do now is post-compose with
-  $q(p_{\Pi(\Delta,\Psi)},\Pi(\Delta,\Theta))$.
-\end{construction}
 
 We shall also need the following lemma in the proof of FINAL THEOREM.
 
@@ -2330,8 +2344,8 @@ and therefore should be expanded.
 \begin{lem}
   For any dependent projection $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ in
   a categorical model of type theory $\cC$, the pullback functor
-  $p_\Delta^*\colon\cC\downarrow\Gamma\rightarrow\cC\downarrow\Gamma.\Delta$
-  admits a right adjoint.
+  $p_\Delta^*\colon\cC(\Gamma)\rightarrow\cC(\Gamma.\Delta)$ between the fibrant
+  slices admits a right adjoint.
 \end{lem}
 \begin{proof}
   Let's set $(p_\Delta)_*(\Gamma.\Delta.\Theta)=\Gamma.\Pi(\Delta.\Theta)$. Our
@@ -2358,7 +2372,7 @@ and therefore should be expanded.
   $\eta_{\Gamma.\Psi}\colon\Gamma.\Psi\rightarrow\Gamma.\Pi(\Delta,p^*_{\Delta}\Psi)$.
 
   Let's consider the commutative square
-  \[\begin{tikzcd}
+  \[\begin{tikzcd}[column sep=huge]
     {\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)} & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi)} \\
     {\Gamma.\Psi} & \Gamma
     \arrow["{p_{\Pi(\Delta,p^*_\Delta\Psi)}}"', from=1-1, to=2-1]
@@ -2368,7 +2382,8 @@ and therefore should be expanded.
   \end{tikzcd}\]
   where the map $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))$ acts by forgetting the
   term of $\Psi$. If we can provide a section of the vertical map on the left
-  pointing to the term $\lambda a.const_a$, we are done as we can then compose
+  corresponding to the sequence $[\Gamma,y:\Psi,\lambda(x:\Delta).y]$ we are
+  done as we can then compose
   it with $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))$ to get our unit.
   
   We construct it by looking at the commutative square
@@ -2384,7 +2399,7 @@ and therefore should be expanded.
     \arrow[curve={height=-12pt}, Rightarrow, no head, from=1-1, to=2-3]
     \arrow["{(1_\Psi,1_\Psi)}"{description}, dotted, from=1-1, to=2-2]
   \end{tikzcd},\]
-  which gives us the term $[\Gamma,x:\Psi,x:\Psi]$. Then, we pull back along
+  corresponding to the sequence $[\Gamma,x:\Psi,x:\Psi]$. Then, we pull back along
   $p_{p^*_\Psi\Delta}$, getting a section
   $p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi)\colon\Gamma.\Psi.p^*_\Psi\Delta\rightarrow\Gamma.\Psi.p^*_\Psi\Delta.p^*_{p^*_\Psi\Delta}\Psi$.
   We then apply $\lambda$, which gives us a section
@@ -2440,34 +2455,6 @@ We are finally ready to prove the result leading to the final one we want.
   fibrations and weak equivalences, we can apply \ref{7616} as the hypothesis
   are satisfied by \ref{lccfc}.
 \end{proof}
-
-\section{What the hell are these things?}
-
-In the proofs various objects are mentioned. Here we explain the constructions.
-
-First of all, in 1211, Section B.1.1, to specify what it means to have a $\Pi$
-structure they define the $app$ map taking sections
-$a\colon\Gamma\rightarrow\Gamma.A$ and $f\colon\Gamma\rightarrow\Gamma.\Pi(A,B)$
-of the obvious dependent projections and returning a section
-$app(f,a)\colon\Gamma\rightarrow\Gamma.A.B$ such that $p_b\cdot app(f,a)=a$.
-This tells us that $app(f,a):B(a)$ is essentially what we get when we apply the
-map $f:\Pi(A,B)$ to $a:A$.
-
-Also, given a section $b\colon\Gamma.A\rightarrow\Gamma.A.B$ we have a map
-$\lambda(b)\colon\Gamma\rightarrow\Gamma.\Pi(A,B)$. This turns a term $b:B(x)$
-dependent on $x:A$ into a map $\lambda(b)\Pi(A,B)$ associating $x:A$ to $b$ and
-indeed we have that $app(\lambda(b),a)=b\cdot a$.
-
-The context substitution properties are as expected.
-
-We want to describe explicitly what the map
-$app_{A,B}\colon\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A\rightarrow\Gamma.A.B$ is.
-Intuitively, it should model the map sending a term $f:\Pi(A,B)$ and a term
-$a:A$ to $f(a):B$. To construct it we first need to specify a few things.
-
-MOVE IT
-
-
 
 
 \section{Pushforward}
