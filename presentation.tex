@@ -1,0 +1,151 @@
+\documentclass{beamer}
+
+%\usepackage{tikz-cd}
+\usepackage{quiver}
+\usepackage{amsthm}
+%\setbeamertemplate{theorems}[numbered]
+
+
+
+%Information to be included in the title page:
+\title{Localizations of Models of Dependent Type Theory}
+\author{Matteo Durante \\ Advisor: Hoang-Kim Nguyen \\ Coadvisor: Denis-Charles
+Cisinski}
+\institute{Regensburg University}
+
+\DeclareMathOperator{\Id}{\mathsf{Id}}
+\DeclareMathOperator{\sfC}{\mathsf{C}}
+\DeclareMathOperator{\N}{\mathbb{N}}
+\DeclareMathOperator{\cC}{\mathcal{C}}
+\DeclareMathOperator{\Ob}{\mathsf{Ob}}
+\DeclareMathOperator{\ft}{ft}
+\DeclareMathOperator{\app}{\mathsf{app}}
+
+
+\begin{document}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{defn}{Definition}[section]
+\newtheorem{conj}{Conjecture}[section]
+\newtheorem{lem}{Lemma}[section]
+
+\frame{\titlepage}
+
+\begin{frame}
+  \frametitle{Introduction}
+
+  Dependent Type Theory is a candidate foundation for mathematics. Why is it
+  interesting?
+
+  \begin{enumerate}
+    \item closely linked to \emph{computations} and \emph{computer science},
+      thereby allowing the creation of programming languages and software tools
+      like Coq, Lean and Agda to formalize and check mathematical reasoning and
+      even automatically generate some tedious bits;
+    \item sufficient by itself, unlike Set Theory and Propositional Calculus;
+    \item \emph{proofs} are internal objects;
+    \item allows a more nuanced concept of \emph{equality}, where a \emph{proof of
+      equality} expresses in what sense two objects are equal.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Dependent Type Theory}
+  Dependent Type Theory talks about \emph{dependent types $A$ over contexts
+  $\Gamma$} and their \emph{terms $x:A$}.
+
+  It gives \emph{structural rules} to specify how to substitute variables and
+  \emph{logical rules} to construct new types and their terms
+  from old and how to carry out computations
+  through extra logical structure, like \emph{$\Sigma$-types}
+  $\Sigma(A,B)$ (corresponding to coproducts), \emph{$\Pi$-types} $\Pi(A,B)$
+  (also called \emph{function types}) and \emph{$\Id$-types} $\Id_A$.
+
+  Problem: providing a model of Dependent Type Theory is hard because we have to
+  deal with a lot of bureaucracy, especially from the structural rules.
+
+  Solution: defining an algebraic model so that we can build new models from
+  them.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contextual Categories}
+
+  \begin{definition}
+    A category $\sfC$ with:
+    \begin{enumerate}
+      \item a grading on objects $\Ob\sfC=\coprod_{n\in\N}\Ob_n\sfC$, where
+        $\Ob_0\sfC$ has only one element, which is the terminal;
+      \item a map $\ft_n\colon\Ob_{n+1}\sfC\rightarrow\Ob_n\sfC$ for each
+        $n\in\N$;
+      \item for each object $\Gamma.A\in\Ob_{n+1}\sfC$ a dependent projection
+        $p_A\colon\Gamma.A\rightarrow\ft(\Gamma.A)=\Gamma$;
+      \item for each morphism $f\colon\Delta\rightarrow\Gamma$ and
+        $p_A\colon\Gamma.A\rightarrow\Gamma$, a functorial choice of a pullback
+        square;
+        \[\begin{tikzcd}[ampersand replacement=\&]
+          {\Delta.f^*A} \& {\Gamma.A} \\
+          \Delta \& \Gamma
+          \arrow["{p_A}", from=1-2, to=2-2]
+          \arrow["{p_{f^*A}}"', from=1-1, to=2-1]
+          \arrow["{q(f,A)}", from=1-1, to=1-2]
+          \arrow["f"', from=2-1, to=2-2]
+        \end{tikzcd}\]
+    \end{enumerate}
+  \end{definition}
+  
+  This only models the structural rules.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Extra Structure}
+  Modeling logical rules requires some extra structure. $\Id$-types require:
+  \begin{enumerate}
+    \item from $\Gamma.A$ an object $\Gamma.A.A.\Id_A$;
+    \item \ldots
+  \end{enumerate}
+  $\Pi$-types require:
+  \begin{enumerate}
+    \item from $\Gamma.A.B$ an object $\Gamma.\Pi(A,B)$;
+    \item a map $\app_{A,B}\colon\Gamma.\Pi(A,B).A\rightarrow\Gamma.A.B$
+      modeling function application;
+    \item \ldots
+  \end{enumerate}
+  The data needed to model the logical rules we mentioned are
+  called $\Sigma$-structure, $\Id$-structure and $\Pi$-structure.
+
+  \begin{defn}
+    A \emph{categorical model of type theory} is a contextual category $\sfC$
+    with $\Sigma$, $\Id$ and $\Pi$ structure. The associated category with
+    structure-preserving functors as maps is $Cxl_{\Sigma,\Id,\Pi}$.
+  \end{defn}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Internal Languages Conjecture}
+
+  Dependent type theories also have models provided by homotopy theory, like
+  the category of $\infty$-groupoids. In
+  particular, it has been conjectured that Dependent Type Theory is the
+  \emph{internal language of $\infty$-categories}.
+
+  \begin{conj}
+    The horizontal maps by quasi-localizing contextual categories induce
+    equivalences of $\infty$-categories.
+    \[\begin{tikzcd}[ampersand replacement=\&]
+      {Cxl_{\Sigma,1,\Id,\Pi}} \& {LCCC_\infty} \\
+      {Cxl_{\Sigma,1,\Id}} \& {Lex_{\infty}}
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=1-2, to=2-2]
+      \arrow[from=2-1, to=2-2]
+      \arrow[from=1-1, to=1-2]
+    \end{tikzcd}\]
+  \end{conj}
+
+  A proof by Uemura and Nguyen has recently been published on arxiv and one
+  hopes to build from this an equivalence between $Cxl_{HoTT}$ and
+  $ElTopos_\infty$.
+\end{frame}
+
+\end{document}
+
