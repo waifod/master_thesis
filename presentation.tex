@@ -54,10 +54,10 @@ Cisinski}
   Dependent Type Theory talks about \emph{dependent types $A$ over contexts
   $\Gamma$} and their \emph{terms $x:A$}.
 
-  It gives \emph{structural rules} to specify how to substitute variables and
+  It gives \emph{structural rules} to specify how to work with variables and
   \emph{logical rules} to construct new types and their terms
   from old and how to carry out computations
-  through extra logical structure, like \emph{$\Sigma$-types}
+  through extra structure, like \emph{$\Sigma$-types}
   $\Sigma(A,B)$ (corresponding to coproducts), \emph{$\Pi$-types} $\Pi(A,B)$
   (also called \emph{function types}) and \emph{$\Id$-types} $\Id_A$.
 
@@ -78,8 +78,8 @@ Cisinski}
         $\Ob_0\sfC$ has only one element, which is the terminal;
       \item a map $\ft_n\colon\Ob_{n+1}\sfC\rightarrow\Ob_n\sfC$ for each
         $n\in\N$;
-      \item for each object $\Gamma.A\in\Ob_{n+1}\sfC$ a dependent projection
-        $p_A\colon\Gamma.A\rightarrow\ft(\Gamma.A)=\Gamma$;
+      \item for each object $\Gamma.A\in\Ob_{n+1}\sfC$ a \emph{basic dependent
+        projection} $p_A\colon\Gamma.A\rightarrow\ft(\Gamma.A)=\Gamma$;
       \item for each morphism $f\colon\Delta\rightarrow\Gamma$ and
         $p_A\colon\Gamma.A\rightarrow\Gamma$, a functorial choice of a pullback
         square;
@@ -122,15 +122,33 @@ Cisinski}
 \end{frame}
 
 \begin{frame}
+  \frametitle{Bi-Invertibility}
+
+  In Dependent Type Theory, the right notion of invertible map to consider is
+  the one of \emph{bi-invertible map}. This is modeled in contextual categories
+  with $\Id$-structure by the following definition.
+  \begin{defn}
+    Under the above setting, a map $f\colon\Gamma\rightarrow\Delta$ is
+    \emph{bi-invertible} if we can give:
+    \begin{enumerate}
+      \item maps $g_1\colon\Delta\rightarrow\Gamma$,
+        $\eta\colon\Gamma\rightarrow\Gamma.(1_\Gamma,g_1f)^*\Id_\Gamma$;
+      \item maps $,g_2\colon\Delta\rightarrow\Gamma$,
+        $\epsilon\colon\Delta\rightarrow\Delta.(1_\Delta,fg_2)^*\Id_\Delta$.
+    \end{enumerate}
+  \end{defn}
+  Essentially $\eta$, $\epsilon$ are showing that the maps coincide pointwise.
+  Assuming function extensionality, this tells us that $f$ is invertible.
+
+  Question: what happens if we localize a contextual category at bi-invertible
+  maps?
+\end{frame}
+
+\begin{frame}
   \frametitle{Internal Languages Conjecture}
 
-  Dependent type theories also have models provided by homotopy theory, like
-  the category of $\infty$-groupoids. In
-  particular, it has been conjectured that Dependent Type Theory is the
-  \emph{internal language of $\infty$-categories}.
-
-  \begin{conj}
-    The horizontal maps by quasi-localizing contextual categories induce
+  \begin{conj}[Kapulkin-Lumsdaine, 2016]
+    The horizontal maps, given by simplicial localization, induce
     equivalences of $\infty$-categories.
     \[\begin{tikzcd}[ampersand replacement=\&]
       {Cxl_{\Sigma,1,\Id,\Pi}} \& {LCCC_\infty} \\
@@ -142,9 +160,48 @@ Cisinski}
     \end{tikzcd}\]
   \end{conj}
 
-  A proof by Uemura and Nguyen has recently been published on arxiv and one
-  hopes to build from this an equivalence between $Cxl_{HoTT}$ and
+  A proof by Uemura and Nguyen has recently become available on arxiv and one
+  hopes to extend this to an equivalence between $Cxl_{HoTT}$ and
   $ElTopos_\infty$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fibrational Structure}
+  
+  \begin{defn}
+    An $\infty$-category with weak equivalences and fibrations is a triple
+    $(\cC,W,Fib)$ where:
+    \begin{enumerate}
+      \item $\cC$ is an $\infty$-category and $W$, $Fib$ are subcategories;
+      \item $\cC$ has a terminal object;
+      \item $W$ has the 2-out-of-3 property;
+      \item the pullback of a map in $Fib$ (or $W\cap Fib$) with a fibrant
+        codomain still lies in $Fib$ (respectively, $W\cap Fib$);
+      \item every morphism can be factored as a morphism in $W$ followed by one
+        in $Fib$.
+    \end{enumerate}
+  \end{defn}
+
+  \begin{thm}
+    A contextual category with $\Sigma$ and $\Id$ structures defines a
+    fibration category, where weak
+    equivalences are bi-invertible maps and
+    fibrations are maps isomorphic to  dependent projections.
+  \end{thm}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Localizing Fibrational Categories}
+
+  \begin{thm}
+    The localization at weak equivalences of an $\infty$-category with weak
+    equivalences and fibrations $\cC$ is a finitely complete $\infty$-category
+    $L(\cC)$.
+  \end{thm}
+
+  \begin{thm}
+    Given an $\infty$-category with weak equivalences and fibrations $\cC$,
+  \end{thm}
 \end{frame}
 
 \end{document}
