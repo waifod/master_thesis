@@ -1,8 +1,10 @@
 \documentclass{beamer}
+\usetheme{Copenhagen}
 
 %\usepackage{tikz-cd}
 \usepackage{quiver}
 \usepackage{amsthm}
+\usepackage[utf8]{inputenc}
 %\setbeamertemplate{theorems}[numbered]
 
 
@@ -17,14 +19,21 @@ Cisinski}
 \DeclareMathOperator{\sfC}{\mathsf{C}}
 \DeclareMathOperator{\N}{\mathbb{N}}
 \DeclareMathOperator{\cC}{\mathcal{C}}
+\DeclareMathOperator{\cxl}{CxlCat}
+\DeclareMathOperator{\HoTT}{HoTT}
+\DeclareMathOperator{\ElTopos}{ElTopos}
+\DeclareMathOperator{\lexi}{Lex_\infty}
+\DeclareMathOperator{\lccci}{LCCC_\infty}
 \DeclareMathOperator{\Ob}{\mathsf{Ob}}
 \DeclareMathOperator{\ft}{ft}
 \DeclareMathOperator{\app}{\mathsf{app}}
+\DeclareMathOperator{\nat}{Nat}
 
 
 \begin{document}
 
 \newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}{Proposition}[section]
 \newtheorem{defn}{Definition}[section]
 \newtheorem{conj}{Conjecture}[section]
 \newtheorem{lem}{Lemma}[section]
@@ -38,34 +47,33 @@ Cisinski}
   interesting?
 
   \begin{enumerate}
-    \item closely linked to \emph{computations} and \emph{computer science},
-      thereby allowing the creation of programming languages and software tools
-      like Coq, Lean and Agda to formalize and check mathematical reasoning and
-      even automatically generate some tedious bits;
-    \item sufficient by itself, unlike Set Theory and Propositional Calculus;
-    \item \emph{proofs} are internal objects;
-    \item allows a more nuanced concept of \emph{equality}, where a \emph{proof of
-      equality} expresses in what sense two objects are equal.
+    \item Closely linked to \emph{computations} and \emph{computer science},
+      makes proof assistants possible
+    \item Sufficient by itself, unlike Set Theory and Propositional Calculus
+    \item \emph{Proofs} are internal objects
+    \item Better concept of \emph{equality}
   \end{enumerate}
 \end{frame}
 
 \begin{frame}
   \frametitle{Dependent Type Theory}
-  Dependent Type Theory talks about \emph{dependent types $A$ over contexts
+  About \emph{dependent types $A$ over contexts
   $\Gamma$} and their \emph{terms $x:A$}.
 
-  It gives \emph{structural rules} to specify how to work with variables and
-  \emph{logical rules} to construct new types and their terms
-  from old and how to carry out computations
-  through extra structure, like \emph{$\Sigma$-types}
-  $\Sigma(A,B)$ (corresponding to coproducts), \emph{$\Pi$-types} $\Pi(A,B)$
-  (also called \emph{function types}) and \emph{$\Id$-types} $\Id_A$.
+  \emph{Structural rules}: how to work with variables.
 
-  Problem: providing a model of Dependent Type Theory is hard because we have to
-  deal with a lot of bureaucracy, especially from the structural rules.
+  \emph{Logical rules}: construct new types and their terms from old, carry out
+  computations; provide \emph{$\Sigma$-types} $\Sigma(A,B)$, \emph{$\Pi$-types}
+  $\Pi(A,B)$ and \emph{$\Id$-types} $\Id_A$, \emph{natural-numbers-type}
+  $\nat$...
 
-  Solution: defining an algebraic model so that we can build new models from
-  them.
+  \begin{block}{Problem}
+    Providing a model of Dependent Type Theory is hard.
+  \end{block}
+
+  \begin{block}{Solution}
+    Defining a class of algebraic models.
+  \end{block}
 \end{frame}
 
 \begin{frame}
@@ -74,15 +82,12 @@ Cisinski}
   \begin{definition}
     A category $\sfC$ with:
     \begin{enumerate}
-      \item a grading on objects $\Ob\sfC=\coprod_{n\in\N}\Ob_n\sfC$, where
-        $\Ob_0\sfC$ has only one element, which is the terminal;
+      \item a grading on objects $\Ob\sfC=\coprod_{n\in\N}\Ob_n\sfC$;
       \item a map $\ft_n\colon\Ob_{n+1}\sfC\rightarrow\Ob_n\sfC$ for each
         $n\in\N$;
-      \item for each object $\Gamma.A\in\Ob_{n+1}\sfC$ a \emph{basic dependent
-        projection} $p_A\colon\Gamma.A\rightarrow\ft(\Gamma.A)=\Gamma$;
-      \item for each morphism $f\colon\Delta\rightarrow\Gamma$ and
-        $p_A\colon\Gamma.A\rightarrow\Gamma$, a functorial choice of a pullback
-        square;
+      \item \emph{basic dependent projections}
+        $p_A\colon\Gamma.A\rightarrow\ft_n(\Gamma.A)=\Gamma$;
+      \item a functorial choice of a pullback squares
         \[\begin{tikzcd}[ampersand replacement=\&]
           {\Delta.f^*A} \& {\Gamma.A} \\
           \Delta \& \Gamma
@@ -90,69 +95,57 @@ Cisinski}
           \arrow["{p_{f^*A}}"', from=1-1, to=2-1]
           \arrow["{q(f,A)}", from=1-1, to=1-2]
           \arrow["f"', from=2-1, to=2-2]
-        \end{tikzcd}\]
+        \end{tikzcd};\]
+      \item ...
     \end{enumerate}
   \end{definition}
-  
-  This only models the structural rules.
 \end{frame}
 
 \begin{frame}
   \frametitle{Extra Structure}
-  Modeling logical rules requires some extra structure. $\Id$-types require:
-  \begin{enumerate}
-    \item from $\Gamma.A$ an object $\Gamma.A.A.\Id_A$;
-    \item \ldots
-  \end{enumerate}
-  $\Pi$-types require:
-  \begin{enumerate}
-    \item from $\Gamma.A.B$ an object $\Gamma.\Pi(A,B)$;
-    \item a map $\app_{A,B}\colon\Gamma.\Pi(A,B).A\rightarrow\Gamma.A.B$
-      modeling function application;
-    \item \ldots
-  \end{enumerate}
-  The data needed to model the logical rules we mentioned are
-  called $\Sigma$-structure, $\Id$-structure and $\Pi$-structure.
+  Modeling logical rules requires some extra structure.
+
+  $\Id$-types require from $\Gamma.A$ an object $\Gamma.A.A.\Id_A$...
+  
+  $\Pi$-types require from $\Gamma.A.B$ an object $\Gamma.\Pi(A,B)$, a map
+  $\app_{A,B}\colon\Gamma.\Pi(A,B).A\rightarrow\Gamma.A.B$...
 
   \begin{defn}
     A \emph{categorical model of type theory} is a contextual category $\sfC$
-    with $\Sigma$, $\Id$ and $\Pi$ structure. The associated category with
-    structure-preserving functors as maps is $Cxl_{\Sigma,\Id,\Pi}$.
+    with $\Sigma$, $\Id$ and $\Pi$ structures.
   \end{defn}
 \end{frame}
 
 \begin{frame}
   \frametitle{Bi-Invertibility}
 
-  In Dependent Type Theory, the right notion of invertible map to consider is
-  the one of \emph{bi-invertible map}. This is modeled in contextual categories
-  with $\Id$-structure by the following definition.
   \begin{defn}
-    Under the above setting, a map $f\colon\Gamma\rightarrow\Delta$ is
+    In a contextual category with $\Id$-structure $\sfC$, a map
+    $f\colon\Gamma\rightarrow\Delta$ is
     \emph{bi-invertible} if we can give:
     \begin{enumerate}
       \item maps $g_1\colon\Delta\rightarrow\Gamma$,
         $\eta\colon\Gamma\rightarrow\Gamma.(1_\Gamma,g_1f)^*\Id_\Gamma$;
-      \item maps $,g_2\colon\Delta\rightarrow\Gamma$,
+      \item maps $g_2\colon\Delta\rightarrow\Gamma$,
         $\epsilon\colon\Delta\rightarrow\Delta.(1_\Delta,fg_2)^*\Id_\Delta$.
     \end{enumerate}
   \end{defn}
-  Essentially $\eta$, $\epsilon$ are showing that the maps coincide pointwise.
-  Assuming function extensionality, this tells us that $f$ is invertible.
 
-  Question: what happens if we localize a contextual category at bi-invertible
-  maps?
+  \begin{block}{Question}
+    What happens if we localize a contextual category at bi-invertible
+    maps?
+  \end{block}
 \end{frame}
 
 \begin{frame}
   \frametitle{Internal Languages Conjecture}
 
-  \begin{conj}[Kapulkin-Lumsdaine, 2016]
+  \begin{conj}[Kapulkin-Lumsdaine 2016]
     The horizontal maps, given by simplicial localization, induce
     equivalences of $\infty$-categories.
     \[\begin{tikzcd}[ampersand replacement=\&]
-      {Cxl_{\Sigma,1,\Id,\Pi}} \& {LCCC_\infty} \\
-      {Cxl_{\Sigma,1,\Id}} \& {Lex_{\infty}}
+      {\cxl_{\Sigma,1,\Id,\Pi}} \& {\lccci} \\
+      {\cxl_{\Sigma,1,\Id}} \& {\lexi}
       \arrow[from=1-1, to=2-1]
       \arrow[from=1-2, to=2-2]
       \arrow[from=2-1, to=2-2]
@@ -160,9 +153,10 @@ Cisinski}
     \end{tikzcd}\]
   \end{conj}
 
-  A proof by Uemura and Nguyen has recently become available on arxiv and one
-  hopes to extend this to an equivalence between $Cxl_{HoTT}$ and
-  $ElTopos_\infty$.
+  Proof by Nguyen-Uemura has recently become available on arxiv.
+
+  One hopes to extend this to an equivalence between $\cxl_{\HoTT}$ and
+  $\ElTopos_\infty$.
 \end{frame}
 
 \begin{frame}
@@ -171,18 +165,21 @@ Cisinski}
   \begin{defn}
     An $\infty$-category with weak equivalences and fibrations is a triple
     $(\cC,W,Fib)$ where:
-    \begin{enumerate}
-      \item $\cC$ is an $\infty$-category and $W$, $Fib$ are subcategories;
-      \item $\cC$ has a terminal object;
-      \item $W$ has the 2-out-of-3 property;
-      \item the pullback of a map in $Fib$ (or $W\cap Fib$) with a fibrant
-        codomain still lies in $Fib$ (respectively, $W\cap Fib$);
-      \item every morphism can be factored as a morphism in $W$ followed by one
-        in $Fib$.
-    \end{enumerate}
+
+    ...some conditions similar to fibration categories but weaker, with
+    $\cC$ an $\infty$-category.
+    %\begin{enumerate}
+    %  \item $\cC$ is an $\infty$-category and $W$, $Fib$ are subcategories;
+    %  \item $\cC$ has a terminal object;
+    %  \item $W$ has the 2-out-of-3 property;
+    %  \item the pullback of a map in $Fib$ (or $W\cap Fib$) with a fibrant
+    %    codomain still lies in $Fib$ (respectively, $W\cap Fib$);
+    %  \item every morphism can be factored as a morphism in $W$ followed by one
+    %    in $Fib$.
+    %\end{enumerate}
   \end{defn}
 
-  \begin{thm}
+  \begin{thm}[Avigad-Kapulkin-Lumsdaine 2013]
     A contextual category with $\Sigma$ and $\Id$ structures defines a
     fibration category, where weak
     equivalences are bi-invertible maps and
@@ -193,15 +190,40 @@ Cisinski}
 \begin{frame}
   \frametitle{Localizing Fibrational Categories}
 
-  \begin{thm}
+  \begin{prop}[Cisinski]
     The localization at weak equivalences of an $\infty$-category with weak
-    equivalences and fibrations $\cC$ is a finitely complete $\infty$-category
-    $L(\cC)$.
-  \end{thm}
+    equivalences and fibrations $\cC$ is a finitely complete $\infty$-category.
+  \end{prop}
 
-  \begin{thm}
-    Given an $\infty$-category with weak equivalences and fibrations $\cC$,
+  \begin{prop}[Cisinski]
+    Given an $\infty$-category with weak equivalences and fibrations $\cC$, if
+    for every fibration $f\colon x\rightarrow y$ between fibrant objects the
+    pullback functor between fibrant slices $f^*\colon\cC(y)\rightarrow\cC(x)$
+    has a right adjoint preserving trivial fibrations, then $L(\cC)$ is locally
+    cartesian closed.
+  \end{prop}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Localizations of Models are Cartesian Closed}
+
+  \begin{lem}[Kapulkin 2015]
+    Given a categorical model of type theory $\sfC$ and a dependent projection
+    $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$, there exists a right adjoint
+    to $p_\Delta^*$ given by
+    \[(p_\Delta)^*(\Gamma.\Delta.\Theta)=\Gamma.\Pi(\Delta,\Theta)\]
+    preserving the fibrational structure. $\app_{\Delta,\Theta}$ induces the
+    counit.
+  \end{lem}
+
+  \begin{thm}[Kapulkin 2015]
+    Given a categorical model of type theory $\sfC$, its localization
+    $L(\sfC)$ is a locally cartesian closed $\infty$-category.
   \end{thm}
+\end{frame}
+
+\begin{frame}
+  \center{Thank you for your attention!}
 \end{frame}
 
 \end{document}
