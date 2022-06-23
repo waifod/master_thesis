@@ -11,8 +11,7 @@
 
 %Information to be included in the title page:
 \title{Localizations of Models of Dependent Type Theory}
-\author{Matteo Durante \\ Advisor: Hoang-Kim Nguyen \\ Coadvisor: Denis-Charles
-Cisinski}
+\author{Author: Matteo Durante \quad\quad\quad Advisor: Hoang-Kim Nguyen}
 \institute{Regensburg University}
 
 \DeclareMathOperator{\Id}{\mathsf{Id}}
@@ -32,6 +31,8 @@ Cisinski}
 
 \begin{document}
 
+\theoremstyle{plain}
+
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{prop}{Proposition}[section]
 \newtheorem{defn}{Definition}[section]
@@ -49,7 +50,7 @@ Cisinski}
   \begin{enumerate}
     \item Closely linked to \emph{computations} and \emph{computer science},
       makes proof assistants possible
-    \item Sufficient by itself, unlike Set Theory and Propositional Calculus
+    \item Enough by itself, unlike Set Theory and Propositional Calculus
     \item \emph{Proofs} are internal objects
     \item Better concept of \emph{equality}
   \end{enumerate}
@@ -57,15 +58,26 @@ Cisinski}
 
 \begin{frame}
   \frametitle{Dependent Type Theory}
-  About \emph{dependent types $A$ over contexts
-  $\Gamma$} and their \emph{terms $x:A$}.
+  
+  \begin{block}{About}
+    \emph{Dependent types $A$ over contexts
+    $\Gamma$} and their \emph{terms $x:A$}.
+  \end{block}
 
-  \emph{Structural rules}: how to work with variables.
+  \begin{block}{Structural Rules}
+    How to work with variables.
+  \end{block}
 
-  \emph{Logical rules}: construct new types and their terms from old, carry out
-  computations; provide \emph{$\Sigma$-types} $\Sigma(A,B)$, \emph{$\Pi$-types}
-  $\Pi(A,B)$ and \emph{$\Id$-types} $\Id_A$, \emph{natural-numbers-type}
-  $\nat$...
+  \begin{block}{Logical Rules}
+    Construct new types and their terms from old, carry out
+    computations, provide \emph{$\Sigma$-types} $\Sigma(A,B)$, \emph{$\Pi$-types}
+    $\Pi(A,B)$ and \emph{$\Id$-types} $\Id_A$, \emph{natural-numbers-type}
+    $\nat$...
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Models}
 
   \begin{block}{Problem}
     Providing a model of Dependent Type Theory is hard.
@@ -77,9 +89,9 @@ Cisinski}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Contextual Categories}
+  \frametitle{Modeling Structural Rules}
 
-  \begin{definition}
+  \begin{definition}[Contextual Categories]
     A category $\sfC$ with:
     \begin{enumerate}
       \item a grading on objects $\Ob\sfC=\coprod_{n\in\N}\Ob_n\sfC$;
@@ -102,13 +114,14 @@ Cisinski}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Extra Structure}
-  Modeling logical rules requires some extra structure.
+  \frametitle{Modeling Logical Rules}
 
-  $\Id$-types require from $\Gamma.A$ an object $\Gamma.A.A.\Id_A$...
-  
-  $\Pi$-types require from $\Gamma.A.B$ an object $\Gamma.\Pi(A,B)$, a map
-  $\app_{A,B}\colon\Gamma.\Pi(A,B).A\rightarrow\Gamma.A.B$...
+  \begin{block}{Extra Structure}
+    $\Id$-types require from $\Gamma.A$ an object $\Gamma.A.A.\Id_A$...
+    
+    $\Pi$-types require from $\Gamma.A.B$ an object $\Gamma.\Pi(A,B)$, a map
+    $\app_{A,B}\colon\Gamma.\Pi(A,B).A\rightarrow\Gamma.A.B$...
+  \end{block}
 
   \begin{defn}
     A \emph{categorical model of type theory} is a contextual category $\sfC$
@@ -119,21 +132,19 @@ Cisinski}
 \begin{frame}
   \frametitle{Bi-Invertibility}
 
-  \begin{defn}
-    In a contextual category with $\Id$-structure $\sfC$, a map
-    $f\colon\Gamma\rightarrow\Delta$ is
-    \emph{bi-invertible} if we can give:
+  \begin{defn}[Bi-Invertible Map]
+    A map $f\colon\Gamma\rightarrow\Delta$ in a contextual category with
+    $\Id$-structure $\sfC$ for which we can provide:
     \begin{enumerate}
       \item maps $g_1\colon\Delta\rightarrow\Gamma$,
-        $\eta\colon\Gamma\rightarrow\Gamma.(1_\Gamma,g_1f)^*\Id_\Gamma$;
+        $\eta\colon\Gamma\rightarrow\Gamma.(1_\Gamma,g_1\cdot f)^*\Id_\Gamma$;
       \item maps $g_2\colon\Delta\rightarrow\Gamma$,
-        $\epsilon\colon\Delta\rightarrow\Delta.(1_\Delta,fg_2)^*\Id_\Delta$.
+        $\epsilon\colon\Delta\rightarrow\Delta.(1_\Delta,f\cdot g_2)^*\Id_\Delta$.
     \end{enumerate}
   \end{defn}
 
   \begin{block}{Question}
-    What happens if we localize a contextual category at bi-invertible
-    maps?
+    What if we localize at bi-invertible maps?
   \end{block}
 \end{frame}
 
@@ -162,9 +173,8 @@ Cisinski}
 \begin{frame}
   \frametitle{Fibrational Structure}
   
-  \begin{defn}
-    An $\infty$-category with weak equivalences and fibrations is a triple
-    $(\cC,W,Fib)$ where:
+  \begin{defn}[$\infty$-Categories with Weak Equivalences and Fibrations]
+    A triple $(\cC,W,Fib)$ where:
 
     ...some conditions similar to fibration categories but weaker, with
     $\cC$ an $\infty$-category.
@@ -207,19 +217,18 @@ Cisinski}
 \begin{frame}
   \frametitle{Localizations of Models are Cartesian Closed}
 
-  \begin{lem}[Kapulkin 2015]
-    Given a categorical model of type theory $\sfC$ and a dependent projection
-    $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$, there exists a right adjoint
-    to $p_\Delta^*$ given by
-    \[(p_\Delta)^*(\Gamma.\Delta.\Theta)=\Gamma.\Pi(\Delta,\Theta)\]
-    preserving the fibrational structure. $\app_{\Delta,\Theta}$ induces the
-    counit.
-  \end{lem}
-
   \begin{thm}[Kapulkin 2015]
     Given a categorical model of type theory $\sfC$, its localization
     $L(\sfC)$ is a locally cartesian closed $\infty$-category.
   \end{thm}
+  \begin{proof}
+    For any dependent projection $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$,
+    there exists a right adjoint to
+    $p_\Delta^*\colon\sfC(\Gamma)\rightarrow\sfC(\Gamma.\Delta)$ given by
+    \[(p_\Delta)_*(\Gamma.\Delta.\Theta)=\Gamma.\Pi(\Delta,\Theta)\]
+    with counit induced by $\app_{\Delta,\Theta}$. It preserves the fibrational
+    structure.
+  \end{proof}
 \end{frame}
 
 \begin{frame}
