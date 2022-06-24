@@ -535,11 +535,14 @@ earlier. Our definitions shall be taken from 1211, 1808.
     \arrow[dotted, from=1-1, to=2-2]
   \end{tikzcd}.\]
   The map $\app$ with the arguments specified above then provides a map
-  $\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A\rightarrow\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.p^*_{p^*_{\Pi(A,B)}A}A.stuffB$.
+  $\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A\rightarrow
+  \Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.p^*_{p^*_{\Pi(A,B)}A}A.^*_{p^*_{\Pi(A,B)}A}B$.
   What follows is the other map appearing in the definition of $\app_{A,B}$.
   \[\begin{tikzcd}
-    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B}A})^*A.stuffB} && {\Gamma.A.B} \\
-    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B}A})^*A} && {\Gamma.A} \\
+    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot
+    p_{p^*_{\Pi(A,B}A})^*A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*B}
+    && {\Gamma.A.B} \\
+    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*A} && {\Gamma.A} \\
     {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.\Pi(A,B)} & \Gamma
     \arrow["{q(p_{\Pi(A,B)}\cdot p_{p^*(A,B)A},A.B)}", from=1-1, to=1-3]
     \arrow["{p_B}", from=1-3, to=2-3]
@@ -547,8 +550,8 @@ earlier. Our definitions shall be taken from 1211, 1808.
     \arrow["{p_{\Pi(A,B)}}"', from=3-2, to=3-3]
     \arrow["{p_{p^*_{\Pi(A,B)}A}}"', from=3-1, to=3-2]
     \arrow["{q(p_{\Pi(A,B)}\cdot p_{p^*(A,B)A},A)}"', from=2-1, to=2-3]
-    \arrow["{p_{(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B}A})^*A}}"', from=2-1, to=3-1]
-    \arrow["{p_{stuffB}}"', from=1-1, to=2-1]
+    \arrow["{p_{(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*A}}"', from=2-1, to=3-1]
+    \arrow["{p_{(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*B}}"', from=1-1, to=2-1]
   \end{tikzcd}\]
 \end{rmk}
 
@@ -561,7 +564,7 @@ earlier. Our definitions shall be taken from 1211, 1808.
 
   We do so by looking at the commutative diagram
   \[\begin{tikzcd}[column sep=large]
-    {\Gamma.\Pi(A,B\Psi).p^*_{\Pi(A,B)}A} && {\Gamma.A.B} \\
+    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} && {\Gamma.A.B} \\
                                           &
     {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.p^*_{\Pi(A,B)}B'} & {\Gamma.A.B'} \\
     & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.A}
@@ -582,7 +585,7 @@ earlier. Our definitions shall be taken from 1211, 1808.
   (1_{p^*_{\Pi(A,B)}A},
   f\cdot\app_{A,B})\colon
   \Gamma.\Pi(A,B)\rightarrow
-  \Gamma.\Pi(A,B).\Pi(A,B')\]
+  \Gamma.\Pi(A,B).\Pi(A,B').\]
   All we have to do now is postcompose with
   $q(p_{\Pi(A,B)},\Pi(A,B'))$.
 \end{construction}
@@ -2411,7 +2414,8 @@ and therefore should be expanded.
 
   We then define our lift $\tilde{f}$ as the composite
   $\Gamma.\Pi(\Delta,f)\cdot\eta_{\Gamma.\Psi}$. The commutativity of the above
-  triangle follows by $\beta$-reduction, while the uniqueness of the $\tilde{f}$
+  triangle follows by $\beta$-reduction \wfd{(WE DO NOT HAVE IT!!!)}, while the
+  uniqueness of the $\tilde{f}$
   giving the desired factorization by the $\Pi_\eta$-property. \wfd{(PLEASE
   PROVE IT)}
 
