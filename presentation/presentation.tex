@@ -4,6 +4,7 @@
 %\usepackage{tikz-cd}
 \usepackage{quiver}
 \usepackage{amsthm}
+\usepackage{eucal}
 \usepackage[utf8]{inputenc}
 %\setbeamertemplate{theorems}[numbered]
 
@@ -42,33 +43,33 @@
 \frame{\titlepage}
 
 \begin{frame}
-  \frametitle{Introduction}
+  \frametitle{Objective}
 
-  Dependent Type Theory is a candidate foundation for mathematics. Why is it
-  interesting?
+  A modern proof of the following theorem.
 
-  \begin{enumerate}
-    \item Closely linked to \emph{computations} and \emph{computer science},
-      makes proof assistants possible
-    \item Enough by itself, unlike Set Theory and Propositional Calculus
-    \item \emph{Proofs} are internal objects
-    \item Better treatment of \emph{equality}
-  \end{enumerate}
+  \begin{thm}[Kapulkin 2015]
+    Given a categorical model of type theory $\sfC$, its $\infty$-categorical
+    localization $L(\sfC)$ is a locally cartesian closed $\infty$-category.
+  \end{thm}
 \end{frame}
 
 \begin{frame}
   \frametitle{Dependent Type Theory}
   
-  \begin{block}{About}
+  \begin{block}{What}
+    A theory of computations and a foundation of mathematics.
+  \end{block}
+
+  \begin{block}{Objects}
     \emph{Dependent types $A$ over contexts
     $\Gamma$} and their \emph{terms $x:A$}.
   \end{block}
 
-  \begin{block}{Structural Rules}
+  \begin{block}{Structural rules}
     How to work with variables.
   \end{block}
 
-  \begin{block}{Logical Rules}
+  \begin{block}{Logical rules}
     Construct new types and their terms from old, carry out
     computations, provide \emph{$\Sigma$-types} $\Sigma(A,B)$, \emph{$\Pi$-types}
     $\Pi(A,B)$ and \emph{$\Id$-types} $\Id_A$, \emph{natural-numbers-type}
@@ -89,9 +90,9 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Modeling Structural Rules}
+  \frametitle{Modeling structural rules}
 
-  \begin{definition}[Contextual Categories]
+  \begin{definition}[contextual categories]
     A category $\sfC$ with:
     \begin{enumerate}
       \item a grading on objects $\Ob\sfC=\coprod_{n\in\N}\Ob_n\sfC$;
@@ -99,7 +100,7 @@
         $n\in\N$;
       \item \emph{basic dependent projections}
         $p_A\colon\Gamma.A\rightarrow\ft_n(\Gamma.A)=\Gamma$;
-      \item a functorial choice of a pullback squares
+      \item a functorial choice of pullback squares
         \[\begin{tikzcd}[ampersand replacement=\&]
           {\Delta.f^*A} \& {\Gamma.A} \\
           \Delta \& \Gamma
@@ -114,9 +115,9 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Modeling Logical Rules}
+  \frametitle{Modeling logical rules}
 
-  \begin{block}{Extra Structure}
+  \begin{block}{Extra structure}
     $\Id$-types require from $\Gamma.A$ an object $\Gamma.A.A.\Id_A$...
     
     $\Pi$-types require from $\Gamma.A.B$ an object $\Gamma.\Pi(A,B)$, a map
@@ -130,9 +131,9 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Bi-Invertibility}
+  \frametitle{Bi-invertibility}
 
-  \begin{defn}[Bi-Invertible Map]
+  \begin{defn}[Bi-invertible map]
     A map $f\colon\Gamma\rightarrow\Delta$ in a contextual category with
     $\Id$-structure $\sfC$ for which we can provide:
     \begin{enumerate}
@@ -146,6 +147,75 @@
   \begin{block}{Question}
     What if we localize at bi-invertible maps?
   \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fibrational structure}
+  
+  \begin{defn}[$\infty$-categories with weak equivalences and fibrations]
+    A triple $(\cC,W,Fib)$ where:
+
+    ...a weakening of the definition of fibration categories, with $\cC$ an
+    $\infty$-category.
+  \end{defn}
+
+  \begin{thm}[Avigad-Kapulkin-Lumsdaine 2013]
+    A contextual category with $\Sigma$ and $\Id$ structures defines a
+    fibration category, where weak
+    equivalences are bi-invertible maps and
+    fibrations are maps isomorphic to  dependent projections.
+  \end{thm}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Localizing fibrational categories}
+
+  \begin{prop}[Cisinski]
+    The localization at weak equivalences of an $\infty$-category with weak
+    equivalences and fibrations $\cC$ is a finitely complete $\infty$-category.
+  \end{prop}
+
+  \begin{prop}[Cisinski]
+    Given an $\infty$-category with weak equivalences and fibrations $\cC$, if
+    for every fibration $f\colon x\rightarrow y$ between fibrant objects the
+    pullback functor between fibrant slices $f^*\colon\cC(y)\rightarrow\cC(x)$
+    has a right adjoint preserving trivial fibrations, then $L(\cC)$ is locally
+    cartesian closed.
+  \end{prop}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Localizations of models are Cartesian closed}
+
+  \begin{thm}[Kapulkin 2015]
+    Given a categorical model of type theory $\sfC$, its localization
+    $L(\sfC)$ is a locally cartesian closed $\infty$-category.
+  \end{thm}
+  \begin{proof}
+    For any basic dependent projection $p_A\colon\Gamma.A\rightarrow\Gamma$,
+    there exists a right adjoint to
+    $p_A^*\colon\sfC(\Gamma)\rightarrow\sfC(\Gamma.A)$ given by
+    \[(p_A)_*(\Gamma.A.\Theta)=\Gamma.\Pi(A,\Theta)\]
+    with counit induced by $\app_{A,\Theta}$. It preserves the fibrational
+    structure.
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \center{Thank you for your attention!}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Why is Dependent Type Theory cool?}
+
+  \begin{enumerate}
+    \item Closely linked to \emph{computations} and \emph{computer science},
+      makes proof assistants possible
+    \item Enough by itself as a foundation, unlike Set Theory or Propositional
+      Calculus
+    \item \emph{Proofs} are internal objects
+    \item Better treatment of \emph{equality}
+  \end{enumerate}
 \end{frame}
 
 \begin{frame}
@@ -164,75 +234,10 @@
     \end{tikzcd}\]
   \end{conj}
 
-  Proof by Nguyen-Uemura has recently become available on arxiv.
+  A proof by Nguyen-Uemura has recently become available on arxiv.
 
   One hopes to extend this to an equivalence between $\cxl_{\HoTT}$ and
   $\ElTopos_\infty$.
-\end{frame}
-
-\begin{frame}
-  \frametitle{Fibrational Structure}
-  
-  \begin{defn}[$\infty$-Categories with Weak Equivalences and Fibrations]
-    A triple $(\cC,W,Fib)$ where:
-
-    ...some conditions similar to fibration categories but weaker, with
-    $\cC$ an $\infty$-category.
-    %\begin{enumerate}
-    %  \item $\cC$ is an $\infty$-category and $W$, $Fib$ are subcategories;
-    %  \item $\cC$ has a terminal object;
-    %  \item $W$ has the 2-out-of-3 property;
-    %  \item the pullback of a map in $Fib$ (or $W\cap Fib$) with a fibrant
-    %    codomain still lies in $Fib$ (respectively, $W\cap Fib$);
-    %  \item every morphism can be factored as a morphism in $W$ followed by one
-    %    in $Fib$.
-    %\end{enumerate}
-  \end{defn}
-
-  \begin{thm}[Avigad-Kapulkin-Lumsdaine 2013]
-    A contextual category with $\Sigma$ and $\Id$ structures defines a
-    fibration category, where weak
-    equivalences are bi-invertible maps and
-    fibrations are maps isomorphic to  dependent projections.
-  \end{thm}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Localizing Fibrational Categories}
-
-  \begin{prop}[Cisinski]
-    The localization at weak equivalences of an $\infty$-category with weak
-    equivalences and fibrations $\cC$ is a finitely complete $\infty$-category.
-  \end{prop}
-
-  \begin{prop}[Cisinski]
-    Given an $\infty$-category with weak equivalences and fibrations $\cC$, if
-    for every fibration $f\colon x\rightarrow y$ between fibrant objects the
-    pullback functor between fibrant slices $f^*\colon\cC(y)\rightarrow\cC(x)$
-    has a right adjoint preserving trivial fibrations, then $L(\cC)$ is locally
-    cartesian closed.
-  \end{prop}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Localizations of Models are Cartesian Closed}
-
-  \begin{thm}[Kapulkin 2015]
-    Given a categorical model of type theory $\sfC$, its localization
-    $L(\sfC)$ is a locally cartesian closed $\infty$-category.
-  \end{thm}
-  \begin{proof}
-    For any dependent projection $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$,
-    there exists a right adjoint to
-    $p_\Delta^*\colon\sfC(\Gamma)\rightarrow\sfC(\Gamma.\Delta)$ given by
-    \[(p_\Delta)_*(\Gamma.\Delta.\Theta)=\Gamma.\Pi(\Delta,\Theta)\]
-    with counit induced by $\app_{\Delta,\Theta}$. It preserves the fibrational
-    structure.
-  \end{proof}
-\end{frame}
-
-\begin{frame}
-  \center{Thank you for your attention!}
 \end{frame}
 
 \end{document}

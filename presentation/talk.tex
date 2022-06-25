@@ -1,0 +1,99 @@
+\documentclass{minimal}
+
+%\usepackage{tikz-cd}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+%\setbeamertemplate{theorems}[numbered]
+
+
+\newcommand{\Id}{Id}
+
+
+\begin{document}
+The objective of this thesis is to provide a more modern proof of a result by
+Kapulkin stating that the quasi-categorical localization of a categorical model
+of type theory is a locally cartesian closed $\infty$-category. Henceforth,
+I will say ``localization'' to refer to the $\infty$-categorical one.
+
+Dependent type theory talks about dependent types $A$ over contexts $\Gamma$ and
+their terms. It provides structural rules telling us that we can
+substitute definitionally equal variables and types. There are then logical
+rules specifying how to construct the objects we talk about, in particular
+$\Sigma$-types $\Sigma(A,B)$, that is the type of pairs $(a,b)$ of elements,
+$\Pi$-types $\Pi(A,B)$, the type of maps from $A$ to $B$, and $\Id$-types
+$\Id_A$, the type of proof of equalities between terms of $A$.
+
+To study a theory, logicians work with its models, but here it's hard:
+structural rules require lots of checks. A solution is defining a class of
+algebraic models with simple axioms.
+
+Such a class is given by contextual categories, categories specifying for each
+object a length and a father function to reduce them. Each object $\Gamma.A$ has
+a map to its reduction $p_A$ which we call a basic dependent projection. The
+notation specifies that $\Gamma.A$ extends $\Gamma$ by 1 and $p_A$ wants to
+express that $A$ is a dependent type in context $\Gamma$. Also, we want
+functorial pullbacks of basic dependent projections because they
+describe substitutions, which are strictly associative. This structure models
+the structural rules.
+
+To model the logical rules we need some extra structure. For $\Id$-types, for
+$\Gamma.A$ we need an identity object, for $\Pi$-types we want a hom object,
+a map describing function evaluation and so on. What we are interested in are
+categorical models of type theory, that is contextual categories $C$ with
+$\Sigma$, $\Id$ and $\Pi$ structures.
+
+We want to talk about localizations. The right notion of invertibility in
+dependent type theory is bi-invertibility and for a map
+$f\colon\Gamma\rightarrow\Delta$ in a contextual category to model it it needs
+maps $g_1,g_2$ in the opposite direction and maps $\eta,\epsilon$ which tell us
+that they are pointwise left and right inverse to $f$. Thinking about types as
+spaces, as suggested by the groupoidal model, identity types are path spaces,
+hence $\eta$ and $\epsilon$ are more like homotopies. What if we localize at
+bi-invertible maps? To answer that question we need some tools.
+
+An $\infty$-category $C$ with weak equivalences $W$ and fibrations $Fib$ is a
+triple generalizing the 1-categorical notion of fibration category. Essentially,
+we have some stability under pullbacks of fibrations, trivial fibrations, the
+factorization condition and other things. A contextual category with $\Sigma$
+and $\Id$ structures is one if we take bi-invertible maps as weak equivalences
+and maps isomorphic to dependent projections as fibrations, so this also applies
+to categorical models of type theory.
+
+Cisinski's theory of localizations tells us that localizing such an
+$\infty$-category at weak equivalences always gives us a finitely complete
+$\infty$-category, but also if there is a right adjoint to the pullback functor
+induced by a fibration $f$ from x to y, both fibrant, on the fibrant slices they
+define and the right adjoint preserves trivial fibrations, then the localization
+is also locally cartesian.
+
+We now state the theorem we mentioned at the beginning. Given a categorical
+model of type theory $C$, its localization is a locally cartesian closed
+$\infty$-category. It is enough to construct a right adjoint to the pullback
+functor induced by $p_A$ from $\Gamma.A$ to $\Gamma$, which we do by sending
+$\Gamma.A.\Theta$ to $\Gamma.\Pi(A,\Theta)$ and using the function evaluation
+map as a counit. Here the $\Pi$-object on the right
+is defined by extending the basic $\Pi$-structure.
+
+Why is dependent type theory interesting? It's a foundation for mathematics
+which has become of interest because it is closely linked to computer science
+and it allows the creation of proof assistants like Agda and Lean, that is
+software which allows us to formalize mathematical reasoning, easily check
+proofs and even write some tedious bits automatically. There are already ongoing
+projects to formalize all of mathematics, like the math library. Secondly, this
+theory merges the two strata of classical foundations into one, generalizing
+both sets and propositions through types. Thirdly, we can reason about proofs
+within the theory, without a metatheory. Finally, equality is more structured:
+only objects of the same type can be compared and a proof of equality specifies
+in what sense two objects are equal.
+
+Why is this interesting? Because it goes towards using $\infty$-categories to
+reason about dependent types and, viceversa, using dependent types to reason
+about $\infty$-categories, something which folkloristically we know to be
+doable. In 2016, Kapulkin and Lumsdaine conjectured that the functor induced by
+localizing contextual categories modeling some dependent type theories
+would induce equivalences between their $\infty$-categories of contextual
+categories and $\infty$-categories of finitely complete or locally cartesian
+closed $\infty$-categories, an equivalence which hopefully will extend to
+Homotopy Type Theory and Elementary $\infty$-toposes.
+
+\end{document}
