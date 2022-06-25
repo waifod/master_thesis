@@ -1,25 +1,23 @@
-\documentclass[a4paper,fontsize=12pt,titlepage,oneside,openany]{scrbook}
-\usepackage{settings}
-\usepackage{commands}
+\documentclass[a4paper,fontsize=12pt,titlepage,twoside]{scrbook}
+\usepackage{packages/quiver}
+\usepackage{packages/settings}
+\usepackage{packages/commands}
 
 \begin{document}
-  \include{chapters/titlepage}
-  \include{chapters/introduction}
-  \include{chapters/acknowledgements}
+  \include{parts/titlepage}
+  \include{parts/introduction}
+  \include{parts/acknowledgements}
 
-  \newpage
+  %\newpage
   \tableofcontents
-  \newpage
+  %\newpage
 
-  \include{chapters/chapter01}
-  \include{chapters/chapter02}
-  \include{chapters/chapter03}
-  \include{chapters/chapter04}
-  \include{chapters/chapter05}
-  \include{chapters/chapter06}
+  \include{parts/chapter01}
+  \include{parts/chapter02}
+  \include{parts/chapter03}
+  \include{parts/chapter04}
+  %\include{parts/chapter05}
 
-	\newpage
-	\bibliographystyle{alpha}
-	\addcontentsline{toc}{chapter}{References}
-	\bibliography{Bibliography}
+	\addcontentsline{toc}{chapter}{Bibliography}
+  \printbibliography
 \end{document}

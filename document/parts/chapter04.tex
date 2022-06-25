@@ -1,5 +1,4 @@
-\chapter*{Categorical Models of Type Theory as Locally Cartesian Closed Fibration Categories}
-\addcontentsline{toc}{chapter}{Locally Cartesian Closed Fibration Categories}
+\chapter{Locally Cartesian Closed Fibration Categories}
 
 To apply the results from the previous section, we first need to specify a
 fibrational structure on categorical models of type theory.
@@ -20,8 +19,13 @@ fibrational structure on categorical models of type theory.
 \begin{rmk}
   Seeing $\cP$, $W$ and $Fib$ in the above definition as $\infty$-categories, we
   notice that the triple has canonically the structure of an $\infty$-category
-  with weak equivalences and fibrations with fibrant objects, hence we shall
-  adopt the conventions we used in that context.
+  of fibrant objects, hence we shall adopt the conventions we used in that
+  context.
+\end{rmk}
+
+\begin{rmk}
+  Our definition differs slightly from Browsn's (REF) because he only asks for
+  $W$ to be closed under the 2-out-of-3 property, BUT...
 \end{rmk}
 
 Now we have to specify the classes of maps which will provide the desired
@@ -29,46 +33,36 @@ structure.
 
 \begin{defn}
   Given a categorical model of type theory $\cC$, a morphism
-  $f\Gamma.A\rightarrow\Gamma.B$ over $\Gamma$ is \emph{simply bi-invertible
-  over $\Gamma$} if there exist:
+  $f\colon\Gamma.A\rightarrow\Gamma.B$ over $\Gamma$ is \emph{simply
+    bi-invertible over $\Gamma$} if there exist:
   \begin{enumerate}
-    \item a morphism$g_1\colon\Gamma.B\rightarrow\Gamma.A$;
-    \item a section $\eta\colon\Gamma.A\rightarrow\Gamma.(1_{\Gamma.A},g_1f)^*\Id_{A}$
-      of the canonical projection
-      $p_{(1_{\Gamma.A},g_1f)^*\Id_{A}}\colon
-      \Gamma.(1_{\Gamma.A},g_1f)^*\Id_{A}\rightarrow\Gamma.A$;
+    \item a morphism $g_1\colon\Gamma.B\rightarrow\Gamma.A$;
+    \item a section
+      $\eta\colon\Gamma\rightarrow\Gamma.(1_{\Gamma.A},g_1f)^*\Id_{A}$;
     \item a morphism $g_2\colon\Gamma.B\rightarrow\Gamma.A$;
     \item a section
-      $\epsilon\colon\Gamma.A\rightarrow\Gamma.(1_{\Gamma.A},fg_2)^*\Id_{A}$ of
-      the canonical projection
-      $p_{(1_{\Gamma.A},fg_2)^*\Id_{A}}\colon
-      \Gamma.(1_{\Gamma.A},fg_2)^*\Id_{A}\rightarrow\Gamma.A$.
+      $\epsilon\colon\Gamma\rightarrow\Gamma.(1_{\Gamma.A},fg_2)^*\Id_{A}$.
   \end{enumerate}
 \end{defn}
 
-We now generalize the above definition to general context extensions by working
-as usual with $\cC^{cxt}$.
+We now generalize the above definition to arbitrary context extensions by
+working as usual with $\cC^{cxt}$.
 
 \begin{defn}
   Given a categorical model of type theory $\cC$, a morphism
   $f\colon\Gamma.\Delta\rightarrow\Gamma.\Theta$ over $\Gamma$ is
-  \emph{bi-invertible over $\Gamma$} if it is as a morphism in $\cC^{cxt}$. It
+  \emph{bi-invertible over $\Gamma$} if it is as a morphism between the two
+  seens as simple context extensions of in $\cC^{cxt}$. It
   is simply called \emph{bi-invertible} when $\Gamma$ is the terminal
   context.
 \end{defn}
 
-\begin{defn}
-  A fibration category $\cP$ is \emph{locally cartesian closed} if, for any
-  fibration $p\colon a\rightarrow b$, the pullback functor
-  $p^*\colon\cP\downarrow b\rightarrow\cP\downarrow a$ admits a right adjoint
-  $p_*$ which is an exact functor.
-\end{defn}
-
 \begin{rmk}
-  Our interest in bi-invertible morphisms stems from the fact that they model
-  the right notion of invertible map in dependent type theory: indeed, from the
+  Our interest in simply bi-invertible morphisms stems from the fact that they
+  model the right notion of invertible map in dependent type theory: indeed,
+  from the
   required data for a simply bi-invertible map $f$ over $\Gamma$ we can provide
-  a section $\Gamma\rightarrow\Gamma. isHIso(f)$ of the dependent projection
+  a section $\Gamma\rightarrow\Gamma.isHIso(f)$ of the dependent projection
   $p_{\Gamma.isHIso(f)}\colon\Gamma.isHIso(f)\rightarrow\Gamma$ REFS, which is
   the translation into the language of contextual category of the notion of
   bi-invertible map in type theory MORE REFS.
@@ -83,10 +77,18 @@ as usual with $\cC^{cxt}$.
   isomorphism and viceversa, hence they are closely related.
 \end{rmk}
 
+\begin{defn}
+  A fibration category $\cP$ is \emph{locally cartesian closed} if, for any
+  fibration $p\colon a\rightarrow b$, the pullback functor
+  $p^*\colon\cP\downarrow b\rightarrow\cP\downarrow a$ admits a right adjoint
+  $p_*$ which is an exact functor.
+\end{defn}
+
 \begin{prop}\wfd{(REFS, 1507, AKL15, 1610.00037)}
-  A categorical model of type theory $\cC$ carries the structure of a fibration
-  category where maps isomorphic to dependent projections are the fibrations and
-  bi-invertible ones are the weak equivalences.
+  A categorical model of type theory $\cC$ which also has a $\Nat$ and a $1$
+  structure carries the structure of a fibration category, where maps isomorphic
+  to dependent projections are the fibrations and bi-invertible ones are the
+  weak equivalences.
 \end{prop}
 
 \wfd{(CAREFUL: AS STATED IN AKL15, WE ALSO NEED THE UNIT TYPE AND OTHER STUFF!
@@ -95,15 +97,12 @@ BUT KAPULKIN DOESN'T TAKE IT IN 1507)}
 The above result can be however generalized.
 
 \begin{prop}
-  A contextual category with an $\Id$-structure $\cC$ carries the
+  A contextual category with $\Sigma$ and $\Id$ structures $\cC$ carries the
   structure of a fibration category similar to the one above.
 \end{prop}
 \begin{proof}
-  As noted in AKL15, 1507 and 1610.00037, the previous result does not depend on a
-  $\Sigma$-structure because all we need is that every dependent projection is
-  isomorphic to a basic one, which we have by working with context extensions in
-  $\cC^{cxt}$. Indeed, after constructing the fibrational structure there, we may
-  lift it back through the equivalence of categories $\cC\rightarrow\cC^{cxt}$.
+  It suffices to note that at no point the proof by Lumsdaine depends on the
+  other structures.
 \end{proof}
 
 How does Kapulkin prove that a categorical model of Type Theory is a locally
@@ -138,7 +137,7 @@ and therefore should be expanded.
   FOLLOWING RESULT SHOWS THAT THIS ASSIGNMENT IS ALSO FUNCTORIAL.)}
 \end{defn}
 
-\begin{lem}
+\begin{lem}[\cite{Kap15}]
   For any dependent projection $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ in
   a categorical model of type theory $\cC$, the pullback functor
   $p_\Delta^*\colon\cC(\Gamma)\rightarrow\cC(\Gamma.\Delta)$ between the fibrant
@@ -218,9 +217,8 @@ and therefore should be expanded.
 \end{proof}
 
 We know that every fibration in $\cC$ is isomorphic to a composite of dependent
-projections , so this tells us that every fibration induces an adjunction
-between fibrational slices \wfd{(YOU SHOULD DEFINE THEM, MAYBE AS INFTY-CATS OF
-FIBRANT OBJECTS INDUCED FROM THE SLICES)}.
+projections, so this tells us that every fibration induces an adjunction
+between fibrational slices.
 
 We are finally ready to prove the result leading to the final one we want.
 

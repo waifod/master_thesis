@@ -23,7 +23,6 @@
 \usepackage{booktabs}
 \usepackage{MnSymbol}
 \usepackage{emptypage}
-\usepackage{quiver}
 \usepackage{hyperref}
 \usepackage{pict2e}
 \usepackage{eucal}
@@ -54,3 +53,7 @@
 \newtheorem{exmp}[thm]{Example}
 \newtheorem{construction}[thm]{Construction}
 \newtheorem{notation}[thm]{Notation}
+
+\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{.5em}{\thmnote{#3 }#1}
+\theoremstyle{named}
+\newtheorem*{named}{Conjecture}
