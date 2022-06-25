@@ -6,6 +6,8 @@ materials/
 *fdb_latexmk
 *fls
 *log
+*mps
+*svg
 *nav
 *out
 *run.xml
