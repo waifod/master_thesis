@@ -1,0 +1,490 @@
+\chapter*{Contextual Categories}
+\addcontentsline{toc}{chapter}{Contextual Categories}
+
+There are many models of dependent type theory from category theory in
+the literature, like \emph{category with attributes}, \emph{categories with
+families} and \emph{comprehension categories}, which are
+fairly similar among them, as shown by the adjunctions between their categories.
+Here we shall work with \emph{contextual
+categories}, which were first explored by Cartmell and Streicher in
+\wfd{(INSERT REFS)} and later by Voevodsky, under the name $C$\emph{-systems},
+in \wfd{(MORE REFS)}. Lumsdaine in his phd thesis claims that contextual
+categories are the right framework PROP 1.2.5.
+
+\begin{defn}
+  A \emph{contextual category} $\cC$ is a category with the following data:
+  \begin{enumerate}
+    \item a small category, which we also call $\cC$, with a grading on objects
+      $\Ob\cC=\coprod_{n\in\bbN}\Ob_n\cC$;
+    \item an object $*\in\Ob_0\cC$;
+    \item for each $n\in\bbN$, a map
+      $ft_n\colon\Ob_{n+1}\cC\rightarrow\Ob_n\cC$, often simply denoted $ft$;
+    \item for each $n\in\bbN$ and $X\in\Ob_{n+1}\cC$, a map $p_X\colon
+      X\rightarrow ftX$;
+    \item for each $n\in\bbN$, $X\in\Ob_{n+1}\cC$ and $f\colon Y\rightarrow
+      ftX$, an object $f^*X$ and a map $q(f,X)\colon f^*X\rightarrow X$;
+  \end{enumerate}
+  such that:
+  \begin{enumerate}
+    \item $*$ is the unique element of $\Ob_0\cC$;
+    \item $*$ is terminal;
+    \item for each $n$, $X\in\Ob_{n+1}\cC$ and $f\colon Y\rightarrow ftX$, we
+      have $ft f^*X=Y$ and the square
+      \[\begin{tikzcd}
+        {f^*X} & X \\
+        Y & ftX
+        \arrow["f"', from=2-1, to=2-2]
+        \arrow["{p_X}", from=1-2, to=2-2]
+        \arrow["{q(f,X)}", from=1-1, to=1-2]
+        \arrow["{p_{f^*X}}"', from=1-1, to=2-1]
+      \end{tikzcd}\]
+      is a pullback;
+    \item for each $n\in\bbN$, $X\in\Ob_{n+1}\cC$ and pair of maps $f\colon
+      Y\rightarrow ft X$, $g\colon Z\rightarrow Y$, we have $(fg)^*X=g^*f^*X$,
+      $1^*_{ftX}X=X$, $q(fg,X)=q(f,X)\cdot q(g,f^*X)$ and $q(1_{ftX},X)=1_X$.
+  \end{enumerate}
+\end{defn}
+
+\begin{rmk}
+  The last condition in the definition means that our choice of pullbacks is
+  functorial, which allows us to see contextual categories as a strict model of
+  dependent type theory, not requiring keeping track of coherency maps.
+  Other models, like comprehension categories, do not
+  have such requirements, which makes them more general but also
+  interpretation harder, unless they are first strictified, that is replaced by
+  an equivalent strict model of the same kind, like split comprehension
+  categories \wfd{(HOW DO YOU STRICTIFY THEM?)}. Famously, we also have
+  homotopical models of dependent type
+  theories, like tribes and fibration categories \wfd{(REFERENCE)}, whose
+  internal languages are precisely dependent type theories with intensional
+  $\Id$-types and $\Sigma$-types.
+\end{rmk}
+
+A motivating example for contextual categories is the \emph{syntactic category
+of a dependent type theory}, which constructs from a dependent type theory $T$ a
+contextual category $Syn(T)$ explicitly modeling it as we will show.
+
+\begin{construction}
+  REF 1211
+
+  Given a dependent type theory $T$ with the structural rules specified in REFS,
+  its syntactic category $Syn(T)$ has:
+  \begin{enumerate}
+    \item $\Ob_nSyn(T)$ given by contexts $[x_1:A_1,\ldots,x_n:A_n]$ of length
+      $n$, modulo definitional equality and renaming of free variables;
+    \item maps are \emph{context morphisms}, or \emph{substitutions}, modulo
+      definitional equalities and renaming of free variables. This means that a
+      map
+      \[[f]\colon[x_1:A_1,\ldots,x_n:A_n]\rightarrow[y_1:B_1,\ldots,y_m:B_m(y_1,\ldots,y_{m-1})]\]
+      is an equivalence class of sequences of terms $f_1,\ldots,f_m$ such that
+      \begin{align*}
+        x_1:A_1,\ldots,x_n:A_n &\vdash f_1:B_1, \\
+        \vdots & \\
+        x_1:A_1,\ldots,x_n:A_n &\vdash f_m:B_m(f_1,\ldots,f_{m-1}),
+      \end{align*}
+      are all derivable judgements and two such sequences
+      $(f_1,\ldots,f_n),(g_1,\ldots g_n)$ are equivalent if we have
+      \[x_1:A_1,\ldots,x_n:A_n\vdash f_i\equiv g_i\:B_i(f_1,\ldots,f_{i-1})\]
+      for every $i$, where $\equiv$ represents judgemental equality; we shall
+      henceforth write $[f_i]$ for such sequences of terms up to equivalence
+      specifying maps between contexts;
+    \item composition is given by substitution, that is given
+      $[f]\colon\Gamma\rightarrow\Delta$, $[g]\colon\Delta\rightarrow\Theta$ we
+      have a map $[g]\colon\Gamma\rightarrow\Theta$ induced by the same sequence
+      of terms;
+    \item the identity $\Gamma\rightarrow\Gamma$ is given by the variables of
+      $\Gamma$, considered as
+      terms, that is we take the sequence $[x_i]$ given by
+      \begin{align*}
+        x_1:A_1,\ldots,x_n:A_n &\vdash x_1:A_1, \\
+        \vdots & \\
+        x_1:A_1,\ldots,x_n:A_n &\vdash x_n:A_n(x_1,\ldots,x_{n-1});
+      \end{align*}
+    \item the terminal object is the empty context $[]$;
+    \item
+      $ft([x_1:A_1,\ldots,x_{n+1}:A_{n+1}])=[x_1:A_1,\ldots,x_n:A_n]$;
+    \item for $\Gamma=[x_1:A_1,\ldots,x_n:A_{n+1}]$,
+      $p_{\Gamma}\colon\Gamma\rightarrow ft\Gamma$ is the \emph{dependent
+      projection context morphism} $[x_1,\ldots,x_n]$, defined by
+      \begin{align*}
+        x_1:A_1,\ldots,x_{n+1}:A_{n+1} &\vdash x_1:A_1, \\
+        \vdots & \\
+        x_1:A_1,\ldots,x_{n+1}:A_{n+1} &\vdash x_n:A_n(x_1,\ldots,x_n)
+      \end{align*}
+      and thereby simply forgetting the last variable of $\Gamma$;
+    \item given contexts
+      \begin{align*}
+        \Gamma &=[x_1:A_1,\ldots,x_{n+1}:A_{n+1}(x_1,\ldots,x_n)], \\
+        \Delta &=[y_1:B_1,\ldots,y_m:B_m(y_1,\ldots,y_{m-1})]
+      \end{align*}
+      and a map $f=[f_i(y)]\colon\Delta\rightarrow ft\Gamma$ (where $y$ is a
+      vector of variables of length $m$), the pullback $f^*\Gamma$ is the
+      context
+      \[[y_1:B_1,\ldots,y_m:B_m(y_1,\ldots,y_{m-1}),y_{m+1}:A_{n+1}(f_1(y),\ldots,f_n(y))]\]
+      for some new variable $y_{m+1}$, while $q(\Gamma,f)\colon
+      f^*\Gamma\rightarrow\Gamma'$ is specified by $[f_1,\ldots,f_n,y_{m+1}]$.
+  \end{enumerate}
+\end{construction}
+
+\begin{rmk}
+  Given a dependent type theory $T$, the terms $t:A$ of a type over a context
+  $\Gamma$ can be recovered (up to definitional equality) from the syntactic
+  category $Syn(T)$ by looking at sections of the basic dependent projection
+  $p_{[\Gamma,x:A]}\colon[\Gamma,x:A]\rightarrow[\Gamma]$, which indeed act as
+  identities over $\Gamma$ and furthermore specify a term $\Gamma\vdash t:A$.
+  Given the importance of such maps, we shall often simply write ``sections'' to
+  refer to sections of basic dependent projections, without specifying which ones
+  unless it creates ambiguity.
+
+  The above construction also tells us how to think about the other elements in
+  the definition of contextual categories: basic dependent
+  projections $p_B\colon\Gamma.A.B\rightarrow\Gamma.A$ represent dependent
+  types $B(x)$ over $x:A$ in the context $\Gamma$ and pulling back along
+  a dependent projection corresponds to substituting variables, while a choice of
+  a term corresponds to a choice of a section of a basic dependent projection
+  and so on for the other objects in the definition.
+\end{rmk}
+
+\begin{rmk}
+  We shall also make use of some conventions inspired by this construction.
+  Namely, given a contextual category $\cC$ and an object $\Gamma\in\Ob_n\cC$,
+  we shall
+  write $(\Gamma,A_1,\ldots,A_k)$, $\Gamma.A_1.\ldots.A_k$ and $\Gamma.\Delta$
+  interchangeably
+  for an object $X$ in $\Ob_{n+k}\cC$ with $ft^kX=\Gamma$ and call it a
+  \emph{context extension of $\Gamma$ of length $k$}. We shall
+  also write $p_{(A_1,\ldots,A_k)}$, $p_{A_1.\ldots.A_k}$ and $p_\Delta$ for the
+  composition of the basic dependent projections
+  $p_{\Gamma.A_1.\ldots.A_i}$, with $i$
+  ranging from $1$ to $k$, and the resulting map will be called a
+  \emph{dependent projection}. In the case where $k=1$, $p_{A_1}$ corresponds to
+  a basic dependent projection and the context extension of $\Gamma$ will be
+  \emph{simple}, while if $k=0$ we have $p=\Id_{\Gamma}$ and then the context
+  extension will be \emph{trivial}. We shall also write $1_\Delta,
+  1_{A_1.\ldots.A_k},\ldots,1_{A_k}$ for $1_{\Gamma.\Delta}$, depending on what
+  we want to emphasize. Greek letters
+  shall be used to indicate context extensions of arbitrary length, while Latin
+  ones will be reserved to simple extensions.
+
+  Continuing, given a dependent projection $p_{A_1.\ldots.A_k}=p_\Theta$ as
+  above and a context morphism $f\colon\Delta\rightarrow\Gamma$, we define
+  inductively $f^*(\Gamma.\Theta)=\Delta.f^*\Theta=\Delta.f^*A_1.\ldots.f^*A_k$
+  and $q(f,\Gamma.\Theta)=q(f,\Theta)=q(f,A_1.\ldots.A_k)$ by looking at the
+  pasting of pullback squares
+  \[\begin{tikzcd}
+    {\Delta.f^*A_1.\ldots.f^*A_k} & {\Delta.f^*A_1.\ldots.f^*A_{k-1}} & \cdots & {\Delta.f^*A_1} & \Delta \\
+    {\Gamma.A_1.\ldots.A_k} & {\Gamma.A_1.\ldots.A_{k-1}} & \cdots & {\Gamma.A_1} & \Gamma
+    \arrow["f", from=1-5, to=2-5]
+    \arrow["{p_{A_1}}", from=2-4, to=2-5]
+    \arrow["{p_{f^*A_1}}"', from=1-4, to=1-5]
+    \arrow["{q(f,A_1)}"', from=1-4, to=2-4]
+    \arrow[from=2-3, to=2-4]
+    \arrow[from=1-3, to=1-4]
+    \arrow[from=1-2, to=1-3]
+    \arrow[from=2-2, to=2-3]
+    \arrow["{q(f,A_1.\ldots.A_{k-1})}", from=1-2, to=2-2]
+    \arrow["{q(f,A_1.\ldots.A_k)}"', from=1-1, to=2-1]
+    \arrow["{p_{f^*A_k}}"', from=1-1, to=1-2]
+    \arrow["{p_{A_k}}", from=2-1, to=2-2]
+    \arrow["{p_{f^*A_1.\ldots.f^*A_k}}", curve={height=-24pt}, from=1-1, to=1-5]
+    \arrow["{p_{A_1.\ldots.A_k}}"', curve={height=24pt}, from=2-1, to=2-5]
+  \end{tikzcd},\]
+  where
+  $q(f,A_1.\ldots.A_k)=q(q(f,A_1),A_2.\ldots.A_k)=q(q(f,A_1.\ldots.A_{k-1}),A_k)$.
+  As usual, if $k=0$ we have $q(f,\Theta)=f$, $f^*(\Gamma.\Theta)=\Gamma$, while
+  for $k=1$ we have $q(f,A_1)=q(f,\Gamma.A_1)$, $\Delta.f^*A_1=f^*(\Gamma.A_1)$
+  agreeing with the base structure of $\cC$.
+
+  Finally, given a section $a\colon\Gamma\rightarrow\Gamma.A$ and a context
+  morphism $f\colon\Delta\rightarrow\Gamma$, we also want to specify $f^*a$,
+  that is the term of $A$ which we get by switching context. This is given by
+  the map $(1_{\Delta},a\cdot f)$ specified by the pullback square
+  \[\begin{tikzcd}
+    \Delta \\
+    & {\Delta.f^*A} & {\Gamma.A} \\
+    & \Delta & \Gamma
+    \arrow["f"', from=3-2, to=3-3]
+    \arrow["{p_{f^*A}}", from=2-2, to=3-2]
+    \arrow["{p_A}", from=2-3, to=3-3]
+    \arrow["{q(f,A)}"', from=2-2, to=2-3]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow["{a\cdot f}", curve={height=-12pt}, from=1-1, to=2-3]
+    \arrow["{(1_\Delta,a\cdot f)}"{description}, dotted, from=1-1, to=2-2]
+  \end{tikzcd},\]
+  and, as shown by the commutative diagram
+  \[\begin{tikzcd}
+    \Delta & \Gamma \\
+    {\Delta.f^*A} & {\Gamma.A} \\
+    \Delta & \Gamma
+    \arrow["f"', from=3-1, to=3-2]
+    \arrow["{p_{f^*A}}", from=2-1, to=3-1]
+    \arrow["{p_A}"', from=2-2, to=3-2]
+    \arrow["{q(f,A)}"', from=2-1, to=2-2]
+    \arrow["a"', from=1-2, to=2-2]
+    \arrow["{f^*a}", from=1-1, to=2-1]
+    \arrow["f", from=1-1, to=1-2]
+    \arrow[curve={height=-24pt}, Rightarrow, no head, from=1-2, to=3-2]
+    \arrow[curve={height=24pt}, Rightarrow, no head, from=1-1, to=3-1]
+  \end{tikzcd},\]
+  it corresponds to the pullback of $a$ along $q(f,A)$. By the techniques we
+  provided earlier, we extend this construction to contexts of arbitrary length.
+\end{rmk}
+
+\begin{defn}
+  A \emph{contextual functor} between contextual categories
+  $F\colon\cC\rightarrow\cD$ is a functor on the underlying categories which
+  preserves the grading, basic dependent projections and such that
+  $q(Ff,FX)=F(q(f,X))$.
+\end{defn}
+
+\begin{rmk}
+  Our definition allows us to see contextual categories as models for an
+  essentially algebraic theory with sorts indexed by $\bbN+\bbN\times\bbN$. In
+  that context, we get a notion of morphisms between models of this theory,
+  which coincides with the one we have just provided. The category of models for
+  this theory will be the category of contextual categories, denoted by $Cxl$,
+  which will be complete and cocomplete as the category of models of an
+  essentially algebraic theory REFS.
+\end{rmk}
+
+A problem of providing a model of dependent type theory is exhibiting the
+basic structural rules, namely context substitution, variable binding,
+variable substitution and so on for us. The defining properties of contextual
+categories are meant to model them and therefore 
+take care of all of that for us, meaning that as long
+as we can show that something models a contextual category we automatically get
+an interpretation of dependent type theory, thereby eliminating a lot of
+bureaucracy. For this to be true, however, we need the following statement,
+which we shall assume because the results we need rely on it.
+
+\begin{conj}[Initiality]
+  Given a dependent type theory $T$, its syntactic category $Syn(T)$ is initial
+  in the category of contextual categories with the appropriate structure.
+\end{conj}
+
+Here by ``appropriate structure'' we mean extra structures meant to model the
+logical rules of the type theory, like $\Sigma$-types, $\Pi$-types and
+$\Id$-types. Indeed, the definition of contextual category as we said deals with
+the structural rules, but nothing more.
+Similar results have been proven for some simple dependent type theories in
+STREICHER91 and HOFMANN95, however we still do not have a general statement.
+Such a statement would first require a general notion of dependent type
+theory, which has been worked on in 1904.04097, 2009.05539, 2205.00798, and
+there is an ongoing effort to provide a formalization and a flexible proof of
+some variants of the conjecture via proof assistants \wfd{(HOTTEST TALK
+SLIDES)}.
+
+If we could do that, then for any contextual category $\cC$ we would have a
+contextual functor $Syn(T)\rightarrow\cC$ explaining how to interpret $T$ in
+$\cC$. This is essentually an algorithmic problem: it reduces to explaining
+inductively to a computer how to construct the aforementioned functor.
+
+We now define the extra structures on contextual categories we mentioned
+earlier. Our definitions shall be taken from 1211, 1808.
+
+\begin{defn}
+  A \emph{$\Sigma$-type structure} on a contextual category $\cC$ consists of:
+  \begin{enumerate}
+    \item for each $(\Gamma,A,B)\in\Ob_{n+2}\cC$, an object
+      $(\Gamma,\Sigma(A,B))\in\Ob_{n+1}\cC$;
+    \item for each $(\Gamma,A,B)\in\Ob_{n+2}\cC$, a morphism $pair_{A,B}\colon
+      (\Gamma,A,B)\rightarrow(\Gamma,\Sigma(A,B))$ over $\Gamma$;
+    \item for each $(\Gamma,A,B),(\Gamma,\Sigma(A,B),C)\in\Ob_{n+2}\cC$, and
+      $d\colon(\Gamma,A,B)\rightarrow(\Gamma,\Sigma(A,B),C)$ with $p_C\cdot
+      d=pair_{A,B}$, a section
+      $split_d\colon(\Gamma,\Sigma(A,B))\rightarrow(\Gamma,\Sigma(A,B),C)$ such
+      that $split_d\cdot pair_{A,B}=d$;
+    \item where all of the above is compatible with context substitution, that
+      is given a map $f\colon\Delta\rightarrow\Gamma$ we have
+      \begin{align*}
+        f^*(\Gamma,\Sigma(A,B)) &=(\Delta,\Sigma(f^*A,f^*B)), \\
+        f^*pair_{A,B} &=pair_{f^*A,f^*B}, \\
+        f^*split_d &=split_{f^*d}.
+      \end{align*}
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}
+  A \emph{$\Id$-type structure} on a contextual category $\cC$ consists of:
+  \wfd{COMPLETE}
+\end{defn}
+
+\begin{defn}
+  A \emph{$\Pi$-type structure} on a contextual category $\cC$ consists of:
+  \begin{enumerate}
+    \item for each $(\Gamma,A,B)\in\Ob_{n+2}\cC$, an object
+      $(\Gamma,\Pi(A,B))\in\Ob_{n+1}\cC$;
+    \item for each $(\Gamma,A,B)\in\Ob_{n+2}\cC$, a map
+      $\app_{A,B}\colon(\Gamma,\Pi(A,B),p^*_{\Pi(A,B)}A)\rightarrow(\Gamma,A,B)$
+      over $\Gamma$, that is such that $p_B\cdot app_{A,B}=q(\Pi(A,B),A)$;
+    \item for each $(\Gamma,A,B)\in\Ob_{n+2}\cC$ and section
+      $b\colon(\Gamma,A)\rightarrow(\Gamma,A,B)$, a section
+      $\lambda_{A,B}(b)\colon\Gamma\rightarrow(\Gamma,\Pi(A,B))$;
+    \item such that for any sections
+      $k\colon\Gamma\rightarrow(\Gamma,\Pi(A,B))$, $a\colon\Gamma\rightarrow A$
+      the map $\app_{A,B}(k,a)$ defined as the composition of $\app_{A,B}$ with
+      $(k,a)$ specified by the factorization through the pullback
+      \[\begin{tikzcd}
+        \Gamma \\
+        & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.A} \\
+        & {\Gamma.\Pi(A,B)} & \Gamma
+        \arrow["{p_{\Pi(A,B)}}"', from=3-2, to=3-3]
+        \arrow["{p_A}", from=2-3, to=3-3]
+        \arrow["{q(p_{\Pi(A,B)},A)}"', from=2-2, to=2-3]
+        \arrow["{p_{p^*_{\Pi(A,B)}A}}", from=2-2, to=3-2]
+        \arrow["a", curve={height=-12pt}, from=1-1, to=2-3]
+        \arrow["k"', curve={height=12pt}, from=1-1, to=3-2]
+        \arrow["{(k,a)}"{description}, dotted, from=1-1, to=2-2]
+      \end{tikzcd},\]
+      we have $p_B\cdot\app_{A,B}(k,a)=a$;
+    \item such that for any $(\Gamma,A,B)$, $a\colon\Gamma\rightarrow(\Gamma,A)$
+      and $b\colon(\Gamma,A)\rightarrow(\Gamma,A,B)$ we have
+      \[\app(\lambda_{A,B}(b),a)=b\cdot a;\]
+    \item all of the above is compatible with context substitution, that is for
+      any $f\colon\Delta\rightarrow\Gamma$ we have
+      \begin{align*}
+        f^*(\Gamma,\Pi(A,B)) &=(\Delta,\Pi(f^*A,f^*B)), \\
+        f^*\lambda_{A,B}(b) &=\lambda_{f^*A,f^*B}(f^*b), \\
+        f^*(\app_{A,B}(k,a)) &=\app_{f^*A,f^*B}(f^*k,f^*a).
+      \end{align*}
+  \end{enumerate}
+
+  We shall say that the the $\Pi$-type structure satisfies the
+  \emph{$\Pi_\eta$-rule} if the equation
+  \[q(p_{\Pi(A,B)},\Pi(A,B))\cdot\lambda(1_{p^*_{\Pi(A,B)}A},\app_{A,B})=1_{(\Gamma,\Pi(A,B))}\]
+  is satisfied, in which case the structure will be called a
+  \emph{$\Pi_\eta$-type structure}. The map on the left is the
+  \emph{$\eta$-expansion map}, that is it models the map associating to
+  the term $f:\Pi(A,B)$ the term $(\lambda (x:A).fx):\Pi(A,B)$ over $\Gamma$.
+  Also, $(1_{p^*_{\Pi(A,B)}A},\app_{A,B})$ is specified by the following
+  factorization through the pullback.
+  \[\begin{tikzcd}
+    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} \\
+    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.p^*_{\Pi(A,B)}B} & {\Gamma.A.B} \\
+    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.A}
+    \arrow["{q(p_{\Pi(A,B)},A)}"', from=3-2, to=3-3]
+    \arrow["{p_A}", from=2-3, to=3-3]
+    \arrow["{q(p_{\Pi(A,B)},A.B)}"', from=2-2, to=2-3]
+    \arrow["{p_{p^*_{\Pi(A,B)}A}}", from=2-2, to=3-2]
+    \arrow["{\app_{A,B}}", curve={height=-12pt}, from=1-1, to=2-3]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow["{(1_{p^*_{\Pi(A,B)}A},\app_{A,B})}"{description}, dotted, from=1-1, to=2-2]
+  \end{tikzcd}\]
+
+  \wfd{(WE STILL NEED $\Pi$-EXT, WHICH REQUIRES $\Id$-TYPE STRUCTS.)}
+\end{defn}
+
+\begin{rmk}
+  The definition we provided matches the one of 1808, while in 1211 they give a
+  mildly different (but equivalent) one. Namely, they require
+  for each pair of sections $f\colon\Gamma\rightarrow\Gamma.\Pi(A,B)$,
+  $a\colon\Gamma\rightarrow\Gamma.A$ a section
+  $\app_{A,B}(f,a)\colon\Gamma\rightarrow\Gamma.A.B$ with the properties
+  we expressed, from which they then construct a map $\app_{A,B}$ as the
+  composite
+  \begin{align*}
+    q(p_{\Pi(A,B)}\cdot & p_{p^*_{\Pi(A,B)}A},A.B)\cdot \\
+    \app_{A,B}(&(1_{p^*_{\Pi(A,B)}A},p_{p^*_{\Pi(A,B)}A}),
+    (1_{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A},q(p_{\Pi(A,B)},A)) \\
+        &\colon\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A\rightarrow\Gamma.A.B,
+  \end{align*}
+  of which we shall more explicitly describe each component. We do not actually
+  need this description, but for completeness we wanted to report it.
+
+  First we focus on $(1_{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A},p_{p^*_{\Pi(A,B)}A})$.
+  This is given as the factorization through the pullback of the cone given by the
+  two maps, as we will show in a moment.
+  \[\begin{tikzcd}
+    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} \\
+    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*\Pi(A,B)} && {\Gamma.\Pi(A,B)} \\
+    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.\Pi(A,B)} & \Gamma \\
+    & {}
+    \arrow["{p_{p^*_{\Pi(A,B)}A}}"', from=3-2, to=3-3]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow["{p_{\Pi(A,B)}}", from=2-4, to=3-4]
+    \arrow["{p_{p^*_{\Pi(A,B)}A}}", curve={height=-12pt}, from=1-1, to=2-4]
+    \arrow["{p_{\Pi(A,B)}}"', from=3-3, to=3-4]
+    \arrow["{p_{(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*\Pi(A,B)}}", from=2-2, to=3-2]
+    \arrow["{q(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A},\Pi(A,B))}"', from=2-2, to=2-4]
+    \arrow[dotted, from=1-1, to=2-2]
+  \end{tikzcd}\]
+
+  Similarly, we obtain the other section in the argument.
+  \[\begin{tikzcd}
+    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} \\
+    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*A} & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.A} \\
+    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.\Pi(A,B)} & \Gamma \\
+    && {}
+    \arrow["{p_{p^*_{\Pi(A,B)}A}}"', from=3-2, to=3-3]
+    \arrow["{p_{p^*_{\Pi(A,B)}A}}"', from=2-2, to=3-2]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow["{q(p_{\Pi(A,B)},A)}", curve={height=-12pt}, from=1-1, to=2-4]
+    \arrow["{p_A}", from=2-4, to=3-4]
+    \arrow["{p_{\Pi(A,B)}}"', from=3-3, to=3-4]
+    \arrow[from=2-3, to=2-4]
+    \arrow["{p_{p^*_{\Pi(A,B)}A}}", from=2-3, to=3-3]
+    \arrow[from=2-2, to=2-3]
+    \arrow[dotted, from=1-1, to=2-2]
+  \end{tikzcd}.\]
+  The map $\app$ with the arguments specified above then provides a map
+  $\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A\rightarrow
+  \Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.p^*_{p^*_{\Pi(A,B)}A}A.^*_{p^*_{\Pi(A,B)}A}B$.
+  What follows is the other map appearing in the definition of $\app_{A,B}$.
+  \[\begin{tikzcd}
+    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot
+    p_{p^*_{\Pi(A,B}A})^*A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*B}
+    && {\Gamma.A.B} \\
+    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*A} && {\Gamma.A} \\
+    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.\Pi(A,B)} & \Gamma
+    \arrow["{q(p_{\Pi(A,B)}\cdot p_{p^*(A,B)A},A.B)}", from=1-1, to=1-3]
+    \arrow["{p_B}", from=1-3, to=2-3]
+    \arrow["{p_A}", from=2-3, to=3-3]
+    \arrow["{p_{\Pi(A,B)}}"', from=3-2, to=3-3]
+    \arrow["{p_{p^*_{\Pi(A,B)}A}}"', from=3-1, to=3-2]
+    \arrow["{q(p_{\Pi(A,B)}\cdot p_{p^*(A,B)A},A)}"', from=2-1, to=2-3]
+    \arrow["{p_{(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*A}}"', from=2-1, to=3-1]
+    \arrow["{p_{(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*B}}"', from=1-1, to=2-1]
+  \end{tikzcd}\]
+\end{rmk}
+
+\begin{construction}
+  Let $\cC$ be a contextual category with a $\Pi$-type structure,
+  $f\colon\Gamma.A.B\rightarrow\Gamma.A.B'$ a morphism over
+  $\Gamma.A$. We want to construct a morphism
+  $\Gamma.\Pi(A,f)\colon\Gamma.\Pi(A,B)\rightarrow\Gamma.\Pi(A,B')$ modeling the
+  postcomposition by $f$.
+
+  We do so by looking at the commutative diagram
+  \[\begin{tikzcd}[column sep=large]
+    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} && {\Gamma.A.B} \\
+                                          &
+    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.p^*_{\Pi(A,B)}B'} & {\Gamma.A.B'} \\
+    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.A}
+    \arrow["{q(p_{\Pi(A,B)},A)}"', from=3-2, to=3-3]
+    \arrow["{p_{B'}}"', from=2-3, to=3-3]
+    \arrow["{q(p_{\Pi(A,B)},A.B')}"', from=2-2, to=2-3]
+    \arrow["{p_{p^*_{\Pi(A,B)}B'}}", from=2-2, to=3-2]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow["f"', from=1-3, to=2-3]
+    \arrow["{p_B}", curve={height=-36pt}, from=1-3, to=3-3]
+    \arrow["{\app_{A,B}}", from=1-1, to=1-3]
+    \arrow["{(1_{p^*_{\Pi(A,B)}A},f\cdot\app_{A,B})}"{pos=1}, from=1-1, to=2-2, dotted]
+  \end{tikzcd}\]
+  and then applying $\lambda_{p^*_{\Pi(A,B)}A,p^*_{\Pi(A,B)}B'}$ to the map
+  given by the universal property of the pullback, which provides us with the
+  section
+  \[\lambda_{p^*_{\Pi(A,B)}A,p^*_{\Pi(A,B)}B'}
+  (1_{p^*_{\Pi(A,B)}A},
+  f\cdot\app_{A,B})\colon
+  \Gamma.\Pi(A,B)\rightarrow
+  \Gamma.\Pi(A,B).\Pi(A,B').\]
+  All we have to do now is postcompose with
+  $q(p_{\Pi(A,B)},\Pi(A,B'))$.
+\end{construction}
+
+\begin{rmk}
+  The previous construction is such that $\Gamma.\Pi(A,1_B)=1_{\Pi(A,B)}$ for
+  every context $\Gamma.A.B$ in $\cC$ if and only if the $\Pi$-structure
+  satisfies the $\Pi_\eta$-rule.
+\end{rmk}
+

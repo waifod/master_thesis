@@ -1,0 +1,66 @@
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+
+We can also rewrite the paper by Kapulkin about LCCC arising from TT using the
+language of localizations of quasi-categories. There they develop the relevant
+theory showing that under some conditions the frame associated to a fibration
+category is locally cartesian closed, but using Cisinski's results we can prove
+the same theorem directly using a more mainstream theory.
+
+What should be included in such an overview?
+
+1- Cisinski's theory of localizations (of fibration $\infty$-categories)
+
+2- an introduction to contextual categories: where do they come from? Why are
+they useful? Check out Voevodsky's papers about C-systems
+
+We explain what dependent type theory is (Martin-Lof's notes from 1984) and why
+it's an interesting foundation of mathematics. We mention Homotopy Type Theory
+as an effort to provide homotopical foundations which better model how we think
+about identities, which explains why intensional identity types are more
+interesting to us than extensional ones.
+
+We move on to defining contextual categories (1211.2851, 1406.7413, 1507.02648)
+and what
+the Pi, Sigma and Id structures are (1406.7413, 1211.2851 Appendix B). To
+understand what the link between such structures and syntactically presented
+type theories we refer to 1507.02648, Sec.\ 1.1, while the statement of the
+conjectured correspondence is in 1304.0680, Sec.\ 2.1.
+
+Where does the link between dependent type theories and $\infty$-categories come
+from? We see that $\infty$-categories intuitively model the behavior of type
+theories and their type constructions, especially when considering Homotopy Type
+Theory, however this relation is known only
+partially (references in the intro of 1507.02648). The idea is that the type
+theory we are interested in should be the internal language of some class of
+$\infty$-categories and a precise statement would require us to provide
+homotopical functors in both directions which induce an equivalence on the
+associated $\infty$-categories. The idea is to construct the
+functor from contextual categories as a localization functor, that is we need to
+provide a homotopical structure on contextual categories, as they do in
+1507.02648 (there should be an older reference) which then provides an
+associated $\infty$-category. This is the object of the Initiality Conjecture,
+stated in 1610.00037, in the hope that such a correspondence will extend to
+Homotopy Type Theory and some notion of Elementary Higher Toposes, perhaps the
+one specified in 1805.03805. At the moment we know that HoTT can be interpreted
+in Higher Toposes with some structure. Current progress: 1709.09519, an upcoming
+paper by Nguyen-Uemura (HoTTest talk).
+
+Our aim is to show that when taking contextual categories with the structure we
+specified earlier we obtain a locally cartesian closed $\infty$-category. To do
+so we provide a fibrational structure on contextual categories (1304.0680,
+1507.02648), which as we anticipate will imply that their simplicial
+localizations are finitely complete. We also prove that the hypothesis of
+\cite[Thm.\ 7.6.16]{Cis19} are satisfied, informing that this will be sufficient
+to prove Kapulkin's main result from 1507.02648.
+
+We then develop the theory of localizations of $\infty$-categories by Cisinski
+and specifically develop the results concerning $\infty$-categories with
+fibrations and weak equivalences. Localizations of such $\infty$-categories are
+finitely complete. The objective is to show \cite[Thm.\ 7.6.16]{Cis19}. How in
+depth should we go?
+
+Why all of this is interesting: we are proving Kapulkin's result internalizing
+all of the discussion within the language of $\infty$-category theory and
+relying only on its simplicial model.
+

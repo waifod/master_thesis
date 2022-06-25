@@ -1,0 +1,257 @@
+\chapter*{Categorical Models of Type Theory as Locally Cartesian Closed Fibration Categories}
+\addcontentsline{toc}{chapter}{Locally Cartesian Closed Fibration Categories}
+
+To apply the results from the previous section, we first need to specify a
+fibrational structure on categorical models of type theory.
+
+\begin{defn}
+  A \emph{fibration category} is a triple $(\cP,W,Fib)$ where $\cP$ is a
+  category and $W$, $Fib$ are wide subcategories such that:
+  \begin{enumerate}
+    \item $\cP$ has a terminal object;
+    \item maps to the terminal object lie in $Fib$;
+    \item $Fib$ and $W\cap Fib$ are closed under pullback along any map in $\cP$;
+    \item every map in $\cP$ can be factored as a map in $W$ followed by one in
+      $Fib$;
+    \item $W$ has the 2-out-of-6 property.
+  \end{enumerate}
+\end{defn}
+
+\begin{rmk}
+  Seeing $\cP$, $W$ and $Fib$ in the above definition as $\infty$-categories, we
+  notice that the triple has canonically the structure of an $\infty$-category
+  with weak equivalences and fibrations with fibrant objects, hence we shall
+  adopt the conventions we used in that context.
+\end{rmk}
+
+Now we have to specify the classes of maps which will provide the desired
+structure.
+
+\begin{defn}
+  Given a categorical model of type theory $\cC$, a morphism
+  $f\Gamma.A\rightarrow\Gamma.B$ over $\Gamma$ is \emph{simply bi-invertible
+  over $\Gamma$} if there exist:
+  \begin{enumerate}
+    \item a morphism$g_1\colon\Gamma.B\rightarrow\Gamma.A$;
+    \item a section $\eta\colon\Gamma.A\rightarrow\Gamma.(1_{\Gamma.A},g_1f)^*\Id_{A}$
+      of the canonical projection
+      $p_{(1_{\Gamma.A},g_1f)^*\Id_{A}}\colon
+      \Gamma.(1_{\Gamma.A},g_1f)^*\Id_{A}\rightarrow\Gamma.A$;
+    \item a morphism $g_2\colon\Gamma.B\rightarrow\Gamma.A$;
+    \item a section
+      $\epsilon\colon\Gamma.A\rightarrow\Gamma.(1_{\Gamma.A},fg_2)^*\Id_{A}$ of
+      the canonical projection
+      $p_{(1_{\Gamma.A},fg_2)^*\Id_{A}}\colon
+      \Gamma.(1_{\Gamma.A},fg_2)^*\Id_{A}\rightarrow\Gamma.A$.
+  \end{enumerate}
+\end{defn}
+
+We now generalize the above definition to general context extensions by working
+as usual with $\cC^{cxt}$.
+
+\begin{defn}
+  Given a categorical model of type theory $\cC$, a morphism
+  $f\colon\Gamma.\Delta\rightarrow\Gamma.\Theta$ over $\Gamma$ is
+  \emph{bi-invertible over $\Gamma$} if it is as a morphism in $\cC^{cxt}$. It
+  is simply called \emph{bi-invertible} when $\Gamma$ is the terminal
+  context.
+\end{defn}
+
+\begin{defn}
+  A fibration category $\cP$ is \emph{locally cartesian closed} if, for any
+  fibration $p\colon a\rightarrow b$, the pullback functor
+  $p^*\colon\cP\downarrow b\rightarrow\cP\downarrow a$ admits a right adjoint
+  $p_*$ which is an exact functor.
+\end{defn}
+
+\begin{rmk}
+  Our interest in bi-invertible morphisms stems from the fact that they model
+  the right notion of invertible map in dependent type theory: indeed, from the
+  required data for a simply bi-invertible map $f$ over $\Gamma$ we can provide
+  a section $\Gamma\rightarrow\Gamma. isHIso(f)$ of the dependent projection
+  $p_{\Gamma.isHIso(f)}\colon\Gamma.isHIso(f)\rightarrow\Gamma$ REFS, which is
+  the translation into the language of contextual category of the notion of
+  bi-invertible map in type theory MORE REFS.
+
+  It is important to note that, while type theory has no way to encode
+  internally the concept of isomorphism of the contextual model, it does have
+  its own internal notion of isomorphism. However, given a map $f$, the type
+  $isIso(f)$ is not, in general, a \emph{mere proposition}. On the other hand,
+  the more lax notion of bi-invertibility is such that $isHIso(f)$ is a mere
+  proposition \wfd{(UNDER WHICH HP? LEMMA 5.12 from 1203.3253)}, which makes it
+  preferable. Also, every bi-equivalent map can be given the structure of an
+  isomorphism and viceversa, hence they are closely related.
+\end{rmk}
+
+\begin{prop}\wfd{(REFS, 1507, AKL15, 1610.00037)}
+  A categorical model of type theory $\cC$ carries the structure of a fibration
+  category where maps isomorphic to dependent projections are the fibrations and
+  bi-invertible ones are the weak equivalences.
+\end{prop}
+
+\wfd{(CAREFUL: AS STATED IN AKL15, WE ALSO NEED THE UNIT TYPE AND OTHER STUFF!
+BUT KAPULKIN DOESN'T TAKE IT IN 1507)}
+
+The above result can be however generalized.
+
+\begin{prop}
+  A contextual category with an $\Id$-structure $\cC$ carries the
+  structure of a fibration category similar to the one above.
+\end{prop}
+\begin{proof}
+  As noted in AKL15, 1507 and 1610.00037, the previous result does not depend on a
+  $\Sigma$-structure because all we need is that every dependent projection is
+  isomorphic to a basic one, which we have by working with context extensions in
+  $\cC^{cxt}$. Indeed, after constructing the fibrational structure there, we may
+  lift it back through the equivalence of categories $\cC\rightarrow\cC^{cxt}$.
+\end{proof}
+
+How does Kapulkin prove that a categorical model of Type Theory is a locally
+cartesian closed fibration category?
+
+First of all, he refers to AKL15 to show that $\cP$ has a fibrational structure,
+then he goes on to show the following results, whose proofs are extremely terse
+and therefore should be expanded.
+
+
+\begin{defn}
+  Given $p_A\colon\Gamma.A\rightarrow\Gamma$, a section
+  $a\colon\Gamma\rightarrow\Gamma.A$ and $f\colon\Delta\rightarrow\Gamma$, we
+  look at the commutative diagram
+  \[\begin{tikzcd}
+    \Delta \\
+    & {\Delta.f^*A} & {\Gamma.A} \\
+    & \Delta & \Gamma \\
+    \arrow["{p_A}", from=2-3, to=3-3]
+    \arrow["f"', from=3-2, to=3-3]
+    \arrow["{p_{f^*A}}", from=2-2, to=3-2]
+    \arrow["{q(f,A)}"', from=2-2, to=2-3]
+    \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow["{a\cdot f}", curve={height=-12pt}, from=1-1, to=2-3]
+    \arrow["{f^*a}"{description}, dotted, from=1-1, to=2-2]
+  \end{tikzcd},\]
+  which gives us $f^*a$ as the factorization through the pullback square of the
+  pair $(\id_\Delta,a\cdot f)$.
+
+  \wfd{(THIS CAN BE JUSTIFIED BY LOOKING AT LEMMA 2.15 IN 1706.03605. THE
+  FOLLOWING RESULT SHOWS THAT THIS ASSIGNMENT IS ALSO FUNCTORIAL.)}
+\end{defn}
+
+\begin{lem}
+  For any dependent projection $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ in
+  a categorical model of type theory $\cC$, the pullback functor
+  $p_\Delta^*\colon\cC(\Gamma)\rightarrow\cC(\Gamma.\Delta)$ between the fibrant
+  slices admits a right adjoint.
+\end{lem}
+\begin{proof}
+  Let's set $(p_\Delta)_*(\Gamma.\Delta.\Theta)=\Gamma.\Pi(\Delta.\Theta)$. Our
+  counit shall be given by
+  \[\epsilon_{\Gamma.\Delta.\Theta}\colon\Gamma.\Delta.p^*_\Delta\Pi(\Delta,\Theta)
+  \xrightarrow{exch_{\Delta,\Pi(\Delta,\Theta)}}\Gamma.\Pi(\Delta,\Theta).p^*_{\Pi(\Delta,\Theta)}\Delta
+  \xrightarrow{\app_{\Delta,\Theta}}\Gamma.\Delta.\Theta\]
+  and it is then sufficient to prove that, for any context morphism
+  $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$ over
+  $\Gamma.\Delta$, there is
+  a unique $\tilde{f}\colon\Gamma.\Psi\rightarrow\Gamma.\Pi(\Delta,\Theta)$
+  making the diagram
+  \[\begin{tikzcd}
+    {\Gamma.\Delta.p^*_\Delta\Psi} \\
+    {\Gamma.\Delta.p^*_\Delta\Pi(\Delta,\Theta)} & {\Gamma.\Delta.\Theta}
+    \arrow["f", from=1-1, to=2-2]
+    \arrow["{\epsilon_{\Gamma.\Delta.\Theta}}"', from=2-1, to=2-2]
+    \arrow["{p^*_\Delta\tilde{f}}"', dotted, from=1-1, to=2-1]
+  \end{tikzcd}\]
+  commute. This will then uniquely specify how the right adjoint acts on the
+  morphisms.
+
+  We start by specifying the unit
+  $\eta_{\Gamma.\Psi}\colon\Gamma.\Psi\rightarrow\Gamma.\Pi(\Delta,p^*_{\Delta}\Psi)$.
+
+  Let's consider the commutative square
+  \[\begin{tikzcd}[column sep=huge]
+    {\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)} & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi)} \\
+    {\Gamma.\Psi} & \Gamma
+    \arrow["{p_{\Pi(\Delta,p^*_\Delta\Psi)}}"', from=1-1, to=2-1]
+    \arrow["{p_{\Psi}}"', from=2-1, to=2-2]
+    \arrow["{p_{\Pi(\Delta,p^*_\Delta\Psi)}}", from=1-2, to=2-2]
+    \arrow["{q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))}", from=1-1, to=1-2]
+  \end{tikzcd}\]
+  where the map $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))$ acts by forgetting the
+  term of $\Psi$. If we can provide a section of the vertical map on the left
+  corresponding to the sequence $[\Gamma,y:\Psi,\lambda(x:\Delta).y]$ we are
+  done as we can then compose
+  it with $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))$ to get our unit.
+  
+  We construct it by looking at the commutative square
+  \[\begin{tikzcd}
+    {\Gamma.\Psi} \\
+    & {\Gamma.\Psi.p^*_\Psi\Psi} & {\Gamma.\Psi} \\
+    & {\Gamma.\Psi} & \Gamma
+    \arrow["{p_\Psi}", from=2-3, to=3-3]
+    \arrow["{p_\Psi}"', from=3-2, to=3-3]
+    \arrow["{p_{p^*_\Psi\Psi}}", from=2-2, to=3-2]
+    \arrow["{q(p_\Psi,\Psi)}"', from=2-2, to=2-3]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow[curve={height=-12pt}, Rightarrow, no head, from=1-1, to=2-3]
+    \arrow["{(1_\Psi,1_\Psi)}"{description}, dotted, from=1-1, to=2-2]
+  \end{tikzcd},\]
+  corresponding to the sequence $[\Gamma,x:\Psi,x:\Psi]$. Then, we pull back along
+  $p_{p^*_\Psi\Delta}$, getting a section
+  $p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi)\colon\Gamma.\Psi.p^*_\Psi\Delta\rightarrow\Gamma.\Psi.p^*_\Psi\Delta.p^*_{p^*_\Psi\Delta}\Psi$.
+  We then apply $\lambda$, which gives us a section
+  \[\lambda(p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi))=\lambda(1_{p^*_\Psi\Delta},p_{p^*_\Psi\Delta})
+\colon\Gamma.\Psi\rightarrow\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)\]
+  and we can then conclude by post-composing with
+  $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))\colon\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pi(\Delta,p^*_\Delta\Psi)$,
+  which provides our unit.
+
+  We then define our lift $\tilde{f}$ as the composite
+  $\Gamma.\Pi(\Delta,f)\cdot\eta_{\Gamma.\Psi}$. The commutativity of the above
+  triangle follows by $\beta$-reduction \wfd{(WE DO NOT HAVE IT!!!)}, while the
+  uniqueness of the $\tilde{f}$
+  giving the desired factorization by the $\Pi_\eta$-property. \wfd{(PLEASE
+  PROVE IT)}
+
+  This also shows that $(p_{\Delta})_*(f)=\Gamma.\Pi(\Delta,f)$, meaning that
+  the construction of $\Gamma.\Pi(\Delta,f)$ is functorial.
+\end{proof}
+
+We know that every fibration in $\cC$ is isomorphic to a composite of dependent
+projections , so this tells us that every fibration induces an adjunction
+between fibrational slices \wfd{(YOU SHOULD DEFINE THEM, MAYBE AS INFTY-CATS OF
+FIBRANT OBJECTS INDUCED FROM THE SLICES)}.
+
+We are finally ready to prove the result leading to the final one we want.
+
+\begin{prop}\label{lccfc}
+  A categorical model of type theory $\cC$ is a locally cartesian closed
+  fibration category.
+\end{prop}
+\begin{proof}
+  Kapulkin 1507.02648, Proposition 5.4.
+
+  We already know that it is a
+  fibration category by PREVIOUS RESULT. Also, for any basic dependent projection
+  $\Gamma.\Delta\rightarrow\Gamma$, the pullback functor between fibrant slices
+  $p^*_\Delta$ has a right adjoint $(p_\Delta)_*$ by the previous lemma.
+  We only need to check that this right adjoint is
+  compatible with the fibrational structure.
+
+  As a right adjoint, $(p_\Delta)_*$ preserves limits and in particular pullbacks and
+  the terminal object. Also, by LEMMA ABOUT PI OBJECTS BEING EQUAL, it preserves
+  dependent projections and, by LEMMA ABOUT PRESERVING BI-INVERTIBLE MAPS, weak
+  equivalences.
+\end{proof}
+
+\begin{thm}
+  Given a categorical model of type theory $\cC$, the $\infty$-category $L(\cC)$
+  is locally cartesian closed.
+\end{thm}
+\begin{proof}
+  Since a fibration category is more generally a $\infty$-category with
+  fibrations and weak equivalences, we can apply \ref{7616} as the hypothesis
+  are satisfied by \ref{lccfc}.
+\end{proof}
+
+

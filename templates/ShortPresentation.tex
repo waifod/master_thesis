@@ -1,0 +1,246 @@
+\documentclass{beamer}
+\mode<presentation>
+{
+	\usetheme{Warsaw}
+	%\usetheme{Singapore}
+	\useinnertheme{rounded}
+	\useoutertheme{infolines}
+
+	\setbeamertemplate{footline}{}
+	
+	%\setbeamercovered{transparent}
+	% or whatever (possibly just delete it)
+}
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[utf8]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+\usepackage{tikz-cd}
+
+\usepackage{tkz-berge}
+
+\newcommand{\numberset}{\mathbb}
+\newcommand{\N}{\numberset{N}}
+\newcommand{\Z}{\numberset{Z}}
+\newcommand{\R}{\numberset{R}}
+\newcommand{\Q}{\numberset{Q}}
+\newcommand{\K}{\numberset{K}}
+\newcommand{\F}{\numberset{F}}
+\newcommand{\C}{\numberset{C}}
+\newcommand{\n}{\mathcal{N}}
+\newcommand{\aid}{\mathfrak{a}}
+\newcommand{\bid}{\mathfrak{b}}
+\newcommand{\pid}{\mathfrak{p}}
+\newcommand{\qid}{\mathfrak{q}}
+\newcommand{\mi}{\mathfrak{m}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\Ps}{\mathbb{P}}
+\newcommand{\os}{\mathcal{O}}
+\newcommand{\set}{\underline{Set}}
+\newcommand{\epsi}{\varepsilon}
+\newcommand{\Lie}{\mathcal{L}ie}
+\newcommand{\ls}{\mathcal{L}}
+
+
+\DeclareMathOperator{\Ima}{Im}
+\DeclareMathOperator{\Op}{Open}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\map}{Map}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\ch}{char}
+\DeclareMathOperator{\di}{div}
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\het}{ht}
+\DeclareMathOperator{\trdeg}{Trdeg}
+\DeclareMathOperator{\mcg}{MCG}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\home}{Homeo}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\bl}{Bl}
+\DeclareMathOperator{\pic}{Pic}
+\DeclareMathOperator{\pico}{Pic^0}
+\DeclareMathOperator{\cl}{Cl}
+\DeclareMathOperator{\an}{an}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\res}{Res}
+\DeclareMathOperator{\lie}{Lie}
+\DeclareMathOperator{\sing}{sing}
+\DeclareMathOperator{\IH}{IH}
+\DeclareMathOperator{\br}{Br}
+
+
+
+\title% (optional, use only with long paper titles)
+{Asymptotic height pairing}
+
+\subtitle{for families of curves with stable degeneration}
+%{Presentation Subtitle} % (optional)
+
+\author % (optional, use only with lots of authors)
+{Fabio Buccoliero \\
+ {\footnotesize Advisor: dr. Robin de Jong}}
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[Algant Master Program] % (optional, but mostly needed)
+{
+	Algant Master thesis\\
+	Milan University - Leiden University
+}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date % (optional)
+{13 July 2020}
+
+%\subject{Asymptotic height pairing}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+\titlegraphic{
+	\hspace*{8.75cm}~%
+	\includegraphics[width=2.1cm]{Logo_Algant}
+}
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+
+%\pgfdeclareimage[height=2cm]{Logo_Algant}{Logo_Algant}
+%\logo{\pgfuseimage{Logo_Algant}}
+
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+%\AtBeginSubsection[]
+%{
+%\begin{frame}<beamer>{Outline}
+%	\tableofcontents[currentsection,currentsubsection]
+%\end{frame}
+%}
+
+\begin{document}
+	
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}{Inspiration for the thesis}
+The inspiration for this thesis comes from a paper by Brosnan and Pearlstein (2019), where the authors introduce the asymptotic height pairing in a general context.\vspace{1 em}
+
+They found that the asymptotic height pairing computes the \emph{height jump}.\vspace{1 em}
+
+The height jump has already been computed, in the case of families of degree zero divisors, by Holmes and de Jong (2015), using the N{é}ron height pairing. %The final goal of this thesis is to understand if, in the setting studied by Holmes and de Jong, the height jump computed via the asymptotic height pairing coincides with the height jump computed via the N{é}ron height pairing.the asymptotic height pairing coincides with the Green's function on families of divisors of degree zero.
+\end{frame}
+
+\begin{frame}{Goals of the thesis}
+\begin{itemize}
+	\item Show that the asymptotic height pairing for a family with stable degeneration can be computed solely based on information coming from the dual graph.\vspace{1 em}
+	\pause
+	\item Show that, in the setting studied by Holmes and de Jong, the height jump computed via the asymptotic height pairing coincides with the height jump computed via the N{é}ron height pairing.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section{The setting}
+\begin{frame}
+\begin{block}{Definition}
+	Let $E$ be an $n$-dimensional complex analytic space and let $B$ be an $(n-1)$-dimensional complex manifold. We say that $p\colon E \rightarrow B$ is a \textbf{family of curves} if $p$ is a proper surjective holomorphic map such that every fiber over $b \in B$ is a curve. We call $B$ the \textbf{base} of the family and for $b \in B$ we denote the \textbf{fiber over} $b$ as $E_b.$
+\end{block}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{FamilyofCurves}
+\end{figure}
+\end{frame}
+
+%\begin{frame}{Definition}
+	% Let $D \subset B$ be an analytic hypersurface on $B$. We say that $D$ is a \emph{normal crossings divisor} if every point $b \in B$ has a coordinate open neighbourhood $(U,(s_1, \dots, s_r))$ such that, for some $m \le r$, we have that $$D\cap U =\{s_1 \cdots s_m =0\}\subset U.$$
+%\end{frame}
+\begin{frame}{Definition}
+	We say that a family of curves $p\colon E \rightarrow B$ has \textbf{stable degeneration} if the locus of the singular fibers $B_{\text{sing}}$ is given by a normal crossings divisor (analytic hypersurface on $B$ given locally as vanishing locus of a product of local coordinates) $D \subset B$ and every singular fiber is a stable curve, i.e. it has at most ordinary double points and its automorphism group is finite.
+\end{frame}
+
+\begin{frame}{Example of family of curves at one-parameter}
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth]{StableDegeneration}
+\end{figure}
+\end{frame}
+
+\subsection{The dual graph}
+\begin{frame}{The dual graph}
+Let $(C,(p_1, \dots,p_n))$ be a $n$-pointed nodal curve. We associate to $(C,(p_1,\dots,p_n))$ its \textbf{dual graph} $\Gamma := \text{Graph}(C,(p_1,\dots,p_n))$:\vspace{1 em}
+\centering
+\includegraphics[width=\linewidth]{Curveandgraph}
+\end{frame}
+
+\begin{frame}{Results concerning cohomology of dual graph}
+\begin{block}{Proposition}
+$$0 \rightarrow H^1(\Gamma,\Z) \stackrel{f}{\longrightarrow} H_1(E_{b_0},\Z) \stackrel{\rho_*}{\longrightarrow} H_1(E_0,\Z) \rightarrow 0$$ is an exact sequence; we have that
+ $$g(E_0) = b_1(\Gamma) + \sum_{v \in V} g({E_0}_v).$$
+\end{block}
+\end{frame}
+
+\section{Asymptotic height pairing}
+\subsection{Definition}
+\begin{frame}{The asymptotic height pairing}
+Consider a family of curves with stable degeneration $f \colon X \rightarrow \Delta^r$, with a normal crossings divisor $D:=\{s_1 \cdots s_r =0\} \subset \Delta^r$. Let $b \in (\Delta^*)^r$ and consider the local system $\mathcal{H}$ on $B:= (\Delta^*)^r$ with fiber $H:= H_1(X_{b},\Z)$ at $b$ in $B$. We have monodromy operators $T_i \colon H \rightarrow H$ and logarithm operators $N_i \colon H \rightarrow H,$ for $i=1, \dots, r.$ Brosnan and Pearlstein define the asymptotic height pairing as a pairing on the intersection cohomology $\IH^1(\mathcal{H})$.
+\end{frame}
+
+\begin{frame}
+\begin{block}{Theorem by Brosnan and Pearlstein}
+	Let $\alpha = \sum_{i=1}^r\alpha_i \otimes e_i \in Z^1(B^\bullet(\mathcal{H})), \beta= \sum_{i=1}^r \beta_i \otimes e_i \in Z^1(B^\bullet(\mathcal{H}^*))$, where $\alpha_i = N_i h_i \in N_i H, \beta_i = N_i^*\lambda_i \in N_i^*H^*.$ Let $t=(t_1,\dots,t_r) \in \Q^r_{\ge 0}$ and assume that $H$ comes with an additional mixed Hodge structure compatible with the monodromy. There exists $l(t) \in H$ such that $\sum_{i=1}^r N_il(t) = \sum_{i=1}^r\alpha_i t_i$. Then $$h(t)(\bar{\alpha}, \bar{\beta}) = \sum_{i=1}^r t_i (N_i(h_i-l(t)), \lambda_i),$$ where $\bar{\alpha}\in \IH^1(\mathcal{H}), \bar{\beta} \in \IH^1(\mathcal{H}^*)$ are the classes of $\alpha,\beta$ respectively.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\centering
+\Large{Thank you for your attention.}
+\end{frame}
+
+\begin{frame}
+The \textbf{partial Koszul complex} is defined as $B^\bullet(\mathcal{H}):= \sum_{J} N_J h \otimes e_J,$ for $e_J = e_{i_1} \wedge \dots \wedge e_{i_p}, N_J=N_{i_1} \cdots N_{i_p}$ for $J=(i_1, \dots,i_p)$ a multi-index on $1, \dots, r.$ In particular, $B^1(\mathcal{H}) = \sum_{i=1}^r N_ih \otimes e_i,$ for $h \in H, e_i \in E(\Gamma).$ 
+\end{frame}
+
+\begin{frame}
+Let $t \in \Q^r_{\ge 0}$. We have the following pairing $q(t) \colon B^1(\mathcal{H}) \otimes B^1(\mathcal{H}^*) \rightarrow \Q$, given by $$q_t(N_i h \otimes e_i, N_j^* \lambda \otimes e_j) = \begin{cases}
+t_j(h, N_j^*\lambda) = t_i(N_ih, \lambda) \quad \text{if } i=j;\\ 0 \quad \text{otherwise}.
+\end{cases}$$
+$q(t)$ factors through $\IH^1(\mathcal{H}),$ giving rise to the \textbf{asymptotic height pairing} $$h(t) \colon \IH^1(\mathcal{H}) \times \IH(\mathcal{H}^*) \rightarrow \Q.$$
+\end{frame}
+
+\begin{frame}{The Theorem}
+Let $t = (t_e\mid e \in E) \in \Q^{|E|}$. Then we have that
+
+$h_Q(t)(\sing(\nu_\alpha), \sing(\nu_\beta)) = \sum_{e \in E} t_e M_e\left(\psi(h_{\beta,e}) - \sum_{f,g \in E} t_f t_g^{-1} M_f\left(\psi(\widetilde{\ell_f}), \pi(g)\right) \pi(g), \psi(h_{\alpha,e})\right).$
+\end{frame}
+
+\begin{frame}{Theorem 2}
+Suppose the same setting as in Theorem 1. Then, for any $t \in \Q^{|E|}_{\ge 0}$, it holds that \begin{equation*}\label{eq: ahp equal Green}
+h_Q(t)(\sing(\nu_\alpha), \sing(\nu_\beta)) = g_{\overline{\Gamma}}(t)(\overline{D_\alpha}, \overline{D_\beta}),
+\end{equation*} where $\overline{\Gamma} = (\overline{V},\overline{E})$ is the total contraction of $\Gamma$ and $\overline{D_\alpha}, \overline{D_\beta}$ are the projections of $D_\alpha,D_\beta$ on $\overline{\Gamma}.$
+\end{frame}
+
+\begin{frame}{What is the Green's function?}
+\begin{block}{Definition}
+	Let $(\Gamma=(V,E), w)$ be a weighted graph and let $L$ be its Laplacian matrix. The \textbf{weighted Green function} on $\Gamma$ is the bi-additive pairing $$g_{\Gamma}(w) \colon \text{Div}(\Gamma) \times \text{Div}(\Gamma) \rightarrow \Q, \quad (D,D') \mapsto D^tL^+ D',$$ for $L^+$ the Moore-Penrose pseudo-inverse of $L$.
+\end{block}
+\end{frame}
+
+
+\end{document}
