@@ -8,6 +8,8 @@ proving \cite[Thm.\ 7.6.16]{Cis19}, which will do the heavy lifting in showing
 the desired result. Those familiar with the theory may skip the entire chapter
 while keeping in mind yadda yadda \wfd{(LIST THE MAJOR RESULTS)}.
 
+\section{Universal Property}
+
 \begin{defn}
   Let $X$ be a simplicial set and $W\subset X$ a simplicial subset. Given an
   $\infty$-category $\cC$, we define $\home_W(X,\cC)$ to be the full simplicial
@@ -468,13 +470,15 @@ BE LESS GENERAL AS WE HAVE DONE?)}
 %  7.3.11, 7.4.2
 %\end{proof}
 
+\section{Localizing Fibrational Structures}
+
 \begin{defn}
   An \emph{$\infty$-category with weak equivalences and fibrations} is a triple
-  $(\cC,W,Fib)$ where $\cC$ is an $\infty$-category with a final object,
+  $(\cC,W,\fib)$ where $\cC$ is an $\infty$-category with a final object,
   $W\subset\cC$ is a subcategory with the 2-out-of-3 property and
-  $Fib\subset\cC$ a subsimplicial set such that:
+  $\fib\subset\cC$ a subsimplicial set such that:
   \begin{enumerate}
-    \item for any morphism $p\colon x\rightarrow y$ in $Fib$ (and $W$) with $y$
+    \item for any morphism $p\colon x\rightarrow y$ in $\fib$ (and $W$) with $y$
       fibrant, there is in $\cC$ a pullback square
       \[\begin{tikzcd}
         {x'} & x \\
@@ -484,22 +488,22 @@ BE LESS GENERAL AS WE HAVE DONE?)}
         \arrow["v"', from=2-1, to=2-2]
         \arrow["u", from=1-1, to=1-2]
       \end{tikzcd}\]
-      where $p'$ also lies in $Fib$ (and $W$);
+      where $p'$ also lies in $\fib$ (and $W$);
     \item for any map $f\colon x\rightarrow y$ with fibrant codomain can be
-      factored as a map in $W$ followed by one in $Fib$.
+      factored as a map in $W$ followed by one in $\fib$.
   \end{enumerate}
   By \emph{fibrant object} we mean an object whose map to the terminal one is in
-  $Fib$.
+  $\fib$.
 
   We shall call \emph{weak equivalences} the maps in $W$ and \emph{fibrations}
-  the ones in $Fib$. Maps which are both shall be referred to as \emph{trivial
+  the ones in $\fib$. Maps which are both shall be referred to as \emph{trivial
   fibrations}.
 \end{defn}
 
 \begin{construction}\label{fincomplarefib}
   Any finitely complete $\infty$-category $\cC$ can be given the structure of an
   $\infty$-category with weak equivalences and fibrations by setting $W=k(\cC)$,
-  $Fib=\cC$, which we will be doing henceforth.
+  $\fib=\cC$, which we will be doing henceforth.
 \end{construction}
 
 \begin{construction}
@@ -519,10 +523,10 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   For any $\infty$-category with weak equivalences and fibrations $\cC$, its
   full subcategory given by fibrant objects is canonically an $\infty$-category
   of fibrant objects. We shall denote it by $\cC_f$ and its weak equivalences
-  are given by $W_f=W\cap\cC_f$, its fibrations by $Fib_f=Fib\cap\cC_f$.
+  are given by $W_f=W\cap\cC_f$, its fibrations by $\fib_f=\fib\cap\cC_f$.
 \end{construction}
 
-\begin{prop}[Brown's Lemma]\label{7413}
+\begin{lem}[Brown's Lemma]\label{7413}
   7.4.13
 
   For any map $f\colon x\rightarrow y$ between fibrant objects in an
@@ -538,7 +542,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
     \arrow["f", from=1-2, to=2-3]
   \end{tikzcd},\]
   where $s$ is a weak equivalence, $p$ a trivial fibration and $q$ a fibration.
-\end{prop}
+\end{lem}
 \begin{proof}
   Since $x$ and $y$ are fibrant, the pullback of $x\rightarrow e$ and
   $y\rightarrow e$ exists and it corresponds to $x\times y$. The maps $\id_x$,

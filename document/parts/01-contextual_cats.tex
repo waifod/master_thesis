@@ -103,7 +103,7 @@ contextual category $\Syn(T)$ explicitly modeling it as we will show.
     \item
       $ft([x_1:A_1,\ldots,x_{n+1}:A_{n+1}])=[x_1:A_1,\ldots,x_n:A_n]$;
     \item for $\Gamma=[x_1:A_1,\ldots,x_n:A_{n+1}]$,
-      $p_{\Gamma}\colon\Gamma\rightarrow ft\Gamma$ is the \emph{dependent
+      $p_{\Gamma}\colon\Gamma\rightarrow \cft\Gamma$ is the \emph{dependent
       projection context morphism} $[x_1,\ldots,x_n]$, defined by
       \begin{align*}
         x_1:A_1,\ldots,x_{n+1}:A_{n+1} &\vdash x_1:A_1, \\
@@ -116,7 +116,7 @@ contextual category $\Syn(T)$ explicitly modeling it as we will show.
         \Gamma &=[x_1:A_1,\ldots,x_{n+1}:A_{n+1}(x_1,\ldots,x_n)], \\
         \Delta &=[y_1:B_1,\ldots,y_m:B_m(y_1,\ldots,y_{m-1})]
       \end{align*}
-      and a map $f=[f_i(y)]\colon\Delta\rightarrow ft\Gamma$ (where $y$ is a
+      and a map $f=[f_i(y)]\colon\Delta\rightarrow\cft\Gamma$ (where $y$ is a
       vector of variables of length $m$), the pullback $f^*\Gamma$ is the
       context
       \[[y_1:B_1,\ldots,y_m:B_m(y_1,\ldots,y_{m-1}),y_{m+1}:A_{n+1}(f_1(y),\ldots,f_n(y))]\]
@@ -144,7 +144,7 @@ contextual category $\Syn(T)$ explicitly modeling it as we will show.
   and so on for the other objects in the definition.
 \end{rmk}
 
-\begin{rmk}
+\begin{notation}
   We shall also make use of some conventions inspired by this construction.
   Namely, given a contextual category $\sfC$ and an object $\Gamma\in\Ob_n\sfC$,
   we shall
@@ -227,11 +227,11 @@ contextual category $\Syn(T)$ explicitly modeling it as we will show.
   \end{tikzcd},\]
   it corresponds to the pullback of $a$ along $q(f,A)$. By the techniques we
   provided earlier, we extend this construction to contexts of arbitrary length.
-\end{rmk}
+\end{notation}
 
 \begin{defn}
   A \emph{contextual functor} between contextual categories
-  $F\colon\sfC\rightarrow\cD$ is a functor on the underlying categories which
+  $F\colon\sfC\rightarrow\sfD$ is a functor on the underlying categories which
   preserves the grading, basic dependent projections and such that
   $q(Ff,FX)=F(q(f,X))$.
 \end{defn}
