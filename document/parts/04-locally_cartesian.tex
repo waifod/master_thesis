@@ -3,7 +3,7 @@
 To apply the results from the previous section, we first need to specify a
 fibrational structure on categorical models of type theory.
 
-\begin{defn}
+\begin{defn}[Brown, \cite{Bro73}]
   A \emph{fibration category} is a triple $(\cP,W,Fib)$ where $\cP$ is a
   category and $W$, $Fib$ are wide subcategories such that:
   \begin{enumerate}
@@ -23,9 +23,17 @@ fibrational structure on categorical models of type theory.
   context.
 \end{rmk}
 
-\begin{rmk}
-  Our definition differs slightly from Browsn's (REF) because he only asks for
-  $W$ to be closed under the 2-out-of-3 property, BUT...
+\begin{rmk}\cite[Rem.~3.2.2]{AKL15}
+  Our definition differs slightly from the original one by Brown
+  because it asks for $W$ to be closed under the 2-out-of-6 property
+  instead of the more classical 2-out-of-3, but, as shown by Cisinski, if all of
+  the other axioms are satisfied the following are equivalent:
+  \begin{enumerate}
+    \item $W$ has the 2-out-of-6 property;
+    \item $W$ has the 2-out-of-3 and is saturated, that is a morphism in $\cP$
+      becomes invertible in $Ho\cP$ if and only if it lies in $W$.
+  \end{enumerate}
+  See \cite[Thm.~7.2.7]{RB06}.
 \end{rmk}
 
 Now we have to specify the classes of maps which will provide the desired
@@ -84,15 +92,12 @@ working as usual with $\cC^{cxt}$.
   $p_*$ which is an exact functor.
 \end{defn}
 
-\begin{prop}\wfd{(REFS, 1507, AKL15, 1610.00037)}
+\begin{prop}[\cite{AKL15}]
   A categorical model of type theory $\cC$ which also has a $\Nat$ and a $1$
   structure carries the structure of a fibration category, where maps isomorphic
   to dependent projections are the fibrations and bi-invertible ones are the
   weak equivalences.
 \end{prop}
-
-\wfd{(CAREFUL: AS STATED IN AKL15, WE ALSO NEED THE UNIT TYPE AND OTHER STUFF!
-BUT KAPULKIN DOESN'T TAKE IT IN 1507)}
 
 The above result can be however generalized.
 
@@ -101,41 +106,11 @@ The above result can be however generalized.
   structure of a fibration category similar to the one above.
 \end{prop}
 \begin{proof}
-  It suffices to note that at no point the proof by Lumsdaine depends on the
-  other structures.
+  It suffices to note that at no point the proof by Lumsdaine uses the other
+  structures.
 \end{proof}
 
-How does Kapulkin prove that a categorical model of Type Theory is a locally
-cartesian closed fibration category?
-
-First of all, he refers to AKL15 to show that $\cP$ has a fibrational structure,
-then he goes on to show the following results, whose proofs are extremely terse
-and therefore should be expanded.
-
-
-\begin{defn}
-  Given $p_A\colon\Gamma.A\rightarrow\Gamma$, a section
-  $a\colon\Gamma\rightarrow\Gamma.A$ and $f\colon\Delta\rightarrow\Gamma$, we
-  look at the commutative diagram
-  \[\begin{tikzcd}
-    \Delta \\
-    & {\Delta.f^*A} & {\Gamma.A} \\
-    & \Delta & \Gamma \\
-    \arrow["{p_A}", from=2-3, to=3-3]
-    \arrow["f"', from=3-2, to=3-3]
-    \arrow["{p_{f^*A}}", from=2-2, to=3-2]
-    \arrow["{q(f,A)}"', from=2-2, to=2-3]
-    \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
-    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
-    \arrow["{a\cdot f}", curve={height=-12pt}, from=1-1, to=2-3]
-    \arrow["{f^*a}"{description}, dotted, from=1-1, to=2-2]
-  \end{tikzcd},\]
-  which gives us $f^*a$ as the factorization through the pullback square of the
-  pair $(\id_\Delta,a\cdot f)$.
-
-  \wfd{(THIS CAN BE JUSTIFIED BY LOOKING AT LEMMA 2.15 IN 1706.03605. THE
-  FOLLOWING RESULT SHOWS THAT THIS ASSIGNMENT IS ALSO FUNCTORIAL.)}
-\end{defn}
+We now provide a few results needed in our final result.
 
 \begin{lem}[\cite{Kap15}]
   For any dependent projection $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ in
@@ -144,19 +119,22 @@ and therefore should be expanded.
   slices admits a right adjoint.
 \end{lem}
 \begin{proof}
-  Let's set $(p_\Delta)_*(\Gamma.\Delta.\Theta)=\Gamma.\Pi(\Delta.\Theta)$. Our
+  \wfd{(HERE I WOULD LIKE TO USE INTERNAL REASONING TO THINK ABOUT HOW THE MAPS
+  BEHAVE, AS IN AKL15, 3.2.10 or 3.2.12)}
+
+  Let's set $(p_\Delta)_*(\Gamma.\Delta.\Theta)=\Gamma.\Pis(\Delta.\Theta)$. Our
   counit shall be given by
-  \[\epsilon_{\Gamma.\Delta.\Theta}\colon\Gamma.\Delta.p^*_\Delta\Pi(\Delta,\Theta)
-  \xrightarrow{exch_{\Delta,\Pi(\Delta,\Theta)}}\Gamma.\Pi(\Delta,\Theta).p^*_{\Pi(\Delta,\Theta)}\Delta
+  \[\epsilon_{\Gamma.\Delta.\Theta}\colon\Gamma.\Delta.p^*_\Delta\Pis(\Delta,\Theta)
+  \xrightarrow{\exch_{\Delta,\Pis(\Delta,\Theta)}}\Gamma.\Pis(\Delta,\Theta).p^*_{\Pis(\Delta,\Theta)}\Delta
   \xrightarrow{\app_{\Delta,\Theta}}\Gamma.\Delta.\Theta\]
   and it is then sufficient to prove that, for any context morphism
   $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$ over
   $\Gamma.\Delta$, there is
-  a unique $\tilde{f}\colon\Gamma.\Psi\rightarrow\Gamma.\Pi(\Delta,\Theta)$
+  a unique $\tilde{f}\colon\Gamma.\Psi\rightarrow\Gamma.\Pis(\Delta,\Theta)$
   making the diagram
   \[\begin{tikzcd}
     {\Gamma.\Delta.p^*_\Delta\Psi} \\
-    {\Gamma.\Delta.p^*_\Delta\Pi(\Delta,\Theta)} & {\Gamma.\Delta.\Theta}
+    {\Gamma.\Delta.p^*_\Delta\Pis(\Delta,\Theta)} & {\Gamma.\Delta.\Theta}
     \arrow["f", from=1-1, to=2-2]
     \arrow["{\epsilon_{\Gamma.\Delta.\Theta}}"', from=2-1, to=2-2]
     \arrow["{p^*_\Delta\tilde{f}}"', dotted, from=1-1, to=2-1]
@@ -165,22 +143,22 @@ and therefore should be expanded.
   morphisms.
 
   We start by specifying the unit
-  $\eta_{\Gamma.\Psi}\colon\Gamma.\Psi\rightarrow\Gamma.\Pi(\Delta,p^*_{\Delta}\Psi)$.
+  $\eta_{\Gamma.\Psi}\colon\Gamma.\Psi\rightarrow\Gamma.\Pis(\Delta,p^*_{\Delta}\Psi)$.
 
   Let's consider the commutative square
   \[\begin{tikzcd}[column sep=huge]
-    {\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)} & {\Gamma.\Pi(\Delta,p^*_\Delta\Psi)} \\
+    {\Gamma.\Psi.p^*_\Psi\Pis(\Delta,p^*_\Delta\Psi)} & {\Gamma.\Pis(\Delta,p^*_\Delta\Psi)} \\
     {\Gamma.\Psi} & \Gamma
-    \arrow["{p_{\Pi(\Delta,p^*_\Delta\Psi)}}"', from=1-1, to=2-1]
+    \arrow["{p_{\Pis(\Delta,p^*_\Delta\Psi)}}"', from=1-1, to=2-1]
     \arrow["{p_{\Psi}}"', from=2-1, to=2-2]
-    \arrow["{p_{\Pi(\Delta,p^*_\Delta\Psi)}}", from=1-2, to=2-2]
-    \arrow["{q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))}", from=1-1, to=1-2]
+    \arrow["{p_{\Pis(\Delta,p^*_\Delta\Psi)}}", from=1-2, to=2-2]
+    \arrow["{q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))}", from=1-1, to=1-2]
   \end{tikzcd}\]
-  where the map $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))$ acts by forgetting the
+  where the map $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ acts by forgetting the
   term of $\Psi$. If we can provide a section of the vertical map on the left
   corresponding to the sequence $[\Gamma,y:\Psi,\lambda(x:\Delta).y]$ we are
   done as we can then compose
-  it with $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))$ to get our unit.
+  it with $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ to get our unit.
   
   We construct it by looking at the commutative square
   \[\begin{tikzcd}
@@ -200,20 +178,20 @@ and therefore should be expanded.
   $p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi)\colon\Gamma.\Psi.p^*_\Psi\Delta\rightarrow\Gamma.\Psi.p^*_\Psi\Delta.p^*_{p^*_\Psi\Delta}\Psi$.
   We then apply $\lambda$, which gives us a section
   \[\lambda(p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi))=\lambda(1_{p^*_\Psi\Delta},p_{p^*_\Psi\Delta})
-\colon\Gamma.\Psi\rightarrow\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)\]
+\colon\Gamma.\Psi\rightarrow\Gamma.\Psi.p^*_\Psi\Pis(\Delta,p^*_\Delta\Psi)\]
   and we can then conclude by post-composing with
-  $q(p_\Psi,\Pi(\Delta,p^*_\Delta\Psi))\colon\Gamma.\Psi.p^*_\Psi\Pi(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pi(\Delta,p^*_\Delta\Psi)$,
+  $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))\colon\Gamma.\Psi.p^*_\Psi\Pis(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pis(\Delta,p^*_\Delta\Psi)$,
   which provides our unit.
 
   We then define our lift $\tilde{f}$ as the composite
-  $\Gamma.\Pi(\Delta,f)\cdot\eta_{\Gamma.\Psi}$. The commutativity of the above
+  $\Gamma.\Pis(\Delta,f)\cdot\eta_{\Gamma.\Psi}$. The commutativity of the above
   triangle follows by $\beta$-reduction \wfd{(WE DO NOT HAVE IT!!!)}, while the
   uniqueness of the $\tilde{f}$
   giving the desired factorization by the $\Pi_\eta$-property. \wfd{(PLEASE
   PROVE IT)}
 
-  This also shows that $(p_{\Delta})_*(f)=\Gamma.\Pi(\Delta,f)$, meaning that
-  the construction of $\Gamma.\Pi(\Delta,f)$ is functorial.
+  This also shows that $(p_{\Delta})_*(f)=\Gamma.\Pis(\Delta,f)$, meaning that
+  the construction of $\Gamma.\Pis(\Delta,f)$ is functorial.
 \end{proof}
 
 We know that every fibration in $\cC$ is isomorphic to a composite of dependent
