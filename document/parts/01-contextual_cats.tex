@@ -309,29 +309,29 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
 \end{defn}
 
 \begin{defn}
-  A \emph{$\Pi$-type structure} on a contextual category $\sfC$ consists of:
+  A \emph{$\Pis$-type structure} on a contextual category $\sfC$ consists of:
   \begin{enumerate}
     \item for each $(\Gamma,A,B)\in\Ob_{n+2}\sfC$, an object
-      $(\Gamma,\Pi(A,B))\in\Ob_{n+1}\sfC$;
+      $(\Gamma,\Pis(A,B))\in\Ob_{n+1}\sfC$;
     \item for each $(\Gamma,A,B)\in\Ob_{n+2}\sfC$, a map
-      $\app_{A,B}\colon(\Gamma,\Pi(A,B),p^*_{\Pi(A,B)}A)\rightarrow(\Gamma,A,B)$
-      over $\Gamma$, that is such that $p_B\cdot\app_{A,B}=q(\Pi(A,B),A)$;
+      $\app_{A,B}\colon(\Gamma,\Pis(A,B),p^*_{\Pis(A,B)}A)\rightarrow(\Gamma,A,B)$
+      over $\Gamma$, that is such that $p_B\cdot\app_{A,B}=q(\Pis(A,B),A)$;
     \item for each $(\Gamma,A,B)\in\Ob_{n+2}\sfC$ and section
       $b\colon(\Gamma,A)\rightarrow(\Gamma,A,B)$, a section
-      $\lambda_{A,B}(b)\colon\Gamma\rightarrow(\Gamma,\Pi(A,B))$;
+      $\lambda_{A,B}(b)\colon\Gamma\rightarrow(\Gamma,\Pis(A,B))$;
     \item such that for any sections
-      $k\colon\Gamma\rightarrow(\Gamma,\Pi(A,B))$,
+      $k\colon\Gamma\rightarrow(\Gamma,\Pis(A,B))$,
       $a\colon\Gamma\rightarrow\Gamma.A$
       the map $\app_{A,B}(k,a)$ defined as the composition of $\app_{A,B}$ with
       $(k,a)$ specified by the factorization through the pullback
       \[\begin{tikzcd}
         \Gamma \\
-        & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.A} \\
-        & {\Gamma.\Pi(A,B)} & \Gamma
-        \arrow["{p_{\Pi(A,B)}}"', from=3-2, to=3-3]
+        & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.A} \\
+        & {\Gamma.\Pis(A,B)} & \Gamma
+        \arrow["{p_{\Pis(A,B)}}"', from=3-2, to=3-3]
         \arrow["{p_A}", from=2-3, to=3-3]
-        \arrow["{q(p_{\Pi(A,B)},A)}"', from=2-2, to=2-3]
-        \arrow["{p_{p^*_{\Pi(A,B)}A}}", from=2-2, to=3-2]
+        \arrow["{q(p_{\Pis(A,B)},A)}"', from=2-2, to=2-3]
+        \arrow["{p_{p^*_{\Pis(A,B)}A}}", from=2-2, to=3-2]
         \arrow["a", curve={height=-12pt}, from=1-1, to=2-3]
         \arrow["k"', curve={height=12pt}, from=1-1, to=3-2]
         \arrow["{(k,a)}"{description}, dotted, from=1-1, to=2-2]
@@ -343,32 +343,33 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
     \item all of the above is compatible with context substitution, that is for
       any $f\colon\Delta\rightarrow\Gamma$ we have
       \begin{align*}
-        f^*(\Gamma,\Pi(A,B)) &=(\Delta,\Pi(f^*A,f^*B)), \\
+        f^*(\Gamma,\Pis(A,B)) &=(\Delta,\Pis(f^*A,f^*B)), \\
         f^*\lambda_{A,B}(b) &=\lambda_{f^*A,f^*B}(f^*b), \\
         f^*(\app_{A,B}(k,a)) &=\app_{f^*A,f^*B}(f^*k,f^*a).
       \end{align*}
   \end{enumerate}
 
-  We shall say that the the $\Pi$-type structure satisfies the
+  We shall say that the the $\Pis$-type structure satisfies the
   \emph{$\Pies$-rule} if the equation
-  \[q(p_{\Pi(A,B)},\Pi(A,B))\cdot\lambda(1_{p^*_{\Pi(A,B)}A},\app_{A,B})=1_{(\Gamma,\Pi(A,B))}\]
+  \[q(p_{\Pis(A,B)},\Pis(A,B))\cdot\lambda(1_{p^*_{\Pis(A,B)}A},\app_{A,B})=1_{(\Gamma,\Pis(A,B))}\]
   is satisfied, in which case the structure will be called a
   \emph{$\Pies$-type structure}. The map on the left is the
   \emph{$\eta$-expansion map}, that is it models the map associating to
-  the term $f:\Pi(A,B)$ the term $(\lambda (x:A).fx):\Pi(A,B)$ over $\Gamma$.
-  Also, $(1_{p^*_{\Pi(A,B)}A},\app_{A,B})$ is specified by the following
+  the term $f:\Pis(A,B)$ the term $(\lambda (x:A).\app_{A,B}(f,x)):\Pis(A,B)$ over
+  $\Gamma$.
+  Also, $(1_{p^*_{\Pis(A,B)}A},\app_{A,B})$ is specified by the following
   factorization through the pullback.
   \[\begin{tikzcd}
-    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} \\
-    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.p^*_{\Pi(A,B)}B} & {\Gamma.A.B} \\
-    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.A}
-    \arrow["{q(p_{\Pi(A,B)},A)}"', from=3-2, to=3-3]
+    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} \\
+    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.p^*_{\Pis(A,B)}B} & {\Gamma.A.B} \\
+    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.A}
+    \arrow["{q(p_{\Pis(A,B)},A)}"', from=3-2, to=3-3]
     \arrow["{p_A}", from=2-3, to=3-3]
-    \arrow["{q(p_{\Pi(A,B)},A.B)}"', from=2-2, to=2-3]
-    \arrow["{p_{p^*_{\Pi(A,B)}A}}", from=2-2, to=3-2]
+    \arrow["{q(p_{\Pis(A,B)},A.B)}"', from=2-2, to=2-3]
+    \arrow["{p_{p^*_{\Pis(A,B)}A}}", from=2-2, to=3-2]
     \arrow["{\app_{A,B}}", curve={height=-12pt}, from=1-1, to=2-3]
     \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
-    \arrow["{(1_{p^*_{\Pi(A,B)}A},\app_{A,B})}"{description}, dotted, from=1-1, to=2-2]
+    \arrow["{(1_{p^*_{\Pis(A,B)}A},\app_{A,B})}"{description}, dotted, from=1-1, to=2-2]
   \end{tikzcd}\]
 
   \wfd{(WE STILL NEED $\Piext$, WHICH REQUIRES $\Ids$-TYPE STRUCTS.)}
@@ -377,73 +378,75 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
 \begin{rmk}
   The definition we provided matches \cite[Def.~2.5]{KL18}, while the one in
   \cite[App.~B.1.1]{KL12} is mildly different. Namely, it requires
-  for each pair of sections $f\colon\Gamma\rightarrow\Gamma.\Pi(A,B)$,
+  for each pair of sections $f\colon\Gamma\rightarrow\Gamma.\Pis(A,B)$,
   $a\colon\Gamma\rightarrow\Gamma.A$ a section
   $\app_{A,B}(f,a)\colon\Gamma\rightarrow\Gamma.A.B$ with the properties
   we expressed, from which the authors then construct a map $\app_{A,B}$ as the
   composite
   \begin{align*}
-    q(p_{\Pi(A,B)} &\cdot p_{p^*_{\Pi(A,B)}A},A.B)\cdot \\
-    \app_{A,B} &((1_{p^*_{\Pi(A,B)}A},p_{p^*_{\Pi(A,B)}A}),
-    (1_{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A},q(p_{\Pi(A,B)},A)) \\
-    \colon\Gamma.&\Pi(A,B).p^*_{\Pi(A,B)}A\rightarrow\Gamma.A.B,
+    q(p_{\Pis(A,B)} &\cdot p_{p^*_{\Pis(A,B)}A},A.B)\cdot \\
+    \app_{A,B} &((1_{p^*_{\Pis(A,B)}A},p_{p^*_{\Pis(A,B)}A}),
+    (1_{\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A},q(p_{\Pis(A,B)},A)) \\
+    \colon\Gamma.&\Pis(A,B).p^*_{\Pis(A,B)}A\rightarrow\Gamma.A.B,
   \end{align*}
   of which we shall more explicitly describe each component. We do not actually
   need this description, but for completeness we wanted to report it.
 
-  First we focus on $(1_{\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A},p_{p^*_{\Pi(A,B)}A})$.
+  First we focus on $(1_{\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A},p_{p^*_{\Pis(A,B)}A})$.
   This is given as the factorization through the pullback of the cone given by the
   two maps, as we will show in a moment.
   \[\begin{tikzcd}
-    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} \\
-    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*\Pi(A,B)} && {\Gamma.\Pi(A,B)} \\
-    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.\Pi(A,B)} & \Gamma \\
+    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} \\
+    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.(p_{\Pis(A,B)}\cdot
+  p_{p^*_{\Pis(A,B)}A})^*\Pis(A,B)} && {\Gamma.\Pis(A,B)} \\
+    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.\Pis(A,B)} & \Gamma \\
     & {}
-    \arrow["{p_{p^*_{\Pi(A,B)}A}}"', from=3-2, to=3-3]
+    \arrow["{p_{p^*_{\Pis(A,B)}A}}"', from=3-2, to=3-3]
     \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
-    \arrow["{p_{\Pi(A,B)}}", from=2-4, to=3-4]
-    \arrow["{p_{p^*_{\Pi(A,B)}A}}", curve={height=-12pt}, from=1-1, to=2-4]
-    \arrow["{p_{\Pi(A,B)}}"', from=3-3, to=3-4]
-    \arrow["{p_{(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*\Pi(A,B)}}", from=2-2, to=3-2]
-    \arrow["{q(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A},\Pi(A,B))}"', from=2-2, to=2-4]
+    \arrow["{p_{\Pis(A,B)}}", from=2-4, to=3-4]
+    \arrow["{p_{p^*_{\Pis(A,B)}A}}", curve={height=-12pt}, from=1-1, to=2-4]
+    \arrow["{p_{\Pis(A,B)}}"', from=3-3, to=3-4]
+    \arrow["{p_{(p_{\Pis(A,B)}\cdot p_{p^*_{\Pis(A,B)}A})^*\Pis(A,B)}}", from=2-2, to=3-2]
+    \arrow["{q(p_{\Pis(A,B)}\cdot p_{p^*_{\Pis(A,B)}A},\Pis(A,B))}"', from=2-2, to=2-4]
     \arrow[dotted, from=1-1, to=2-2]
   \end{tikzcd}\]
 
   Similarly, we obtain the other section in the argument.
   \[\begin{tikzcd}
-    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} \\
-    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*A} & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.A} \\
-    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.\Pi(A,B)} & \Gamma \\
+    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} \\
+    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.(p_{\Pis(A,B)}\cdot
+  p_{p^*_{\Pis(A,B)}A})^*A} & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.A} \\
+    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.\Pis(A,B)} & \Gamma \\
     && {}
-    \arrow["{p_{p^*_{\Pi(A,B)}A}}"', from=3-2, to=3-3]
-    \arrow["{p_{p^*_{\Pi(A,B)}A}}"', from=2-2, to=3-2]
+    \arrow["{p_{p^*_{\Pis(A,B)}A}}"', from=3-2, to=3-3]
+    \arrow["{p_{p^*_{\Pis(A,B)}A}}"', from=2-2, to=3-2]
     \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
-    \arrow["{q(p_{\Pi(A,B)},A)}", curve={height=-12pt}, from=1-1, to=2-4]
+    \arrow["{q(p_{\Pis(A,B)},A)}", curve={height=-12pt}, from=1-1, to=2-4]
     \arrow["{p_A}", from=2-4, to=3-4]
-    \arrow["{p_{\Pi(A,B)}}"', from=3-3, to=3-4]
+    \arrow["{p_{\Pis(A,B)}}"', from=3-3, to=3-4]
     \arrow[from=2-3, to=2-4]
-    \arrow["{p_{p^*_{\Pi(A,B)}A}}", from=2-3, to=3-3]
+    \arrow["{p_{p^*_{\Pis(A,B)}A}}", from=2-3, to=3-3]
     \arrow[from=2-2, to=2-3]
     \arrow[dotted, from=1-1, to=2-2]
   \end{tikzcd}.\]
   The map $\app$ with the arguments specified above then provides a map
-  $\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A\rightarrow
-  \Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.p^*_{p^*_{\Pi(A,B)}A}A.p^*_{p^*_{\Pi(A,B)}A}B$.
+  $\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A\rightarrow
+  \Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.p^*_{p^*_{\Pis(A,B)}A}A.p^*_{p^*_{\Pis(A,B)}A}B$.
   What follows is the other map appearing in the definition of $\app_{A,B}$.
   \[\begin{tikzcd}
-    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot
-    p_{p^*_{\Pi(A,B}A})^*A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*B}
+    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.(p_{\Pis(A,B)}\cdot
+    p_{p^*_{\Pis(A,B}A})^*A.(p_{\Pis(A,B)}\cdot p_{p^*_{\Pis(A,B)}A})^*B}
     && {\Gamma.A.B} \\
-    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*A} && {\Gamma.A} \\
-    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.\Pi(A,B)} & \Gamma
-    \arrow["{q(p_{\Pi(A,B)}\cdot p_{p^*(A,B)A},A.B)}", from=1-1, to=1-3]
+    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.(p_{\Pis(A,B)}\cdot p_{p^*_{\Pis(A,B)}A})^*A} && {\Gamma.A} \\
+    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.\Pis(A,B)} & \Gamma
+    \arrow["{q(p_{\Pis(A,B)}\cdot p_{p^*(A,B)A},A.B)}", from=1-1, to=1-3]
     \arrow["{p_B}", from=1-3, to=2-3]
     \arrow["{p_A}", from=2-3, to=3-3]
-    \arrow["{p_{\Pi(A,B)}}"', from=3-2, to=3-3]
-    \arrow["{p_{p^*_{\Pi(A,B)}A}}"', from=3-1, to=3-2]
-    \arrow["{q(p_{\Pi(A,B)}\cdot p_{p^*(A,B)A},A)}"', from=2-1, to=2-3]
-    \arrow["{p_{(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*A}}"', from=2-1, to=3-1]
-    \arrow["{p_{(p_{\Pi(A,B)}\cdot p_{p^*_{\Pi(A,B)}A})^*B}}"', from=1-1, to=2-1]
+    \arrow["{p_{\Pis(A,B)}}"', from=3-2, to=3-3]
+    \arrow["{p_{p^*_{\Pis(A,B)}A}}"', from=3-1, to=3-2]
+    \arrow["{q(p_{\Pis(A,B)}\cdot p_{p^*(A,B)A},A)}"', from=2-1, to=2-3]
+    \arrow["{p_{(p_{\Pis(A,B)}\cdot p_{p^*_{\Pis(A,B)}A})^*A}}"', from=2-1, to=3-1]
+    \arrow["{p_{(p_{\Pis(A,B)}\cdot p_{p^*_{\Pis(A,B)}A})^*B}}"', from=1-1, to=2-1]
   \end{tikzcd}\]
 \end{rmk}
 
@@ -451,39 +454,39 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
   Let $\sfC$ be a contextual category with a $\Pis$-type structure,
   $f\colon\Gamma.A.B\rightarrow\Gamma.A.B'$ a morphism over
   $\Gamma.A$. We want to construct a morphism
-  $$\Gamma.\Pi(A,f)\colon\Gamma.\Pi(A,B)\rightarrow\Gamma.\Pi(A,B')$$ modeling the
+  $$\Gamma.\Pis(A,f)\colon\Gamma.\Pis(A,B)\rightarrow\Gamma.\Pis(A,B')$$ modeling the
   postcomposition by $f$.
 
   We do so by looking at the commutative diagram
   \[\begin{tikzcd}[column sep=large]
-    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} && {\Gamma.A.B} \\
+    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} && {\Gamma.A.B} \\
                                           &
-    {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A.p^*_{\Pi(A,B)}B'} & {\Gamma.A.B'} \\
-    & {\Gamma.\Pi(A,B).p^*_{\Pi(A,B)}A} & {\Gamma.A}
-    \arrow["{q(p_{\Pi(A,B)},A)}"', from=3-2, to=3-3]
+    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.p^*_{\Pis(A,B)}B'} & {\Gamma.A.B'} \\
+    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.A}
+    \arrow["{q(p_{\Pis(A,B)},A)}"', from=3-2, to=3-3]
     \arrow["{p_{B'}}"', from=2-3, to=3-3]
-    \arrow["{q(p_{\Pi(A,B)},A.B')}"', from=2-2, to=2-3]
-    \arrow["{p_{p^*_{\Pi(A,B)}B'}}", from=2-2, to=3-2]
+    \arrow["{q(p_{\Pis(A,B)},A.B')}"', from=2-2, to=2-3]
+    \arrow["{p_{p^*_{\Pis(A,B)}B'}}", from=2-2, to=3-2]
     \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
     \arrow["f"', from=1-3, to=2-3]
     \arrow["{p_B}", curve={height=-36pt}, from=1-3, to=3-3]
     \arrow["{\app_{A,B}}", from=1-1, to=1-3]
-    \arrow["{(1_{p^*_{\Pi(A,B)}A},f\cdot\app_{A,B})}"{pos=1}, from=1-1, to=2-2, dotted]
+    \arrow["{(1_{p^*_{\Pis(A,B)}A},f\cdot\app_{A,B})}"{pos=1}, from=1-1, to=2-2, dotted]
   \end{tikzcd}\]
-  and then applying $\lambda_{p^*_{\Pi(A,B)}A,p^*_{\Pi(A,B)}B'}$ to the map
+  and then applying $\lambda_{p^*_{\Pis(A,B)}A,p^*_{\Pis(A,B)}B'}$ to the map
   given by the universal property of the pullback, which provides us with the
   section
-  \[\lambda_{p^*_{\Pi(A,B)}A,p^*_{\Pi(A,B)}B'}
-  (1_{p^*_{\Pi(A,B)}A},
+  \[\lambda_{p^*_{\Pis(A,B)}A,p^*_{\Pis(A,B)}B'}
+  (1_{p^*_{\Pis(A,B)}A},
   f\cdot\app_{A,B})\colon
-  \Gamma.\Pi(A,B)\rightarrow
-  \Gamma.\Pi(A,B).\Pi(A,B').\]
+  \Gamma.\Pis(A,B)\rightarrow
+  \Gamma.\Pis(A,B).\Pis(A,B').\]
   All we have to do now is postcompose with
-  $q(p_{\Pi(A,B)},\Pi(A,B'))$.
+  $q(p_{\Pis(A,B)},\Pis(A,B'))$.
 \end{construction}
 
 \begin{rmk}
-  The previous construction is such that $\Gamma.\Pi(A,1_B)=1_{\Pi(A,B)}$ for
+  The previous construction is such that $\Gamma.\Pis(A,1_B)=1_{\Pis(A,B)}$ for
   every context $\Gamma.A.B$ in $\sfC$ if and only if the $\Pis$-structure
   satisfies the $\Pies$-rule.
 \end{rmk}

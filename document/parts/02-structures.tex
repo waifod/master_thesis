@@ -14,7 +14,7 @@ On the type theoretical side, extensions of logical rules for identity types to
 contexts were first explored by Streicher \cite{Str93}, then by Gambino and
 Garner \cite{GG08} under the name of \emph{identity contexts}. Lumsdaine later
 claimed that it is possible to model this extension and similar ones for
-$\Sigma$ and $\Pis$ types in $\sfC^{cxt}$ \cite[26]{Lum10}. At the time
+$\Sigmas$ and $\Pis$ types in $\sfC^{cxt}$ \cite[26]{Lum10}. At the time
 Kapulkin proved the theorem this thesis focuses on,
 nothing further was available in the literature and only later him and
 Lumsdaine gave more details on these matters \cite{KL18}. In this section we aim
@@ -33,15 +33,14 @@ contribution of this work.
       are morphisms between them seen as objects of $\sfC$;
     \item $*$ is the only element of $\Ob_0\sfC^{cxt}$;
     \item
-      $ft(\Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1})=\Gamma_1.\Gamma_2.\ldots.\Gamma_n$;
+      $\cft(\Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1})=\Gamma_1.\Gamma_2.\ldots.\Gamma_n$;
     \item the map $p_{\Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1}}\colon
       \Gamma_1.\Gamma_2.\ldots.\Gamma_{n+1}\rightarrow
       \Gamma_1.\Gamma_2.\ldots.\Gamma_n$ is the dependent projection exhibiting
       $\Gamma_1.\Gamma_2.\ldots.\Gamma_{n+1}$ as a context extension of
-      $\Gamma_1.\Gamma_2.\ldots.\Gamma_n$ and will be denoted by
-      $p_{\Gamma_{n+1}}$ unless there is ambiguity;
+      $\Gamma_1.\Gamma_2.\ldots.\Gamma_n$;
     \item the chosen pullbacks are given by iterating the pullbacks along the
-      basic dependent projections.
+      basic dependent projections, as in the original contextual category.
   \end{enumerate}
 
   As we can see, any object of $\sfC^{cxt}$ is isomorphic to one in
@@ -76,8 +75,9 @@ contribution of this work.
   specify domain and codomain. By construction, this functor is again contextual
   and an equivalence of categories.
 
-  The monad axioms follow from the fact that, essentially, both unit and counit
-  are ``identities'' on objects and morphisms, which concludes our construction.
+  The monad axioms follow from the fact that, essentially, both unit and
+  multiplication are ``identities'' on objects and morphisms, which concludes
+  our construction.
 \end{construction}
 
 We are now ready to extend the $\Pis$-structure, however we will do so under the
@@ -307,9 +307,9 @@ We shall also need the following lemma in the proof of FINAL THEOREM.
 \begin{lem}[\cite{Kap17}]\label{piequal}
   Given an iterated context extension $\Gamma.\Delta.\Theta.\Psi$ in a
   contextual category with $\Pis$-types $\sfC$, the contexts
-  \[\Gamma.\Pis(\Delta,\Theta.\Psi),\quad\Gamma.\Pi(\Delta,\Theta).\Pi(p^*_{\Pi(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi)\]
+  \[\Gamma.\Pis(\Delta,\Theta.\Psi),\quad\Gamma.\Pis(\Delta,\Theta).\Pis(p^*_{\Pis(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi)\]
   are equal in $\sfC$. Also,
-  $\Gamma.\Pis(\Delta,p_{\Psi})=p_{\Pi(\Delta,\app^*_{\Delta,\Theta}\Psi)}$.
+  $\Gamma.\Pis(\Delta,p_{\Psi})=p_{\Pis(\Delta,\app^*_{\Delta,\Theta}\Psi)}$.
 \end{lem}
 \begin{proof}
   For the first claim, it is enough to notice that the two contexts reduce to
@@ -319,7 +319,7 @@ We shall also need the following lemma in the proof of FINAL THEOREM.
   For the second claim instead we consider the chain of equalities
   \begin{align*}
     \Gamma.\Pis(\Delta,p_{\Psi})
-    &=q(p_{\Pis(\Delta,\Theta.\Psi)},\Pi(\Delta,\Theta))\cdot
+    &=q(p_{\Pis(\Delta,\Theta.\Psi)},\Pis(\Delta,\Theta))\cdot
     \lambda_{\Delta,\Theta}(1_{p^*_{\Pis(\Delta,\Theta)}\Delta},p_\Psi\cdot\app_{\Delta,\Theta.\Psi}) \\
     &=p_{\Pis(\Delta,\app^*_{\Delta,\Theta})}\cdot
     p_{\Pis(\Delta,\Theta)}\cdot
@@ -402,6 +402,6 @@ CONTEXTS)}
   structures is not compatible with the monad we provided earlier because they
   are not compatible with the multiplication. On the other
   hand, with a strategy along the line of the one we presented for
-  $\Pis$-structures we can also lift $\Sigma$-structures compatibly with the
-  monad, meaning that $(-)^{cxt}$ restricts to one on $Cxl_\Sigma$.
+  $\Pis$-structures we can also lift $\Sigmas$-structures compatibly with the
+  monad, meaning that $(-)^{cxt}$ restricts to one on $Cxl_\Sigmas$.
 \end{rmk}
