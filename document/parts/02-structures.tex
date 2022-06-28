@@ -48,7 +48,7 @@ contribution of this work.
   in $\sfC$ and then taking the dependent projection from it to the terminal
   object, which exhibits it as a 1-iterated context extension. The isomorphism
   is then given by the map in $\sfC^{cxt}$ corresponding to the identity of the
-  object in $\sfC$. We now specify a monad $\sfC\mapsto\sfC^{cxt}$ on $Cxl$.
+  object in $\sfC$. We now specify a monad $\sfC\mapsto\sfC^{cxt}$ on $\Cxl$.
 
   The unit $\sfC\rightarrow\sfC^{cxt}$ sends every $n$-object in $\sfC$ to
   the corresponding $n$-iterated (simple) context extension and every morphism
@@ -80,17 +80,10 @@ contribution of this work.
   our construction.
 \end{construction}
 
-We are now ready to extend the $\Pis$-structure, however we will do so under the
-assumption that a section $c\colon\Gamma\rightarrow\Gamma.A.B$ can be split as
-two sections $a\colon\Gamma\rightarrow\Gamma.A$,
-$b\colon\Gamma.A\rightarrow\Gamma.A.B$.
-We see that $p_B\cdot c=p_B\cdot b\cdot a=a$. Syntactically, this means that if
-we pick two terms $x:A$, $y:B(x)$ over $\Gamma$ at once, then we can also
-specify for each choice of a term $x':A$ over $\Gamma$ a term $y':B(x')$ such
-that $y\equiv y'$ when $x\equiv x'$. We shall later point out the
-difficulties encountered without our assumption.
+We are now ready to extend the $\Pis$-structure, which we will do in two parts,
+the first one in full generality and the second one in specific conditions.
 
-\begin{construction}
+\begin{construction}[Part 1]
   Let $\sfC$ be a contextual category with a $\Pis$-structure. Our objective for
   this section is, as anticipated, to construct one on $\sfC^{cxt}$. We will do
   so by induction on the length of the context extensions involved, taking the
@@ -142,10 +135,25 @@ difficulties encountered without our assumption.
   interpreted as a sequence of partial evaluations and the phenomenon is
   commonly known as \emph{currying-uncurrying}.
 
-  This fully specifies the construction when
+\end{construction}
+
+  We have fully specified the construction for
   $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+1$ in $\sfC$, hence we shall move on
   to the case where $\Delta$ has arbitrary length and construct the necessary
-  structure by inducting on the length of $\Theta$. Suppose then that
+  structure by inducting on the length of $\Theta$.
+
+We will do so for syntactic categories and in contextual categories where a
+section $c\colon\Gamma\rightarrow\Gamma.A.B$ can be split as
+two sections $a\colon\Gamma\rightarrow\Gamma.A$,
+$b\colon\Gamma.A\rightarrow\Gamma.A.B$.
+We see that $p_B\cdot c=p_B\cdot b\cdot a=a$. Syntactically, this means that if
+we pick two terms $x:A$, $y:B(x)$ over $\Gamma$ at once, then we can also
+specify for each choice of a term $x':A$ over $\Gamma$ a term $y':B(x')$ such
+that $y\equiv y'$ when $x\equiv x'$. We shall later point out the
+difficulties encountered without our assumption.
+
+\begin{construction}[Part 2]
+  Suppose that
   $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n$, $n>1$, and we have already
   provided the relevant constructions up to $n-1$. We again decompose
   the context as $\Gamma.\Delta.\Theta'.B$ and make use of our assumption on
@@ -403,5 +411,5 @@ CONTEXTS)}
   are not compatible with the multiplication. On the other
   hand, with a strategy along the line of the one we presented for
   $\Pis$-structures we can also lift $\Sigmas$-structures compatibly with the
-  monad, meaning that $(-)^{cxt}$ restricts to one on $Cxl_\Sigmas$.
+  monad, meaning that $(-)^{cxt}$ restricts to one on $\Cxl_{\Sigmas}$.
 \end{rmk}

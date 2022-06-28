@@ -241,7 +241,7 @@ contextual category $\Syn(T)$ explicitly modeling it as we will show.
   essentially algebraic theory with sorts indexed by $\bbN+\bbN\times\bbN$. In
   that context, we get a notion of morphisms between models of this theory,
   which coincides with the one we have just provided. The category of models for
-  this theory will be the category of contextual categories, denoted by $Cxl$,
+  this theory will be the category of contextual categories, denoted by $\Cxl$,
   which will be complete and cocomplete as the category of models of an
   essentially algebraic theory REFS.
 \end{rmk}
@@ -351,12 +351,11 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
 
   We shall say that the the $\Pis$-type structure satisfies the
   \emph{$\Pies$-rule} if the equation
-  \[q(p_{\Pis(A,B)},\Pis(A,B))\cdot\lambda(1_{p^*_{\Pis(A,B)}A},\app_{A,B})=1_{(\Gamma,\Pis(A,B))}\]
+  \[q(p_{\Pis(A,B)},\Pis(A,B))\cdot\lambda(1_{p^*_{\Pis(A,B)}A},\app_{A,B})=1_{\Gamma.\Pis(A,B)}\]
   is satisfied, in which case the structure will be called a
   \emph{$\Pies$-type structure}. The map on the left is the
-  \emph{$\eta$-expansion map}, that is it models the map associating to
-  the term $f:\Pis(A,B)$ the term $(\lambda (x:A).\app_{A,B}(f,x)):\Pis(A,B)$ over
-  $\Gamma$.
+  \emph{$\eta$-expansion map}, that is it models the map
+  $f\mapsto\lambda(x:A).\app_{A,B}(f,x)$ over $\Gamma$.
   Also, $(1_{p^*_{\Pis(A,B)}A},\app_{A,B})$ is specified by the following
   factorization through the pullback.
   \[\begin{tikzcd}
@@ -370,7 +369,7 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
     \arrow["{\app_{A,B}}", curve={height=-12pt}, from=1-1, to=2-3]
     \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
     \arrow["{(1_{p^*_{\Pis(A,B)}A},\app_{A,B})}"{description}, dotted, from=1-1, to=2-2]
-  \end{tikzcd}\]
+  \end{tikzcd}.\]
 
   \wfd{(WE STILL NEED $\Piext$, WHICH REQUIRES $\Ids$-TYPE STRUCTS.)}
 \end{defn}
@@ -453,9 +452,11 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
 \begin{construction}
   Let $\sfC$ be a contextual category with a $\Pis$-type structure,
   $f\colon\Gamma.A.B\rightarrow\Gamma.A.B'$ a morphism over
-  $\Gamma.A$. We want to construct a morphism
-  $$\Gamma.\Pis(A,f)\colon\Gamma.\Pis(A,B)\rightarrow\Gamma.\Pis(A,B')$$ modeling the
-  postcomposition by $f$.
+  $\Gamma.A$, meaning a map $b\mapsto\app_{B,B'}(f,b)$ for the term
+  $f:\Pis(B,B')$ it induces \wfd{(HOW?)}. We want to construct a morphism
+  $$\Gamma.\Pis(A,f)\colon\Gamma.\Pis(A,B)\rightarrow\Gamma.\Pis(A,B')$$
+  modeling the postcomposition by $f$, that is
+  $g\mapsto\lambda(x:A).\app_{A,B'}(f,\app_{A,B}(g,x))$.
 
   We do so by looking at the commutative diagram
   \[\begin{tikzcd}[column sep=large]

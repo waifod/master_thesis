@@ -1,43 +1,14 @@
 \chapter{Localizing Categorical Models}
 
-To apply the results from the previous section, we first need to specify a
-fibrational structure on categorical models of type theory.
+In this chapter we finally talk about localizing contextual categories. To do
+this, we first specify a class of maps we localize at, explaining the rationale
+behind our choice, and then from this we construct a fibrational structure which
+will allow us to apply the results from the previous section. We also briefly
+mention the \emph{Internal Languages Conjecture}.
 
-\begin{defn}[\cite{Bro73}]
-  A \emph{fibration category} is a triple $(\cP,W,\fib)$ where $\cP$ is a
-  category and $W$, $\fib$ are wide subcategories such that:
-  \begin{enumerate}
-    \item $\cP$ has a terminal object;
-    \item maps to the terminal object lie in $\fib$;
-    \item $\fib$ and $W\cap \fib$ are closed under pullback along any map in $\cP$;
-    \item every map in $\cP$ can be factored as a map in $W$ followed by one in
-      $\fib$;
-    \item $W$ has the 2-out-of-6 property.
-  \end{enumerate}
-\end{defn}
+\section{Bi-Invertibility}
 
-\begin{rmk}
-  Seeing $\cP$, $W$ and $\fib$ in the above definition as $\infty$-categories, we
-  notice that the triple has canonically the structure of an $\infty$-category
-  of fibrant objects, hence we shall adopt the conventions we used in that
-  context.
-\end{rmk}
-
-\begin{rmk}[\cite{AKL15}]
-  Our definition differs slightly from the original one by Brown
-  because it asks for $W$ to be closed under the 2-out-of-6 property
-  instead of the more classical 2-out-of-3, but, as shown by Cisinski, if all of
-  the other axioms are satisfied the following are equivalent:
-  \begin{enumerate}
-    \item $W$ has the 2-out-of-6 property;
-    \item $W$ has the 2-out-of-3 and is saturated, that is a morphism in $\cP$
-      becomes invertible in $\ho(\cP)$ if and only if it lies in $W$.
-  \end{enumerate}
-  See \cite[Thm.~7.2.7]{RB06}.
-\end{rmk}
-
-Now we have to specify the classes of maps which will provide the desired
-structure.
+As anticipated, we introduce a notion of weak equivalence in our context.
 
 \begin{defn}
   Given a categorical model of type theory $\sfC$, a morphism
@@ -72,9 +43,8 @@ working as usual with $\sfC^{cxt}$ to provide the notion given in
   model the right notion of invertible map in dependent type theory: indeed,
   from the
   required data for a simply bi-invertible map $f$ over $\Gamma$ we can provide
-  a section $\Gamma\rightarrow\Gamma.\ishiso{f}$ of the dependent projection
-  $p_{\ishiso{f}}\colon\Gamma.\ishiso{f}\rightarrow\Gamma$ REFS, which is
-  the externalization of the definition of $\ishiso{f}$ of
+  a section $\Gamma\rightarrow\Gamma.\ishiso{f}$ \wfd{(MAYBE ACTUALLY DO IT?)},
+  which is the externalization of the definition of $\ishiso{f}$ of
   \cite[Def.~B.3.3]{KL12}, which itself is the translation into the language of
   contextual categories of the notion of bi-invertible map in type theory
   \cite[Def~4.3.1]{Uni13}.
@@ -88,6 +58,61 @@ working as usual with $\sfC^{cxt}$ to provide the notion given in
   preferable. Also, every bi-invertible map can be given the structure of an
   isomorphism and viceversa, hence they are closely related.
 \end{rmk}
+
+\begin{rmk}
+Localizing a contextual category with an $\Ids$-structure at bi-invertible maps
+gives us an $\infty$-category modeling a dependent type theory with intensional
+identity types REFS. It has been conjectured that such a type theory should
+provide the internal language of $\infty$-categories, but a precise statement of
+this correspondence has not yet been produced and only a few results in this
+direction have
+been proven so far. A conjecture of this kind would amount to an equivalence
+between
+an $\infty$-category of contextual categories with some extra structures and an
+$\infty$-category of structured $\infty$-categories induced by the localization
+at bi-invertible maps, which means that first have to determine what we
+properties the localization has.
+\end{rmk}
+
+To study the localizations of categorical models of type theory we want to apply
+the results from the previous section, which require us to specify a
+fibrational structure by providing a class
+of fibrations.
+
+\begin{defn}[\cite{Bro73}]
+  A \emph{fibration category} is a triple $(\cP,W,\fib)$ where $\cP$ is a
+  category and $W$, $\fib$ are wide subcategories such that:
+  \begin{enumerate}
+    \item $\cP$ has a terminal object;
+    \item maps to the terminal object lie in $\fib$;
+    \item $\fib$ and $W\cap \fib$ are closed under pullback along any map in $\cP$;
+    \item every map in $\cP$ can be factored as a map in $W$ followed by one in
+      $\fib$;
+    \item $W$ has the 2-out-of-6 property.
+  \end{enumerate}
+\end{defn}
+
+\begin{rmk}
+  Seeing $\cP$, $W$ and $\fib$ in the above definition as $\infty$-categories, we
+  notice that the triple has canonically the structure of an $\infty$-category
+  of fibrant objects, hence we shall adopt the conventions we used in that
+  context.
+\end{rmk}
+
+\begin{rmk}[\cite{AKL15}]
+  Our definition differs slightly from the original one by Brown
+  because it asks for $W$ to be closed under the 2-out-of-6 property
+  instead of the more classical 2-out-of-3, but, as shown by Cisinski, if all of
+  the other axioms are satisfied the following are equivalent:
+  \begin{enumerate}
+    \item $W$ has the 2-out-of-6 property;
+    \item $W$ has the 2-out-of-3 and is saturated, that is a morphism in $\cP$
+      becomes invertible in $\ho(\cP)$ if and only if it lies in $W$.
+  \end{enumerate}
+  See \cite[Thm.~7.2.7]{RB06}.
+\end{rmk}
+
+Now we have enough to specify the fibrational structure.
 
 \begin{prop}[\cite{AKL15}]
   A categorical model of type theory $\sfC$ which also has a $\Nat$ and a
@@ -108,9 +133,11 @@ The above result can be however generalized.
   structures.
 \end{proof}
 
-We now provide a few results needed to show that the hypothesis of Theorem
-\ref{7616} concerning the pullback functor is satisfied by a categorical model
-of type theory with respect to the above fibrational structure.
+\section{Cartesian Closure}
+
+We are now ready to provide a few results needed to show that the hypothesis of
+Theorem \ref{7616} are satisfied by a categorical
+model of type theory with respect to the above fibrational structure.
 
 \begin{lem}[\cite{Kap17}]\label{radj}
   For any dependent projection $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ in
@@ -137,7 +164,7 @@ of type theory with respect to the above fibrational structure.
     {\Gamma.\Delta.p^*_\Delta\Pis(\Delta,\Theta)} & {\Gamma.\Delta.\Theta}
     \arrow["f", from=1-1, to=2-2]
     \arrow["{\epsilon_{\Gamma.\Delta.\Theta}}"', from=2-1, to=2-2]
-    \arrow["{p^*_\Delta\tilde{f}}"', dotted, from=1-1, to=2-1]
+    \arrow["{p^*_\Delta(\tilde{f})}"', dotted, from=1-1, to=2-1]
   \end{tikzcd}\]
   commute. This will then uniquely specify how the right adjoint acts on the
   morphisms.
@@ -154,13 +181,13 @@ of type theory with respect to the above fibrational structure.
     \arrow["{p_{\Pis(\Delta,p^*_\Delta\Psi)}}", from=1-2, to=2-2]
     \arrow["{q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))}", from=1-1, to=1-2]
   \end{tikzcd}\]
-  where the map $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ acts by forgetting the
-  term of $\Psi$. If we can provide a section of the vertical map on the left
-  corresponding to the sequence $[\Gamma,y:\Psi,\lambda(x:\Delta).y]$ we are
+  where the map $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ acts as $(x,f)\mapsto
+  f$. If we can provide a section of the left map
+  corresponding to $x\mapsto(x,\lambda(y:\Delta).x)$ we are
   done as we can then compose
   it with $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ to get our unit.
   
-  We construct it by looking at the commutative square
+  To construct it first we look at the commutative square
   \[\begin{tikzcd}
     {\Gamma.\Psi} \\
     & {\Gamma.\Psi.p^*_\Psi\Psi} & {\Gamma.\Psi} \\
@@ -173,15 +200,17 @@ of type theory with respect to the above fibrational structure.
     \arrow[curve={height=-12pt}, Rightarrow, no head, from=1-1, to=2-3]
     \arrow["{(1_\Psi,1_\Psi)}"{description}, dotted, from=1-1, to=2-2]
   \end{tikzcd},\]
-  corresponding to the sequence $[\Gamma,x:\Psi,x:\Psi]$. Then, we pull back along
-  $p_{p^*_\Psi\Delta}$, getting a section
+  where the factorization corresponds to $x\mapsto(x,x)$. Then, we pull back
+  along $p_{p^*_\Psi\Delta}$, getting a section
   $p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi)\colon\Gamma.\Psi.p^*_\Psi\Delta\rightarrow\Gamma.\Psi.p^*_\Psi\Delta.p^*_{p^*_\Psi\Delta}\Psi$.
+
   We then apply $\lambda$, which gives us a section
   \[\lambda(p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi))=\lambda(1_{p^*_\Psi\Delta},p_{p^*_\Psi\Delta})
-\colon\Gamma.\Psi\rightarrow\Gamma.\Psi.p^*_\Psi\Pis(\Delta,p^*_\Delta\Psi)\]
-  and we can then conclude by post-composing with
+\colon\Gamma.\Psi\rightarrow\Gamma.\Psi.p^*_\Psi\Pis(\Delta,p^*_\Delta\Psi),\]
+which is exactly what we were looking for. We can then conclude the construction
+of the unit by post-composing with
   $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))\colon\Gamma.\Psi.p^*_\Psi\Pis(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pis(\Delta,p^*_\Delta\Psi)$,
-  which provides our unit.
+  as anticipated.
 
   We then define our lift $\tilde{f}$ as the composite
   $\Gamma.\Pis(\Delta,f)\cdot\eta_{\Gamma.\Psi}$. The commutativity of the above
