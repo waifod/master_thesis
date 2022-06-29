@@ -71,7 +71,7 @@ will extend the $\Pis$-structure.
   $n$-iterated context extension where each extension is itself an iterated
   context extension in $\sfC$, that is
   \[(\Gamma_1.\ldots.\Gamma_{i_1}).(\Gamma_{i_1+1}.\ldots.\Gamma_{i_2}).\ldots.(\Gamma_{i_{n-1}+1}.\ldots.\Gamma_{i_n}).\]
-  Since composing dependent projections still gives dependent projections,
+  Since composing dependent projections gives dependent projections,
   seeing $\Gamma_{i_{j-1}+1}.\ldots.\Gamma_{i_j}$ as a single context extension
   $\Delta_j$ in $\sfC$, we can naturally
   map the object of $(\sfC^{cxt})^{cxt}$ to $\Delta_1.\ldots.\Delta_n$ in
@@ -120,8 +120,8 @@ us.
   $\Gamma.\Delta=\Gamma.A$ and therefore we simply set our structure to be the
   one in $\sfC$.
 
-  If $n-1>0$, we can write
-  $\Gamma.\Delta$ as $\Gamma.\Delta'.A$ and then set
+  If $n-1>0$, we have
+  $\Gamma.\Delta=\Gamma.\Delta'.A$ and then set
   \begin{align*}
     \Gamma.\Pis(\Delta,B)
     &=\Gamma.\Pis(\Delta'.A,B)=\Gamma.\Pi(\Delta',\Pi(A,B)) \\
@@ -129,8 +129,11 @@ us.
     &\colon
     \Gamma.\Pis(\Delta',\Pi(A,B)).\Delta'.A
                     \xrightarrow{q(\app_{\Delta',\Pis(A,B)},p^*_{\Pi(A,B)}A)} \\
-                    &\Gamma.\Delta'.\Pi(A,B).A
-                    \xrightarrow{\app_{A,B}}\Gamma.\Delta'.A.B \\
+    &\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
+    \Gamma.\Delta'.\Pi(A,B).A
+    \xrightarrow{\app_{A,B}} \\
+    &\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
+    \Gamma.\Delta'.A.B \\
     \lambda_{\Delta,B}(b)
     &\colon
     \Gamma

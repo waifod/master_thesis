@@ -132,6 +132,14 @@ The above result can be however generalized.
   structures.
 \end{proof}
 
+\begin{cor}\label{fincompl1}
+  Given a contextual category with $\Sigmas$ and $\Ids$ structures $\sfC$, the
+  $\infty$-category $L(\sfC)$ is finitely complete.
+\end{cor}
+\begin{proof}
+  It follows directly from Proposition \ref{fibcat} and Proposition \ref{7518}.
+\end{proof}
+
 \section{Cartesian Closure}
 
 We are now ready to provide a few results needed to show that the hypothesis of
@@ -165,7 +173,7 @@ model of type theory with respect to the above fibrational structure.
     \arrow["{\epsilon_{\Gamma.\Delta.\Theta}}"', from=2-1, to=2-2]
     \arrow["{p^*_\Delta(\tilde{f})}"', dotted, from=1-1, to=2-1]
   \end{tikzcd}\]
-  commute. This will then uniquely specify how the right adjoint acts on the
+  commute. This will then uniquely define how the right adjoint acts on the
   morphisms.
 
   We start by specifying the unit
@@ -180,11 +188,12 @@ model of type theory with respect to the above fibrational structure.
     \arrow["{p_{\Pis(\Delta,p^*_\Delta\Psi)}}", from=1-2, to=2-2]
     \arrow["{q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))}", from=1-1, to=1-2]
   \end{tikzcd}\]
-  where the map $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ acts as $(x,f)\mapsto
+  where the map $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ acts as $(y,f)\mapsto
   f$. If we can provide a section of the left map
-  corresponding to $x\mapsto(x,\lambda(y:\Delta).x)$ we are
+  corresponding to $y\mapsto(y,\lambda(x:\Delta).y)$ we are
   done as we can then compose
-  it with $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ to get our unit.
+  it with $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ to get our unit
+  $y\mapsto\lambda(x:\Delta).y$.
   
   To construct it first we look at the commutative square
   \[\begin{tikzcd}
@@ -203,20 +212,34 @@ model of type theory with respect to the above fibrational structure.
   along $p_{p^*_\Psi\Delta}$, getting a section
   $p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi)\colon\Gamma.\Psi.p^*_\Psi\Delta\rightarrow\Gamma.\Psi.p^*_\Psi\Delta.p^*_{p^*_\Psi\Delta}\Psi$.
 
-  We then apply $\lambda$, which gives us a section
-  \[\lambda(p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi))=\lambda(1_{p^*_\Psi\Delta},p_{p^*_\Psi\Delta})
+  We then apply $\lambda_{\Delta,\Psi}$, which gives us a section
+  \[\lambda_{\Delta,\Psi}(p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi))
+    =\lambda(1_{p^*_\Psi\Delta},p_{p^*_\Psi\Delta})
 \colon\Gamma.\Psi\rightarrow\Gamma.\Psi.p^*_\Psi\Pis(\Delta,p^*_\Delta\Psi),\]
-which is exactly what we were looking for. We can then conclude the construction
-of the unit by post-composing with
-  $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))\colon\Gamma.\Psi.p^*_\Psi\Pis(\Delta,p^*_\Delta\Psi)\rightarrow\Gamma.\Pis(\Delta,p^*_\Delta\Psi)$,
-  as anticipated.
+which is exactly what we were looking for.
 
   We then define our lift $\tilde{f}$ as the composite
   $\Gamma.\Pis(\Delta,f)\cdot\eta_{\Gamma.\Psi}$. The commutativity of the above
-  triangle follows by $\beta$-reduction \wfd{(WE DO NOT HAVE IT!!!)}, while the
-  uniqueness of the $\tilde{f}$
-  giving the desired factorization by the $\Pies$-property. \wfd{(PLEASE
-  PROVE IT)}
+  triangle follows by internal reasoning from
+  \begin{align*}
+    (x,y)
+    &\mapsto(x,\lambda(x:\Delta).y) \\
+    &\mapsto(x,\lambda(x:\Delta).\app(f,\app(\lambda(x:\Delta).y,x))) \\
+    &\equiv(x,\lambda(x:\Delta).\app(f,y)) \\
+    &\mapsto(\lambda(x:\Delta).\app(f,y),x) \\
+    &\mapsto(x,\app(\lambda(x:\Delta).\app(f,y),x)) \\
+    &\equiv(x,\app(f,y))
+  \end{align*}
+  and our description of
+  $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$ in
+  Remark \ref{applyf}.
+  \wfd{(USED INTERNAL REASONING AGAIN)} while the
+  uniqueness of the $\tilde{f}$ follows from the fact that we can not construct,
+  from every pair $(x:\Delta,y:\Psi)$, another term
+  $g(x,y):\Pi(\Delta,\Theta)$ such that $\app(g(x,y),x)=\app(f,x)$. Indeed, the
+  only way would be through $\eta$-expansion on
+  $\lambda(x:\Delta).\app(f,y)$, but as we noted the
+  $\Pies$-rule implies that this process returns the same term.
 
   This also shows that $(p_{\Delta})_*(f)=\Gamma.\Pis(\Delta,f)$, meaning that
   the construction of $\Gamma.\Pis(\Delta,f)$ is functorial.
@@ -249,16 +272,19 @@ Again, the above extends to all fibrations in $\sfC$.
   is locally cartesian closed.
 \end{thm}
 \begin{proof}
-  We already know that it is finitely complete by \ref{7518}. The hypothesis of
-  Theorem \ref{7616} are satisfied by Lemma \ref{radj} and Lemma \ref{lccfc}.
+  We already know that it is finitely complete by \ref{fincompl1}. The
+  hypothesis of Theorem \ref{7616} are satisfied by Lemma \ref{radj} and Lemma
+  \ref{lccfc}.
 \end{proof}
 
 \begin{thm}
-  A contextual functor between categorical models of type theory is sent by the
-  localization functor $\Hoi$ to a left exact functor.
+  The right derived functor of a contextual functor between categorical models
+  of type theory is left exact.
 \end{thm}
 \begin{proof}
   By definition, such a functor preserves fibrations, chosen pullbacks, terminal
   object and $\Ids$-structure, thus it is left exact. We can then apply
   Proposition \ref{7528}.
 \end{proof}
+
+\section{Conclusions}

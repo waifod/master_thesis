@@ -127,22 +127,28 @@ $\T$ a contextual category $\Syn{\T}$ explicitly modeling it as we will show.
 \end{construction}
 
 \begin{rmk}
-  Given a dependent type theory $T$, the terms $t:A$ of a type over a context
+  Given a dependent type theory $\T$, the terms $a:A$ of a type over a context
   $\Gamma$ can be recovered (up to definitional equality) from the syntactic
   category $\Syn{\T}$ by looking at sections of the basic dependent projection
   $p_{[\Gamma,x:A]}\colon[\Gamma,x:A]\rightarrow[\Gamma]$, which indeed act as
-  identities over $\Gamma$ and furthermore specify a term $\Gamma\vdash t:A$.
+  identities over $\Gamma$ and furthermore specify a term $\Gamma\vdash a:A$.
   Given the importance of such maps, we shall often simply write ``sections'' to
   refer to sections of basic dependent projections, without specifying which ones
   unless it creates ambiguity.
 
   The above construction also tells us how to think about the other elements in
   the definition of contextual categories: basic dependent
-  projections $p_B\colon\Gamma.A.B\rightarrow\Gamma.A$ represent dependent
-  types $B(x)$ over $x:A$ in the context $\Gamma$ and pulling back along
+  projections $p_{\Gamma.A.B}\colon\Gamma.A.B\rightarrow\Gamma.A$ represent
+  dependent types $B$ over $A$ in the context $\Gamma$ and pulling back along
   a dependent projection corresponds to substituting variables, while a choice of
   a term corresponds to a choice of a section of a basic dependent projection
   and so on for the other objects in the definition.
+
+  It is also worth noting that, in $[x_1:A_1,\ldots,x_n:A_n]$, both the type
+  $A_i$ and the term $x_i:A_i$ can depend on all of the previous terms, hence we
+  should be writing $A_i(x_1,\ldots,x_{i-1})$ and $x_i(x_1,\ldots,x_{i-1})$,
+  however we will avoid doing it as we have done so far unless it creates
+  ambiguity.
 \end{rmk}
 
 \begin{notation}
@@ -227,7 +233,8 @@ $\T$ a contextual category $\Syn{\T}$ explicitly modeling it as we will show.
     \arrow[curve={height=24pt}, Rightarrow, no head, from=1-1, to=3-1]
   \end{tikzcd},\]
   it corresponds to the pullback of $a$ along $q(f,A)$. By the techniques we
-  provided earlier, we extend this construction to contexts of arbitrary length.
+  provided earlier, we extend this construction to contexts extensions of
+  arbitrary length.
 \end{notation}
 
 \begin{defn}
@@ -273,7 +280,7 @@ the next section.
 \end{rmk}
 
 \begin{rmk}
-This result has been partially proven for a simple variant of dependent type
+This conjecture has been partially proven for a simple variant of dependent type
 theory in \cite{Str91}, however we still do not have a fully rigorous general
 statement.
 
@@ -364,23 +371,8 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
   \emph{$\Pies$-rule} if the equation
   \[q(p_{\Pis(A,B)},\Pis(A,B))\cdot\lambda(1_{p^*_{\Pis(A,B)}A},\app_{A,B})=1_{\Gamma.\Pis(A,B)}\]
   is satisfied, in which case the structure will be called a
-  \emph{$\Pies$-type structure}. The map on the left is the
-  \emph{$\eta$-expansion map}, that is it models the map
-  $f\mapsto\lambda(x:A).\app_{A,B}(f,x)$ over $\Gamma$.
-  Also, $(1_{p^*_{\Pis(A,B)}A},\app_{A,B})$ is specified by the following
-  factorization through the pullback.
-  \[\begin{tikzcd}
-    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} \\
-    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.p^*_{\Pis(A,B)}B} & {\Gamma.A.B} \\
-    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.A}
-    \arrow["{q(p_{\Pis(A,B)},A)}"', from=3-2, to=3-3]
-    \arrow["{p_A}", from=2-3, to=3-3]
-    \arrow["{q(p_{\Pis(A,B)},A.B)}"', from=2-2, to=2-3]
-    \arrow["{p_{p^*_{\Pis(A,B)}A}}", from=2-2, to=3-2]
-    \arrow["{\app_{A,B}}", curve={height=-12pt}, from=1-1, to=2-3]
-    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
-    \arrow["{(1_{p^*_{\Pis(A,B)}A},\app_{A,B})}"{description}, dotted, from=1-1, to=2-2]
-  \end{tikzcd}.\]
+  \emph{$\Pies$-type structure}. 
+
 
   \wfd{(WE STILL NEED $\Piext$, WHICH REQUIRES $\Ids$-TYPE STRUCTS.)}
 \end{defn}
@@ -394,14 +386,66 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
   properties in the next chapter.
 \end{rmk}
 
+\begin{rmk}
+  Internally, the map $\app_{A,B}$
+  corresponds to \[(f,a)\mapsto(a,\app(f,a)).\] Also, 
+  the association $b\mapsto\lambda_{A,B}(b)$ for some section
+  $\Gamma.A\rightarrow\Gamma.A.B$ corresponds to \emph{lambda
+  abstraction}, hence $\lambda_{A,B}(b)$ specifies the term
+  $\lambda(a:A).b(a):\Pis(A,B)$.
+  The map on the left of the definition of the $\Pies$-rule is the
+  \emph{$\eta$-expansion map}, that is it corresponds internally to the map
+  \[f\mapsto\lambda(a:A).\app(f,a)\] over $\Gamma$, thus
+  the property means that we have a judgement
+  \[\Gamma\vdash f\equiv\lambda(a:A).\app(f,a):\Pis(A,B).\]
+  The map $(1_{p^*_{\Pis(A,B)}A},\app_{A,B})$ is specified by the following
+  factorization through the pullback.
+  \[\begin{tikzcd}
+    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} \\
+    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.p^*_{\Pis(A,B)}B} & {\Gamma.A.B} \\
+    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.A}
+    \arrow["{q(p_{\Pis(A,B)},A)}"', from=3-2, to=3-3]
+    \arrow["{p_A}", from=2-3, to=3-3]
+    \arrow["{q(p_{\Pis(A,B)},A.B)}"', from=2-2, to=2-3]
+    \arrow["{p_{p^*_{\Pis(A,B)}A}}", from=2-2, to=3-2]
+    \arrow["{\app_{A,B}}", curve={height=-12pt}, from=1-1, to=2-3]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow["{(1_{p^*_{\Pis(A,B)}A},\app_{A,B})}"{description}, dotted, from=1-1, to=2-2]
+  \end{tikzcd}.\]
+\end{rmk}
+
+\begin{construction}\label{applyf}
+  Let $\sfC$ be a contextual category with a $\Pis$-type structure,
+  $f\colon\Gamma.A\rightarrow\Gamma.B$ a map over $\Gamma$ and therefore
+  corresponding internally to $a\mapsto b(a)$. We want to provide
+  a section $\Gamma\rightarrow\Gamma.\Pis(A,B)$, which we will also denote $f$,
+  corresponding to $\lambda(a:A).b(a):\Pis(A,B)$. We do so by looking at the
+  commutative diagram
+  \[\begin{tikzcd}
+    {\Gamma.A} \\
+    & {\Gamma.A.p^*_AB} & {\Gamma.B} \\
+    & {\Gamma.A} & \Gamma
+    \arrow["f", curve={height=-12pt}, from=1-1, to=2-3]
+    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow["{(1_A,f)}"{description}, dotted, from=1-1, to=2-2]
+    \arrow["{p_B}", from=2-3, to=3-3]
+    \arrow["{p_A}"', from=3-2, to=3-3]
+    \arrow["{q(p_A,B)}"', from=2-2, to=2-3]
+    \arrow["{p_{p^*_AB}}", from=2-2, to=3-2]
+  \end{tikzcd}\]
+  and then taking $\lambda_{A,p^*_AB}(1_A,f)$. The original
+  $f\colon\Gamma.A\rightarrow\Gamma.B$ can then be described internally as
+  $a\mapsto\app(f,a)$.
+\end{construction}
+
 \begin{construction}
   Let $\sfC$ be a contextual category with a $\Pis$-type structure,
   $f\colon\Gamma.A.B\rightarrow\Gamma.A.B'$ a morphism over
-  $\Gamma.A$, meaning a map $b\mapsto\app_{B,B'}(f,b)$ for the term
-  $f:\Pis(B,B')$ it induces \wfd{(HOW?)}. We want to construct a morphism
+  $\Gamma.A$, meaning a map $b\mapsto\app(f,b)$ for the term
+  $f:\Pis(B,B')$ it induces. We want to construct a morphism
   $$\Gamma.\Pis(A,f)\colon\Gamma.\Pis(A,B)\rightarrow\Gamma.\Pis(A,B')$$
   modeling the postcomposition by $f$, that is
-  $g\mapsto\lambda(x:A).\app_{A,B'}(f,\app_{A,B}(g,x))$.
+  $g\mapsto\lambda(a:A).\app(f,\app(g,a))$.
 
   We do so by looking at the commutative diagram
   \[\begin{tikzcd}[column sep=large]
