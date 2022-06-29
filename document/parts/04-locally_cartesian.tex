@@ -1,4 +1,4 @@
-\chapter{Localizing Categorical Models}
+\chapter{Localizations of Categorical Models of Type Theory}
 
 In this chapter we finally talk about localizing contextual categories. To do
 this, we first specify a class of maps we localize at, explaining the rationale
@@ -43,11 +43,10 @@ working as usual with $\sfC^{cxt}$ to provide the notion given in
   model the right notion of invertible map in dependent type theory: indeed,
   from the
   required data for a simply bi-invertible map $f$ over $\Gamma$ we can provide
-  a section $\Gamma\rightarrow\Gamma.\ishiso{f}$ \wfd{(MAYBE ACTUALLY DO IT?)},
-  which is the externalization of the definition of $\ishiso{f}$ of
-  \cite[Def.~B.3.3]{KL12}, which itself is the translation into the language of
-  contextual categories of the notion of bi-invertible map in type theory
-  \cite[Def~4.3.1]{Uni13}.
+  a section $\Gamma\rightarrow\Gamma.\ishiso{f}$ \wfd{(MAYBE ACTUALLY DO IT?)}
+  as defined in \cite[Def.~B.3.3]{KL12}, which itself is the translation into
+  the language of contextual categories of the notion of bi-invertible map in
+  type theory \cite[Def~4.3.1]{Uni13}.
 
   It is important to note that, while type theory has no way to encode
   internally the concept of isomorphism of the contextual model, it does have
@@ -245,7 +244,7 @@ We are finally ready to prove the last result leading to the final one we want.
 
 Again, the above extends to all fibrations in $\sfC$.
 
-\begin{thm}[\cite{Kap17}]
+\begin{thm}[\cite{Kap17}]\label{finalthm}
   Given a categorical model of type theory $\sfC$, the $\infty$-category $L(\sfC)$
   is locally cartesian closed.
 \end{thm}

@@ -10,6 +10,10 @@ categories}, which were first explored by Cartmell and Streicher in
 in \wfd{(MORE REFS)}. Lumsdaine in his phd thesis claims that contextual
 categories are the right framework PROP 1.2.5.
 
+\section{Definitions}
+
+We begin by providing the basic definitions modeling structural rules.
+
 \begin{defn}
   A \emph{contextual category} $\sfC$ is a category with the following data:
   \begin{enumerate}
@@ -61,15 +65,15 @@ categories are the right framework PROP 1.2.5.
 \end{rmk}
 
 A motivating example for contextual categories is the \emph{syntactic category
-of a dependent type theory}, which constructs from a dependent type theory $T$ a
-contextual category $\Syn(T)$ explicitly modeling it as we will show.
+of a dependent type theory}, which constructs from a dependent type theory
+$\T$ a contextual category $\Syn{\T}$ explicitly modeling it as we will show.
 
 \begin{construction}\cite[2.6]{Car78}
   \wfd{(KL12 also mentions other stuff! Should I?)}
-  Given a dependent type theory $T$ with the structural rules specified in
-  \cite[A.1]{KL12}, its syntactic category $\Syn(T)$ has:
+  Given a dependent type theory $\T$ with the structural rules specified in
+  \cite[A.1]{KL12}, its syntactic category $\Syn{\T}$ has:
   \begin{enumerate}
-    \item $\Ob_n\Syn(T)$ given by contexts $[x_1:A_1,\ldots,x_n:A_n]$ of length
+    \item $\Ob_n\Syn{\T}$ given by contexts $[x_1:A_1,\ldots,x_n:A_n]$ of length
       $n$, modulo definitional equality and renaming of free variables;
     \item maps are \emph{context morphisms}, or \emph{substitutions}, modulo
       definitional equalities and renaming of free variables. This means that a
@@ -87,10 +91,7 @@ contextual category $\Syn(T)$ explicitly modeling it as we will show.
       for every $i$, where $\equiv$ represents judgemental equality; we shall
       henceforth write $[f_i]$ for such sequences of terms up to equivalence
       specifying maps between contexts;
-    \item composition is given by substitution, that is given
-      $[f]\colon\Gamma\rightarrow\Delta$, $[g]\colon\Delta\rightarrow\Theta$ we
-      have a map $[g]\colon\Gamma\rightarrow\Theta$ induced by the same sequence
-      of terms;
+    \item composition is given by substitution;
     \item the identity $\Gamma\rightarrow\Gamma$ is given by the variables of
       $\Gamma$, considered as
       terms, that is we take the sequence $[x_i]$ given by
@@ -128,7 +129,7 @@ contextual category $\Syn(T)$ explicitly modeling it as we will show.
 \begin{rmk}
   Given a dependent type theory $T$, the terms $t:A$ of a type over a context
   $\Gamma$ can be recovered (up to definitional equality) from the syntactic
-  category $\Syn(T)$ by looking at sections of the basic dependent projection
+  category $\Syn{\T}$ by looking at sections of the basic dependent projection
   $p_{[\Gamma,x:A]}\colon[\Gamma,x:A]\rightarrow[\Gamma]$, which indeed act as
   identities over $\Gamma$ and furthermore specify a term $\Gamma\vdash t:A$.
   Given the importance of such maps, we shall often simply write ``sections'' to
@@ -242,7 +243,7 @@ contextual category $\Syn(T)$ explicitly modeling it as we will show.
   that context, we get a notion of morphisms between models of this theory,
   which coincides with the one we have just provided. The category of models for
   this theory will be the category of contextual categories, denoted by $\Cxl$,
-  which will be complete and cocomplete as the category of models of an
+  which is complete and cocomplete as the category of models of an
   essentially algebraic theory REFS.
 \end{rmk}
 
@@ -257,27 +258,37 @@ bureaucracy. For this to be true, however, we need the following statement,
 which we shall assume because the results we need rely on it.
 
 \begin{named}[Initiality]
-  Given a dependent type theory $T$, its syntactic category $\Syn(T)$ is initial
-  in the category of contextual categories with the appropriate structure.
+  Given a dependent type theory $\T$, its syntactic category $\Syn{\T}$ is
+  initial in the category of contextual categories with the appropriate
+  structure.
 \end{named}
 
-Here by ``appropriate structure'' we mean extra structures meant to model the
+\begin{rmk}
+Here by ``appropriate structure'' we mean extra algebraic structures meant to
+model the
 logical rules of the type theory, like $\Sigmas$-types, $\Pis$-types and
 $\Ids$-types. Indeed, the definition of contextual category as we said deals with
-the structural rules, but nothing more.
-This result has been proven for a simple variant of dependent type theory in
-\cite{Str91}, however we still do not have a fully rigorous general statement.
+the structural rules, but nothing more. We will introduce the such structures in
+the next section.
+\end{rmk}
 
-Such a statement would first require a general notion of dependent type
-theory, which is being worked on \cite{BHL20}, and
+\begin{rmk}
+This result has been partially proven for a simple variant of dependent type
+theory in \cite{Str91}, however we still do not have a fully rigorous general
+statement.
+
+Such a statement would first require a general notion of dependent type theory,
+which has been worked on in \cite{Isa17, Uem19, Bru20, BHL20, NU22}, and
 there is an ongoing effort to provide a formalization and a flexible proof of
 some variants of the conjecture via proof assistants \cite{BL20}.
 
 If we could do that, then for any contextual category $\sfC$ we would have a
-contextual functor $\Syn(T)\rightarrow\sfC$ explaining how to interpret $T$ in
+contextual functor $\Syn{\T}\rightarrow\sfC$ explaining how to interpret $\T$ in
 $\sfC$. This is essentually an algorithmic problem: it reduces to explaining
 inductively to a computer how to construct the aforementioned functor.
+\end{rmk}
 
+\section{Logical Structures}
 We now define the extra structures on contextual categories we mentioned
 earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
 
@@ -376,77 +387,11 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
 
 \begin{rmk}
   The definition we provided matches \cite[Def.~2.5]{KL18}, while the one in
-  \cite[App.~B.1.1]{KL12} is mildly different. Namely, it requires
-  for each pair of sections $f\colon\Gamma\rightarrow\Gamma.\Pis(A,B)$,
-  $a\colon\Gamma\rightarrow\Gamma.A$ a section
-  $\app_{A,B}(f,a)\colon\Gamma\rightarrow\Gamma.A.B$ with the properties
-  we expressed, from which the authors then construct a map $\app_{A,B}$ as the
-  composite
-  \begin{align*}
-    q(p_{\Pis(A,B)} &\cdot p_{p^*_{\Pis(A,B)}A},A.B)\cdot \\
-    \app_{A,B} &((1_{p^*_{\Pis(A,B)}A},p_{p^*_{\Pis(A,B)}A}),
-    (1_{\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A},q(p_{\Pis(A,B)},A)) \\
-    \colon\Gamma.&\Pis(A,B).p^*_{\Pis(A,B)}A\rightarrow\Gamma.A.B,
-  \end{align*}
-  of which we shall more explicitly describe each component. We do not actually
-  need this description, but for completeness we wanted to report it.
-
-  First we focus on $(1_{\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A},p_{p^*_{\Pis(A,B)}A})$.
-  This is given as the factorization through the pullback of the cone given by the
-  two maps, as we will show in a moment.
-  \[\begin{tikzcd}
-    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} \\
-    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.(p_{\Pis(A,B)}\cdot
-  p_{p^*_{\Pis(A,B)}A})^*\Pis(A,B)} && {\Gamma.\Pis(A,B)} \\
-    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.\Pis(A,B)} & \Gamma \\
-    & {}
-    \arrow["{p_{p^*_{\Pis(A,B)}A}}"', from=3-2, to=3-3]
-    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
-    \arrow["{p_{\Pis(A,B)}}", from=2-4, to=3-4]
-    \arrow["{p_{p^*_{\Pis(A,B)}A}}", curve={height=-12pt}, from=1-1, to=2-4]
-    \arrow["{p_{\Pis(A,B)}}"', from=3-3, to=3-4]
-    \arrow["{p_{(p_{\Pis(A,B)}\cdot p_{p^*_{\Pis(A,B)}A})^*\Pis(A,B)}}", from=2-2, to=3-2]
-    \arrow["{q(p_{\Pis(A,B)}\cdot p_{p^*_{\Pis(A,B)}A},\Pis(A,B))}"', from=2-2, to=2-4]
-    \arrow[dotted, from=1-1, to=2-2]
-  \end{tikzcd}\]
-
-  Similarly, we obtain the other section in the argument.
-  \[\begin{tikzcd}
-    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} \\
-    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.(p_{\Pis(A,B)}\cdot
-  p_{p^*_{\Pis(A,B)}A})^*A} & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.A} \\
-    & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.\Pis(A,B)} & \Gamma \\
-    && {}
-    \arrow["{p_{p^*_{\Pis(A,B)}A}}"', from=3-2, to=3-3]
-    \arrow["{p_{p^*_{\Pis(A,B)}A}}"', from=2-2, to=3-2]
-    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
-    \arrow["{q(p_{\Pis(A,B)},A)}", curve={height=-12pt}, from=1-1, to=2-4]
-    \arrow["{p_A}", from=2-4, to=3-4]
-    \arrow["{p_{\Pis(A,B)}}"', from=3-3, to=3-4]
-    \arrow[from=2-3, to=2-4]
-    \arrow["{p_{p^*_{\Pis(A,B)}A}}", from=2-3, to=3-3]
-    \arrow[from=2-2, to=2-3]
-    \arrow[dotted, from=1-1, to=2-2]
-  \end{tikzcd}.\]
-  The map $\app$ with the arguments specified above then provides a map
-  $\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A\rightarrow
-  \Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.p^*_{p^*_{\Pis(A,B)}A}A.p^*_{p^*_{\Pis(A,B)}A}B$.
-  What follows is the other map appearing in the definition of $\app_{A,B}$.
-  \[\begin{tikzcd}
-    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.(p_{\Pis(A,B)}\cdot
-    p_{p^*_{\Pis(A,B}A})^*A.(p_{\Pis(A,B)}\cdot p_{p^*_{\Pis(A,B)}A})^*B}
-    && {\Gamma.A.B} \\
-    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.(p_{\Pis(A,B)}\cdot p_{p^*_{\Pis(A,B)}A})^*A} && {\Gamma.A} \\
-    {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.\Pis(A,B)} & \Gamma
-    \arrow["{q(p_{\Pis(A,B)}\cdot p_{p^*(A,B)A},A.B)}", from=1-1, to=1-3]
-    \arrow["{p_B}", from=1-3, to=2-3]
-    \arrow["{p_A}", from=2-3, to=3-3]
-    \arrow["{p_{\Pis(A,B)}}"', from=3-2, to=3-3]
-    \arrow["{p_{p^*_{\Pis(A,B)}A}}"', from=3-1, to=3-2]
-    \arrow["{q(p_{\Pis(A,B)}\cdot p_{p^*(A,B)A},A)}"', from=2-1, to=2-3]
-    \arrow["{p_{(p_{\Pis(A,B)}\cdot p_{p^*_{\Pis(A,B)}A})^*A}}"', from=2-1, to=3-1]
-    \arrow["{p_{(p_{\Pis(A,B)}\cdot p_{p^*_{\Pis(A,B)}A})^*B}}"', from=1-1, to=2-1]
-  \end{tikzcd}\]
+  \cite[App.~B.1.1]{KL12} is mildly different as it starts from
+  $\app_{A,B}(f,a)$ instead of $\app_{A,B}$ and constructs the latter from the
+  former. We prefer this because it will allow us to more easily extend the
+  $\Pis$-structure to arbitrary context extensions and check the necessary
+  properties in the next chapter.
 \end{rmk}
 
 \begin{construction}

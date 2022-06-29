@@ -21,6 +21,11 @@ Lumsdaine gave more details on these matters \cite{KL18}. In this section we aim
 to partially fix that for $\Pis$-structures specifically, which will be the main
 contribution of this work.
 
+\section{Constructions}
+
+We begin by constructing the category of iterated contexts, where we
+will extend the $\Pis$-structure.
+
 \begin{construction}\cite[21]{Lum10}
   Given a contextual category $\sfC$, we construct a contextual category
   $\sfC^{cxt}$ in the following way:
@@ -80,21 +85,21 @@ contribution of this work.
   our construction.
 \end{construction}
 
-We are now ready to extend the $\Pis$-structure, which we will do in two parts,
+We are now ready, given a contextual category $\sfC$ to extend the
+$\Pis$-structure to $\sfC^{cxt}$, which we will do in two parts,
 the first one in full generality and the second one in specific conditions.
 
-\begin{construction}[Part 1]
-  Let $\sfC$ be a contextual category with a $\Pis$-structure. Our objective for
-  this section is, as anticipated, to construct one on $\sfC^{cxt}$. We will do
-  so by induction on the length of the context extensions involved, taking the
-  one from $\sfC$ in case we are working with objects corresponding to simple
-  extensions. Remember however that in $\sfC^{cxt}$ we also have objects
-  representing trivial extensions, which will require some minor attention from
-  us.
+Given $\Gamma.\Delta.\Theta$ in $\sfC^{cxt}$, where
+$l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n=l(\Gamma)+m+n$ in $\sfC$, we
+build $\Gamma.\Pis(\Delta,\Theta)$ by induction on the length of the context
+extensions involved, taking the
+one from $\sfC$ in case we are working with objects corresponding to simple
+extensions. Remember however that in $\sfC^{cxt}$ we also have objects
+representing trivial extensions, which will require some minor attention from
+us.
 
-  Let us consider then $\Gamma.\Delta.\Theta$ in $\sfC^{cxt}$, where
-  $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n=l(\Gamma)+m+n$ in $\sfC$. If
-  $m=0$, then we set
+\begin{construction}[Part 1]
+  If $m=0$, then we set
   \begin{align*}
     \Gamma.\Pis(\Delta,\Theta) &=\Gamma.\Theta, \\
     \app_{\Delta,\Theta} &=1_{\Gamma.\Theta}, \\
@@ -120,9 +125,11 @@ the first one in full generality and the second one in specific conditions.
   \begin{align*}
     \Gamma.\Pis(\Delta,B)
     &=\Gamma.\Pis(\Delta'.A,B)=\Gamma.\Pi(\Delta',\Pi(A,B)) \\
-    \app_{\Delta,B} &\colon
-                    \Gamma.\Pis(\Delta',\Pi(A,B)).\Delta'.A
-                    \xrightarrow{q(\app_{\Delta',\Pis(A,B)},p^*_{\Pi(A,B)}A)}\Gamma.\Delta'.\Pi(A,B).A
+    \app_{\Delta,B} 
+    &\colon
+    \Gamma.\Pis(\Delta',\Pi(A,B)).\Delta'.A
+                    \xrightarrow{q(\app_{\Delta',\Pis(A,B)},p^*_{\Pi(A,B)}A)} \\
+                    &\Gamma.\Delta'.\Pi(A,B).A
                     \xrightarrow{\app_{A,B}}\Gamma.\Delta'.A.B \\
     \lambda_{\Delta,B}(b)
     &\colon
@@ -164,9 +171,11 @@ difficulties encountered without our assumption.
     &=\Gamma.\Pis(\Delta,\Theta'.B)=\Gamma.\Pi(\Delta,\app^*_{\Delta,\Theta'}B) \\
     \app_{\Delta,\Theta}
     &\colon\Gamma.\Pis(\Delta,\Theta').\Pi(\Delta,\app^*_{\Delta,\Theta'}B).\Delta
-    \xrightarrow{\app_{\Delta,\app^*_{\Delta,\Theta'}B}}
+    \xrightarrow{\app_{\Delta,\app^*_{\Delta,\Theta'}B}} \\
+    &\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
     \Gamma.\Pis(\Delta,\Theta').\Delta.\app^*_{\Delta,\Theta'}B
-    \xrightarrow{q(\app_{\Delta,\Theta'},B)}
+    \xrightarrow{q(\app_{\Delta,\Theta'},B)} \\
+    &\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
     \Gamma.\Delta.\Theta'.B \\
     \lambda_{\Delta,\Theta}(b)
     &\colon\Gamma
@@ -176,168 +185,16 @@ difficulties encountered without our assumption.
     \Gamma.\Pis(\Delta,\Theta').\Pi(\Delta,\app^*_{\Delta,\Theta'}B)
   \end{align*}
 
-  Given $a\colon\Gamma\rightarrow\Gamma.\Delta$,
-  $f\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta$, we construct
-  $\app_{\Delta,\Theta}(f,a)$ as in the definition of $\Pis$-structures.
-
-  This fully specifies the data needed for a $\Pis$-structure on $\sfC^{cxt}$,
-  however we still have to check that it is indeed one.
 \end{construction}
 
-\begin{prop}
-  Given a contextual category with a $\Pis$-structure $\sfC$, the above data
-  defines a $\Pis$-structure on $\sfC^{cxt}$ which is compatible with the natural
-  contextual functor $\sfC\rightarrow\sfC^{cxt}$.
-\end{prop}
-\begin{proof}
-  We have to
-  show that it is a $\Pis$-structure, which we will do inductively by verifying
-  that at every step our proposed construction maintains the desired properties.
-  The compatibility with the contextual functor will then follow directly from
-  the way we defined the base case.
+Given $a\colon\Gamma\rightarrow\Gamma.\Delta$,
+$f\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta$, we construct
+$\app_{\Delta,\Theta}(f,a)$ as in the definition of $\Pis$-structures.
 
-  Let's consider an object $\Gamma.\Delta.\Theta$ in $\sfC^{cxt}$. The only
-  interesting case is the one where both $\Delta$ and $\Theta$
-  specify non-trivial context extensions in $\sfC$ and at least one of them is
-  not basic: indeed, the desired properties in the other cases are either
-  trivial or follow directly from the fact that they hold in $\sfC$.
-
-  We start as before by working on $\Delta$, supposing that
-  $\Gamma.\Delta.\Theta=\Gamma.\Delta.B=\Gamma.\Delta'.A.B$ and that
-  the desired properties for context extensions over $\Gamma$ of length
-  up to $l(\Gamma.\Delta')-l(\Gamma)$.
-  We can then write
-  \begin{align*}
-    p_B\cdot\app_{\Delta,B}
-    &=p_B\cdot
-    \app_{A,B}\cdot
-    q(\app_{\Delta',\Pis(A,B)},p^*_{\Pi(A,B)}A) \\
-    &=q(p_{\Pis(A,B)},A)\cdot
-    q(\app_{\Delta',\Pis(A,B)},p^*_{\Pi(A,B)}A) \\
-    &=q(p_{\Pis(A,B)}\cdot\app_{\Delta',\Pi(A,B)},A) \\
-    &=q(q(p_{\Pis(\Delta',\Pi(A,B))},\Delta'),A) \\
-    &=q(p_{\Pis(\Delta',\Pi(A,B))},\Delta'.A) \\
-    &=q(p_{\Pis(\Delta,B)},\Delta) \\
-    p_B\cdot\app_{\Delta,\Theta}(f,a)
-    &=p_B\cdot
-    \app_{\Pis(\Delta,B)}\cdot
-    p^*_{\Pis(\Delta,B))}a\cdot
-    f \\
-    &=q(p_{\Pis(\Delta,B)},\Delta)\cdot
-    p^*_{\Pis(\Delta,B)}a\cdot
-    f \\
-    &=a\cdot
-    p_{\Pis(\Delta,B))}\cdot
-    f \\
-    &=a \\
-    \app(\lambda_{\Delta,B}(b),a)
-    &=\app_{A,B}\cdot
-    q(\app_{\Delta',\Pis(A,B)},A)\cdot
-    p^*_{\Pis(\Delta',\Pi(A,B))}a\cdot
-    \lambda_{\Delta,B}(b) \\
-    &=\app_{A,B}\cdot
-    q(\app_{\Delta',\Pis(A,B))},A)\cdot
-    p^*_{\Pis(\Delta',\Pi(A,B))}a\cdot
-    \lambda_{\Delta',\Pis(A,B)}(\lambda_{A,B}(b)) \\
-    &=\app_{A,B}\cdot
-    q(\app_{\Delta',\Pis(A,B))},A)\cdot
-    \app() \\
-    other attempt...
-    &=b\cdot a \\
-    &=b\cdot
-    a\cdot
-    p_{\Pis(\Delta,B)}\cdot
-    \lambda_{\Delta,B}(b) \\
-    &=b\cdot
-    q(p_{\Pis(\Delta,B)},\Delta)\cdot
-    p^*_{\Pis(\Delta,B)}a\cdot
-    \lambda_{\Delta,B}(b) \\
-    &= \\
-    \app(\lambda_{\Delta,B}(b),p_A\cdot a)
-    &=\app(\lambda_{\Delta',\Pis(A,B)}(\lambda_{A,B}(b)),p_A\cdot a) \\
-    &=\lambda_{A,B}(b)\cdot p_A\cdot a \\
-    &= ??? \\
-    p_{\Pis(\Delta,B)}\cdot\lambda_{\Delta,B}(b)
-    &=p_{\Pis(\Delta',\Pi(A,B))}\cdot
-    \lambda_{\Delta',\Pis(A,B)}(\lambda_{A,B}(b)) \\
-    &=1_\Gamma.
-  \end{align*}
-  \wfd{PLEASE VERIFY, LIKELY WRONG}
-
-  We now check inductively on the length of $\Theta$.
-  \begin{align*}
-    p_{\Theta}\cdot\app_{\Delta,\Theta}
-    &=p_{\Theta'}\cdot
-    p_B\cdot
-    q(\app_{\Delta,\Theta'},B)\cdot
-    \app_{\Delta,\app^*_{\Delta,\Theta'}B} \\
-    &=p_{\Theta'}\cdot
-    \app_{\Delta,\Theta'}\cdot
-    p_{\app^*_{\Delta,\Theta'}B}\cdot
-    \app_{\Delta,\app^*_{\Delta,\Theta'}B} \\
-    &=q(p_{\Pis(\Delta,\Theta)},\Delta)\cdot
-    q(p_{\Pis(\Delta,\app^*_{\Delta,\Theta'}B)},\Delta) \\
-    &=q(p_{\Pis(\Delta,\Theta')}\cdot
-    p_{\Pis(\Delta,\app^*_{\Delta,\Theta'}B)},\Delta) \\
-    &=q(p_{\Pis(\Delta,\Theta').\Pi(\Delta,\app^*_{\Delta,\Theta'}B)},\Delta) \\
-    &=q(p_{\Pis(\Delta,\Theta)},\Delta) \\
-    p_\Theta\cdot\app_{\Delta,\Theta}(f,a)
-    &=p_\Theta\cdot\app_{\Delta,\Theta}\cdot(a,f) \\
-    &=q(p_{\Pis(\Delta,\Theta)},\Delta)\cdot(a,f) \\
-    &=a \\
-    \app_{\Delta,\Theta}(\lambda_{\Delta,\Theta}(b),a)
-    &=q(\app_{\Delta,\Theta'},B)\cdot
-    \app_{p^*_{\Pis(\Delta,\Theta')}\Delta,\app^*_{\Delta,\Theta'}B}\cdot
-    (\lambda_{p^*_{\Pis(\Delta,\Theta')}\Delta,\app^*_{\Delta,\Theta'}B}(\app_{\Delta,\Theta'}^*b'')\cdot\lambda_{\Delta,\Theta'}(b'),a) \\
-    &=q(\app_{\Delta,\Theta'},B)\cdot
-    \app_{p^*_{\Pis(\Delta,\Theta')}\Delta,\app^*_{\Delta,\Theta'}B}
-    () \\
-    &=\app_{\Delta,\app^*_{\Delta,\Theta'}B}\cdot \\
-    stuff \\
-    p_{\Pis(\Delta,\Theta)}\cdot
-    \lambda_{\Delta,\Theta}(b)
-    &=p_{\Pis(\Delta,\Theta')}\cdot
-    p_{\Pis(p_{\Pi(\Delta,\Theta')}^*\Delta,\app^*_{\Delta,\Theta'}B')}\cdot
-    \lambda_{p^*_{\Pis(\Delta,\Theta')}\Delta,\app^*_{\Delta,\Theta'}B}(\app_{\Delta,\Theta'}^*b'')\cdot
-    \lambda_{\Delta,\Theta'}(b') \\
-    &=p_{\Pis(\Delta,\Theta')}\cdot
-    \lambda_{\Delta,\Theta'}(b') \\
-    &=1_\Gamma.
-  \end{align*}
-
-  To conclude the proof one would still need to verify that the construction is
-  compatible with context substitution.
-\end{proof}
-
-
-We shall also need the following lemma in the proof of FINAL THEOREM.
-
-\begin{lem}[\cite{Kap17}]\label{piequal}
-  Given an iterated context extension $\Gamma.\Delta.\Theta.\Psi$ in a
-  contextual category with $\Pis$-types $\sfC$, the contexts
-  \[\Gamma.\Pis(\Delta,\Theta.\Psi),\quad\Gamma.\Pis(\Delta,\Theta).\Pis(p^*_{\Pis(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi)\]
-  are equal in $\sfC$. Also,
-  $\Gamma.\Pis(\Delta,p_{\Psi})=p_{\Pis(\Delta,\app^*_{\Delta,\Theta}\Psi)}$.
-\end{lem}
-\begin{proof}
-  For the first claim, it is enough to notice that the two contexts reduce to
-  the same one in $\sfC$ after applying the inductive construction we defined on
-  $\sfC^{cxt}$ to reduce $\Psi$.
-
-  For the second claim instead we consider the chain of equalities
-  \begin{align*}
-    \Gamma.\Pis(\Delta,p_{\Psi})
-    &=q(p_{\Pis(\Delta,\Theta.\Psi)},\Pis(\Delta,\Theta))\cdot
-    \lambda_{\Delta,\Theta}(1_{p^*_{\Pis(\Delta,\Theta)}\Delta},p_\Psi\cdot\app_{\Delta,\Theta.\Psi}) \\
-    &=p_{\Pis(\Delta,\app^*_{\Delta,\Theta})}\cdot
-    p_{\Pis(\Delta,\Theta)}\cdot
-    \lambda_{\Delta,\Theta}(1_{p^*_{\Pis(\Delta,\Theta)}\Delta},p_\Psi\cdot\app_{\Delta,\Theta.\Psi}) \\
-    &=p_{\Pis(\Delta,\app^*_{\Delta,\Theta})}.
-  \end{align*}
-  \wfd{(PLEASE CHECK)}
-\end{proof}
-
-We now do the same for an $\Ids$-structure on a contextual category.
+This fully specifies the data needed for a $\Pis$-structure on $\sfC^{cxt}$,
+however we still have to check that it is indeed one, which we will do in the
+next section. First, however, we sketch the extension for an $\Ids$-structure on
+a contextual category.
 
 \begin{construction}
   Let $\sfC$ be a contextual category with an $\Ids$-structure. Given a dependent
@@ -368,6 +225,168 @@ We now do the same for an $\Ids$-structure on a contextual category.
   \end{align*}
 \end{construction}
 
+
+\section{Properties}
+
+In this section we verify that the desired properties hold.
+
+\begin{prop}
+  Given a contextual category with a $\Pis$-structure $\sfC$, the above data
+  defines a $\Pis$-structure on $\sfC^{cxt}$ which is compatible with the natural
+  contextual functor $\sfC\rightarrow\sfC^{cxt}$.
+\end{prop}
+\begin{proof}
+  We have to
+  show that it is a $\Pis$-structure, which we will do inductively by verifying
+  that at every step our proposed construction maintains the desired properties.
+  The compatibility with the contextual functor will then follow directly from
+  the way we defined the base case.
+
+  Let's consider an object $\Gamma.\Delta.\Theta$ in $\sfC^{cxt}$ such that
+  $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n=l(\Gamma)+m+n$ in $\sfC$. The only
+  interesting case is the one where $m,n>0$ and at least one of them is
+  $>1$: indeed, the desired properties in the other cases are either
+  trivial or follow directly from the fact that they hold in $\sfC$.
+
+  We start as before by working on $m>1$, $n=1$, so we write
+  $\Gamma.\Delta.\Theta=\Gamma.\Delta.B=\Gamma.\Delta'.A.B$ and assume that
+  the desired properties hold for shorter context extensions.
+  We can then write
+  \begin{align*}
+    p_B\cdot\app_{\Delta,B}
+    &=p_B\cdot
+    \app_{A,B}\cdot
+    q(\app_{\Delta',\Pis(A,B)},p^*_{\Pi(A,B)}A) \\
+    &=q(p_{\Pis(A,B)},A)\cdot
+    q(\app_{\Delta',\Pis(A,B)},p^*_{\Pi(A,B)}A) \\
+    &=q(p_{\Pis(A,B)}\cdot\app_{\Delta',\Pi(A,B)},A) \\
+    &=q(q(p_{\Pis(\Delta',\Pi(A,B))},\Delta'),A) \\
+    &=q(p_{\Pis(\Delta',\Pi(A,B))},\Delta'.A) \\
+    &=q(p_{\Pis(\Delta,B)},\Delta) \\
+    p_B\cdot\app_{\Delta,B}(f,a)
+    &=p_B\cdot
+    \app_{\Pis(\Delta,B)}\cdot
+    (f,a) \\
+    &=q(p_{\Pis(\Delta,B)},\Delta)\cdot
+    (f,a) \\
+    &=a \\
+    p_{\Pis(\Delta,B)}\cdot\lambda_{\Delta,B}(b)
+    &=p_{\Pis(\Delta',\Pi(A,B))}\cdot
+    \lambda_{\Delta',\Pis(A,B)}(\lambda_{A,B}(b)) \\
+    &=1_\Gamma.
+  \end{align*}
+  \wfd{PLEASE VERIFY, LIKELY WRONG}
+  To justify $\app_{\Delta,B}(\lambda_{\Delta,B}(b),y)=b\cdot y$ we shall use
+  internal reasoning. The section
+  $b\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.B$ is
+  such that\[y\equiv (y',a)\mapsto(y',a,b(y',a))\equiv(y,b(y)),\] thus
+  applying $\lambda_{A,B}$ and then $\lambda_{\Delta',\Pis(A,B)}$ we get
+  $\lambda(y':\Delta).(\lambda(a:A).b(y',a))=\lambda(y:\Delta).b(y)$. Also,
+  $\app_{\Delta,B}$ acts internally as
+  \begin{align*}
+    (f,y)&\equiv(f,y',a) \\
+    &\mapsto
+    (y',\app(f,y'),a) \\
+    &\mapsto
+    (y',a,\app(\app(f,y'),a))\equiv(y,\app(f,y)),
+  \end{align*}
+  thus in this case we get
+  \begin{align*}
+    (\lambda(y:\Delta).b(y),y)&\equiv(\lambda(y':\Delta').(\lambda(a:A).b(y',a)),y',a) \\
+    &\mapsto
+    (y',\lambda(a:A).b(y',a),a) \\
+    &\mapsto
+    (y',a,b(y',a))\equiv(y,b(y)),
+  \end{align*}
+  where the inductive hypothesis has been used in the second step.
+  
+  We now check inductively on the length of $\Theta$.
+  \begin{align*}
+    p_{\Theta}\cdot\app_{\Delta,\Theta}
+    &=p_{\Theta'}\cdot
+    p_B\cdot
+    q(\app_{\Delta,\Theta'},B)\cdot
+    \app_{\Delta,\app^*_{\Delta,\Theta'}B} \\
+    &=p_{\Theta'}\cdot
+    \app_{\Delta,\Theta'}\cdot
+    p_{\app^*_{\Delta,\Theta'}B}\cdot
+    \app_{\Delta,\app^*_{\Delta,\Theta'}B} \\
+    &=q(p_{\Pis(\Delta,\Theta)},\Delta)\cdot
+    q(p_{\Pis(\Delta,\app^*_{\Delta,\Theta'}B)},\Delta) \\
+    &=q(p_{\Pis(\Delta,\Theta')}\cdot
+    p_{\Pis(\Delta,\app^*_{\Delta,\Theta'}B)},\Delta) \\
+    &=q(p_{\Pis(\Delta,\Theta').\Pi(\Delta,\app^*_{\Delta,\Theta'}B)},\Delta) \\
+    &=q(p_{\Pis(\Delta,\Theta)},\Delta) \\
+    p_\Theta\cdot\app_{\Delta,\Theta}(f,a)
+    &=p_\Theta\cdot\app_{\Delta,\Theta}\cdot(a,f) \\
+    &=q(p_{\Pis(\Delta,\Theta)},\Delta)\cdot(a,f) \\
+    &=a \\
+    p_{\Pis(\Delta,\Theta)}\cdot
+    \lambda_{\Delta,\Theta}(b)
+    &=p_{\Pis(\Delta,\Theta')}\cdot
+    p_{\Pis(p_{\Pi(\Delta,\Theta')}^*\Delta,\app^*_{\Delta,\Theta'}B')}\cdot
+    \lambda_{p^*_{\Pis(\Delta,\Theta')}\Delta,\app^*_{\Delta,\Theta'}B}(\app_{\Delta,\Theta'}^*b'')\cdot
+    \lambda_{\Delta,\Theta'}(b') \\
+    &=p_{\Pis(\Delta,\Theta')}\cdot
+    \lambda_{\Delta,\Theta'}(b') \\
+    &=1_\Gamma.
+  \end{align*}
+  Again, to justify
+  $\app_{\Delta,\Theta}(\lambda(b),y)=b\cdot y$ we use internal reasoning.
+  We know that, given a factorization $b=b''\cdot b'$, $b$ acts as
+  \[y\mapsto(y,b(y))\equiv(y,b'(y),b''(y,b'(y))),\]
+  thus our construction provides us with
+  \[\lambda(y:\Delta).b(y)\equiv
+  (\lambda(y:\Delta).b'(y),\lambda(y:\Delta).b''(y,b'(y))).\]
+  Also, $\app_{\Delta,\Theta}$ acts internally as
+  \begin{align*}
+    (f,y)&\equiv(f',f'',y) \\
+         &\mapsto(f',y,\app(f'',y)) \\
+         &\mapsto(y,\app(f',y),\app(f'',y))
+         \equiv(y,\app(f,y)),
+  \end{align*}
+  which here translates to
+  \begin{align*}
+    (\lambda(y:\Delta).b(y),y)
+    &\equiv(\lambda(y:\Delta).b'(y),\lambda(y:\Delta).b''(y,b'(y)),y) \\
+    &\mapsto(\lambda(y:\Delta).b'(y),y,b''(y,b'(y))) \\
+    &\mapsto(y,b'(y),b''(y,b'(y)))\equiv(y,b(y)),
+  \end{align*}
+  where the inductive hypothesis has been used in the second step.
+
+  To conclude the proof one would still need to verify that the construction is
+  compatible with context substitution.
+\end{proof}
+
+
+We shall also need the following lemma.
+
+\begin{lem}[\cite{Kap17}]\label{piequal}
+  Given an iterated context extension $\Gamma.\Delta.\Theta.\Psi$ in a
+  contextual category with $\Pis$-types $\sfC$, the contexts
+  \[\Gamma.\Pis(\Delta,\Theta.\Psi),\quad\Gamma.\Pis(\Delta,\Theta).\Pis(p^*_{\Pis(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi)\]
+  are equal in $\sfC$. Also,
+  $\Gamma.\Pis(\Delta,p_{\Psi})=p_{\Pis(\Delta,\app^*_{\Delta,\Theta}\Psi)}$.
+\end{lem}
+\begin{proof}
+  For the first claim, it is enough to notice that the two contexts reduce to
+  the same one in $\sfC$ after applying the inductive construction we defined on
+  $\sfC^{cxt}$ to reduce $\Psi$.
+
+  For the second claim instead we consider the chain of equalities
+  \begin{align*}
+    \Gamma.\Pis(\Delta,p_{\Psi})
+    &=q(p_{\Pis(\Delta,\Theta.\Psi)},\Pis(\Delta,\Theta))\cdot
+    \lambda_{\Delta,\Theta}(1_{p^*_{\Pis(\Delta,\Theta)}\Delta},p_\Psi\cdot\app_{\Delta,\Theta.\Psi}) \\
+    &=p_{\Pis(\Delta,\app^*_{\Delta,\Theta})}\cdot
+    p_{\Pis(\Delta,\Theta)}\cdot
+    \lambda_{\Delta,\Theta}(1_{p^*_{\Pis(\Delta,\Theta)}\Delta},p_\Psi\cdot\app_{\Delta,\Theta.\Psi}) \\
+    &=p_{\Pis(\Delta,\app^*_{\Delta,\Theta})}.
+  \end{align*}
+  \wfd{(PLEASE CHECK)}
+\end{proof}
+
+
 \begin{prop}\cite[Prop.\ 3.3.1]{Gar09b}
   Given a contextual category with an $\Ids$-structure $\sfC$, $\sfC^{cxt}$ also
   carries a natural $\Ids$-structure compatible with the contextual functor
@@ -386,27 +405,15 @@ We now do the same for an $\Ids$-structure on a contextual category.
   $\lambda_{\Delta,\Theta}(b')$ and these constructions are functorial in $\sfC$.
 \end{lem}
 
-\begin{cor}\cite[Lemma 2.29]{1808}
-  Under the conditions of the previous theorem, if
-  $f\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Delta.\Psi$ is
-  bi-invertible over $\Gamma.\Delta$, then the same goes for the induced map
-  $\Gamma.\Pis(\Delta,\Theta)\rightarrow\Gamma.\Pi(\Delta,\Psi)$.
-\end{cor}
-
-\wfd{(WE COULD ALSO REFER TO 5.9 FROM 1203.3253, WHERE THEY GIVE A PROOF FOR
-TRIBES WHICH MAY BE ADAPTED; THM 4.8 FROM THERE TELLS US THAT THEY ARE
-CANONICALLY SPLIT TYPE-THEORETIC FIBRATION CATEGORIES, WHICH ALLOWS US TO APPLY
-THE RESULT)}
-
-\wfd{(MAYBE INTRODUCE THE LAST TWO RESULTS LATER? THEY HOLD FOR SIMPLE
-EXTENSIONS IN ANY CONTEXTUAL CATEGORY, HENCE THEY ALSO HOLD FOR SIMPLE
-EXTENSIONS IN THE ITERATED CONTEXTUAL CAT AND FOR ITERATED EXTENSIONS IN ANY
-CONTEXTUAL CAT. ALSO, WE NEED TO SAY WHAT BI-INVERTIBLE MAPS ARE, WHICH I WOULD LIKE
-TO DO LATER; LET'S KEEP THIS SECTION ABOUT STUFF STRICTLY ABOUT ITERATED
-CONTEXTS)}
+%\begin{cor}\cite[Lemma 2.29]{1808}
+%  Under the conditions of the previous theorem, if
+%  $f\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Delta.\Psi$ is
+%  bi-invertible over $\Gamma.\Delta$, then the same goes for the induced map
+%  $\Gamma.\Pis(\Delta,\Theta)\rightarrow\Gamma.\Pi(\Delta,\Psi)$.
+%\end{cor}
 
 \begin{rmk}
-  In Lumsdaine's PhD thesis it is noted that the lift of $\Ids$ and $\Pis$
+  Lumsdaine noted that the lift of $\Ids$ and $\Pis$
   structures is not compatible with the monad we provided earlier because they
   are not compatible with the multiplication. On the other
   hand, with a strategy along the line of the one we presented for
