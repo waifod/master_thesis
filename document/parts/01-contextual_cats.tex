@@ -102,7 +102,7 @@ $\T$ a contextual category $\Syn{\T}$ explicitly modeling it as we will show.
       \end{align*}
     \item the terminal object is the empty context $[]$;
     \item
-      $ft([x_1:A_1,\ldots,x_{n+1}:A_{n+1}])=[x_1:A_1,\ldots,x_n:A_n]$;
+      $\cft([x_1:A_1,\ldots,x_{n+1}:A_{n+1}])=[x_1:A_1,\ldots,x_n:A_n]$;
     \item for $\Gamma=[x_1:A_1,\ldots,x_n:A_{n+1}]$,
       $p_{\Gamma}\colon\Gamma\rightarrow \cft\Gamma$ is the \emph{dependent
       projection context morphism} $[x_1,\ldots,x_n]$, defined by
@@ -291,7 +291,7 @@ some variants of the conjecture via proof assistants \cite{BL20}.
 
 If we could do that, then for any contextual category $\sfC$ we would have a
 contextual functor $\Syn{\T}\rightarrow\sfC$ explaining how to interpret $\T$ in
-$\sfC$. This is essentually an algorithmic problem: it reduces to explaining
+$\sfC$. This is essentially an algorithmic problem: it reduces to explaining
 inductively to a computer how to construct the aforementioned functor.
 \end{rmk}
 
@@ -416,11 +416,9 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
 
 \begin{construction}\label{applyf}
   Let $\sfC$ be a contextual category with a $\Pis$-type structure,
-  $f\colon\Gamma.A\rightarrow\Gamma.B$ a map over $\Gamma$ and therefore
-  corresponding internally to $a\mapsto b(a)$. We want to provide
-  a section $\Gamma\rightarrow\Gamma.\Pis(A,B)$, which we will also denote $f$,
-  corresponding to $\lambda(a:A).b(a):\Pis(A,B)$. We do so by looking at the
-  commutative diagram
+  $f\colon\Gamma.A\rightarrow\Gamma.B$ a map over $\Gamma$. We want to provide
+  a section $\tilde{f}\colon\Gamma\rightarrow\Gamma.\Pis(A,B)$ corresponding to
+  $f$. We do so by looking at the commutative diagram
   \[\begin{tikzcd}
     {\Gamma.A} \\
     & {\Gamma.A.p^*_AB} & {\Gamma.B} \\
@@ -432,10 +430,31 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
     \arrow["{p_A}"', from=3-2, to=3-3]
     \arrow["{q(p_A,B)}"', from=2-2, to=2-3]
     \arrow["{p_{p^*_AB}}", from=2-2, to=3-2]
-  \end{tikzcd}\]
-  and then taking $\lambda_{A,p^*_AB}(1_A,f)$. The original
-  $f\colon\Gamma.A\rightarrow\Gamma.B$ can then be described internally as
-  $a\mapsto\app(f,a)$.
+  \end{tikzcd},\]
+  and then taking $\lambda_{A,p^*_AB}(1_A,f)$. Using the fact that
+  \begin{align*}
+    q(p_A,B)\cdot
+    \app_{A,B}\cdot
+    q(p_{p^*_AB},\lambda_{A,p^*_AB}(1_A,f))\cdot
+    a
+    &=q(p_A,B)\cdot
+    \app_{A,B}(\lambda_{A,p^*_AB}(1_A,f),a) \\
+    &=q(p_A,B)\cdot
+    (1_A,f)\cdot
+    a \\
+    &=f\cdot
+    a
+  \end{align*}
+  we see that internally $f$ acts as
+  \begin{align*}
+    a \\
+    ^{q(p_{p^*_AB},\lambda_{A,p^*_AB}(1_A,f))}&\mapsto(a,\tilde{f}) \\
+    ^{\app_{A,B}}&\mapsto(a,\app(\tilde{f},a)) \\
+    ^{q(p_A,B)}&\mapsto\app(\tilde{f},a).
+  \end{align*}
+  This justifies writing $f$ for $\tilde{f}$ and $(1_A,f)$ then acts as
+  $a\mapsto(a,\app(f,a))$, meaning that $\lambda_{A,p^*_AB}(1_A,f)$ internally
+  corresponds to $\lambda(a:A).\app(f,a):\Pis(A,B)$.
 \end{construction}
 
 \begin{construction}
@@ -472,7 +491,8 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
   \Gamma.\Pis(A,B)\rightarrow
   \Gamma.\Pis(A,B).\Pis(A,B').\]
   All we have to do now is postcompose with
-  $q(p_{\Pis(A,B)},\Pis(A,B'))$.
+  $q(p_{\Pis(A,B)},\Pis(A,B'))$. Verifying that the action on sections is the
+  one we want is straightforward as we have done so far.
 \end{construction}
 
 \begin{rmk}

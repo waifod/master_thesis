@@ -284,24 +284,30 @@ In this section we verify that the desired properties hold.
   $b\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.B$ is
   such that\[y\equiv (y',a)\mapsto(y',a,b(y',a))\equiv(y,b(y)),\] thus
   applying $\lambda_{A,B}$ and then $\lambda_{\Delta',\Pis(A,B)}$ we get
-  $\lambda(y':\Delta).(\lambda(a:A).b(y',a))=\lambda(y:\Delta).b(y)$. Also,
-  $\app_{\Delta,B}$ acts internally as
+  $\lambda(y':\Delta').(\lambda(a:A).b(y',a))\equiv\lambda(y:\Delta).b(y)$.
+  Also, $\app_{\Delta,B}$ acts internally as
   \begin{align*}
-    (f,y)&\equiv(f,y',a) \\
-    &\mapsto
+    (f,y) \\
+    ^{\text{split } y}&\equiv(f,y',a) \\
+    ^{q(\app_{\Delta',\Pis(A,B)},p^*_{\Pi(A,B)}A)}&\mapsto
     (y',\app(f,y'),a) \\
-    &\mapsto
-    (y',a,\app(\app(f,y'),a))\equiv(y,\app(f,y)),
+    ^{\app_{A,B}}&\mapsto
+    (y',a,\app(\app(f,y'),a)) \\
+    &\equiv(y,\app(f,y)),
   \end{align*}
   thus in this case we get
   \begin{align*}
-    (\lambda(y:\Delta).b(y),y)&\equiv(\lambda(y':\Delta').(\lambda(a:A).b(y',a)),y',a) \\
+    (\lambda(y:\Delta).b(y),y) \\
+    &\equiv(\lambda(y':\Delta').(\lambda(a:A).b(y',a)),y',a) \\
     &\mapsto
     (y',\lambda(a:A).b(y',a),a) \\
     &\mapsto
-    (y',a,b(y',a))\equiv(y,b(y)),
+    (y',a,b(y',a)) \\
+    &\equiv(y,b(y)),
   \end{align*}
-  where the inductive hypothesis has been used in the second step.
+  where the inductive hypothesis has been used in the second step. Notice that
+  we used the hypothesis about splitting sections, which was unnecessary in the
+  corresponding part of the construction.
   
   We now check inductively on the length of $\Theta$.
   \begin{align*}
@@ -343,17 +349,19 @@ In this section we verify that the desired properties hold.
   (\lambda(y:\Delta).b'(y),\lambda(y:\Delta).b''(y,b'(y))).\]
   Also, $\app_{\Delta,\Theta}$ acts internally as
   \begin{align*}
-    (f,y)&\equiv(f',f'',y) \\
-         &\mapsto(f',y,\app(f'',y)) \\
-         &\mapsto(y,\app(f',y),\app(f'',y))
-         \equiv(y,\app(f,y)),
+    (f,y) \\
+    ^{\text{split }f}&\equiv(f',f'',y) \\
+    ^{\app_{\Delta,\app^*_{\Delta,\Theta'}B}}&\mapsto(f',y,\app(f'',y)) \\
+    ^{q(\app_{\Delta,\Theta'},B)}&\mapsto(y,\app(f',y),\app(f'',y)) \\
+    &\equiv(y,\app(f,y)),
   \end{align*}
   which here translates to
   \begin{align*}
-    (\lambda(y:\Delta).b(y),y)
+    (\lambda(y:\Delta).b(y),y) \\
     &\equiv(\lambda(y:\Delta).b'(y),\lambda(y:\Delta).b''(y,b'(y)),y) \\
     &\mapsto(\lambda(y:\Delta).b'(y),y,b''(y,b'(y))) \\
-    &\mapsto(y,b'(y),b''(y,b'(y)))\equiv(y,b(y)),
+    &\mapsto(y,b'(y),b''(y,b'(y))) \\
+    &\equiv(y,b(y)),
   \end{align*}
   where the inductive hypothesis has been used in the second step.
 
@@ -381,10 +389,10 @@ We shall also need the following lemma.
     \Gamma.\Pis(\Delta,p_{\Psi})
     &=q(p_{\Pis(\Delta,\Theta.\Psi)},\Pis(\Delta,\Theta))\cdot
     \lambda_{\Delta,\Theta}(1_{p^*_{\Pis(\Delta,\Theta)}\Delta},p_\Psi\cdot\app_{\Delta,\Theta.\Psi}) \\
-    &=p_{\Pis(\Delta,\app^*_{\Delta,\Theta})}\cdot
+    &=p_{\Pis(\Delta,\app^*_{\Delta,\Theta}\Psi)}\cdot
     p_{\Pis(\Delta,\Theta)}\cdot
     \lambda_{\Delta,\Theta}(1_{p^*_{\Pis(\Delta,\Theta)}\Delta},p_\Psi\cdot\app_{\Delta,\Theta.\Psi}) \\
-    &=p_{\Pis(\Delta,\app^*_{\Delta,\Theta})}.
+    &=p_{\Pis(\Delta,\app^*_{\Delta,\Theta}\Psi)}.
   \end{align*}
   \wfd{(PLEASE CHECK)}
 \end{proof}
