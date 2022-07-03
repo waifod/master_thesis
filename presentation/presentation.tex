@@ -125,7 +125,8 @@
     $\Id$-types require from $\Gamma.A$ an object $\Gamma.A.A.\Id_A$...
     
     $\Pi$-types require from $\Gamma.A.B$ an object $\Gamma.\Pi(A,B)$, a map
-    $\app_{A,B}\colon\Gamma.\Pi(A,B).A\rightarrow\Gamma.A.B$...
+    $\app_{A,B}\colon\Gamma.\Pi(A,B).A\rightarrow\Gamma.A.B$,
+    $(f,a)\mapsto(a,\app(f,a))$...
   \end{block}
   \pause
 
@@ -138,7 +139,7 @@
 \begin{frame}
   \frametitle{Bi-invertibility}
 
-  \begin{defn}[Bi-invertible map]
+  \begin{defn}[bi-invertible map]
     A map $f\colon\Gamma\rightarrow\Delta$ in a contextual category with
     $\Id$-structure $\sfC$ for which we can provide:
     \begin{enumerate}
@@ -170,7 +171,8 @@
     A contextual category with $\Sigma$ and $\Id$ structures defines a
     fibration category, where weak
     equivalences are bi-invertible maps and
-    fibrations are maps isomorphic to  dependent projections.
+    fibrations are maps isomorphic to  compositions of basic dependent
+    projections $p_A\colon\Gamma.A\rightarrow\Gamma$.
   \end{thm}
 \end{frame}
 
@@ -224,6 +226,9 @@
       Calculus
     \item \emph{Proofs} are internal objects
     \item Better treatment of \emph{equality}
+    \item Makes ``fully faithful $+$ essentially surjective = equivalence''
+      independent from the Axiom of Choice
+    \item Homotopical interpretation in $\infty$-groupoids
   \end{enumerate}
 \end{frame}
 
