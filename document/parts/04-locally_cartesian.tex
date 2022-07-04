@@ -39,6 +39,16 @@ working as usual with $\sfC^{cxt}$ to provide the notion given in
 \end{defn}
 
 \begin{rmk}
+  A morphism $f\colon\Gamma.\Delta\rightarrow\Gamma.\Theta$ bi-invertible over
+  $\Gamma$ is also bi-invertible since we can extend a section
+  $\Gamma.\Delta\rightarrow\Gamma.\Delta.(1_\Delta,gf)^*\Ids_\Delta$
+  to a section
+  $\Gamma.\Delta\rightarrow\Gamma.\Delta.(1_{\Gamma.\Delta},gf)^*\Ids_{\Gamma.\Delta}$
+  thanks to the map
+  $\refl_\Gamma\colon\Gamma\rightarrow\Gamma.p^*_\Gamma\Gamma.\Id_\Gamma$.
+\end{rmk}
+
+\begin{rmk}
   Our interest in simply bi-invertible morphisms stems from the fact that they
   model the right notion of invertible map in dependent type theory: indeed,
   from the
@@ -98,17 +108,20 @@ of fibrations.
   context.
 \end{rmk}
 
-\begin{rmk}[\cite{AKL15}]
+\begin{rmk}[\cite{Shu14}]
   Our definition differs slightly from the original one by Brown
   because it asks for $W$ to be closed under the 2-out-of-6 property
-  instead of the more classical 2-out-of-3, but, as shown by Cisinski, if all of
-  the other axioms are satisfied the following are equivalent:
+  instead of the more classical 2-out-of-3, but, as shown by
+  Cisinski, if all of
+  the other axioms are satisfied then the following are equivalent:
   \begin{enumerate}
     \item $W$ has the 2-out-of-6 property;
     \item $W$ has the 2-out-of-3 and is saturated, that is a morphism in $\cP$
       becomes invertible in $\ho(\cP)$ if and only if it lies in $W$.
   \end{enumerate}
-  See \cite[Thm.~7.2.7]{RB06}.
+  See \cite[Thm.~7.2.7]{RB06}. Another difference is that Brown only requires
+  factorizations of the diagonal maps $X\rightarrow X\times X$, but then he
+  derives our factorization condition from the other properties.
 \end{rmk}
 
 Now we have enough to specify the fibrational structure.
@@ -131,6 +144,18 @@ The above result can be however generalized.
   It suffices to note that at no point the proof by Lumsdaine uses the other
   structures.
 \end{proof}
+
+\begin{rmk}
+  We shall refer to the above classes of maps as weak equivalences and
+  fibrations even in absence of a $\Sigmas$-structure.
+\end{rmk}
+
+\begin{rmk}
+  The results as stated rely on the initiality conjecture since in their
+  reasoning
+  the authors used internal languages, however their proofs still hold in the
+  particular case of $\Syn{T}$, where we can argue using dependent type theory.
+\end{rmk}
 
 \begin{cor}\label{fincompl1}
   Given a contextual category with $\Sigmas$ and $\Ids$ structures $\sfC$, the
@@ -222,12 +247,18 @@ which is exactly what we were looking for.
   $\Gamma.\Pis(\Delta,f)\cdot\eta_{\Gamma.\Psi}$. The commutativity of the above
   triangle follows by internal reasoning from
   \begin{align*}
-    (x,y)
+    (x,y) \\
+    ^{\eta_{\Gamma.\Psi}}
     &\mapsto(x,\lambda(x:\Delta).y) \\
+    ^{\Gamma.\Pis(\Delta,f)}
     &\mapsto(x,\lambda(x:\Delta).\app(f,\app(\lambda(x:\Delta).y,x))) \\
+    ^{\beta\text{-reduction}}
     &\equiv(x,\lambda(x:\Delta).\app(f,y)) \\
+    ^{\exch_{\Pis(\Delta,\Psi),\Delta}}
     &\mapsto(\lambda(x:\Delta).\app(f,y),x) \\
+    ^{\app_{\Delta,\Psi}}
     &\mapsto(x,\app(\lambda(x:\Delta).\app(f,y),x)) \\
+    ^{\beta\text{-reduction}}
     &\equiv(x,\app(f,y))
   \end{align*}
   and our description of
@@ -235,8 +266,8 @@ which is exactly what we were looking for.
   Remark \ref{applyf}.
   \wfd{(USED INTERNAL REASONING AGAIN)} while the
   uniqueness of the $\tilde{f}$ follows from the fact that we can not construct,
-  from every pair $(x:\Delta,y:\Psi)$, another term
-  $g(x,y):\Pi(\Delta,\Theta)$ such that $\app(g(x,y),x)=\app(f,x)$. Indeed, the
+  from every term $y:\Psi$, another term
+  $g(y):\Pi(\Delta,\Theta)$ such that $\app(g(y),x)=\app(f,x)$. Indeed, the
   only way would be through $\eta$-expansion on
   $\lambda(x:\Delta).\app(f,y)$, but as we noted the
   $\Pies$-rule implies that this process returns the same term.
@@ -249,7 +280,85 @@ We know that every fibration in $\sfC$ is isomorphic to a dependent
 projection, so this tells us that every fibration induces an adjunction
 between fibrant slices.
 
-We are finally ready to prove the last result leading to the final one we want.
+To apply \ref{7616}, we need to show that $(p_\Delta)_*$ is left exact
+(actually, we need to prove that it preserves trivial fibrations, but it
+essentially requires the same amount of work), which we shall do in two steps.
+
+\begin{lem}[\cite{KL18}]\label{wepreserved}
+  Given a dependent type theory with intensional $\Ids$-types,
+  $\Pis_\eta$-types and function extensionality $\T$, consider a bi-invertible
+  map $f\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Delta.\Psi$ over
+  $\Gamma.\Delta$ in its syntactic category $\Syn{T}$. The
+  map $\Gamma.\Pis(\Delta,f)$ is then bi-invertible over $\Gamma$.
+\end{lem}
+\begin{proof}
+  We shall construct an homotopical right inverse to $\Gamma.\Pis(\Delta,f)$ by
+  working with $g_1$ and $\eta$ since the other part of the construction
+  involving $g_2$ and $\epsilon$ is essentially identical. To do so, we consider
+  the commutative diagram
+  \[\begin{tikzcd}
+    {\Gamma.\Delta.\Psi.(1_\Psi,fg_1)^*\Ids_{\Psi}} & {\Gamma.\Delta.\Psi.p^*_\Psi\Psi.\Ids_\Psi} \\
+    {\Gamma.\Delta.\Psi} & {\Gamma.\Delta.\Psi.p^*_\Psi\Psi}
+    \arrow["{p_{(1_\Psi,fg_1)^*\Ids_{\Psi}}}", from=1-1, to=2-1]
+    \arrow["\eta", curve={height=-12pt}, from=2-1, to=1-1]
+    \arrow["{p_{\Ids_\Psi}}", from=1-2, to=2-2]
+    \arrow["{(1_\Psi,fg_1)}"', from=2-1, to=2-2]
+    \arrow["{q((1_\Psi,fg_1),\Ids_\Psi)}", from=1-1, to=1-2]
+  \end{tikzcd}\]
+  in $\sfC(\Gamma.\Delta)$ and apply the right adjoint $(p_\Delta)_*$, which
+  gives us
+  \[\begin{tikzcd}[column sep=huge]
+    {\Gamma.\Pis(\Delta.\Psi.(1_\Psi,fg_1)^*\Ids_{\Psi})} & {\Gamma.\Pis(\Delta.\Psi.p^*_\Psi\Psi.\Ids_\Psi)} \\
+    {\Gamma.\Pis(\Delta.\Psi)} & {\Gamma.\Pis(\Delta,\Psi.p^*_\Psi\Psi)}
+    \arrow["{\Gamma.\Pis(\Delta,p_{(1_\Psi,fg_1)^*\Ids_{\Psi}})}", from=1-1, to=2-1]
+    \arrow["{\Gamma.\Pis(\Delta,\eta)}", curve={height=-12pt}, from=2-1, to=1-1]
+    \arrow["{\Gamma.\Pis(\Delta,p_{\Ids_\Psi})}", from=1-2, to=2-2]
+    \arrow["{\Gamma.\Pis(\Delta,(1_\Psi,fg_1))}"', from=2-1, to=2-2]
+    \arrow["{\Gamma.\Pis(\Delta,q((1_\Psi,fg_1),\Ids_\Psi))}", from=1-1, to=1-2]
+  \end{tikzcd}\]
+  in $\sfC(\Gamma)$.
+
+  We have that
+  \begin{align*}
+    \Gamma.\Pis(\Delta,p_{(1_\Psi,fg_1)^*\Ids_{\Psi}})
+    &=\Gamma.\Pis(\Delta,\Psi).\Pis(\Delta,\Psi).\Pis(\Delta,\Ids_\Psi) \\
+    \Gamma.\Pis(\Delta,(1_\Psi,fg_1))
+    &=(\Gamma.\Pis(\Delta,1_\Psi),\Gamma.\Pis(\Delta,fg_1))
+    =(1_{\Pis(\Delta,\Psi)},\Gamma.\Pis(\Delta,f)\cdot
+    \Gamma.\Pis(\Delta,g_1)), \\
+    \Gamma.\Pis(\Delta,p_{(1_\Psi,fg_1)^*\Ids_{\Psi}})
+    &=p_{\Pis(\Delta,\Ids_\Psi)}, \\
+    \Gamma.\Pis(\Delta,q((1_\Psi,fg_1),\Ids_\Psi))
+    &=q((1_{\Pis(\Delta,\Psi)},\Gamma.\Pis(\Delta,fg_1)),
+    \Pis(\Delta,\Ids_\Psi)), \\
+    \Gamma.\Pis(\Delta.\Psi.(1_\Psi,fg_1)^*\Ids_{\Psi})
+    &=\Gamma.\Pis(\Delta,\Psi).
+    (1_{\Pis(\Delta,\Psi)},\Gamma.\Pis(\Delta,fg_1))^*\Ids_{\Pis(\Delta,\Psi)}.
+  \end{align*}
+  Notice that on the right we have suppressed quite a bit of notation in order
+  to avoid making everything unreadable.
+
+  Remember that function
+  extensionality provides us with a map
+  \[\Gamma.\Pis(\Delta,\Psi).\Pis(\Delta,\Psi).\Pis(\Delta,\Ids_\Psi)
+    \rightarrow
+  \Gamma.\Pis(\Delta,\Psi).\Pis(\Delta,\Psi).\Ids_{\Pis(\Delta,\Psi)}\]
+  over $\Gamma\Pis(\Delta,\Psi).\Pis(\Delta,\Psi)$, which composed with the top
+  map and $\Gamma.\Pis(\Delta,\eta)$ induces a factorization
+  \[\begin{tikzcd}
+    {\Gamma.\Pis(\Delta,\Psi)} \\
+    & {\Gamma.\Pis(\Delta,\Psi).(1_{\Psi(\Delta,\Psi)},\Gamma.\Pis(\Delta,(1_\Psi,fg_1))^*\Ids_{\Pis(\Delta,\Psi)}} & {\Gamma.\Pis(\Delta,\Psi).\Pis(\Delta,\Psi).\Ids_{\Pis(\Delta,\Psi)}} \\
+    & {\Gamma.\Pis(\Delta,\Psi)} & {\Gamma.\Pis(\Delta,\Psi).\Pis(\Delta,\Psi)}
+    \arrow["{p_{\Ids(\Delta,\Psi)}}", from=2-3, to=3-3]
+    \arrow["{(1_{\Psi(\Delta,\Psi)},\Gamma.\Pis(\Delta,(1_\Psi,fg_1)))}"', from=3-2, to=3-3]
+    \arrow["{p_{(1_{\Psi(\Delta,\Psi)},\Gamma.\Pis(\Delta,(1_\Psi,fg_1))^*\Ids_{\Pis(\Delta,\Psi)}}}", from=2-2, to=3-2]
+    \arrow[from=2-2, to=2-3]
+    \arrow[curve={height=-12pt}, from=1-1, to=2-3]
+    \arrow[curve={height=18pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow[dotted, from=1-1, to=2-2]
+  \end{tikzcd},\]
+  which is what we needed.
+\end{proof}
 
 \begin{lem}[\cite{Kap17}]\label{lccfc}
   In the above conditions, the functor
@@ -258,14 +367,12 @@ We are finally ready to prove the last result leading to the final one we want.
 \begin{proof}
   As a right adjoint, $(p_\Delta)_*$ preserves limits and in particular
   pullbacks and the terminal object. Also, by Lemma \ref{piequal}, it preserves
-  dependent projections. Finally, Shulman noted in \cite[21]{Shu14} that a
-  categorical model of type theory is a \emph{split type-theoretic fibration
-  category} \cite[Def.~4.1]{Shu14}, thus function extensionality and
-  \cite[Thm.~5.9]{Shu14} imply that our functor also preserves trivial
-  fibrations and therefore, by Corollary \ref{7414}, weak equivalences.
+  dependent projections and Lemma \ref{wepreserved} tells us that the same
+  goes for weak equivalences, which concludes the proof.
 \end{proof}
 
-Again, the above extends to all fibrations in $\sfC$.
+Again, the above extends to all fibrations in $\sfC$ and it allows to prove our
+desired result.
 
 \begin{thm}[\cite{Kap17}]\label{finalthm}
   Given a categorical model of type theory $\sfC$, the $\infty$-category $L(\sfC)$
