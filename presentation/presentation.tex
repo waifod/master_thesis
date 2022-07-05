@@ -74,14 +74,20 @@
 
   \begin{block}{Logical rules}
     Construct new types and their terms from old, carry out
-    computations, provide \emph{$\Sigma$-types} $\Sigma(A,B)$, \emph{$\Pi$-types}
-    $\Pi(A,B)$ and \emph{$\Id$-types} $\Id_A$, \emph{natural-numbers-type}
-    $\nat$...
+    computations. They provide \emph{$\Sigma$-types}
+    $\Sigma(A,B)$, \emph{$\Pi$-types}
+    $\Pi(A,B)$, \emph{$\Id$-types} $\Id_A$, \emph{natural-numbers-type}
+    $\nat$\ldots
   \end{block}
 \end{frame}
 
 \begin{frame}
   \frametitle{Models}
+
+  \begin{block}{Idea}
+    To study a theory we can look at its models.
+  \end{block}
+  \pause
 
   \begin{block}{Problem}
     Providing a model of Dependent Type Theory is hard.
@@ -99,7 +105,8 @@
   \begin{definition}[contextual categories]
     A category $\sfC$ with:
     \begin{enumerate}
-      \item a grading on objects $\Ob\sfC=\coprod_{n\in\N}\Ob_n\sfC$;
+      \item a grading on objects (or \emph{contexts}) $\Ob\sfC=\coprod_{n\in\N}\Ob_n\sfC$;
+      \item a unique and terminal object in $\Ob_0\sfC$, the \emph{empty context};
       \item a map $\ft_n\colon\Ob_{n+1}\sfC\rightarrow\Ob_n\sfC$ for each
         $n\in\N$;
       \item \emph{basic dependent projections}
@@ -112,8 +119,7 @@
           \arrow["{p_{f^*A}}"', from=1-1, to=2-1]
           \arrow["{q(f,A)}", from=1-1, to=1-2]
           \arrow["f"', from=2-1, to=2-2]
-        \end{tikzcd};\]
-      \item ...
+        \end{tikzcd}.\]
     \end{enumerate}
   \end{definition}
 \end{frame}
@@ -122,10 +128,10 @@
   \frametitle{Modeling logical rules}
 
   \begin{block}{Extra structure}
-    $\Id$-types require from $\Gamma.A$ an identity-object $\Gamma.A.A.\Id_A$...
+    $\Id$-types require from $\Gamma.A$ an $\Id$-object $\Gamma.A.A.\Id_A$...
     
-    $\Pi$-types require from $\Gamma.A.B$ an hom-object $\Gamma.\Pi(A,B)$, an
-    evaluation $\app_{A,B}\colon\Gamma.\Pi(A,B).A\rightarrow\Gamma.A.B$,
+    $\Pi$-types require from $\Gamma.A.B$ a $\Pi$-object $\Gamma.\Pi(A,B)$, an
+    evaluation map $\app_{A,B}\colon\Gamma.\Pi(A,B).A\rightarrow\Gamma.A.B$,
     $(f,a)\mapsto(a,\app(f,a))$...
   \end{block}
   \pause
@@ -174,6 +180,7 @@
     fibrations are maps isomorphic to  compositions of basic dependent
     projections $p_A\colon\Gamma.A\rightarrow\Gamma$.
   \end{thm}
+  In particular, it applies to categorical models of type theory.
 \end{frame}
 
 \begin{frame}
