@@ -1,24 +1,34 @@
-\chapter{Contextual Categories}
+\chapter{Background}
 
-There are many models of dependent type theory from category theory in
-the literature, like \emph{category with attributes}, \emph{categories with
-families} and \emph{comprehension categories}, which are
+We begin by presenting our dependent type theory and then introduce a class of
+algebraic models.
+
+
+\section{Logical Setting}
+
+\section{Contextual Categories}
+
+A problem of working with dependent type theory is
+given by handling the structural rules, namely context substitution, variable
+binding, variable substitution and so on. To avoid this issue, it is convenient
+to work within a \emph{semantic model}, which we now present.
+
+There are many algebraic models of dependent type theory in the literature, like
+\emph{category with attributes}, \emph{categories with families} and
+\emph{comprehension categories}, which are
 fairly similar among them, as shown by the adjunctions between their categories.
 Here we shall work with \emph{contextual
-categories}, which were first explored by Cartmell and Streicher in
-\wfd{(INSERT REFS)} and later by Voevodsky, under the name $C$\emph{-systems},
-in \wfd{(MORE REFS)}. Lumsdaine in his phd thesis claims that contextual
+categories}, which were first explored by Cartmell and Streicher
+\cite{Car78,Car86,Str91} and later by Voevodsky, under the name
+$C$\emph{-systems} \cite{Voe14a,Voe14b,Voe15a,Voe15b}. Lumsdaine in his phd
+thesis claims that contextual
 categories are the right framework PROP 1.2.5.
 
-\section{Definitions}
-
-We begin by providing the basic definitions modeling structural rules.
-
 \begin{defn}
-  A \emph{contextual category} $\sfC$ is a category with the following data:
+  A \emph{contextual category} $\sfC$ is a small category, also denoted $\sfC$,
+  with the following data:
   \begin{enumerate}
-    \item a small category, which we also call $\sfC$, with a grading on objects
-      $\Ob\sfC=\coprod_{n\in\bbN}\Ob_n\sfC$;
+    \item a grading on objects $\Ob\sfC=\coprod_{n\in\bbN}\Ob_n\sfC$;
     \item an object $*\in\Ob_0\sfC$;
     \item for each $n\in\bbN$, a map
       $\cft_n\colon\Ob_{n+1}\sfC\rightarrow\Ob_n\sfC$, often simply denoted
@@ -56,7 +66,8 @@ We begin by providing the basic definitions modeling structural rules.
   Other models, like comprehension categories, do not
   have such requirements, which makes them more general but also
   interpretation harder, unless they are first strictified, that is replaced by
-  an equivalent strict model of the same kind, like split comprehension
+  an equivalent model of the same kind but with functorial pullbacks, like split
+  comprehension
   categories \wfd{(HOW DO YOU STRICTIFY THEM?)}. Famously, we also have
   homotopical models of dependent type
   theories, like tribes and fibration categories \wfd{(REFERENCE)}, whose
@@ -78,8 +89,8 @@ $\T$ a contextual category $\Syn{\T}$ explicitly modeling it as we will show.
     \item maps are \emph{context morphisms}, or \emph{substitutions}, modulo
       definitional equalities and renaming of free variables. This means that a
       map
-      \[[f]\colon[x_1:A_1,\ldots,x_n:A_n]\rightarrow[y_1:B_1,\ldots,y_m:B_m(y_1,\ldots,y_{m-1})]\]
-      is an equivalence class of sequences of terms $f_1,\ldots,f_m$ such that
+      \[f\colon[x_1:A_1,\ldots,x_n:A_n]\rightarrow[y_1:B_1,\ldots,y_m:B_m(y_1,\ldots,y_{m-1})]\]
+      is an equivalence class of sequences of terms $(f_1,\ldots,f_m)$ such that
       \begin{align*}
         x_1:A_1,\ldots,x_n:A_n &\vdash f_1:B_1, \\
         \vdots & \\
@@ -87,10 +98,9 @@ $\T$ a contextual category $\Syn{\T}$ explicitly modeling it as we will show.
       \end{align*}
       are all derivable judgements and two such sequences
       $(f_1,\ldots,f_n),(g_1,\ldots g_n)$ are equivalent if we have
-      \[x_1:A_1,\ldots,x_n:A_n\vdash f_i\equiv g_i\:B_i(f_1,\ldots,f_{i-1})\]
+      \[x_1:A_1,\ldots,x_n:A_n\vdash f_i\equiv g_i:B_i(f_1,\ldots,f_{i-1})\]
       for every $i$, where $\equiv$ represents judgemental equality; we shall
-      henceforth write $[f_i]$ for such sequences of terms up to equivalence
-      specifying maps between contexts;
+      henceforth also write $[f_i]$ for $f$;
     \item composition is given by substitution;
     \item the identity $\Gamma\rightarrow\Gamma$ is given by the variables of
       $\Gamma$, considered as
@@ -133,8 +143,8 @@ $\T$ a contextual category $\Syn{\T}$ explicitly modeling it as we will show.
   $p_{[\Gamma,x:A]}\colon[\Gamma,x:A]\rightarrow[\Gamma]$, which indeed act as
   identities over $\Gamma$ and furthermore specify a term $\Gamma\vdash a:A$.
   Given the importance of such maps, we shall often simply write ``sections'' to
-  refer to sections of basic dependent projections, without specifying which ones
-  unless it creates ambiguity.
+  refer to sections of basic dependent projections, without specifying which
+  projections unless it creates ambiguity.
 
   The above construction also tells us how to think about the other elements in
   the definition of contextual categories: basic dependent
@@ -261,8 +271,14 @@ categories are meant to model them and therefore
 take care of all of that for us, meaning that as long
 as we can show that something models a contextual category we automatically get
 an interpretation of dependent type theory, thereby eliminating a lot of
-bureaucracy. For this to be true, however, we need the following statement,
-which we shall assume because the results we need rely on it.
+bureaucracy. On the other hand, interpreting complicated structures in
+contextual categories quickly becomes unreadable, meaning that ideally we would
+like to be able to switch from the syntactic to the semantic presentation of
+dependent type theory and viceversa freely, so that we may work with the most
+convenient one for a given situation. This would amount to some \emph{soundness}
+and \emph{correctness} theorems reminiscent of the ones of \emph{first order
+predicate logic}. In categorical semantics, this corresponds to
+\emph{initiality}.
 
 \begin{named}[Initiality]
   Given a dependent type theory $\T$, its syntactic category $\Syn{\T}$ is
@@ -287,15 +303,32 @@ statement.
 Such a statement would first require a general notion of dependent type theory,
 which has been worked on in \cite{Isa17, Uem19, Bru20, BHL20, NU22}, and
 there is an ongoing effort to provide a formalization and a flexible proof of
-some variants of the conjecture via proof assistants \cite{BL20}.
+some variants of the conjecture. One candidate was announced at HoTTest
+\cite{BL20} and is currently available at \cite{Bru20}.
 
 If we could do that, then for any contextual category $\sfC$ we would have a
 contextual functor $\Syn{\T}\rightarrow\sfC$ explaining how to interpret $\T$ in
-$\sfC$. This is essentially an algorithmic problem: it reduces to explaining
-inductively to a computer how to construct the aforementioned functor.
+$\sfC$ and allowing us to use dependent type theory to reason about contextual
+categories and viceversa. This is essentially an algorithmic problem: it reduces
+to explaining inductively to a computer how to construct the aforementioned
+functor.
 \end{rmk}
 
+Currently, researchers often assume this conjecture to be true because it
+provides an intuitive language and notation to reason about contextual
+categories and it has been proven in various cases. We shall not do that
+and instead restrict ourselves to working with syntactic categories, with the
+idea that a generalization of our results to arbitrary contextual categories
+shall be straightforward once we have a proof of the conjecture. Unfortunately,
+this will also mean that we will not be able to rely on some results and
+definitions as originally stated.
+
+It should be noted that, since contextual categories with extra structures are
+models for essentially algebraic theories, $\Cxl$ and its variants do have
+initial objects.
+
 \section{Logical Structures}
+
 We now define the extra structures on contextual categories we mentioned
 earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
 

@@ -1,8 +1,8 @@
-\chapter{Localizations of Categorical Models of Type Theory}
+\chapter{Localizations of Syntactic Categories}
 
-In this chapter we finally talk about localizing contextual categories. To do
+In this chapter we finally talk about localizing syntactic categories. To do
 this, we first specify a class of maps we localize at, explaining the rationale
-behind our choice, and then from this we construct a fibrational structure which
+behind our choice, and then from this we present a fibrational structure which
 will allow us to apply the results from the previous section. We also briefly
 mention the \emph{Internal Languages Conjecture}.
 
@@ -11,7 +11,7 @@ mention the \emph{Internal Languages Conjecture}.
 As anticipated, we introduce a notion of weak equivalence in our context.
 
 \begin{defn}
-  Given a categorical model of type theory $\sfC$, a morphism
+  Given a contextual category with $\Ids$-structure $\sfC$, a morphism
   $f\colon\Gamma.A\rightarrow\Gamma.B$ over $\Gamma$ is \emph{simply
     bi-invertible over $\Gamma$} if there exist:
   \begin{enumerate}
@@ -24,18 +24,17 @@ As anticipated, we introduce a notion of weak equivalence in our context.
   \end{enumerate}
 \end{defn}
 
-We now generalize the above definition to arbitrary context extensions by
-working as usual with $\sfC^{cxt}$ to provide the notion given in
-\cite[Def.~1.4]{Kap17}.
+We now generalize the above definition to arbitrary context extensions in
+$\Syn{T}$ by working as usual with $\Syn{T}^{cxt}$ to provide the notion given
+in \cite[Def.~1.4]{Kap17}.
 
 \begin{defn}
-  Given a categorical model of type theory $\sfC$, a morphism
-  $f\colon\Gamma.\Delta\rightarrow\Gamma.\Theta$ over $\Gamma$ is
+  Given a dependent type theory with $\Ids$-types $\T$, a morphism
+  $f\colon\Gamma.\Delta\rightarrow\Gamma.\Theta$ over $\Gamma$ in $\Syn{T}$ is
   \emph{bi-invertible over $\Gamma$} if it is simply bi-invertible over $\Gamma$
   as a morphism between the two corresponding simple context extensions of
-  $\Gamma$ in $\sfC^{cxt}$. It
-  is then called \emph{bi-invertible} if $\Gamma$ is the terminal
-  context.
+  $\Gamma$ in $\Syn{T}^{cxt}$. It is then called \emph{bi-invertible} if
+  $\Gamma$ is the terminal context.
 \end{defn}
 
 \begin{rmk}
@@ -46,6 +45,15 @@ working as usual with $\sfC^{cxt}$ to provide the notion given in
   $\Gamma.\Delta\rightarrow\Gamma.\Delta.(1_{\Gamma.\Delta},gf)^*\Ids_{\Gamma.\Delta}$
   thanks to the map
   $\refl_\Gamma\colon\Gamma\rightarrow\Gamma.p^*_\Gamma\Gamma.\Id_\Gamma$.
+\end{rmk}
+
+\begin{rmk}
+  Our definition of bi-invertible map is less general than the original one
+  (which concerns arbitrary contextual categories with an $\Ids$-structure)
+  because that one relies on strong $\Sigmas$-types, which we do not assume.
+  They suggest using the $\Ids$-structure on iterated context extensions
+  as an alternative tool to get the same result in the general case, however we
+  did not provide the construction for arbitrary contextual categories.
 \end{rmk}
 
 \begin{rmk}
@@ -151,36 +159,40 @@ The above result can be however generalized.
 \end{rmk}
 
 \begin{rmk}
-  The results as stated rely on the initiality conjecture since in their
-  reasoning
-  the authors used internal languages, however their proofs still hold in the
-  particular case of $\Syn{T}$, where we can argue using dependent type theory.
+  The results as stated rely on the initiality conjecture (since in their
+  reasoning the authors used internal languages) and their proof makes use of
+  strong $\Sigmas$-types, which they adopted to say that every dependent
+  projection is isomorphic to a basic one. We
+  can avoid relying on strong $\Sigmas$-types by constructing the fibrational
+  structure on $\Syn{T}^{cxt}$ (where the condition on dependent projection
+  holds by construction) to later carry it back to $\Syn{T}$ through the
+  equivalence, while we do not need the initiality conjecture because we can
+  argue in $\Syn{T}^{cxt}$ using dependent type theory.
 \end{rmk}
 
 \begin{cor}\label{fincompl1}
-  Given a contextual category with $\Sigmas$ and $\Ids$ structures $\sfC$, the
-  $\infty$-category $L(\sfC)$ is finitely complete.
+  Given a dependent type theory with $\Sigmas$ and $\Ids$ types $\T$, the
+  $\infty$-category $L(\Syn{T})$ is finitely complete.
 \end{cor}
 \begin{proof}
   It follows directly from Proposition \ref{fibcat} and Proposition \ref{7518}.
 \end{proof}
 
-\section{Cartesian Closure}
+\section{Local Cartesian Closure}
 
-We are now ready to provide a few results needed to show that the hypothesis of
-Theorem \ref{7616} are satisfied by a categorical
-model of type theory with respect to the above fibrational structure.
+We are now ready to provide a few results needed to show that, given a dependent
+type theory with $\Sigmas$, $\Ids$, $\Pies$ types and function
+extensionality $\T$, the hypothesis of Theorem \ref{7616} are satisfied by
+$\Syn{T}$ with respect to the above fibrational structure. Henceforth, we shall
+write $\sfC$ for $\Syn{T}$.
 
 \begin{lem}[\cite{Kap17}]\label{radj}
   For any dependent projection $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ in
-  a categorical model of type theory $\sfC$, the pullback functor
-  $p_\Delta^*\colon\sfC(\Gamma)\rightarrow\sfC(\Gamma.\Delta)$ between the fibrant
-  slices admits a right adjoint.
+  $\sfC$, the pullback functor
+  $p_\Delta^*\colon\sfC(\Gamma)\rightarrow\sfC(\Gamma.\Delta)$ between the
+  fibrant slices admits a right adjoint.
 \end{lem}
 \begin{proof}
-  \wfd{(HERE I WOULD LIKE TO USE INTERNAL REASONING TO THINK ABOUT HOW THE MAPS
-  BEHAVE, AS IN AKL15, 3.2.10 or 3.2.12)}
-
   Let's set $(p_\Delta)_*(\Gamma.\Delta.\Theta)=\Gamma.\Pis(\Delta.\Theta)$. Our
   counit shall be given by
   \[\epsilon_{\Gamma.\Delta.\Theta}\colon\Gamma.\Delta.p^*_\Delta\Pis(\Delta,\Theta)
@@ -285,10 +297,9 @@ To apply \ref{7616}, we need to show that $(p_\Delta)_*$ is left exact
 essentially requires the same amount of work), which we shall do in two steps.
 
 \begin{lem}[\cite{KL18}]\label{wepreserved}
-  Given a dependent type theory with intensional $\Ids$-types,
-  $\Pis_\eta$-types and function extensionality $\T$, consider a bi-invertible
+  Consider a bi-invertible
   map $f\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Delta.\Psi$ over
-  $\Gamma.\Delta$ in its syntactic category $\Syn{T}$. The
+  $\Gamma.\Delta$ in $\sfC$. The
   map $\Gamma.\Pis(\Delta,f)$ is then bi-invertible over $\Gamma$.
 \end{lem}
 \begin{proof}
@@ -345,7 +356,7 @@ essentially requires the same amount of work), which we shall do in two steps.
   \Gamma.\Pis(\Delta,\Psi).\Pis(\Delta,\Psi).\Ids_{\Pis(\Delta,\Psi)}\]
   over $\Gamma\Pis(\Delta,\Psi).\Pis(\Delta,\Psi)$, which composed with the top
   map and $\Gamma.\Pis(\Delta,\eta)$ induces a factorization
-  \[\begin{tikzcd}
+  \[\small\begin{tikzcd}
     {\Gamma.\Pis(\Delta,\Psi)} \\
     & {\Gamma.\Pis(\Delta,\Psi).(1_{\Psi(\Delta,\Psi)},\Gamma.\Pis(\Delta,(1_\Psi,fg_1))^*\Ids_{\Pis(\Delta,\Psi)}} & {\Gamma.\Pis(\Delta,\Psi).\Pis(\Delta,\Psi).\Ids_{\Pis(\Delta,\Psi)}} \\
     & {\Gamma.\Pis(\Delta,\Psi)} & {\Gamma.\Pis(\Delta,\Psi).\Pis(\Delta,\Psi)}
@@ -375,23 +386,12 @@ Again, the above extends to all fibrations in $\sfC$ and it allows to prove our
 desired result.
 
 \begin{thm}[\cite{Kap17}]\label{finalthm}
-  Given a categorical model of type theory $\sfC$, the $\infty$-category $L(\sfC)$
-  is locally cartesian closed.
+  The $\infty$-category $L(\sfC)$ is locally cartesian closed.
 \end{thm}
 \begin{proof}
   We already know that it is finitely complete by \ref{fincompl1}. The
   hypothesis of Theorem \ref{7616} are satisfied by Lemma \ref{radj} and Lemma
   \ref{lccfc}.
-\end{proof}
-
-\begin{thm}
-  The right derived functor of a contextual functor between categorical models
-  of type theory is left exact.
-\end{thm}
-\begin{proof}
-  By definition, such a functor preserves fibrations, chosen pullbacks, terminal
-  object and $\Ids$-structure, thus it is left exact. We can then apply
-  Proposition \ref{7528}.
 \end{proof}
 
 \section{Conclusions}
