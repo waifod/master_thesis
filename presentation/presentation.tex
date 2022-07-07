@@ -11,7 +11,7 @@
 
 
 %Information to be included in the title page:
-\title{Localizations of Models of Dependent Type Theory}
+\title{Localizations of Models of dependent type theory}
 \author{Author: Matteo Durante \quad\quad\quad Advisor: Hoang-Kim Nguyen}
 \institute{Regensburg University}
 
@@ -28,6 +28,7 @@
 \DeclareMathOperator{\ft}{ft}
 \DeclareMathOperator{\app}{\mathsf{app}}
 \DeclareMathOperator{\nat}{Nat}
+\DeclareMathOperator{\Syn}{\mathsf{Syn}(\mathbf{T})}
 
 
 \begin{document}
@@ -39,6 +40,7 @@
 \newtheorem{defn}{Definition}[section]
 \newtheorem{conj}{Conjecture}[section]
 \newtheorem{lem}{Lemma}[section]
+\newtheorem{construction}{Construction}[section]
 
 \frame{\titlepage}
 
@@ -48,13 +50,14 @@
   A modern proof of the following theorem.
 
   \begin{thm}[Kapulkin 2015]
-    Given a categorical model of type theory $\sfC$, its $\infty$-categorical
-    localization $L(\sfC)$ is a locally cartesian closed $\infty$-category.
+    Given a dependent type theory $\mathbf{T}$ with $\Sigma$-, $\Id$- and
+    $\Pi$-types, the $\infty$-localization of its syntactic category $\Syn$ is a
+    locally cartesian closed $\infty$-category.
   \end{thm}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Dependent Type Theory}
+  \frametitle{Dependent type theory}
   
   \begin{block}{What}
     A theory of computations and a foundation of mathematics.
@@ -63,7 +66,7 @@
 
   \begin{block}{Objects}
     \emph{Dependent types $A$ over contexts
-    $\Gamma$} and their \emph{terms $x:A$}.
+    $\Gamma=(x_0:A_0,\ldots,x_n:A_n)$} and their \emph{terms $x:A$}.
   \end{block}
   \pause
 
@@ -90,7 +93,7 @@
   \pause
 
   \begin{block}{Problem}
-    Providing a model of Dependent Type Theory is hard.
+    Providing a model of dependent type theory is hard.
   \end{block}
   \pause
 
@@ -125,6 +128,25 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{Example}
+  \begin{construction}[syntactic category of a type theory $\Syn$]
+    A category $\Syn$ where:
+    \begin{enumerate}
+      \item $n$-objects are contexts $[x_0:A_0,\ldots,x_n:A_n]$;
+      \item the empty context is $[]$;
+      \item morphisms
+        $[x_0:A_0,\ldots,x_n:A_n]\rightarrow[y_0:B_0,\ldots,y_m:B_m]$ are
+        tuples of terms $(f_0:B_0,\ldots,f_m:B_m)$ derivable from
+        $x_0:A_0,\ldots,x_n:A_n$;
+      \item composition is given by subsitution;
+      \item $\ft([x_0:A_0,\ldots,x_{n+1}:A_{n+1}])=[x_0:A_0,\ldots,x_n:A_n]$;
+      \item a basic projection is a tuple $(x_0:A_0,\ldots,x_n:A_n)$;
+      \item pullback squares are given by context substitution.
+    \end{enumerate}
+  \end{construction}
+\end{frame}
+
+\begin{frame}
   \frametitle{Modeling logical rules}
 
   \begin{block}{Extra structure}
@@ -136,10 +158,10 @@
   \end{block}
   \pause
 
-  \begin{defn}
-    A \emph{categorical model of type theory} is a contextual category $\sfC$
-    with $\Sigma$, $\Id$ and $\Pi$ structures.
-  \end{defn}
+  \begin{example}
+    If $\mathbf{T}$ has some logical rules, then $\Syn$ has the corresponding
+    logical structures.
+  \end{example}
 \end{frame}
 
 \begin{frame}
@@ -174,13 +196,11 @@
   \pause
 
   \begin{thm}[Avigad-Kapulkin-Lumsdaine 2013]
-    A contextual category with $\Sigma$ and $\Id$ structures defines a
-    fibration category, where weak
-    equivalences are bi-invertible maps and
+    A contextual category with $\Sigma$- and $\Id$-structures defines a
+    fibration category, where weak equivalences are bi-invertible maps and
     fibrations are maps isomorphic to  compositions of basic dependent
     projections $p_A\colon\Gamma.A\rightarrow\Gamma$.
   \end{thm}
-  In particular, it applies to categorical models of type theory.
 \end{frame}
 
 \begin{frame}
@@ -190,6 +210,14 @@
     The localization at weak equivalences of an $\infty$-category with weak
     equivalences and fibrations $\cC$ is a finitely complete $\infty$-category.
   \end{prop}
+  \pause
+
+  \begin{construction}[fibrant slice $\cC(x)$]
+    Given a fibrant object $x$ in $\cC$, lift the fibrational structure through
+    $\cC/x\rightarrow\cC$ and then take the subcategory of fibrant objects
+    of $\cC/x$.
+  \end{construction}
+  \pause
 
   \begin{prop}[Cisinski]
     Given an $\infty$-category with weak equivalences and fibrations $\cC$, if
@@ -198,21 +226,23 @@
     has a right adjoint preserving trivial fibrations, then $L(\cC)$ is locally
     cartesian closed.
   \end{prop}
+
 \end{frame}
 
 \begin{frame}
-  \frametitle{Localizations of models are Cartesian closed}
+  \frametitle{Localizations of models are cartesian closed}
 
   \begin{thm}[Kapulkin 2015]
-    Given a categorical model of type theory $\sfC$, its localization
-    $L(\sfC)$ is a locally cartesian closed $\infty$-category.
+    Given a dependent type theory $\mathbf{T}$ with $\Sigma$-, $\Id$- and
+    $\Pi$-types, the localization of its syntactic category $\Syn$ is a
+    locally cartesian closed $\infty$-category.
   \end{thm}
   \pause
 
   \begin{proof}
     For any basic dependent projection $p_A\colon\Gamma.A\rightarrow\Gamma$,
     there exists a right adjoint to
-    $p_A^*\colon\sfC(\Gamma)\rightarrow\sfC(\Gamma.A)$ given by
+    $p_A^*\colon\Syn(\Gamma)\rightarrow\Syn(\Gamma.A)$ given by
     \[(p_A)_*(\Gamma.A.\Theta)=\Gamma.\Pi(A,\Theta)\]
     with counit induced by $\app_{A,\Theta}$. It preserves the fibrational
     structure.
@@ -224,23 +254,23 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Why is Dependent Type Theory cool?}
+  \frametitle{Why is dependent type theory cool?}
 
   \begin{enumerate}
     \item Closely linked to \emph{computations} and \emph{computer science},
-      makes proof assistants possible
-    \item Enough by itself as a foundation, unlike Set Theory or Propositional
-      Calculus
-    \item \emph{Proofs} are internal objects
-    \item Better treatment of \emph{equality}
+      makes proof assistants possible.
+    \item Enough by itself as a foundation, unlike set theory or propositional
+      calculus.
+    \item \emph{Proofs} are internal objects.
+    \item Better treatment of \emph{equality}.
     \item Makes ``fully faithful $+$ essentially surjective = equivalence''
-      independent from the Axiom of Choice
-    \item Homotopical interpretation in $\infty$-groupoids
+      independent from the axiom of choice.
+    \item Homotopical interpretation in $\infty$-groupoids.
   \end{enumerate}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Internal Languages Conjecture}
+  \frametitle{Internal languages conjecture}
 
   \begin{conj}[Kapulkin-Lumsdaine 2016]
     The horizontal maps, given by simplicial localization, induce

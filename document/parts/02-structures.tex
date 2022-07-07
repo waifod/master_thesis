@@ -26,7 +26,7 @@ contribution of this work.
 \section{Constructions}
 
 We begin by constructing the category of iterated contexts, where we
-will extend the $\Pis$-structure.
+will extend the structures.
 
 \begin{construction}\cite[21]{Lum10}
   Given a contextual category $\sfC$, we construct a contextual category
@@ -87,18 +87,16 @@ will extend the $\Pis$-structure.
   our construction.
 \end{construction}
 
-We are now ready, given a contextual category $\sfC$ to extend the
-$\Pis$-structure to $\sfC^{cxt}$, which we will do in two parts,
-the first one in full generality and the second one in specific conditions.
+We are now ready, given a contextual category $\sfC$, to extend the
+$\Pis$-structure to $\sfC^{cxt}$. We shall do so in two parts, first in full
+generality and then under extra assumptions.
 
 Given $\Gamma.\Delta.\Theta$ in $\sfC^{cxt}$, where
 $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n=l(\Gamma)+m+n$ in $\sfC$, we
 build $\Gamma.\Pis(\Delta,\Theta)$ by induction on the length of the context
 extensions involved, taking the
 one from $\sfC$ in case we are working with objects corresponding to simple
-extensions. Remember however that in $\sfC^{cxt}$ we also have objects
-representing trivial extensions, which will require some minor attention from
-us.
+extensions.
 
 \begin{construction}[Part 1]
   If $m=0$, then we set
@@ -282,12 +280,12 @@ In this section we verify that the desired properties hold.
   \end{align*}
   \wfd{PLEASE VERIFY, LIKELY WRONG}
   To justify $\app_{\Delta,B}(\lambda_{\Delta,B}(b),y)=b\cdot y$ we shall use
-  internal reasoning. The section
+  type-theoretic reasoning. The section
   $b\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.B$ is
   such that\[y\equiv (y',a)\mapsto(y',a,b(y',a))\equiv(y,b(y)),\] thus
   applying $\lambda_{A,B}$ and then $\lambda_{\Delta',\Pis(A,B)}$ we get
   $\lambda(y':\Delta').(\lambda(a:A).b(y',a))\equiv\lambda(y:\Delta).b(y)$.
-  Also, $\app_{\Delta,B}$ acts internally as
+  Also, $\app_{\Delta,B}$ acts type-theoretically as
   \begin{align*}
     (f,y) \\
     ^{\text{split } y}&\equiv(f,y',a) \\
