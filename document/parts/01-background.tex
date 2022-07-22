@@ -3,26 +3,86 @@
 We begin by presenting our dependent type theory and then introduce a class of
 algebraic models.
 
-
 \section{Logical Setting}
+
+We assume some familiarity with some kind of dependent type theory, which
+should be enough to understand our setting.
+
+\begin{notation}
+  A context $\Gamma$ is a sequence $a_1:A_1,\ldots,a_n:A_n$ of types $A_i$ with
+  choices of terms
+  $a_i:A_i$, each of them derivable from the previous ones and possibly
+  dependent on them.
+  \begin{align*}
+    a_1:A_1,\ldots,a_{i-1}:A_{i-1} &\vdash A_i \text{ type} \\
+    x_1:A_1,\ldots,x_{i-1}:A_{i-1} &\vdash x_i:A_i.
+  \end{align*}
+  We shall hide the
+  dependency on previous terms in our notation (as we have just done) unless
+  it is needed for clarity, in which case we
+  may write $B(a_1,\ldots,a_n)$ for a type $B$ dependent on
+  $a_1:A_1,\ldots,a_n:A_n$ and similarly $b(a_1,\ldots,a_n):B(a_1,\ldots,a_n)$
+  for a dependent term or suppress individual dependencies.
+\end{notation}
+
+We will be considering the structural rules and some logical ones of
+predicative Martin-L\"{o}f type theory \cite{ML84} as presented in \cite[App.\
+A]{KL12}. Informally, the latter provide:
+\begin{enumerate}
+  \item \emph{dependent sums} $\Sigmas(A,B)$, also called \emph{$\Sigmas$-types}, and the associated introduction,
+    elimination and computation rules;
+  \item \emph{dependent products} $\Pis(A,B)$, also called \emph{$\Pis$-types}, and the associated introduction,
+    elimination and computation rules;
+  \item \emph{identity types} $\Ids_A$, also called \emph{$\Ids$-types}, and the associated introduction,
+    elimination and computation rules.
+\end{enumerate}
+
+Furthermore, we consider the following two rules:
+\begin{enumerate}[resume]
+  \item \emph{$\eta$-conversion for functions}: for any type $A$ and any type $B$
+    dependent on $x:A$, given a function $f:\Pis(A,B)$, we have
+    $\lambda(x:A).\app(f,x)\equiv f$;
+  \item \emph{function extensionality}: for any type $A$ and any type $B$ dependent on
+    $x:A$, given functions $f,g:\Pis(A,B)$, if $\app(f,x)=\app(g,x)$ for every
+    $x:A$, then $f=g$.
+\end{enumerate}
+
+\begin{rmk}
+  Observe that when specifying $\eta$-conversion we used a \emph{judgemental
+  equality}, while for function extensionality we used a simple equality. The
+  latter means that, given $h:\Pis(x:A,\Id_B(\app(f,x),\app(g,x)))$, we can
+  present a term $\ext(f,g,h)$ of type $\Ids_{\Pis(A,B)}(f,g)$.
+\end{rmk}
+
+\begin{rmk}
+It should be noted that function extensionality is a common assumption, however
+it is sometimes derived instead from other principles, like in Homotopy Type
+Theory \cite{Uni13}, where it is a consequence of univalence.
+Also, the other principles we are considering are fairly general and very
+desirable for any dependent type theory meant as a candidate foundation of
+mathematics, however they are still not enough for such a role: indeed, we lack
+introduction rules to construct any type or term starting from the empty
+context. This is fine, since it means that our results will apply very
+generally.
+\end{rmk}
 
 \section{Contextual Categories}
 
 A problem of working with dependent type theory is
-given by handling the structural rules, namely context substitution, variable
+the handling of the structural rules, namely context substitution, variable
 binding, variable substitution and so on. To avoid this issue, it is convenient
 to work within a \emph{semantic model}, which we now present.
 
-There are many algebraic models of dependent type theory in the literature, like
+There are many algebraic models of dependent type theory in the literature meant
+to only model these rules, like
 \emph{category with attributes}, \emph{categories with families} and
 \emph{comprehension categories}, which are
-fairly similar among them, as shown by the adjunctions between their categories.
+fairly similar among them.
 Here we shall work with \emph{contextual
 categories}, which were first explored by Cartmell and Streicher
 \cite{Car78,Car86,Str91} and later by Voevodsky, under the name
-$C$\emph{-systems} \cite{Voe14a,Voe14b,Voe15a,Voe15b}. Lumsdaine in his phd
-thesis claims that contextual
-categories are the right framework PROP 1.2.5.
+$C$\emph{-systems} \cite{Voe14a,Voe14b,Voe15a,Voe15b}. For informations on the
+others we refer to the nLab \cite{nlab:categorical_model_of_dependent_types}.
 
 \begin{defn}
   A \emph{contextual category} $\sfC$ is a small category, also denoted $\sfC$,
@@ -64,43 +124,38 @@ categories are the right framework PROP 1.2.5.
   functorial, which allows us to see contextual categories as a strict model of
   dependent type theory, not requiring keeping track of coherency maps.
   Other models, like comprehension categories, do not
-  have such requirements, which makes them more general but also
+  have such requirements, which makes them more general and
   interpretation harder, unless they are first strictified, that is replaced by
-  an equivalent model of the same kind but with functorial pullbacks, like split
-  comprehension
-  categories \wfd{(HOW DO YOU STRICTIFY THEM?)}. Famously, we also have
-  homotopical models of dependent type
-  theories, like tribes and fibration categories \wfd{(REFERENCE)}, whose
-  internal languages are precisely dependent type theories with intensional
-  $\Ids$-types and $\Sigmas$-types.
+  an equivalent model of the same kind but with functorial pullbacks. Famously,
+  we also have homotopical models of dependent type
+  theories, like \emph{type-theoretic fibration categories} \cite{Shu14}, which
+  however carry much more structure as they are meant to also model the logical
+  rules.
 \end{rmk}
 
 A motivating example for contextual categories is the \emph{syntactic category
-of a dependent type theory}, which constructs from a dependent type theory
-$\T$ a contextual category $\Syn{\T}$ explicitly modeling it as we will show.
+of a dependent type theory}, which is constructed as follows.
 
 \begin{construction}\cite[2.6]{Car78}
-  \wfd{(KL12 also mentions other stuff! Should I?)}
   Given a dependent type theory $\T$ with the structural rules specified in
-  \cite[A.1]{KL12}, its syntactic category $\Syn{\T}$ has:
+  \cite[App.\ A.1]{KL12}, its syntactic category $\Syn{\T}$ has:
   \begin{enumerate}
     \item $\Ob_n\Syn{\T}$ given by contexts $[x_1:A_1,\ldots,x_n:A_n]$ of length
-      $n$, modulo definitional equality and renaming of free variables;
+      $n$, modulo judgemental equality and renaming of free variables;
     \item maps are \emph{context morphisms}, or \emph{substitutions}, modulo
-      definitional equalities and renaming of free variables. This means that a
+      judgemental equalities and renaming of free variables. This means that a
       map
       \[f\colon[x_1:A_1,\ldots,x_n:A_n]\rightarrow[y_1:B_1,\ldots,y_m:B_m(y_1,\ldots,y_{m-1})]\]
-      is an equivalence class of sequences of terms $(f_1,\ldots,f_m)$ such that
+      is an equivalence class of tuples of terms $(f_1,\ldots,f_m)$ such that
       \begin{align*}
         x_1:A_1,\ldots,x_n:A_n &\vdash f_1:B_1, \\
         \vdots & \\
         x_1:A_1,\ldots,x_n:A_n &\vdash f_m:B_m(f_1,\ldots,f_{m-1}),
       \end{align*}
-      are all derivable judgements and two such sequences
+      are all derivable judgements and two such tuples
       $(f_1,\ldots,f_n),(g_1,\ldots g_n)$ are equivalent if we have
       \[x_1:A_1,\ldots,x_n:A_n\vdash f_i\equiv g_i:B_i(f_1,\ldots,f_{i-1})\]
-      for every $i$, where $\equiv$ represents judgemental equality; we shall
-      henceforth also write $[f_i]$ for $f$;
+      for every $i$; we shall henceforth also write $[f_i]$ for $f$;
     \item composition is given by substitution;
     \item the identity $\Gamma\rightarrow\Gamma$ is given by the variables of
       $\Gamma$, considered as
@@ -153,12 +208,6 @@ $\T$ a contextual category $\Syn{\T}$ explicitly modeling it as we will show.
   a dependent projection corresponds to substituting variables, while a choice of
   a term corresponds to a choice of a section of a basic dependent projection
   and so on for the other objects in the definition.
-
-  It is also worth noting that, in $[x_1:A_1,\ldots,x_n:A_n]$, both the type
-  $A_i$ and the term $x_i:A_i$ can depend on all of the previous terms, hence we
-  should be writing $A_i(x_1,\ldots,x_{i-1})$ and $x_i(x_1,\ldots,x_{i-1})$,
-  however we will avoid doing it as we have done so far unless it creates
-  ambiguity.
 \end{rmk}
 
 \begin{notation}
@@ -180,8 +229,7 @@ $\T$ a contextual category $\Syn{\T}$ explicitly modeling it as we will show.
   1_{A_1.\ldots.A_k},\ldots,1_{A_k}$ for $1_{\Gamma.\Delta}$, depending on what
   we want to emphasize. Greek letters
   shall be used to indicate context extensions of arbitrary length, while Latin
-  ones will be reserved to simple extensions.
-
+  ones will be reserved to simple extensions. \\
   Continuing, given a dependent projection $p_{A_1.\ldots.A_k}=p_\Theta$ as
   above and a context morphism $f\colon\Delta\rightarrow\Gamma$, we define
   inductively $f^*(\Gamma.\Theta)=\Delta.f^*\Theta=\Delta.f^*A_1.\ldots.f^*A_k$
@@ -223,8 +271,8 @@ $\T$ a contextual category $\Syn{\T}$ explicitly modeling it as we will show.
     \arrow["{p_{f^*A}}", from=2-2, to=3-2]
     \arrow["{p_A}", from=2-3, to=3-3]
     \arrow["{q(f,A)}"', from=2-2, to=2-3]
-    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
-    \arrow["{a\cdot f}", curve={height=-12pt}, from=1-1, to=2-3]
+    \arrow[curve={height=18pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow["{a\cdot f}", curve={height=-18pt}, from=1-1, to=2-3]
     \arrow["{(1_\Delta,a\cdot f)}"{description}, dotted, from=1-1, to=2-2]
   \end{tikzcd},\]
   and, as shown by the commutative diagram
@@ -255,26 +303,38 @@ $\T$ a contextual category $\Syn{\T}$ explicitly modeling it as we will show.
 \end{defn}
 
 \begin{rmk}
-  Our definition allows us to see contextual categories as models for an
-  essentially algebraic theory with sorts indexed by $\bbN+\bbN\times\bbN$. In
-  that context, we get a notion of morphisms between models of this theory,
+  Our definition allows us to see contextual categories as models for a (small
+  multi-sorted) essentially algebraic theory \cite{AR94} with sorts
+  indexed by $\bbN+\bbN\times\bbN$. In that context, we get a notion of
+  morphism between models of this theory,
   which coincides with the one we have just provided. The category of models for
   this theory will be the category of contextual categories, denoted by $\Cxl$,
   which is complete and cocomplete as the category of models of an
-  essentially algebraic theory REFS.
+  essentially algebraic theory. The same can be done for the other algebraic
+  models we mentioned.
 \end{rmk}
 
-A problem of providing a model of dependent type theory is exhibiting the
-basic structural rules, namely context substitution, variable binding,
-variable substitution and so on for us. The defining properties of contextual
-categories are meant to model them and therefore 
-take care of all of that for us, meaning that as long
-as we can show that something models a contextual category we automatically get
-an interpretation of dependent type theory, thereby eliminating a lot of
-bureaucracy. On the other hand, interpreting complicated structures in
+As we stated, the defining properties of contextual
+categories are meant to model structural rules, so that we can reason about
+dependent type theories in terms of pullbacks, sections and so on while
+eliminating a lot of the bureaucracy needed to provide a model, which can now be
+done by constructing such a category.
+
+\begin{exmp}
+  A constructive and formalization-ready approach to producing contextual
+  categories was developed by Voevodsky in \cite{Voe14b} and subsequent papers,
+  where he starts from a
+  universe category, that is a quadruple given by a category $\cC$, a morphism
+  $p\colon\tilde{U}\rightarrow U$, choices of pullback squares along $p$ for all
+  morphisms to $U$ and a choice of a final object of $\cC$. His methods were
+  used to construct a simplicial model of univalent type theory in \cite{KL12}.
+\end{exmp}
+
+On the other hand, as noted in \cite[par.\ 1.2]{KL12}, interpreting complicated
+structures in
 contextual categories quickly becomes unreadable, meaning that ideally we would
-like to be able to switch from the syntactic to the semantic presentation of
-dependent type theory and viceversa freely, so that we may work with the most
+like to be able to switch from a syntactic to a semantic presentation
+and viceversa freely, so that we may work with the most
 convenient one for a given situation. This would amount to some \emph{soundness}
 and \emph{correctness} theorems reminiscent of the ones of \emph{first order
 predicate logic}. In categorical semantics, this corresponds to
@@ -290,28 +350,23 @@ predicate logic}. In categorical semantics, this corresponds to
 Here by ``appropriate structure'' we mean extra algebraic structures meant to
 model the
 logical rules of the type theory, like $\Sigmas$-types, $\Pis$-types and
-$\Ids$-types. Indeed, the definition of contextual category as we said deals with
-the structural rules, but nothing more. We will introduce the such structures in
-the next section.
+$\Ids$-types. Indeed, the definition of contextual category is not meant to deal
+with them. We will introduce the such structures in the next section.
 \end{rmk}
 
 \begin{rmk}
 This conjecture has been partially proven for a simple variant of dependent type
-theory in \cite{Str91}, however we still do not have a fully rigorous general
-statement.
-
-Such a statement would first require a general notion of dependent type theory,
-which has been worked on in \cite{Isa17, Uem19, Bru20, BHL20, NU22}, and
-there is an ongoing effort to provide a formalization and a flexible proof of
-some variants of the conjecture. One candidate was announced at HoTTest
-\cite{BL20} and is currently available at \cite{Bru20}.
+theory in \cite[Ch.\ III, p.\ 181]{Str91} and a proof formalized in Agda
+for predicative Martin-L\"{o}f is
+currently available at \cite{Bru20}, however we still do not have a fully
+rigorous general statement. Such a statement would first require a general
+notion of dependent type theory,
+which has been worked on in \cite{Isa17, Uem19, Bru20, BHL20, NU22}.
 
 If we could do that, then for any contextual category $\sfC$ we would have a
 contextual functor $\Syn{\T}\rightarrow\sfC$ explaining how to interpret $\T$ in
-$\sfC$ and allowing us to use dependent type theory to reason about contextual
-categories and viceversa. This is essentially an algorithmic problem: it reduces
-to explaining inductively to a computer how to construct the aforementioned
-functor.
+$\sfC$. This is essentially an algorithmic problem: it reduces to explaining
+inductively to a computer how to construct the aforementioned functor.
 \end{rmk}
 
 Currently, researchers often assume this conjecture to be true because it
@@ -330,24 +385,24 @@ initial objects.
 \section{Logical Structures}
 
 We now define the extra structures on contextual categories we mentioned
-earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
+earlier. Our definitions shall be taken from \cite{KL12,KL18}.
 
 \begin{defn}
   A \emph{$\Sigmas$-type structure} on a contextual category $\sfC$ consists of:
   \begin{enumerate}
-    \item for each $(\Gamma,A,B)\in\Ob_{n+2}\sfC$, an object
-      $(\Gamma,\Sigmas(A,B))\in\Ob_{n+1}\sfC$;
-    \item for each $(\Gamma,A,B)\in\Ob_{n+2}\sfC$, a morphism $\pair_{A,B}\colon
-      (\Gamma,A,B)\rightarrow(\Gamma,\Sigmas(A,B))$ over $\Gamma$;
-    \item for each $(\Gamma,A,B),(\Gamma,\Sigmas(A,B),C)\in\Ob_{n+2}\sfC$, and
-      $d\colon(\Gamma,A,B)\rightarrow(\Gamma,\Sigmas(A,B),C)$ with $p_C\cdot
+    \item for each $\Gamma.A.B\in\Ob_{n+2}\sfC$, an object
+      $\Gamma.\Sigmas(A,B)\in\Ob_{n+1}\sfC$;
+    \item for each $\Gamma.A.B\in\Ob_{n+2}\sfC$, a morphism $\pair_{A,B}\colon
+      \Gamma.A.B\rightarrow\Gamma.\Sigmas(A,B)$ over $\Gamma$;
+    \item for each $\Gamma.A.B,\Gamma.\Sigmas(A,B).C\in\Ob_{n+2}\sfC$, and
+      $d\colon\Gamma.A.B\rightarrow\Gamma.\Sigmas(A,B).C$ with $p_C\cdot
       d=\pair_{A,B}$, a section
-      $\csplit_d\colon(\Gamma,\Sigmas(A,B))\rightarrow(\Gamma,\Sigma(A,B),C)$ such
+      $\csplit_d\colon\Gamma.\Sigmas(A,B)\rightarrow\Gamma.\Sigma(A,B).C$ such
       that $\csplit_d\cdot\pair_{A,B}=d$;
     \item where all of the above is compatible with context substitution, that
       is given a map $f\colon\Delta\rightarrow\Gamma$ we have
       \begin{align*}
-        f^*(\Gamma,\Sigmas(A,B)) &=(\Delta,\Sigma(f^*A,f^*B)), \\
+        f^*(\Gamma.\Sigmas(A,B)) &=\Delta.\Sigma(f^*A,f^*B), \\
         f^*\pair_{A,B} &=\pair_{f^*A,f^*B}, \\
         f^*\csplit_d &=\csplit_{f^*d}.
       \end{align*}
@@ -365,17 +420,17 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
     \item for each $(\Gamma,A,B)\in\Ob_{n+2}\sfC$, an object
       $(\Gamma,\Pis(A,B))\in\Ob_{n+1}\sfC$;
     \item for each $(\Gamma,A,B)\in\Ob_{n+2}\sfC$, a map
-      $\app_{A,B}\colon(\Gamma,\Pis(A,B),p^*_{\Pis(A,B)}A)\rightarrow(\Gamma,A,B)$
+      $\app_{A,B}\colon\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A)\rightarrow\Gamma.A.B$
       over $\Gamma$, that is such that $p_B\cdot\app_{A,B}=q(\Pis(A,B),A)$;
-    \item for each $(\Gamma,A,B)\in\Ob_{n+2}\sfC$ and section
-      $b\colon(\Gamma,A)\rightarrow(\Gamma,A,B)$, a section
-      $\lambda_{A,B}(b)\colon\Gamma\rightarrow(\Gamma,\Pis(A,B))$;
+    \item for each $\Gamma.A.B\in\Ob_{n+2}\sfC$ and section
+      $b\colon\Gamma.A\rightarrow\Gamma.A.B$, a section
+      $\lambda_{A,B}(b)\colon\Gamma\rightarrow\Gamma.\Pis(A,B)$;
     \item such that for any sections
-      $k\colon\Gamma\rightarrow(\Gamma,\Pis(A,B))$,
+      $k\colon\Gamma\rightarrow\Gamma.\Pis(A,B)$,
       $a\colon\Gamma\rightarrow\Gamma.A$
       the map $\app_{A,B}(k,a)$ defined as the composition of $\app_{A,B}$ with
       $(k,a)$ specified by the factorization through the pullback
-      \[\begin{tikzcd}
+      \[\begin{tikzcd}[column sep=huge]
         \Gamma \\
         & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.A} \\
         & {\Gamma.\Pis(A,B)} & \Gamma
@@ -388,8 +443,8 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
         \arrow["{(k,a)}"{description}, dotted, from=1-1, to=2-2]
       \end{tikzcd},\]
       we have $p_B\cdot\app_{A,B}(k,a)=a$;
-    \item such that for any $(\Gamma,A,B)$, $a\colon\Gamma\rightarrow(\Gamma,A)$
-      and $b\colon(\Gamma,A)\rightarrow(\Gamma,A,B)$ we have
+    \item such that for any $\Gamma.A.B$, $a\colon\Gamma\rightarrow\Gamma.A$
+      and $b\colon\Gamma.A\rightarrow\Gamma.A.B$ we have
       \[\app(\lambda_{A,B}(b),a)=b\cdot a;\]
     \item all of the above is compatible with context substitution, that is for
       any $f\colon\Delta\rightarrow\Gamma$ we have
@@ -430,7 +485,9 @@ earlier. Our definitions shall be taken from \cite{KL12} and \cite{KL18}.
   \emph{$\eta$-expansion map}, that is it corresponds internally to the map
   \[f\mapsto\lambda(a:A).\app(f,a)\] over $\Gamma$, thus
   the property means that we have a judgement
-  \[\Gamma\vdash f\equiv\lambda(a:A).\app(f,a):\Pis(A,B).\]
+  \[\Gamma\vdash f\equiv\lambda(a:A).\app(f,a):\Pis(A,B)\]
+  which corresponds to $\eta$-conversion.
+
   The map $(1_{p^*_{\Pis(A,B)}A},\app_{A,B})$ is specified by the following
   factorization through the pullback.
   \[\begin{tikzcd}
