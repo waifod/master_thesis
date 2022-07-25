@@ -5,8 +5,15 @@ algebraic models.
 
 \section{Logical Setting}
 
-We assume some familiarity with some kind of dependent type theory, which
-should be enough to understand our setting.
+We assume some familiarity with some kind of dependent type theory, preferably
+Martin-L\"{o}f Type Theory \cite{ML84} or an extension, which
+should be enough to understand our setting. This has become a popular formal
+theory of logic to start from when creating an alternative foundation of
+mathematics since it provides a more nuanced concept of equality, the
+possibility of creating powerful proof assistants and, thanks to its relation to
+homotopy theory, cleaner and more general proofs of some theorems, like the
+Black-Massey theorem, presented in the language of Homotopy Type Theory
+\cite{Uni13}.
 
 \begin{notation}
   A context $\Gamma$ is a sequence $a_1:A_1,\ldots,a_n:A_n$ of types $A_i$ with
@@ -25,9 +32,8 @@ should be enough to understand our setting.
   for a dependent term or suppress individual dependencies.
 \end{notation}
 
-We will be considering the structural rules and some logical ones of
-predicative Martin-L\"{o}f type theory \cite{ML84} as presented in \cite[App.\
-A]{KL12}. Informally, the latter provide:
+We will be considering the structural rules from \cite[App.\ A.1]{KL12} and some
+logical ones as presented in \cite[App.\ A.2]{KL12}. Informally, we deal with:
 \begin{enumerate}
   \item \emph{dependent sums} $\Sigmas(A,B)$, also called \emph{$\Sigmas$-types}, and the associated introduction,
     elimination and computation rules;
@@ -57,13 +63,13 @@ Furthermore, we consider the following two rules:
 \begin{rmk}
 It should be noted that function extensionality is a common assumption, however
 it is sometimes derived instead from other principles, like in Homotopy Type
-Theory \cite{Uni13}, where it is a consequence of univalence.
+Theory, where it is a consequence of univalence \cite[Ch.\ 4.9]{Uni13}.
 Also, the other principles we are considering are fairly general and very
 desirable for any dependent type theory meant as a candidate foundation of
 mathematics, however they are still not enough for such a role: indeed, we lack
 introduction rules to construct any type or term starting from the empty
-context. This is fine, since it means that our results will apply very
-generally.
+context. This is fine, since it means that our results will apply to virtually
+any type-theoretic foundation of mathematics.
 \end{rmk}
 
 \section{Contextual Categories}
@@ -81,15 +87,16 @@ fairly similar among them.
 Here we shall work with \emph{contextual
 categories}, which were first explored by Cartmell and Streicher
 \cite{Car78,Car86,Str91} and later by Voevodsky, under the name
-$C$\emph{-systems} \cite{Voe14a,Voe14b,Voe15a,Voe15b}. For informations on the
+$C$\emph{-systems} \cite{Voe14a}. For informations on the
 others we refer to the nLab \cite{nlab:categorical_model_of_dependent_types}.
 
 \begin{defn}
   A \emph{contextual category} $\sfC$ is a small category, also denoted $\sfC$,
   with the following data:
   \begin{enumerate}
-    \item a grading on objects $\Ob\sfC=\coprod_{n\in\bbN}\Ob_n\sfC$;
-    \item an object $*\in\Ob_0\sfC$;
+    \item a grading on objects $\Ob\sfC=\coprod_{n\in\bbN}\Ob_n\sfC$, also
+      called \emph{contexts};
+    \item an object $*\in\Ob_0\sfC$, the \emph{empty context};
     \item for each $n\in\bbN$, a map
       $\cft_n\colon\Ob_{n+1}\sfC\rightarrow\Ob_n\sfC$, often simply denoted
       $\cft$;
@@ -122,7 +129,7 @@ others we refer to the nLab \cite{nlab:categorical_model_of_dependent_types}.
 \begin{rmk}
   The last condition in the definition means that our choice of pullbacks is
   functorial, which allows us to see contextual categories as a strict model of
-  dependent type theory, not requiring keeping track of coherency maps.
+  dependent type theory, not requiring to keep track of coherency maps.
   Other models, like comprehension categories, do not
   have such requirements, which makes them more general and
   interpretation harder, unless they are first strictified, that is replaced by
@@ -204,21 +211,18 @@ of a dependent type theory}, which is constructed as follows.
   The above construction also tells us how to think about the other elements in
   the definition of contextual categories: basic dependent
   projections $p_{\Gamma.A.B}\colon\Gamma.A.B\rightarrow\Gamma.A$ represent
-  dependent types $B$ over $A$ in the context $\Gamma$ and pulling back along
-  a dependent projection corresponds to substituting variables, while a choice of
-  a term corresponds to a choice of a section of a basic dependent projection
+  dependent types $B$ over $A$ in the context $\Gamma$, while pulling back along
+  a dependent projection corresponds to switching context
   and so on for the other objects in the definition.
 \end{rmk}
 
 \begin{notation}
   We shall also make use of some conventions inspired by this construction.
   Namely, given a contextual category $\sfC$ and an object $\Gamma\in\Ob_n\sfC$,
-  we shall
-  write $(\Gamma,A_1,\ldots,A_k)$, $\Gamma.A_1.\ldots.A_k$ and $\Gamma.\Delta$
-  interchangeably
+  we shall write $\Gamma.A_1.\ldots.A_k$ and $\Gamma.\Delta$ interchangeably
   for an object $X$ in $\Ob_{n+k}\sfC$ with $\cft^kX=\Gamma$ and call it a
   \emph{context extension of $\Gamma$ of length $k$}. We shall
-  also write $p_{(A_1,\ldots,A_k)}$, $p_{A_1.\ldots.A_k}$ and $p_\Delta$ for the
+  also write $p_{A_1.\ldots.A_k}$ and $p_\Delta$ for the
   composition of the basic dependent projections
   $p_{\Gamma.A_1.\ldots.A_i}$, with $i$
   ranging from $1$ to $k$, and the resulting map will be called a
@@ -295,6 +299,16 @@ of a dependent type theory}, which is constructed as follows.
   arbitrary length.
 \end{notation}
 
+\begin{rmk}
+  When We pull back a dependent projection
+  $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ along another one
+  $p_\Psi$, we may also choose to do it the other way around, which induces an
+  isomorphism
+  $\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Psi.p^*_\Psi\Delta$
+  denoted by $\exch_{\Delta,\Psi}$. Syntactically, this amounts to swapping two
+  context extensions not dependent on one another.
+\end{rmk}
+
 \begin{defn}
   A \emph{contextual functor} between contextual categories
   $F\colon\sfC\rightarrow\sfD$ is a functor on the underlying categories which
@@ -307,8 +321,8 @@ of a dependent type theory}, which is constructed as follows.
   multi-sorted) essentially algebraic theory \cite{AR94} with sorts
   indexed by $\bbN+\bbN\times\bbN$. In that context, we get a notion of
   morphism between models of this theory,
-  which coincides with the one we have just provided. The category of models for
-  this theory will be the category of contextual categories, denoted by $\Cxl$,
+  which coincides with the one we have just provided. Its category of models
+  will be the category of contextual categories, denoted by $\Cxl$,
   which is complete and cocomplete as the category of models of an
   essentially algebraic theory. The same can be done for the other algebraic
   models we mentioned.
@@ -322,12 +336,9 @@ done by constructing such a category.
 
 \begin{exmp}
   A constructive and formalization-ready approach to producing contextual
-  categories was developed by Voevodsky in \cite{Voe14b} and subsequent papers,
-  where he starts from a
-  universe category, that is a quadruple given by a category $\cC$, a morphism
-  $p\colon\tilde{U}\rightarrow U$, choices of pullback squares along $p$ for all
-  morphisms to $U$ and a choice of a final object of $\cC$. His methods were
-  used to construct a simplicial model of univalent type theory in \cite{KL12}.
+categories was developed by Voevodsky in \cite{Voe14b,Voe14b,Voe15a,Voe15b},
+  where he starts from a \emph{universe category}. His methods were
+  used to construct a simplicial model of Univalent Type Theory in \cite{KL12}.
 \end{exmp}
 
 On the other hand, as noted in \cite[par.\ 1.2]{KL12}, interpreting complicated
@@ -356,31 +367,35 @@ with them. We will introduce the such structures in the next section.
 
 \begin{rmk}
 This conjecture has been partially proven for a simple variant of dependent type
-theory in \cite[Ch.\ III, p.\ 181]{Str91} and a proof formalized in Agda
-for predicative Martin-L\"{o}f is
-currently available at \cite{Bru20}, however we still do not have a fully
+theory in \cite{Str91} and a proof formalized in Agda
+for Martin-L\"{o}f Type Theory was provided by de Boer and Brunerie
+\cite{Boe20}, however we still do not have a fully
 rigorous general statement. Such a statement would first require a general
 notion of dependent type theory,
-which has been worked on in \cite{Isa17, Uem19, Bru20, BHL20, NU22}.
+which has been worked on in \cite{Isa17, Uem19, Bru20, BHL20, NU22}. \wfd{(ARE
+YOU SURE ABOUT THESE CITATIONS?)}
 
-If we could do that, then for any contextual category $\sfC$ we would have a
+If we could do that, then, under the proper conditions,
+for any contextual category $\sfC$ we would have a
 contextual functor $\Syn{\T}\rightarrow\sfC$ explaining how to interpret $\T$ in
 $\sfC$. This is essentially an algorithmic problem: it reduces to explaining
 inductively to a computer how to construct the aforementioned functor.
 \end{rmk}
 
-Currently, researchers often assume this conjecture to be true because it
-provides an intuitive language and notation to reason about contextual
-categories and it has been proven in various cases. We shall not do that
+Currently, researchers often assume this conjecture to be true because, thanks
+to what is known in folklore as the \emph{syntax-semantic adjunction}, it
+provides \emph{internal languages},
+an intuitive notation to reason about contextual categories.
+We shall not use such instruments
 and instead restrict ourselves to working with syntactic categories, with the
 idea that a generalization of our results to arbitrary contextual categories
-shall be straightforward once we have a proof of the conjecture. Unfortunately,
+should be straightforward once we have a proof of the conjecture and all of the
+tools mentioned above. Unfortunately,
 this will also mean that we will not be able to rely on some results and
 definitions as originally stated.
 
-It should be noted that, since contextual categories with extra structures are
-models for essentially algebraic theories, $\Cxl$ and its variants do have
-initial objects.
+It should be noted that, since $\Cxl$ and its variants are complete, they do
+have initial objects.
 
 \section{Logical Structures}
 
@@ -388,7 +403,7 @@ We now define the extra structures on contextual categories we mentioned
 earlier. Our definitions shall be taken from \cite{KL12,KL18}.
 
 \begin{defn}
-  A \emph{$\Sigmas$-type structure} on a contextual category $\sfC$ consists of:
+  A \emph{$\Sigmas$-structure} on a contextual category $\sfC$ consists of:
   \begin{enumerate}
     \item for each $\Gamma.A.B\in\Ob_{n+2}\sfC$, an object
       $\Gamma.\Sigmas(A,B)\in\Ob_{n+1}\sfC$;
@@ -410,12 +425,30 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
 \end{defn}
 
 \begin{defn}
-  A \emph{$\Ids$-type structure} on a contextual category $\sfC$ consists of:
-  \wfd{COMPLETE}
+  A \emph{$\Ids$-structure} on a contextual category $\sfC$ consists of:
+  \begin{enumerate}
+    \item for each $\Gamma.A\in\Ob_{n+1}\sfC$, an object
+      $\Gamma.A.p^*_AA.\Ids_A\in\Ob_{n+3}\sfC$;
+    \item for each $\Gamma.A\in\Ob_{n+1}\sfC$, a morphism
+      $\refl_A\colon\Gamma.A\rightarrow\Gamma.A.p^*_AA.\Ids_A$ such that
+      $p_{\Ids_A}\cdot\refl_A=(1_A,1_A)\colon\Gamma.A\rightarrow\Gamma.A.p^*_AA$;
+    \item for each $\Gamma.A.p^*_AA.\Ids_A.C$ and
+      $d\colon\Gamma.A\rightarrow\Gamma.A.p^*_AA.\Ids_A.C$ with $p_C\cdot
+      d=\refl_A$, a section
+      $\sfJ_{C,d}\colon\Gamma.A.p^*_AA.\Ids_A\rightarrow\Gamma.A.p^*_AA.\Ids_A.C$
+      such that $\sfJ_{C,d}\cdot\refl_A=d$;
+    \item where all of the above is compatible with context substitution, that
+      is given a map $f\colon\Delta\rightarrow\Gamma$ we have
+      \begin{align*}
+        f^*(\Gamma.A.p^*_AA.\Ids_A) &=\Delta.f^*A.p^*_{f^*A}(f^*A).\Ids_{f^*A} \\
+        f^*\refl_A &=\refl_{f^*A} \\
+        f^*\sfJ_{C,d} &=\sfJ_{f^*C,f^*d}.
+      \end{align*}
+  \end{enumerate}
 \end{defn}
 
 \begin{defn}
-  A \emph{$\Pis$-type structure} on a contextual category $\sfC$ consists of:
+  A \emph{$\Pis$-structure} on a contextual category $\sfC$ consists of:
   \begin{enumerate}
     \item for each $(\Gamma,A,B)\in\Ob_{n+2}\sfC$, an object
       $(\Gamma,\Pis(A,B))\in\Ob_{n+1}\sfC$;
@@ -455,11 +488,11 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
       \end{align*}
   \end{enumerate}
 
-  We shall say that the the $\Pis$-type structure satisfies the
+  We shall say that the the $\Pis$-structure satisfies the
   \emph{$\Pies$-rule} if the equation
   \[q(p_{\Pis(A,B)},\Pis(A,B))\cdot\lambda(1_{p^*_{\Pis(A,B)}A},\app_{A,B})=1_{\Gamma.\Pis(A,B)}\]
   is satisfied, in which case the structure will be called a
-  \emph{$\Pies$-type structure}. 
+  \emph{$\Pies$-structure}. 
 
 
   \wfd{(WE STILL NEED $\Piext$, WHICH REQUIRES $\Ids$-TYPE STRUCTS.)}
@@ -505,7 +538,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
 \end{rmk}
 
 \begin{construction}\label{applyf}
-  Let $\sfC$ be a contextual category with a $\Pis$-type structure,
+  Let $\sfC$ be a contextual category with a $\Pis$-structure,
   $f\colon\Gamma.A\rightarrow\Gamma.B$ a map over $\Gamma$. We want to provide
   a section $\tilde{f}\colon\Gamma\rightarrow\Gamma.\Pis(A,B)$ corresponding to
   $f$. We do so by looking at the commutative diagram
@@ -548,7 +581,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
 \end{construction}
 
 \begin{construction}
-  Let $\sfC$ be a contextual category with a $\Pis$-type structure,
+  Let $\sfC$ be a contextual category with a $\Pis$-structure,
   $f\colon\Gamma.A.B\rightarrow\Gamma.A.B'$ a morphism over
   $\Gamma.A$, meaning a map $b\mapsto\app(f,b)$ for the term
   $f:\Pis(B,B')$ it induces. We want to construct a morphism
