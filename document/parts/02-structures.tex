@@ -8,22 +8,31 @@ on the underlying categories, thereby
 generalizing our structures from simple context extensions to arbitrary ones.
 Indeed, we may then take a context extension, look at it in $\sfC^{cxt}$, apply
 the construction and then carry it back through the equivalence. This extension
-shall be heavily exploited in the final part of the thesis.
+shall be heavily exploited in the final part of the thesis. This technique has
+been mentioned multiple times in the literature to justify various results at a
+certain level of generality, however nobody actually carried out the necessary
+constructions.
+
+\section{Constructions}
 
 On the type theoretical side, extensions of logical rules for identity types to
 contexts were first explored by Streicher \cite{Str93}, then by Gambino and
-Garner \cite{GG08} under the name of \emph{identity contexts}. Lumsdaine later
+Garner \cite{GG08} under the name of \emph{identity contexts}. We shall make use
+of their notation, meaning that a ``term'' of a context $x:\Delta$ is a tuple of
+choices $a_1:A_1,\ldots,a_n:A_n$ and therefore we can split it as
+$a_1:A_1,x':\Delta'$.
+
+Lumsdaine later
 claimed that it is possible to model this extension and similar ones for
-$\Sigmas$ and $\Pis$ types in $\sfC^{cxt}$ \cite[26]{Lum10}. At the time
+$\Sigmas$- and $\Pis$-structures in $\sfC^{cxt}$ \cite[26]{Lum10}. At the time
 Kapulkin proved the theorem this thesis focuses on,
 nothing further was available in the literature and only later him and
 Lumsdaine gave more details on these matters \cite{KL18}. In this section we aim
 to partially fix that for $\Pis$-structures specifically, which will be the main
-contribution of this work.
-
-\section{Extended Logical Rules}
-
-\section{Constructions}
+contribution of this work. It should be noted that we may derive the
+corresponding logical rules for what would then be called $\Pis$-contexts,
+however we will not do so and focus on the semantics, maintaining that the
+translation should be straightforward and a simple duplication of work.
 
 We begin by constructing the category of iterated contexts, where we
 will extend the structures.
@@ -32,7 +41,8 @@ will extend the structures.
   Given a contextual category $\sfC$, we construct a contextual category
   $\sfC^{cxt}$ in the following way:
   \begin{enumerate}
-    \item the set $\Ob_n\sfC^{cxt}$ is given by $n$-iterated context extensions
+    \item the set $\Ob_n\sfC^{cxt}$ is given by $n$-iterated non-trivial context
+      extensions
       \[\Gamma_1.\Gamma_2.\ldots.\Gamma_n\]
       in $\sfC$;
     \item morphisms
@@ -50,7 +60,8 @@ will extend the structures.
       basic dependent projections, as in the original contextual category.
   \end{enumerate}
 
-  As we can see, any object of $\sfC^{cxt}$ is isomorphic to one in
+  As we can see, any object of $\sfC^{cxt}$ either is the empty context or is
+  isomorphic to one in
   $\Ob_1\sfC^{cxt}$, that is the one which we get by looking at the associated object
   in $\sfC$ and then taking the dependent projection from it to the terminal
   object, which exhibits it as a 1-iterated context extension. The isomorphism
@@ -99,24 +110,18 @@ one from $\sfC$ in case we are working with objects corresponding to simple
 extensions.
 
 \begin{construction}[Part 1]
-  If $m=0$, then we set
-  \begin{align*}
-    \Gamma.\Pis(\Delta,\Theta) &=\Gamma.\Theta, \\
-    \app_{\Delta,\Theta} &=1_{\Gamma.\Theta}, \\
-    \lambda_{\Delta,\Theta}(b) &=b.
-  \end{align*}
-  Similarly, if $n=0$, then
+  If $n=0$, then
   \begin{align*}
     \Gamma.\Pis(\Delta,\Theta) &=\Gamma, \\
     \app_{\Delta,\Theta} &=1_{\Gamma.\Delta}, \\
     \lambda_{\Delta,\Theta}(b) &=1_\Gamma.
   \end{align*}
   Notice that the only possible $b$ in the latter case is given by
-  $1_{\Gamma.\Theta}$. Also, the two constructions are compatible in the case
-  where $m=n=0$.
+  $1_{\Gamma.\Theta}$. This is not really necessary to specify the
+  $\Pis$-structure, however we shall need it later in \wfd{(WHERE?)}.
 
-  We now work with the case where $n>0$, $m=1$, thus we shall write
-  $\Gamma.\Delta.\Theta=\Gamma.\Delta.B$. In the base case, $n=1$, we have
+  We now work with the case where $m>0$, $n=1$, thus we shall write
+  $\Gamma.\Delta.\Theta=\Gamma.\Delta.B$. In the base case, $m=1$, we have
   $\Gamma.\Delta=\Gamma.A$ and therefore we simply set our structure to be the
   one in $\sfC$.
 
@@ -166,9 +171,11 @@ difficulties encountered without our assumption.
   Suppose that
   $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n$, $n>1$, and we have already
   provided the relevant constructions up to $n-1$. We again decompose
-  the context as $\Gamma.\Delta.\Theta'.B$ and make use of our assumption on
-  sections to split $b\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta'.B$ as
-  $b''\cdot b'$.
+  the context as $\Gamma.\Delta.\Theta'.B$.
+
+  If we are working with a contextual category $\sfC$ where sections split, we
+  make use of our assumption on
+  $b\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta'.B$ to get $b''\cdot b'$.
   \begin{align*}
     \Gamma.\Pis(\Delta,\Theta)
     &=\Gamma.\Pis(\Delta,\Theta'.B)=\Gamma.\Pi(\Delta,\app^*_{\Delta,\Theta'}B) \\
@@ -188,6 +195,10 @@ difficulties encountered without our assumption.
     \Gamma.\Pis(\Delta,\Theta').\Pi(\Delta,\app^*_{\Delta,\Theta'}B)
   \end{align*}
 
+  If we are instead in $\Syn{T}$, the only thing that changes is how we define
+  $\lambda_{\Delta,\Theta}(b)$: we can indeed simply take the section specified
+  by $\lambda(y:\Delta).b(y):\Pis(\Delta,\Theta)$, or equivalently
+  $$\lambda(y:\Delta).b'(y):\Pis(\Delta,\Theta'),\lambda(y:\Delta).b''(y,b'(y)):\Pis(y:\Delta,B(\app(\lambda(y:\Delta).b'(y),y))).$$
 \end{construction}
 
 Given $a\colon\Gamma\rightarrow\Gamma.\Delta$,
@@ -196,8 +207,8 @@ $\app_{\Delta,\Theta}(f,a)$ as in the definition of $\Pis$-structures.
 
 This fully specifies the data needed for a $\Pis$-structure on $\sfC^{cxt}$,
 however we still have to check that it is indeed one, which we will do in the
-next section. First, however, we sketch the extension for an $\Ids$-structure on
-a contextual category.
+next section. First, however, we sketch the extension for a $\Sigmas$- and a
+$\Ids$-structure on a contextual category.
 
 \begin{construction}
   Let $\sfC$ be a contextual category with an $\Ids$-structure. Given a dependent

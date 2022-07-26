@@ -133,11 +133,7 @@ others we refer to \cite{nlab:categorical_model_of_dependent_types}.
   Other models, like comprehension categories, do not
   have such requirements, which makes them more general and
   interpretation harder, unless they are first strictified, that is replaced by
-  an equivalent model of the same kind but with functorial pullbacks. Famously,
-  we also have homotopical models of dependent type
-  theories, like \emph{type-theoretic fibration categories} \cite{Shu14} and
-  \emph{$\infty$-toposes} \cite{Shu19}, which however carry much more structure
-  as they also model the logical rules.
+  an equivalent model of the same kind but with functorial pullbacks.
 \end{rmk}
 
 A motivating example for contextual categories is the \emph{syntactic category
@@ -324,8 +320,8 @@ of a dependent type theory}, which is constructed as follows.
 \end{defn}
 
 \begin{rmk}
-  Our definition allows us to see contextual categories as models for a (small
-  multi-sorted) essentially algebraic theory \cite{AR94} with sorts
+  Our definition allows us to see contextual categories as models for a (small)
+  essentially algebraic theory \cite{AR94} with sorts
   indexed by $\bbN+\bbN\times\bbN$. In that context, we get a notion of
   morphism between models of this theory,
   which coincides with the one we have just provided. Its category of models
@@ -344,8 +340,7 @@ done by constructing such a category.
 \begin{exmp}
   A constructive and formalization-ready approach to producing contextual
 categories was developed by Voevodsky in \cite{Voe14b,Voe14b,Voe15a,Voe15b},
-  where he starts from a \emph{universe category}. His methods were
-  used to construct a simplicial model of Univalent Type Theory in \cite{KL12}.
+  where he starts from a \emph{universe category}.
 \end{exmp}
 
 On the other hand, as noted in \cite[par.\ 1.2]{KL12}, interpreting complicated
@@ -381,16 +376,27 @@ rigorous general statement. Such a statement would first require a general
 notion of dependent type theory,
 which has been worked on in \cite{Isa17, Uem19, Bru20, BHL20, NU22}. \wfd{(ARE
 YOU SURE ABOUT THESE CITATIONS?)}
+\end{rmk}
 
-If we could do that, then, under the proper conditions,
+If we could prove it, then, under the proper conditions,
 for any contextual category $\sfC$ we would have a
 contextual functor $\Syn{\T}\rightarrow\sfC$ explaining how to interpret $\T$ in
 $\sfC$. This is essentially an algorithmic problem: it reduces to explaining
 inductively to a computer how to construct the aforementioned functor.
+
+\begin{rmk}
+  Assuming the conjecture, some homotopical models of dependent type
+  theories have been produced, like \emph{type-theoretic fibration categories}
+  \cite{Shu14} and
+  \emph{$\infty$-toposes} \cite{Shu19}, which however carry much more structure
+  as they also model some logical rules. As a concrete example, in \cite{KL12}
+  one can find a model of Univalent Type Theory produced using Voevodsky's
+  previously mentioned methods.
 \end{rmk}
 
-Currently, researchers often assume this conjecture to be true because, thanks
-to what is known in folklore as the \emph{syntax-semantic adjunction}, it
+\begin{rmk}
+Another reason researchers often assume this conjecture to be true is that,
+thanks to what is known in folklore as the \emph{syntax-semantic adjunction}, it
 provides \emph{internal languages}, an intuitive but not yet formalized notation
 to reason about contextual categories. We shall not use such instruments
 and instead restrict ourselves to working with syntactic categories, with the
@@ -399,9 +405,13 @@ should be straightforward once we have a proof of the conjecture and all of the
 tools mentioned above. Unfortunately,
 this will also mean that we will not be able to rely on some results and
 definitions as originally stated.
+\end{rmk}
 
+\begin{rmk}
 It should be noted that, since $\Cxl$ and its variants are complete, they do
 have initial objects.
+\end{rmk}
+
 
 \section{Logical Structures}
 
@@ -500,8 +510,6 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   is satisfied, in which case the structure will be called a
   \emph{$\Pies$-structure}. 
 
-
-  \wfd{(WE STILL NEED $\Piext$, WHICH REQUIRES $\Ids$-TYPE STRUCTS.)}
   A \emph{$\Piext$-structure} on a contextual category with a $\Pis$-structure
   $\sfC$ is an operation giving for each $\Gamma.A.B\in\Ob_{n+2}\sfC$ a map
   \begin{align*}
@@ -660,3 +668,10 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   satisfies the $\Pies$-rule.
 \end{rmk}
 
+\begin{notation}
+  As noted before, contextual categories with some extra logical structures
+  still define small essentially algebraic theory with sorts indexed by
+  $\bbN+\bbN\times\bbN$. Their categories of models are then specified by
+  writing as subscript of $\Cxl$ the corresponding structures, that is we write
+  $\Cxl_{\Ids}$, $\Cxl_{\Sigmas,\Ids}$ and so on.
+\end{notation}

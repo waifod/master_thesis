@@ -1,86 +1,88 @@
 \chapter{Localizations of \texorpdfstring{$\infty$}{∞}-Categories}
 
-To prove that localizing a categorical model of type theory we get a locally
+To prove that by localizing a syntactic category of a dependent type theory with
+some logical rules we get a locally
 cartesian closed $\infty$-category we need a theory of localizations. We shall
 provide one in the general context of $\infty$-categories as developed by
-Cisinski in \emph{Higher Categories and Homotopical Algebra} with the aim of
-proving \cite[Thm.\ 7.6.16]{Cis19}, which will do the heavy lifting in showing
+Cisinski \cite{Cis19} with the aim of
+proving Theorem \ref{7616}, which will do the heavy lifting in showing
 the desired result. Those familiar with the theory may skip the entire chapter
-while keeping in mind yadda yadda \wfd{(LIST THE MAJOR RESULTS)}.
+while keeping in mind the aforementioned theorem, while those who do not know it
+may read it for a quick tour. We recommend however to read the original source,
+from which come all of the materials here presented.
 
 \section{Universal Property}
 
+Localizations are always defined by a universal property of a certain form. Here
+we present ours and see what we can derive from it without extra assumptions.
+
 \begin{defn}
-  Let $X$ be a simplicial set and $W\subset X$ a simplicial subset. Given an
-  $\infty$-category $\cC$, we define $\home_W(X,\cC)$ to be the full simplicial
-  subset of $\home(X,\cC)$ whose objects are the morphisms $f\colon
-  X\rightarrow\cC$ sending the 1-simplices in $W$ to isomorphisms.
+  Let $C$ be a simplicial set and $W\subset C$ a simplicial subset. Given an
+  $\infty$-category $\cD$, we define $\home_W(X,\cD)$ to be the full simplicial
+  subset of $\home(C,\cD)$ whose objects are the morphisms $f\colon
+  C\rightarrow\cD$ sending the 1-simplices in $W$ to isomorphisms.
 \end{defn}
 
 \begin{rmk}
   The above definition induces a canonical pullback square
   \[\begin{tikzcd}
-    {\home_W(X,\cC)} & {\home(X,\cC)} \\
-    {\home_W(W,\cC)} & {\home(W,\cC)}
+    {\home_W(C,\cD)} & {\home(X,\cD)} \\
+    {\home_W(W,\cD)} & {\home(W,\cD)}
     \arrow[from=1-1, to=2-1]
     \arrow[from=2-1, to=2-2]
     \arrow[from=1-2, to=2-2]
     \arrow[from=1-1, to=1-2]
     \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
   \end{tikzcd}\]
-  given by the inclusion $W\rightarrow X$.
+  given by the inclusion $W\rightarrow C$.
 \end{rmk}
 
 \begin{defn}
-  Given an $\infty$-category $\cC$ and $W\subset\cC$, a \emph{localization of
-  $\cC$ by $W$} is a functor $\gamma\colon\cC\rightarrow L(\cC)$ such that:
+  Given a simplicial set $C$ and a simplicial subset $W$, a \emph{localization
+  of $C$ by $W$} is a functor $\gamma\colon C\rightarrow L(C)$ such that:
   \begin{enumerate}
-    \item $L(\cC)$ is an $\infty$-category;
-    \item $\gamma$ sends the 1-simplices of $W$ to isomorphisms in $L(\cC)$;
+    \item $L(C)$ is an $\infty$-category;
+    \item $\gamma$ sends the 1-simplices of $W$ to isomorphisms in $L(C)$;
     \item for any $\infty$-category $\cD$ there is an equivalence of
       $\infty$-categories
-      \[\home(L(\cC),\cD)\rightarrow\home_W(\cC,\cD)\]
+      \[\home(L(C),\cD)\rightarrow\home_W(C,\cD)\]
       given by precomposing with $\gamma$.
   \end{enumerate}
 \end{defn}
 
-\wfd{(CISINSKI DOES NOT ASK FOR $\cC$ TO BE AN $\infty$-CATEGORY. SHOULD WE
-BE LESS GENERAL AS WE HAVE DONE?)}
-
 \begin{prop}\label{exuniq}
-  Given an $\infty$-category $\cC$ and a subsimplicial set $W$, the localization
-  of $\cC$ by $W$ always exists and it is essentially unique.
+  The localization of $C$ by $W$ always exists and is essentially unique.
 \end{prop}
 \begin{proof}
-  We begin by proving that a localization exists in the case where $W=\cC$.
+  We begin by proving that a localization exists in the case where $W=C$.
 
-  In this context, $\home_W(\cC,\cD)\cong\home(\cC,\cD^{\cong})$ canonically,
+  In this context, $\home_W(C,\cD)\cong\home(C,\cD^{\cong})$ canonically,
   where $\cD^{\cong}$ is the maximal subgroupoid of $\cD$.
-  Factoring $\cC\rightarrow\Delta^0$ in the Kan model structure, we find an
-  anodyne map $\gamma\colon\cC\rightarrow L(\cC)$.
+  Factoring $C\rightarrow\Delta^0$ in the Kan model structure, we find an
+  anodyne map $\gamma\colon C\rightarrow L(C)$.
 
   Remember that for any anodyne map $A\rightarrow B$ we get a trivial fibration
   $\home(B,\cD^{\cong})\rightarrow\home(A,\cD^{\cong})$. Looking then at the
   commutative diagram
   \[\begin{tikzcd}
-    {\Hom(L(\cC),\cD^{\cong})} & {\Hom_W(\cC,\cD^{\cong})} \\
-    {\home(L(\cC),\cD)} & {\home_W(\cC,\cD)}
+    {\Hom(L(C),\cD^{\cong})} & {\Hom_W(C,\cD^{\cong})} \\
+    {\home(L(C),\cD)} & {\home_W(C,\cD)}
     \arrow["\gamma^*", "\sim"', two heads, from=1-1, to=1-2]
     \arrow[from=1-1, to=2-1]
     \arrow["{\gamma^*}"', from=2-1, to=2-2]
     \arrow["\cong", from=1-2, to=2-2]
     \arrow["\cong"', from=1-1, to=2-1]
   \end{tikzcd},\]
-  by the 2-out-of-3 property we see that the lower $\gamma^*$ is an equivalence.
+  we see that the lower $\gamma^*$ is an equivalence.
   
   We now move on to the general case. First of all, notice that as a particular
   case of the previous one we get that localizing $\Delta^1$ at its non-trivial
   morphism we obtain $\Delta^1\rightarrow J=L(\Delta^1)\sim\Delta^0$. Taking
-  then $W\subset\cC$, we consider the commutative diagram
+  then $W\subset C$, we consider the commutative diagram
   \[\begin{tikzcd}
-    {\coprod_{f\in W_1}\Delta^1} & \cC \\
-    {\coprod_{f\in W_1}J} & {\cC'} \\
-    && {L(\cC)}
+    {\coprod_{f\in W_1}\Delta^1} & C \\
+    {\coprod_{f\in W_1}J} & {C'} \\
+    && {L(C)}
     \arrow[from=1-1, to=1-2]
     \arrow[from=1-1, to=2-1]
     \arrow[from=2-1, to=2-2]
@@ -90,14 +92,14 @@ BE LESS GENERAL AS WE HAVE DONE?)}
     \arrow["\gamma", curve={height=-12pt}, from=1-2, to=3-3]
     \arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
   \end{tikzcd},\]
-  where $\cC'\rightarrow L(\cC)$ is an inner anodyne map obtained by taking the
-  fibrant replacement of $\cC'$ in the Joyal model structure. This can be done
+  where $C'\rightarrow L(C)$ is an inner anodyne map obtained by taking the
+  fibrant replacement of $C'$ in the Joyal model structure. This can be done
   functorially via the small object argument.
 
   For any $\infty$-category $\cD$, we get a trivial fibration
-  $\home(L(\cC),\cD)\rightarrow\home(\cC',\cD)$ and a pullback square
+  $\home(L(C),\cD)\rightarrow\home(C',\cD)$ and a pullback square
   \[\begin{tikzcd}
-    {\home(\cC',\cD)} & {\home(\cC,\cD)} \\
+    {\home(C',\cD)} & {\home(C,\cD)} \\
     {\Pi_{f\in W_1}\home(J,\cD)} & {\Pi_{f\in W_1}\home(\Delta^1,\cD)}
     \arrow[from=1-2, to=2-2]
     \arrow[from=2-1, to=2-2]
@@ -106,7 +108,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   \end{tikzcd},\]
   which together with the pullback
   \[\begin{tikzcd}
-    {\home_W(\cC,\cD)} & {\home(\cC,\cD)} \\
+    {\home_W(C,\cD)} & {\home(C,\cD)} \\
     {\Pi_{f\in W_1}\home(\Delta^1,\cD^{\cong})} & {\Pi_{f\in W_1}\home(\Delta^1,\cD)}
     \arrow[from=1-2, to=2-2]
     \arrow[from=2-1, to=2-2]
@@ -115,7 +117,7 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   \end{tikzcd}\]
   implies by pasting that
   \[\begin{tikzcd}
-    {\home(\cC',\cD)} & {\home_W(\cC,\cD)} \\
+    {\home(C',\cD)} & {\home_W(C,\cD)} \\
     {\Pi_{f\in W_1}\home(J,\cD)} & {\Pi_{f\in W_1}\home(\Delta^1,\cD^{\cong})}
     \arrow[from=1-2, to=2-2]
     \arrow[from=1-1, to=1-2]
@@ -125,44 +127,45 @@ BE LESS GENERAL AS WE HAVE DONE?)}
   \end{tikzcd}\]
   is also a pullback and therefore the upper arrow is a trivial fibration.
   Composing it with the other one we get
-  $\gamma^*\colon\home(L(\cC),\cD)\rightarrow\home_W(\cC,\cD)$, which is then a
+  $\gamma^*\colon\home(L(C),\cD)\rightarrow\home_W(C,\cD)$, which is then a
   trivial fibration and therefore an equivalence of $\infty$-categories.
-
-  7.1.4 Observe that, through this construction, one can always construct
-  $L(\cC)$ so that $\gamma$ is a bijection on objects because $\cC'\rightarrow
-  L(\cC)$ is an inner anodyne extension and therefore a retract of a countable
-  composition of sums of pushouts of maps which are the identity on objects,
-  that is the inner horn inclusions.
 
   We now move on to proving that the localization is essentially unique. For
   this, we notice that $\gamma$ establishes then an isomorphism between
-  $\pi_0(k(\home_W(\cC,-)))$ and $\pi_0(\home(L(\cC),-))=ho(\sSet)(L(\cC),-)$
+  $\pi_0(k(\home_W(C,-)))$ and $\pi_0(\home(L(C),-))=ho(\sSet)(L(C),-)$
   with respect to the Joyal model structure, thus by Yoneda $(L(\cC),\gamma)$ is
   unique up to unique isomorphism in $ho(\sSet)$ and up to a contractible space
   of equivalences in $\sSet$.
 \end{proof}
 
+\begin{rmk}\label{714}
+  Through our construction above, one can always choose $L(C)$ so that $\gamma$
+  is a bijection on objects because $C'\rightarrow
+  L(C)$ is an inner anodyne extension and therefore a retract of a countable
+  composition of sums of pushouts of maps which are the identity on objects,
+  that is the inner horn inclusions.
+\end{rmk}
+
 \begin{rmk}\label{715}
   7.1.5
 
-  In this context, we may define $\overline{W}$, the saturation of $W$ in $\cC$,
+  In this context, we may define $\overline{W}$, the saturation of $W$ in $C$,
   as the cartesian square
-
-  such that $\overline{W}$ is precisely the maximal simplicial subset of $\cC$
-  whose morphisms are the ones which become invertible in $L(\cC)$, that is
-  $\overline{W}\cong k(L(\cC))\times_{L(\cC)}\cC$ canonically.
+  such that $\overline{W}$ is precisely the maximal simplicial subset of $C$
+  whose morphisms are the ones which become invertible in $L(C)$, that is
+  $\overline{W}\cong k(L(C))\times_{L(C)}C$ canonically.
 
   We have then inclusions $Sk_1(W)\subset W\subset\overline{W}$ and, for any
   $\infty$-category $\cD$, this induces equalities
-  \[\home_{Sk_1(W)}(\cC,\cD)=\home_{W}(\cC,\cD)=\home_{\overline{W}}(\cC,\cD),\]
-  implying that $(L(\cC),\gamma)$ is also the localization of $\cC$ by $Sk_1(W)$
-  and the one by $\overline{W}$, however the inclusion
-  $\overline{W}\rightarrow\cC$ is a fibration in the Joyal model category as it
-  is the pullback of one, implying that $\overline{W}$ is itself an
-  $\infty$-category.
+  \[\home_{Sk_1(W)}(C,\cD)=\home_{W}(C,\cD)=\home_{\overline{W}}(C,\cD),\]
+  implying that $(L(C),\gamma)$ is also the localization of $C$ by $Sk_1(W)$
+  and the one by $\overline{W}$. It can be noted that the inclusion
+  $\overline{W}\rightarrow C$ is a fibration with respect to the Joyal model
+  structure as it is the pullback of one, implying that $\overline{W}$ is an
+  $\infty$-category whenever $C$ is one.
 
   We shall say that $\cC$ is saturated if the canonical inclusion
-  $W\rightarrow\overline{W}$ is an isomorphism of $\infty$-categories.
+  $W\rightarrow\overline{W}$ is an isomorphism.
 \end{rmk}
 
 \begin{rmk}
