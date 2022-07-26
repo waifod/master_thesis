@@ -88,7 +88,7 @@ Here we shall work with \emph{contextual
 categories}, which were first explored by Cartmell and Streicher
 \cite{Car78,Car86,Str91} and later by Voevodsky, under the name
 $C$\emph{-systems} \cite{Voe14a}. For informations on the
-others we refer to the nLab \cite{nlab:categorical_model_of_dependent_types}.
+others we refer to \cite{nlab:categorical_model_of_dependent_types}.
 
 \begin{defn}
   A \emph{contextual category} $\sfC$ is a small category, also denoted $\sfC$,
@@ -135,17 +135,16 @@ others we refer to the nLab \cite{nlab:categorical_model_of_dependent_types}.
   interpretation harder, unless they are first strictified, that is replaced by
   an equivalent model of the same kind but with functorial pullbacks. Famously,
   we also have homotopical models of dependent type
-  theories, like \emph{type-theoretic fibration categories} \cite{Shu14}, which
-  however carry much more structure as they are meant to also model the logical
-  rules.
+  theories, like \emph{type-theoretic fibration categories} \cite{Shu14} and
+  \emph{$\infty$-toposes} \cite{Shu19}, which however carry much more structure
+  as they also model the logical rules.
 \end{rmk}
 
 A motivating example for contextual categories is the \emph{syntactic category
 of a dependent type theory}, which is constructed as follows.
 
 \begin{construction}\cite[2.6]{Car78}
-  Given a dependent type theory $\T$ with the structural rules specified in
-  \cite[App.\ A.1]{KL12}, its syntactic category $\Syn{\T}$ has:
+  Given a dependent type theory $\T$, its syntactic category $\Syn{\T}$ has:
   \begin{enumerate}
     \item $\Ob_n\Syn{\T}$ given by contexts $[x_1:A_1,\ldots,x_n:A_n]$ of length
       $n$, modulo judgemental equality and renaming of free variables;
@@ -297,10 +296,18 @@ of a dependent type theory}, which is constructed as follows.
   it corresponds to the pullback of $a$ along $q(f,A)$. By the techniques we
   provided earlier, we extend this construction to contexts extensions of
   arbitrary length.
+
+  Finally, when reasoning in a syntactic category, to specify a map
+  $[f]\colon[\Gamma,a_1:A_1,\ldots,a_n:A_n]\rightarrow[\Gamma,b_1:B_1,\ldots,b_m:B_m]$
+  stable over $\Gamma$ (that is acting like the identity on the corresponding
+  variables) we can suppress the corresponding terms in the tuple. To
+  produce such a map, we shall write then
+  $(a_1,\ldots,a_n)\mapsto(f_1,\ldots,f_m)$, in order to clarify how to
+  construct the $f_i$ from the variables in the domain context.
 \end{notation}
 
 \begin{rmk}
-  When We pull back a dependent projection
+  When we pull back a dependent projection
   $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ along another one
   $p_\Psi$, we may also choose to do it the other way around, which induces an
   isomorphism
@@ -384,9 +391,8 @@ inductively to a computer how to construct the aforementioned functor.
 
 Currently, researchers often assume this conjecture to be true because, thanks
 to what is known in folklore as the \emph{syntax-semantic adjunction}, it
-provides \emph{internal languages},
-an intuitive notation to reason about contextual categories.
-We shall not use such instruments
+provides \emph{internal languages}, an intuitive but not yet formalized notation
+to reason about contextual categories. We shall not use such instruments
 and instead restrict ourselves to working with syntactic categories, with the
 idea that a generalization of our results to arbitrary contextual categories
 should be straightforward once we have a proof of the conjecture and all of the
@@ -450,10 +456,10 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
 \begin{defn}
   A \emph{$\Pis$-structure} on a contextual category $\sfC$ consists of:
   \begin{enumerate}
-    \item for each $(\Gamma,A,B)\in\Ob_{n+2}\sfC$, an object
-      $(\Gamma,\Pis(A,B))\in\Ob_{n+1}\sfC$;
-    \item for each $(\Gamma,A,B)\in\Ob_{n+2}\sfC$, a map
-      $\app_{A,B}\colon\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A)\rightarrow\Gamma.A.B$
+    \item for each $\Gamma.A.B\in\Ob_{n+2}\sfC$, an object
+      $\Gamma.\Pis(A,B)\in\Ob_{n+1}\sfC$;
+    \item for each $\Gamma.A.B\in\Ob_{n+2}\sfC$, a map
+      $\app_{A,B}\colon\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A\rightarrow\Gamma.A.B$
       over $\Gamma$, that is such that $p_B\cdot\app_{A,B}=q(\Pis(A,B),A)$;
     \item for each $\Gamma.A.B\in\Ob_{n+2}\sfC$ and section
       $b\colon\Gamma.A\rightarrow\Gamma.A.B$, a section
@@ -488,7 +494,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
       \end{align*}
   \end{enumerate}
 
-  We shall say that the the $\Pis$-structure satisfies the
+  We shall say that the $\Pis$-structure satisfies the
   \emph{$\Pies$-rule} if the equation
   \[q(p_{\Pis(A,B)},\Pis(A,B))\cdot\lambda(1_{p^*_{\Pis(A,B)}A},\app_{A,B})=1_{\Gamma.\Pis(A,B)}\]
   is satisfied, in which case the structure will be called a
@@ -496,26 +502,48 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
 
 
   \wfd{(WE STILL NEED $\Piext$, WHICH REQUIRES $\Ids$-TYPE STRUCTS.)}
+  A \emph{$\Piext$-structure} on a contextual category with a $\Pis$-structure
+  $\sfC$ is an operation giving for each $\Gamma.A.B\in\Ob_{n+2}\sfC$ a map
+  \begin{align*}
+    \ext_{A,B} &\colon
+    \Gamma.\Pis(A,B).p^*_{\Pis(A,B)}\Pis(A,B).\Htp_{A,B}\rightarrow \\
+    &\quad\quad\quad\quad\quad\quad\quad\quad
+    \Gamma.\Pis(A,B).p^*_{\Pis(A,B)}\Pis(A,B).\Ids_{\Pis(A,B)}
+  \end{align*}
+  over $\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}\Pis(A,B)$, stably in $\Gamma$, where
+  $\Htp_{A,B}$ is a shorthand for the extension
+  \begin{align*}
+    \Pis\Big((p_{\Pis(A,B)}\cdot & p_{p^*_{\Pis(A,B)}\Pis(A,B)})^*A, \\
+    &(\app_{A,B}\cdot q(p_{\Pis(A,B)},A),
+    \app_{A,B}\cdot q(q(p_{\Pis(A,B)},\Pis(A,B)),A))^*\Ids_B\Big),
+  \end{align*}
+  representing the type of homotopies from between two terms of $\Pis(A,B)$. The
+  map then models function extensionality.
 \end{defn}
 
 \begin{rmk}
   The definition we provided matches \cite[Def.~2.5]{KL18}, while the one in
   \cite[App.~B.1.1]{KL12} is mildly different as it starts from
-  $\app_{A,B}(f,a)$ instead of $\app_{A,B}$ and constructs the latter from the
+  $\app(f,a)$ instead of $\app_{A,B}$ and constructs the latter from the
   former. We prefer this because it will allow us to more easily extend the
   $\Pis$-structure to arbitrary context extensions and check the necessary
   properties in the next chapter.
 \end{rmk}
 
+\begin{notation}
+  Given $\Gamma.A,\Gamma.B\in\Ob_{n+1}\sfC$, we write $\Gamma.[A,B]$ for
+  $\Gamma.\Pis(A,p^*_AB)$.
+\end{notation}
+
 \begin{rmk}
-  Internally, the map $\app_{A,B}$
+  In $\Syn{T}$, the map $\app_{A,B}$
   corresponds to \[(f,a)\mapsto(a,\app(f,a)).\] Also, 
   the association $b\mapsto\lambda_{A,B}(b)$ for some section
   $\Gamma.A\rightarrow\Gamma.A.B$ corresponds to \emph{lambda
   abstraction}, hence $\lambda_{A,B}(b)$ specifies the term
   $\lambda(a:A).b(a):\Pis(A,B)$.
   The map on the left of the definition of the $\Pies$-rule is the
-  \emph{$\eta$-expansion map}, that is it corresponds internally to the map
+  \emph{$\eta$-expansion map}, that is it corresponds syntactically to the map
   \[f\mapsto\lambda(a:A).\app(f,a)\] over $\Gamma$, thus
   the property means that we have a judgement
   \[\Gamma\vdash f\equiv\lambda(a:A).\app(f,a):\Pis(A,B)\]
@@ -523,7 +551,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
 
   The map $(1_{p^*_{\Pis(A,B)}A},\app_{A,B})$ is specified by the following
   factorization through the pullback.
-  \[\begin{tikzcd}
+  \[\begin{tikzcd}[column sep=huge]
     {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} \\
     & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.p^*_{\Pis(A,B)}B} & {\Gamma.A.B} \\
     & {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} & {\Gamma.A}
@@ -536,6 +564,12 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
     \arrow["{(1_{p^*_{\Pis(A,B)}A},\app_{A,B})}"{description}, dotted, from=1-1, to=2-2]
   \end{tikzcd}.\]
 \end{rmk}
+
+\begin{construction}
+  Let $\sfC$ be a contextual category with a $\Pis$-structure. We define for any
+  object $\Gamma.A$ a map $\id_A\colon\Gamma\rightarrow\Gamma.[A,A]$ as
+  $\lambda_{A,p^*_AA}(1_A,1_A)$.
+\end{construction}
 
 \begin{construction}\label{applyf}
   Let $\sfC$ be a contextual category with a $\Pis$-structure,
@@ -554,7 +588,9 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
     \arrow["{q(p_A,B)}"', from=2-2, to=2-3]
     \arrow["{p_{p^*_AB}}", from=2-2, to=3-2]
   \end{tikzcd},\]
-  and then taking $\lambda_{A,p^*_AB}(1_A,f)$. Using the fact that
+  and then taking $\lambda_{A,p^*_AB}(1_A,f)$.
+
+  In $\Syn{T}$, using the fact that
   \begin{align*}
     q(p_A,B)\cdot
     \app_{A,B}\cdot
@@ -568,7 +604,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
     &=f\cdot
     a
   \end{align*}
-  we see that internally $f$ acts as
+  we see that $f$ acts as
   \begin{align*}
     a \\
     ^{q(p_{p^*_AB},\lambda_{A,p^*_AB}(1_A,f))}&\mapsto(a,\tilde{f}) \\
@@ -576,21 +612,21 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
     ^{q(p_A,B)}&\mapsto\app(\tilde{f},a).
   \end{align*}
   This justifies writing $f$ for $\tilde{f}$ and $(1_A,f)$ then acts as
-  $a\mapsto(a,\app(f,a))$, meaning that $\lambda_{A,p^*_AB}(1_A,f)$ internally
-  corresponds to $\lambda(a:A).\app(f,a):\Pis(A,B)$.
+  $a\mapsto(a,\app(f,a))$, meaning that $\lambda_{A,p^*_AB}(1_A,f)$
+  syntactically corresponds to $\lambda(a:A).\app(f,a):\Pis(A,B)$.
 \end{construction}
 
 \begin{construction}
   Let $\sfC$ be a contextual category with a $\Pis$-structure,
   $f\colon\Gamma.A.B\rightarrow\Gamma.A.B'$ a morphism over
-  $\Gamma.A$, meaning a map $b\mapsto\app(f,b)$ for the term
-  $f:\Pis(B,B')$ it induces. We want to construct a morphism
+  $\Gamma.A$, meaning that in $\Syn{T}$ it is a map $b\mapsto\app(f,b)$ for the
+  term $f:\Pis(B,B')$ it induces. We want to construct a morphism
   $$\Gamma.\Pis(A,f)\colon\Gamma.\Pis(A,B)\rightarrow\Gamma.\Pis(A,B')$$
   modeling the postcomposition by $f$, that is
   $g\mapsto\lambda(a:A).\app(f,\app(g,a))$.
 
   We do so by looking at the commutative diagram
-  \[\begin{tikzcd}[column sep=large]
+  \[\begin{tikzcd}[column sep=huge]
     {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} && {\Gamma.A.B} \\
                                           &
     {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A.p^*_{\Pis(A,B)}B'} & {\Gamma.A.B'} \\
@@ -614,8 +650,8 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   \Gamma.\Pis(A,B)\rightarrow
   \Gamma.\Pis(A,B).\Pis(A,B').\]
   All we have to do now is postcompose with
-  $q(p_{\Pis(A,B)},\Pis(A,B'))$. Verifying that the action on sections is the
-  one we want is straightforward as we have done so far.
+  $q(p_{\Pis(A,B)},\Pis(A,B'))$. Verifying that in $\Syn{T}$ the action on
+  sections is the one we want is straightforward as we have done so far.
 \end{construction}
 
 \begin{rmk}
