@@ -3,8 +3,9 @@
 In this chapter we finally talk about localizing syntactic categories. To do
 this, we first specify a class of maps we localize at, explaining the rationale
 behind our choice, and then from this we present a fibrational structure which
-will allow us to apply the results from the previous section. We also briefly
-mention the \emph{Internal Languages Conjecture}.
+will allow us to apply the results from the previous section to prove
+Theorem \ref{finalthm}. We also briefly mention the \emph{Internal Languages
+Conjecture}.
 
 \section{Bi-Invertibility}
 
@@ -34,7 +35,7 @@ in \cite[Def.~1.4]{Kap17}.
   \emph{bi-invertible over $\Gamma$} if it is simply bi-invertible over $\Gamma$
   as a morphism between the two corresponding simple context extensions of
   $\Gamma$ in $\Syn{T}^{cxt}$. It is then called \emph{bi-invertible} if
-  $\Gamma$ is the terminal context.
+  $\Gamma$ is the empty context.
 \end{defn}
 
 \begin{rmk}
@@ -77,23 +78,23 @@ in \cite[Def.~1.4]{Kap17}.
 \end{rmk}
 
 \begin{rmk}
-Localizing a contextual category with an $\Ids$-structure at bi-invertible maps
-gives us an $\infty$-category modeling a dependent type theory with intensional
-identity types REFS. It has been conjectured that such a type theory should
-provide the internal language of $\infty$-categories, but a precise statement of
-this correspondence has not yet been produced and only a few results in this
-direction have
-been proven so far. A conjecture of this kind would amount to an equivalence
-between
-an $\infty$-category of contextual categories with some extra structures and an
-$\infty$-category of structured $\infty$-categories induced by the localization
-at bi-invertible maps, which means that first have to determine what we
-properties the localization has.
+Assuming the Initiality Conjecture, localizing a contextual category with an
+$\Ids$-structure at bi-invertible maps gives us an $\infty$-category modeling a
+dependent type theory with $\Ids$-types. It has been conjectured that such a
+type theory should provide the internal language of $\infty$-categories, but a
+precise statement of this correspondence has not yet been produced and only a
+few results in this direction have been proven so far. A conjecture of this kind
+would amount to an equivalence between an $\infty$-category of contextual
+categories with some extra structures and an $\infty$-category of structured
+$\infty$-categories induced by the localization at bi-invertible maps, which
+means that first have to determine what properties the localization has. Notable
+in this sense is the Internal Languages Conjecture mentioned in Remark
+\ref{internal}.
 \end{rmk}
 
-To study the localizations of categorical models of type theory we want to apply
+To study the localizations of syntactic categories we want to apply
 the results from the previous section, which require us to specify a
-fibrational structure by providing a class
+fibrational structure by also providing a class
 of fibrations.
 
 \begin{defn}[\cite{Bro73}]
@@ -135,18 +136,18 @@ of fibrations.
 Now we have enough to specify the fibrational structure.
 
 \begin{prop}[\cite{AKL15}]
-  A categorical model of type theory $\sfC$ which also has a $\Nat$ and a
-  $\mathsf{1}$
-  structure carries the structure of a fibration category, where maps isomorphic
-  to dependent projections are the fibrations and bi-invertible ones are the
-  weak equivalences.
+  Any contextual category with $\Sigmas$-, $\Ids$-, $\Nat$- and
+  $\mathsf{1}$-structures $\sfC$ carries the structure of a fibration category,
+  where maps isomorphic to dependent projections are the fibrations and
+  bi-invertible ones are the weak equivalences.
 \end{prop}
 
 The above result can be however generalized.
 
 \begin{prop}\label{fibcat}
-  A contextual category with $\Sigmas$ and $\Ids$ structures $\sfC$ carries the
-  structure of a fibration category given by the same classes of maps as above.
+  A contextual category with $\Sigmas$- and $\Ids$- structures $\sfC$ carries
+  the structure of a fibration category given by the same classes of maps as
+  above.
 \end{prop}
 \begin{proof}
   It suffices to note that at no point the proof by Lumsdaine uses the other
@@ -159,19 +160,19 @@ The above result can be however generalized.
 \end{rmk}
 
 \begin{rmk}
-  The results as stated rely on the initiality conjecture (since in their
+  The results as stated rely on the Initiality Conjecture (since in their
   reasoning the authors used internal languages) and their proof makes use of
   strong $\Sigmas$-types, which they adopted to say that every dependent
   projection is isomorphic to a basic one. We
   can avoid relying on strong $\Sigmas$-types by constructing the fibrational
-  structure on $\Syn{T}^{cxt}$ (where the condition on dependent projection
+  structure on $\Syn{T}^{cxt}$ (where the condition on dependent projections
   holds by construction) to later carry it back to $\Syn{T}$ through the
-  equivalence, while we do not need the initiality conjecture because we can
-  argue in $\Syn{T}^{cxt}$ using dependent type theory.
+  equivalence, while we do not need the Initiality Conjecture because we can
+  argue in $\Syn{T}^{cxt}$ using the dependent type theory $\T$.
 \end{rmk}
 
 \begin{cor}\label{fincompl1}
-  Given a dependent type theory with $\Sigmas$ and $\Ids$ types $\T$, the
+  Given a dependent type theory with $\Sigmas$- and $\Ids$-types $\T$, the
   $\infty$-category $L(\Syn{T})$ is finitely complete.
 \end{cor}
 \begin{proof}
@@ -181,7 +182,7 @@ The above result can be however generalized.
 \section{Local Cartesian Closure}
 
 We are now ready to provide a few results needed to show that, given a dependent
-type theory with $\Sigmas$, $\Ids$, $\Pies$ types and function
+type theory with $\Sigmas$-, $\Ids$-, $\Pies$-types and function
 extensionality $\T$, the hypothesis of Theorem \ref{7616} are satisfied by
 $\Syn{T}$ with respect to the above fibrational structure. Henceforth, we shall
 write $\sfC$ for $\Syn{T}$.
@@ -193,7 +194,7 @@ write $\sfC$ for $\Syn{T}$.
   fibrant slices admits a right adjoint.
 \end{lem}
 \begin{proof}
-  Let's set $(p_\Delta)_*(\Gamma.\Delta.\Theta)=\Gamma.\Pis(\Delta.\Theta)$. Our
+  Let's set $(p_\Delta)_*(\Gamma.\Delta.\Theta)=\Gamma.\Pis(\Delta,\Theta)$. Our
   counit shall be given by
   \[\epsilon_{\Gamma.\Delta.\Theta}\colon\Gamma.\Delta.p^*_\Delta\Pis(\Delta,\Theta)
   \xrightarrow{\exch_{\Delta,\Pis(\Delta,\Theta)}}\Gamma.\Pis(\Delta,\Theta).p^*_{\Pis(\Delta,\Theta)}\Delta

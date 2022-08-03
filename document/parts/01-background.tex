@@ -35,12 +35,14 @@ Black-Massey theorem, presented in the language of Homotopy Type Theory
 We will be considering the structural rules from \cite[App.\ A.1]{KL12} and some
 logical ones as presented in \cite[App.\ A.2]{KL12}. Informally, we deal with:
 \begin{enumerate}
-  \item \emph{dependent sums} $\Sigmas(A,B)$, also called \emph{$\Sigmas$-types}, and the associated introduction,
-    elimination and computation rules;
-  \item \emph{dependent products} $\Pis(A,B)$, also called \emph{$\Pis$-types}, and the associated introduction,
-    elimination and computation rules;
-  \item \emph{identity types} $\Ids_A$, also called \emph{$\Ids$-types}, and the associated introduction,
-    elimination and computation rules.
+  \item \emph{dependent sums} $\Sigmas(A,B)$, also called
+    \emph{$\Sigmas$-types}, and the associated introduction, elimination and
+    computation rules;
+  \item \emph{dependent products} $\Pis(A,B)$, also called \emph{$\Pis$-types},
+    and the associated introduction, elimination and computation rules;
+  \item \emph{(intensional) identity types} $\Ids_A$, also called
+    \emph{$\Ids$-types}, and the associated introduction, elimination and
+    computation rules.
 \end{enumerate}
 
 Furthermore, we consider the following two rules:
@@ -384,14 +386,17 @@ contextual functor $\Syn{\T}\rightarrow\sfC$ explaining how to interpret $\T$ in
 $\sfC$. This is essentially an algorithmic problem: it reduces to explaining
 inductively to a computer how to construct the aforementioned functor.
 
-\begin{rmk}
-  Assuming the conjecture, some homotopical models of dependent type
-  theories have been produced, like \emph{type-theoretic fibration categories}
-  \cite{Shu14} and
-  \emph{$\infty$-toposes} \cite{Shu19}, which however carry much more structure
-  as they also model some logical rules. As a concrete example, in \cite{KL12}
+\begin{rmk}\label{internal}
+  From the Initiality Conjecture researchers have also derived some homotopical
+  models, which are the great drivers
+  of research in the field. Specifically, it was shown
+  that \emph{$\infty$-toposes} can model Homotopy Type Theory \cite{Shu19} and,
+  as a concrete example, in \cite{KL12}
   one can find a model of Univalent Type Theory produced using Voevodsky's
-  previously mentioned methods.
+  previously mentioned methods. More recent results concern the \emph{Internal
+  Languages Conjecture} \cite{KS19}, which was proven in \cite{NU22} and is a
+  direct descendant and a strengthening of Theorem \ref{finalthm}.
+  \wfd{(UNIVALENT = HOMOTOPY???)}
 \end{rmk}
 
 \begin{rmk}
@@ -411,7 +416,6 @@ definitions as originally stated.
 It should be noted that, since $\Cxl$ and its variants are complete, they do
 have initial objects.
 \end{rmk}
-
 
 \section{Logical Structures}
 

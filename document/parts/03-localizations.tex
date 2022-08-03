@@ -26,7 +26,7 @@ we present ours and see what we can derive from it without extra assumptions.
 \begin{rmk}
   The above definition induces a canonical pullback square
   \[\begin{tikzcd}
-    {\home_W(C,\cD)} & {\home(X,\cD)} \\
+    {\home_W(C,\cD)} & {\home(C,\cD)} \\
     {\home_W(W,\cD)} & {\home(W,\cD)}
     \arrow[from=1-1, to=2-1]
     \arrow[from=2-1, to=2-2]
@@ -73,7 +73,7 @@ we present ours and see what we can derive from it without extra assumptions.
     \arrow["\cong", from=1-2, to=2-2]
     \arrow["\cong"', from=1-1, to=2-1]
   \end{tikzcd},\]
-  we see that the lower $\gamma^*$ is an equivalence.
+  we see that the lower $\gamma^*$ is a trivial fibration.
   
   We now move on to the general case. First of all, notice that as a particular
   case of the previous one we get that localizing $\Delta^1$ at its non-trivial
@@ -97,7 +97,7 @@ we present ours and see what we can derive from it without extra assumptions.
   functorially via the small object argument.
 
   For any $\infty$-category $\cD$, we get a trivial fibration
-  $\home(L(C),\cD)\rightarrow\home(C',\cD)$ and a pullback square
+  $\home(L(C),\cD)\dhxrightarrow{\sim}\home(C',\cD)$ and a pullback square
   \[\begin{tikzcd}
     {\home(C',\cD)} & {\home(C,\cD)} \\
     {\Pi_{f\in W_1}\home(J,\cD)} & {\Pi_{f\in W_1}\home(\Delta^1,\cD)}
@@ -133,7 +133,8 @@ we present ours and see what we can derive from it without extra assumptions.
   We now move on to proving that the localization is essentially unique. For
   this, we notice that $\gamma$ establishes then an isomorphism between
   $\pi_0(k(\home_W(C,-)))$ and $\pi_0(\home(L(C),-))=ho(\sSet)(L(C),-)$
-  with respect to the Joyal model structure, thus by Yoneda $(L(\cC),\gamma)$ is
+  with respect to the Joyal model structure, thus by Yoneda the pair
+  $(L(\cC),\gamma)$ satisfying the universal property is
   unique up to unique isomorphism in $ho(\sSet)$ and up to a contractible space
   of equivalences in $\sSet$.
 \end{proof}
@@ -150,10 +151,10 @@ we present ours and see what we can derive from it without extra assumptions.
   7.1.5
 
   In this context, we may define $\overline{W}$, the saturation of $W$ in $C$,
-  as the cartesian square
-  such that $\overline{W}$ is precisely the maximal simplicial subset of $C$
+  as the maximal simplicial subset of $C$
   whose morphisms are the ones which become invertible in $L(C)$, that is
-  $\overline{W}\cong k(L(C))\times_{L(C)}C$ canonically.
+  $\overline{W}\cong k(L(C))\times_{L(C)}C$ canonically. It can be specified
+  up to unique isomorphism through the following cartesian square.
 
   We have then inclusions $Sk_1(W)\subset W\subset\overline{W}$ and, for any
   $\infty$-category $\cD$, this induces equalities
@@ -586,7 +587,7 @@ we present ours and see what we can derive from it without extra assumptions.
   Given an $\infty$-category with weak equivalences and fibrations $\cC$ and a
   fibrant object $z$ in it, we write $\cC(z)$ for $(\cC/z)_f$, that is the
   full subcategory $\cC/z$ given by the fibrations $x\rightarrow z$ of $\cC$; we
-  shall refer to $\cC(z)$ as the \emph{fibrational slice of $\cC$ over $z$}.
+  shall refer to $\cC(z)$ as the \emph{fibrant slice of $\cC$ over $z$}.
   For any morphism $f\colon x\rightarrow y$ between fibrant objects, we have a
   left exact functor
   $f^*\colon\cC(y)\rightarrow\cC(x)$ induced pulling back along $f$
