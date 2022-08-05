@@ -2,9 +2,10 @@
 
 To prove that by localizing a syntactic category of a dependent type theory with
 some logical rules we get a locally
-cartesian closed $\infty$-category we need a theory of localizations. We shall
-provide one in the general context of $\infty$-categories as developed by
-Cisinski \cite{Cis19} with the aim of
+cartesian closed $\infty$-category we need a theory of localizations for some
+model of $\infty$-categories, which in our case will be quasi-categories. We shall
+provide then such a theory in the general context of $\infty$-categories as
+developed by Cisinski \cite{Cis19} with the aim of
 proving Theorem \ref{7616}, which will do the heavy lifting in showing
 the desired result. Those familiar with the theory may skip the entire chapter
 while keeping in mind the aforementioned theorem, while those who do not know it
@@ -13,8 +14,9 @@ from which come all of the materials here presented.
 
 \section{Universal Property}
 
-Localizations are always defined by a universal property of a certain form. Here
-we present ours and see what we can derive from it without extra assumptions.
+Localizations are defined in any context by a universal property of a certain
+form. Here we present ours and see what we can derive from it without extra
+assumptions.
 
 \begin{defn}
   Let $C$ be a simplicial set and $W\subset C$ a simplicial subset. Given an
@@ -39,7 +41,8 @@ we present ours and see what we can derive from it without extra assumptions.
 
 \begin{defn}
   Given a simplicial set $C$ and a simplicial subset $W$, a \emph{localization
-  of $C$ by $W$} is a functor $\gamma\colon C\rightarrow L(C)$ such that:
+  of $C$ by $W$} is a morphism $\gamma\colon C\rightarrow L(C)$ in $\sSet$ such
+  that:
   \begin{enumerate}
     \item $L(C)$ is an $\infty$-category;
     \item $\gamma$ sends the 1-simplices of $W$ to isomorphisms in $L(C)$;
@@ -56,11 +59,14 @@ we present ours and see what we can derive from it without extra assumptions.
 \begin{proof}
   We begin by proving that a localization exists in the case where $W=C$.
 
+  \noindent
   In this context, $\home_W(C,\cD)\cong\home(C,\cD^{\cong})$ canonically,
   where $\cD^{\cong}$ is the maximal subgroupoid of $\cD$.
   Factoring $C\rightarrow\Delta^0$ in the Kan model structure, we find an
-  anodyne map $\gamma\colon C\rightarrow L(C)$.
+  anodyne map $C\rightarrow C'$. We then choose this map for $\gamma$ and set
+  $L(C)=C'$.
 
+  \noindent
   Remember that for any anodyne map $A\rightarrow B$ we get a trivial fibration
   $\home(B,\cD^{\cong})\rightarrow\home(A,\cD^{\cong})$. Looking then at the
   commutative diagram
@@ -73,12 +79,14 @@ we present ours and see what we can derive from it without extra assumptions.
     \arrow["\cong", from=1-2, to=2-2]
     \arrow["\cong"', from=1-1, to=2-1]
   \end{tikzcd},\]
-  we see that the lower $\gamma^*$ is a trivial fibration.
+  we see that the lower $\gamma^*$ is a trivial fibration, thus we have
+  constructed a valid localization of $C$ by $W$.
   
   We now move on to the general case. First of all, notice that as a particular
   case of the previous one we get that localizing $\Delta^1$ at its non-trivial
-  morphism we obtain $\Delta^1\rightarrow J=L(\Delta^1)\sim\Delta^0$. Taking
-  then $W\subset C$, we consider the commutative diagram
+  morphism our construction provides $L(\Delta^1)=J\sim\Delta^0$, while $\gamma$
+  is the inclusion $\Delta^1\rightarrow J$. Taking then $W\subset C$, we
+  consider the commutative diagram
   \[\begin{tikzcd}
     {\coprod_{f\in W_1}\Delta^1} & C \\
     {\coprod_{f\in W_1}J} & {C'} \\
@@ -96,6 +104,7 @@ we present ours and see what we can derive from it without extra assumptions.
   fibrant replacement of $C'$ in the Joyal model structure. This can be done
   functorially via the small object argument.
 
+  \noindent
   For any $\infty$-category $\cD$, we get a trivial fibration
   $\home(L(C),\cD)\dhxrightarrow{\sim}\home(C',\cD)$ and a pullback square
   \[\begin{tikzcd}
@@ -131,7 +140,7 @@ we present ours and see what we can derive from it without extra assumptions.
   trivial fibration and therefore an equivalence of $\infty$-categories.
 
   We now move on to proving that the localization is essentially unique. For
-  this, we notice that $\gamma$ establishes then an isomorphism between
+  this, we notice that $\gamma^*$ establishes then an isomorphism between
   $\pi_0(k(\home_W(C,-)))$ and $\pi_0(\home(L(C),-))=ho(\sSet)(L(C),-)$
   with respect to the Joyal model structure, thus by Yoneda the pair
   $(L(\cC),\gamma)$ satisfying the universal property is
@@ -152,21 +161,30 @@ we present ours and see what we can derive from it without extra assumptions.
 
   In this context, we may define $\overline{W}$, the saturation of $W$ in $C$,
   as the maximal simplicial subset of $C$
-  whose morphisms are the ones which become invertible in $L(C)$, that is
-  $\overline{W}\cong k(L(C))\times_{L(C)}C$ canonically. It can be specified
-  up to unique isomorphism through the following cartesian square.
+  whose morphisms are the ones which become invertible in $L(C)$, thus we have
+  $\overline{W}\cong k(L(C))\times_{L(C)}C$ canonically, meaning that we have
+  the following pullback square.
+  \[\begin{tikzcd}
+    {\overline{W}} & C \\
+    {k(L(C))} & {L(C)}
+    \arrow[hook, from=2-1, to=2-2]
+    \arrow["\gamma", from=1-2, to=2-2]
+    \arrow[hook, from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+  \end{tikzcd}\]
 
+  \noindent
   We have then inclusions $Sk_1(W)\subset W\subset\overline{W}$ and, for any
   $\infty$-category $\cD$, this induces equalities
   \[\home_{Sk_1(W)}(C,\cD)=\home_{W}(C,\cD)=\home_{\overline{W}}(C,\cD),\]
   implying that $(L(C),\gamma)$ is also the localization of $C$ by $Sk_1(W)$
   and the one by $\overline{W}$. It can be noted that the inclusion
   $\overline{W}\rightarrow C$ is a fibration with respect to the Joyal model
-  structure as it is the pullback of one, implying that $\overline{W}$ is an
-  $\infty$-category whenever $C$ is one.
+  structure as it is the pullback of one, implying that if $C$ is an is an
+  $\infty$-category then so is $\overline{W}$.
 
-  We shall say that $\cC$ is saturated if the canonical inclusion
-  $W\rightarrow\overline{W}$ is an isomorphism.
+  \noindent
+  We shall say that $W$ is \emph{saturated} if $W=\overline{W}$
 \end{rmk}
 
 \begin{rmk}
