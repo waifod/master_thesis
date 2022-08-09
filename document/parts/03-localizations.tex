@@ -12,14 +12,17 @@ while keeping in mind the aforementioned theorem, while those who do not know it
 may read it for a quick tour. We recommend however to read the original source,
 from which come all of the materials here presented.
 
+\noindent
 Our exposition is divided in two parts: first we define localizations and show
 some results derived directly from it, while later we present some results which
 allow us to give a better condition of the localization when the starting
-$\infty$-category has a fibrational structure. The latter generalizes
-previous work by Szumilo and Kapulkin \cite{Szu14,KS15,Kap17}, who proved
-similar results for the simplicial localizations of \emph{fibration categories}
-by studying the associated \emph{$\infty$-categories of frames}, which provide
-concrete models, thereby avoiding fibrant replacements.
+$\infty$-category has a fibrational structure.
+
+
+\begin{notation}
+  We denote generic simplicial sets by $A,B\ldots$, while for
+  $\infty$-categories we use a calligraphic font.
+\end{notation}
 
 \section{Universal Property}
 
@@ -60,6 +63,10 @@ assumptions.
       \[\home(L(C),\cD)\rightarrow\home_W(C,\cD)\]
       given by precomposing with $\gamma$.
   \end{enumerate}
+
+  \noindent
+  We will often refer to $L(C)$ as the localization of $C$ by $W$, without
+  providing $\gamma$ explicitly.
 \end{defn}
 
 \begin{prop}\label{exuniq}
@@ -171,8 +178,8 @@ assumptions.
   In this context, we may define $\overline{W}$, the saturation of $W$ in $C$,
   as the maximal simplicial subset of $C$
   whose morphisms are the ones which become invertible in $L(C)$, thus we have
-  $\overline{W}\cong k(L(C))\times_{L(C)}C$ canonically, meaning that we have
-  the following pullback square.
+  $\overline{W}\cong k(L(C))\times_{L(C)}C$ canonically, meaning that we can
+  draw the following pullback square.
   \[\begin{tikzcd}
     {\overline{W}} & C \\
     {k(L(C))} & {L(C)}
@@ -183,7 +190,7 @@ assumptions.
   \end{tikzcd}\]
 
   \noindent
-  We have then inclusions $Sk_1(W)\subset W\subset\overline{W}$ and, for any
+  We have inclusions $Sk_1(W)\subset W\subset\overline{W}$ and, for any
   $\infty$-category $\cD$, this induces equalities
   \[\home_{Sk_1(W)}(C,\cD)=\home_{W}(C,\cD)=\home_{\overline{W}}(C,\cD),\]
   implying that $(L(C),\gamma)$ is also the localization of $C$ by $Sk_1(W)$
@@ -365,18 +372,19 @@ assumptions.
   functor $\gamma\cdot v\colon\cD\rightarrow L(\cC)$ which, paired with the
   $\overline{u}$ obtained from the construction in the previous proof, lifts the
   adjunction $u\dashv v$ to the localizations (where $L(\cD)=\cD$ as we
-  localize at the identities). Lifting maintains the counit invertible, which
-  allows us to conclude that $\gamma\cdot v$ is fully faithful.
+  localize at the identities). The functoriality of the lifting guarantees that
+  the counit is still invertible, which allows us to conclude that $\gamma\cdot
+  v$ is fully faithful.
 
   \noindent
   Essential surjectivity
   follows from the fact that, for any object $c$ in $\cC$, the unit $\eta_c$ is
   such that $\epsilon_{u(c)}\cdot u(\eta_c)=1_{u(c)}$ and, since $\epsilon$ is
-  invertible, so is $u(\eta_c)$, thus $\eta_c$ becomes invertible in $L(\cC)$
-  and shows that $(\gamma_{\cC}\cdot v)(u(c))=\gamma_{\cC}(vu(c))\cong c$.
-  Notice that here we used that $L(\cC)_0=\cC_0$, which is permissible up to
+  invertible, so is $u(\eta_c)$, thus $\gamma(\eta_c)$ is invertible in $L(\cC)$
+  and shows that
+  $(\gamma_{\cC}\cdot v)(u(c))=\gamma_{\cC}(vu(c))\cong\gamma_\cC(c)=c$.
+  Here we used that $L(\cC)_0=\cC_0$, which is permissible up to
   equivalence as noted in Remark \ref{714}.
-  \wfd{(HERE)}
 \end{proof}
 
 %\begin{cor}
@@ -508,14 +516,29 @@ assumptions.
 
 \section{Localizations of Fibrational Structures}
 
+As anticipated, here we study the localizations of $\infty$-categories $\cC$
+with a fibrational structure, which allows to provide a more explicit
+description of $L(\cC)$ through a \emph{right calculus of fractions}, however,
+we will not be providing the results necessary
+to this description, available in \cite[Ch.\ 7.2-7.4]{Cis19}.
+
+\noindent
+This generalizes
+previous work by Szumilo and Kapulkin \cite{Szu14,KS15,Kap17}, who proved
+similar results for the simplicial localization of a \emph{fibration category}
+$\cP$ (Def.\ \ref{fibcats})
+by studying the associated \emph{$\infty$-category of frames}, which provides
+a concrete model of $L(\cP)$ and thereby avoids fibrant replacements.
+
 \begin{defn}
-  An \emph{$\infty$-category with weak equivalences and fibrations} is a triple
+  An \emph{$\infty$-category with weak equivalences and fibrations} $\cC$ is a
+  triple
   $(\cC,W,\fib)$ where $\cC$ is an $\infty$-category with a final object,
   $W\subset\cC$ is a subcategory with the 2-out-of-3 property and
   $\fib\subset\cC$ a subsimplicial set such that:
   \begin{enumerate}
-    \item for any morphism $p\colon x\rightarrow y$ in $\fib$ (and $W$) with $y$
-      fibrant, there is in $\cC$ a pullback square
+    \item for any morphism $p\colon x\rightarrow y$ in $\fib$ (and $W$) with
+      $y,y'$ fibrant, there is in $\cC$ a pullback square
       \[\begin{tikzcd}
         {x'} & x \\
         {y'} & y
@@ -529,11 +552,15 @@ assumptions.
       factored as a map in $W$ followed by one in $\fib$.
   \end{enumerate}
   By \emph{fibrant object} we mean an object whose map to the terminal one is in
-  $\fib$.
+  $\fib$ and, if every object is fibrant then $\cC$ is an
+  \emph{$\infty$-category of fibrant objects}.
 
+  \noindent
   We shall call \emph{weak equivalences} the maps in $W$ and \emph{fibrations}
   the ones in $\fib$. Maps which are both shall be referred to as \emph{trivial
   fibrations}.
+
+  \wfd{CHECK DEF}
 \end{defn}
 
 \begin{construction}\label{fincomplarefib}
@@ -550,20 +577,17 @@ assumptions.
   the projection $\cC/c\rightarrow\cC$ and similarly for the fibrations.
 \end{construction}
 
-\begin{defn}
-  An $\infty$-category of fibrant objects is an $\infty$-category with weak
-  equivalences and fibrations $\cC$ in which all objects are fibrant.
-\end{defn}
-
 \begin{construction}
   For any $\infty$-category with weak equivalences and fibrations $\cC$, its
   full subcategory given by fibrant objects is canonically an $\infty$-category
   of fibrant objects. We shall denote it by $\cC_f$ and its weak equivalences
   are given by $W_f=W\cap\cC_f$, its fibrations by $\fib_f=\fib\cap\cC_f$.
+  Furthermore, we write $\gamma_f$ for the localization functor
+  $\cC_f\rightarrow L(\cC_f)$.
 \end{construction}
 
 \begin{lem}[Brown's Lemma]\label{7413}
-  7.4.13
+  %7.4.13
 
   For any map $f\colon x\rightarrow y$ between fibrant objects in an
   $\infty$-category with weak equivalences and fibrations $\cC$, there exists a
@@ -572,7 +596,7 @@ assumptions.
     & x \\
     x & z & y
     \arrow[Rightarrow, no head, from=1-2, to=2-1]
-    \arrow["s", from=1-2, to=2-2]
+    \arrow["s", "{\sim}"', from=1-2, to=2-2]
     \arrow["p", "\sim"', two heads, from=2-2, to=2-1]
     \arrow["q"', two heads, from=2-2, to=2-3]
     \arrow["f", from=1-2, to=2-3]
@@ -581,9 +605,9 @@ assumptions.
 \end{lem}
 \begin{proof}
   Since $x$ and $y$ are fibrant, the pullback of $x\rightarrow e$ and
-  $y\rightarrow e$ exists and it corresponds to $x\times y$. The maps $\id_x$,
-  $f$ define a cone over our cospan which induces a map $g\colon x\rightarrow
-  x\times y$ and we then
+  $y\rightarrow e$ exists and it corresponds to $x\times y$. The maps $1_x$,
+  $f$ define a cone over our cospan inducing a map $g\colon x\rightarrow
+  x\times y$, which we
   factor the latter as a weak equivalence $s\colon x\rightarrow z$ followed by a
   fibration $\pi\colon z\rightarrow x\times y$. We get then the desired maps
   $p=p_x\cdot\pi$, $q=p_y\cdot\pi$, where $p_x$, $p_y$ denote the projections
@@ -602,17 +626,17 @@ assumptions.
     x \\
     {} & z & y \\
     x
-    \arrow["s"', from=1-1, to=2-2]
-    \arrow["p"', two heads, from=2-2, to=3-1]
+    \arrow["s"', "{\sim}", from=1-1, to=2-2]
+    \arrow["p"', "{\sim}", two heads, from=2-2, to=3-1]
     \arrow[Rightarrow, no head, from=1-1, to=3-1]
-    \arrow["f"', curve={height=12pt}, from=3-1, to=2-3]
-    \arrow["f", curve={height=-12pt}, from=1-1, to=2-3]
-    \arrow["q", from=2-2, to=2-3]
+    \arrow["f"', "{\sim}", curve={height=12pt}, from=3-1, to=2-3]
+    \arrow["f", "{\sim}"', curve={height=-12pt}, from=1-1, to=2-3]
+    \arrow["q", two heads, from=2-2, to=2-3]
   \end{tikzcd},\]
-  given by Brown's Lemma \ref{7413} we see that $Fp$ lies in $V$ and therefore
+  given by Brown's Lemma \ref{7413}, we see that $Fp$ lies in $V$ and therefore
   the same goes for $Fs$. Also, since $f$ and $s$ are weak equivalences we know
-  that $q$ is too, hence it is a trivial fibration. It follows that $Fq$ is in
-  $V$ and the same goes for $Ff=Fq\cdot Fs$.
+  that $q$ is too, hence the latter is a trivial fibration. It follows that $Fq$
+  is in $V$ and the same goes for $Ff=Fq\cdot Fs$.
 \end{proof}
 
 \begin{construction}
@@ -621,13 +645,12 @@ assumptions.
   full subcategory $\cC/z$ given by the fibrations $x\rightarrow z$ of $\cC$; we
   shall refer to $\cC(z)$ as the \emph{fibrant slice of $\cC$ over $z$}.
   For any morphism $f\colon x\rightarrow y$ between fibrant objects, we have a
-  left exact functor
-  $f^*\colon\cC(y)\rightarrow\cC(x)$ induced pulling back along $f$
-  \wfd{(CAREFUL WITH THIS! YOU ARE USING IT LATER ON; CHECK \cite[Prop.\
-  7.4.15]{Cis19})}. The existence follows from the fact that pullbacks along
-  fibrations with fibrant codomain exist, while left exactness comes from limits
+  left exact functor $f^*\colon\cC(y)\rightarrow\cC(x)$ induced pulling back
+  along $f$. The existence follows from the fact that pullbacks along
+  fibrations with fibrant codomain exist, while
+  left exactness comes from limits
   commuting and weak equivalences being preserved as a consequence of
-  \ref{7414}. \wfd{(PERHAPS MORE DETAIL?)}
+  Corollary \ref{7414}.
 \end{construction}
 
 
@@ -684,7 +707,7 @@ assumptions.
 \end{rmk}
 
 \begin{prop}\label{756}
-  7.5.6
+  %7.5.6
 
   Given an $\infty$-category with weak equivalences and fibrations $\cC$, the
   localization $L(\cC_f)$ has finite limits and the localization functor
@@ -694,45 +717,23 @@ assumptions.
   L(\cC_f)\rightarrow\cD$ is left exact.
 \end{prop}
 \begin{proof}
-  Maybe do not prove it? It relies on a bunch of results from ch. 7.2, 7.3, 7.4
-  which we do not really want to prove.
+  %Maybe do not prove it? It relies on a bunch of results from ch. 7.2, 7.3, 7.4
+  %which we do not really want to prove.
 
-  7.1.10, 7.2.18, 7.2.25, 7.3.27, 7.4.13, 7.4.16
+  %7.1.10, 7.2.18, 7.2.25, 7.3.27, 7.4.13, 7.4.16
 
   We know by \ref{7110} that $L(\cC_f)$ has a final object, hence to show
-  completeness it is enough to prove that it also has pullbacks (\cite[Thm.\
-  7.3.27]{Cis19}). This can be done using the fact that any morphism in
-  $L(\cC_f)$ can be seen as a composition $\gamma(p)\cdot\gamma(s)^{-1}$, where
-  $s$ is a trivial fibration, for which Cisinski uses the theory of the
-  \emph{right calculus of fractions}, and the fact that $\gamma_f$ preserves
-  pullbacks along fibrations. The proof also shows us that all pullback squares
-  in $L(\cC_f)$ are isomorphic to images of pullback squares in $\cC_f$ in which
-  all maps are fibrations.
-\end{proof}
-
-\begin{prop}\label{7516}
-  7.5.16
-
-  Let $x$ be a fibrant object in an $\infty$-category with weak equivalences and
-  fibrations $\cC$. The induced functor
-  $\cC_f/\gamma_f(x)\rightarrow\cC/\gamma(x)$ is final.
-\end{prop}
-\begin{proof}
-  We have that $\cC_f/\gamma_f(x)=L(\cC_f)/\gamma_f(x)\times_{L(\cC_f)}\cC_f$
-  and $\cC/\gamma(x)=L(\cC)/\gamma(x)\times_{L(\cC)}\cC$ and the functor we are
-  considering is induced by $\overline{\iota}\colon L(\cC_f)\rightarrow L(\cC)$.
-  
-  To prove that it is final, it is sufficient to show that for any object
-  $(c,u)$ of $L(\cC)/\gamma(x)$ the coslice $(c,u)\backslash(\cC_f/\gamma_f(x))$ is
-  weakly contractible and, to do this, by \cite[Lem.\ 4.3.15]{Cis19} we can show
-  that any functor $F\colon E\rightarrow (c,u)\backslash(\cC_f/\gamma_f(x))$, where $E$
-  is the nerve of a finite partially ordered set, is $\Delta^1$-homotopic to a
-  constant functor. This can be done through the theory of Reedy fibrant
-  diagrams developed in \cite[Ch.\ 7.4]{Cis19}.
+  completeness it is enough to prove that it also has pullbacks.
+  To prove this, Cisinski develops the theory of the aforementioned right
+  calculus of fractions, through which he shows that any morphism in
+  $L(\cC_f)$ can be seen as a composition $\gamma_f(p)\cdot\gamma_f(s)^{-1}$,
+  where $s$ is a trivial fibration. The proof also shows that all pullback
+  squares in $L(\cC_f)$ are isomorphic to images of pullback squares in $\cC_f$
+  in which all maps are fibrations.
 \end{proof}
 
 \begin{prop}\label{7517}
-  7.5.17
+  %7.5.17
 
   Let $\bfU$ be a universe and $\cC$ a $\bfU$-small $\infty$-category with weak
   equivalences and fibrations. For any $\infty$-category $\cD$ with $\bfU$-small
@@ -751,18 +752,20 @@ assumptions.
 \end{prop}
 \begin{proof}
   We only need to prove that the evaluation of the canonical map
-  $(\gamma_f)_!\iota^*(F)\cong\overline{\iota}^*\gamma_!(F)$ at any object $x$
-  of $\cC_f$ is invertible. This evaluation is equivalent by \cite[Prop.\
+  $(\gamma_f)_!\iota^*(F)\rightarrow\overline{\iota}^*\gamma_!(F)$ at any object
+  $x$ of $\cC_f$ is invertible. This evaluation is equivalent by \cite[Prop.\
   6.4.9]{Cis19} to the map
-  \[\colim_{\cC_f/\gamma_f(x)}i^*(F)/\gamma_f(x)\rightarrow\colim_{\cC/\gamma(x)}F/\gamma(x),\]
-  where $F/\gamma(x)$ is define by composing $F$ with the canonical projection
+  \[\colim_{\cC_f/\gamma_f(x)}i^*(F)/\gamma_f(x)
+  \rightarrow\colim_{\cC/\gamma(x)}F/\gamma(x),\]
+  where $F/\gamma(x)$ is defined by composing $F$ with the canonical projection
   $\cC/\gamma(x)\rightarrow\cC$ and similarly for $i^*(F)/\gamma_f(x)$. Using
-  \ref{7516} and the commutativity of the square above, we get that the desired
-  map is indeed invertible for all $x$.
+  the commutativity of the square above, we get that the desired
+  map is indeed invertible for all $x$ by proving that the functor
+  $\cC_f/\gamma_f(x)\rightarrow\cC/\gamma(x)$ is final.
 \end{proof}
 
 \begin{prop}\label{7518}
-  7.5.18
+  %7.5.18
 
   Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. The
   canonical functor $\overline{\iota}\colon L(\cC_f)\rightarrow L(\cC)$ is an
@@ -771,79 +774,52 @@ assumptions.
   L(\cC)$ is left exact.
 \end{prop}
 \begin{proof}
-  7.5.6, 7.5.17
+  %7.5.6, 7.5.17
 
   We already know that $\overline{\iota}$ is essentially surjective as every
   object in $\cC$ is weakly equivalent to one in $\cC_f$ and the localization
   functors are essentially surjective themselves, thus it is enough to prove
   that it is fully faithful. To do this, we may fix a universe $\bfU$ such that
-  $\cC$ is $\bfU$-small and prove that the functor
+  $\cC$ is $\bfU$-small, prove that the functor
   \[\overline{\iota}_!\colon\home(L(\cC_f),\cS)\rightarrow\home(L(\cC),\cS)\]
   is fully faithful and use \cite[Prop.\ 6.1.15]{Cis19}. Remember that this full
   faithfulness condition is equivalent to the unit map
   $1\rightarrow\overline{\iota}^*\overline{\iota}_!$ of the adjunction
   $\overline{\iota}_!\dashv\overline{\iota}^*$ being invertible.
 
-  We know that $\overline{\iota}_*$ and $\overline{\iota}^*$ both have right
+  We know that $\overline{\iota}_!$ and $\overline{\iota}^*$ both have right
   adjoints, thus they preserve colimits. Also, every $\cS$-valued functor
   indexed by a $\bfU$-small $\infty$-category can be obtained as a colimit of
   representable ones, hence it is enough to check that the condition holds for
   any representable functor $F$. Also, $\gamma_f$ is essentially surjective,
-  which means that it is sufficient to check that map
+  which means that it is sufficient to check that the map
   $(\gamma_f)_!\rightarrow\overline{\iota}^*\overline{\iota}_!(\gamma_f)_!$
-  which we get by precomposing the unit with $(\gamma_f)_!$ is invertible.
+  (which we get by precomposing the unit with $(\gamma_f)_!$) is invertible.
 
   We have then the chain of isomorphisms
   \begin{align*}
-    (\gamma_f)_! &\cong(\gamma_f)_!\overline{\iota}^*\overline{\iota}_! \\
-                 &\cong\overline{\iota}^*\gamma_f\iota_! \\
-                 &\cong\overline{\iota}^*\overline{\iota}_!(\gamma_f)_!,
+    (\gamma_f)_! &\simeq(\gamma_f)_!\overline{\iota}^*\overline{\iota}_! \\
+                 &\simeq\overline{\iota}^*\gamma_f\iota_! \\
+                 &\simeq\overline{\iota}^*\overline{\iota}_!(\gamma_f)_!,
   \end{align*}
-  where the first isomorphism comes from the full faithfulness of $\iota$, the
-  second one from \ref{7517} and the last one the fact that
-  $\overline{\iota}\cdot\gamma_f\cong\gamma\cdot\iota$, as noted in \ref{7517}.
+  where the first comes from the full faithfulness of $\iota$, the
+  second from Prop.\ \ref{7517} and the last one from the fact that
+  $\overline{\iota}\cdot\gamma_f\simeq\gamma\cdot\iota$.
 
-  The second claim follows directly from the first one and \ref{756}.
+  The second claim follows directly from the first one and Prop.\ \ref{756}.
 \end{proof}
 
 \begin{rmk}
   Here we see that the theory of localizations of $\infty$-categories with weak
   equivalences and fibrations provides much better results the 1-categorical
-  equivalent, embodied by the homotopy theory of model categories and fibration
-  categories (which we will define in the next chapter): indeed, these are
-  particular cases of the $\infty$-analogue, however their homotopy categories,
-  i.e.\ their 1-categorical localizations by weak equivalences, are almost never
-  finitely complete.
+  equivalent, embodied by the aforementioned fibration categories: indeed, these
+  are particular cases of the $\infty$-analogue, however their homotopy
+  categories, i.e.\ their 1-categorical localizations by weak equivalences, are
+  almost never finitely complete.
 \end{rmk}
 
-\begin{cor}\label{7519}
-  7.5.19
-
-  Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. For a
-  morphism between fibrant objects $p\colon x\rightarrow y$, the following
-  conditions are equivalent:
-  \begin{enumerate}
-    \item the morphism $p$ has a section in $ho(L(\cC))$;
-    \item there exists a morphism $p'\colon x'\rightarrow x$ s.t.\ the
-      composition of $p'$ and $p$ is a weak equivalence;
-    \item there exists a fibration $p'\colon x'\rightarrow x$ s.t.\ the
-      composition of $p'$ and $p$ is a weak equivalence.
-  \end{enumerate}
-\end{cor}
-\begin{proof}
-  7.5.18
-
-  We see that (iii) trivially implies (ii), therefore we shall focus on the
-  other implication. Given then such a morphism $p'$, we factor it as $qi=p'$, a
-  weak equivalence followed by a fibration. Since $p\cdot p'=p\cdot(q\cdot
-  i)=(p\cdot q)\cdot i$, by 2-out-of-3 $p\cdot q$ is a weak equivalence, giving
-  us what we wanted.
-
-  Should we prove (i)? Uses right calculus of fractions, but it's rather simple.
-\end{proof}
-
 \begin{construction}\label{7522}
-  7.5.22
+  %7.5.22
   
   Given an $\infty$-category $\cC$ with weak equivalences and fibrations, we can
   get another one $\overline{\cC}$ with the same underlying $\infty$-category
@@ -852,9 +828,8 @@ assumptions.
   L(\overline{\cC})$, hence in general we can substitute $\cC$ by
   $\overline{\cC}$ with no issues. Also, the substitution commutes with the
   formation of slices over fibrant objects, that is, for any fibrant object $x$
-  of $\cC$, a map in $\cC/x$ induces an invertible map in $L(\cC/x)$ if and only
-  if its image becomes invertible in $L(\cC)$, which can be seen as a
-  consequence of \ref{7519}.
+  of $\cC$, a map in $\cC/x$ induces invertible in $L(\cC/x)$ if and only
+  if its image becomes invertible in $L(\cC)$.
 \end{construction}
 
 \begin{rmk}
@@ -867,11 +842,12 @@ assumptions.
   functor of $F$}. Beware that to be precise one would have to specify the
   natural transformation $F\rightarrow\bfR F\cdot\gamma$ exhibiting it as such.
   Dually, a representative of $\Hom(\gamma^*(-),F)$ is the \emph{left derived
-  functor of $F$}.
+  functor of $F$}. These notions admit a theory which reproduce the
+  corresponding 1-categorical one.
 \end{rmk}
 
 \begin{prop}\label{7524}
-  7.5.24
+  %7.5.24
 
   If $F\colon\cC\rightarrow\cD$ sends weak equivalences to isomorphisms, then
   the functor $\overline{F}\colon L(\cC)\rightarrow\cD$, associated to $F$ by
@@ -880,11 +856,18 @@ assumptions.
 \begin{proof}
   Let's fix a universe $\bfU$ such that $\cC$ and $\cD$ are $\bfU$-small and let
   $G\colon L(\cC)\rightarrow\cD$ be any functor. Then the invertible map
-  $\overline{F}\cdot\gamma\cong F$ and the equivalence of $\infty$-categories
+  $\overline{F}\cdot\gamma\simeq F$ and the equivalence of $\infty$-categories
   $\home(L(\cC),\cD)\simeq\home_W(\cC,\cD)$ induce invertible maps
-  $\Hom(\overline{F},G)\simeq\Hom(\overline{F}\cdot\gamma,G\cdot\gamma)\simeq\Hom(F,G\cdot\gamma)$
+  \[\Hom(\overline{F},G)\simeq\Hom(\overline{F}\cdot\gamma,G\cdot\gamma)\simeq\Hom(F,G\cdot\gamma)\]
   in $\cS$, functorially in $G$.
 \end{proof}
+
+One can not always obtain a left derived functor as in the previous proposition
+because weak equivalences may not always be mapped to isomorphisms,
+however in the 1-categorical case, when working with fibration categories (or
+more commonly with model categories) we can
+define one by taking for every object $x$ a fibrant replacement $x'$ and then
+set $\overline{F}x=Fx'$. The following construction replicates this.
 
 \begin{construction}\label{7525}
   \wfd{(NOT COMPLETE, ONE MAY SHOW THAT OUR CONSTRUCTION DOES GIVE THE RIGHT
