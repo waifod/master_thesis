@@ -2,15 +2,24 @@
 
 To prove that by localizing a syntactic category of a dependent type theory with
 some logical rules we get a locally
-cartesian closed $\infty$-category we need a theory of localizations for some
-model of $\infty$-categories, which in our case will be quasi-categories. We shall
-provide then such a theory in the general context of $\infty$-categories as
+cartesian closed $\infty$-category we need a theory of localizations
+of $\infty$-categories, which in our case will be quasi-categories. We shall
+provide then such a theory as
 developed by Cisinski \cite{Cis19} with the aim of
 proving Theorem \ref{7616}, which will do the heavy lifting in showing
 the desired result. Those familiar with the theory may skip the entire chapter
 while keeping in mind the aforementioned theorem, while those who do not know it
 may read it for a quick tour. We recommend however to read the original source,
 from which come all of the materials here presented.
+
+Our exposition is divided in two parts: first we define localizations and show
+some results derived directly from it, while later we present some results which
+allow us to give a better condition of the localization when the starting
+$\infty$-category has a fibrational structure. The latter generalizes
+previous work by Szumilo and Kapulkin \cite{Szu14,KS15,Kap17}, who proved
+similar results for the simplicial localizations of \emph{fibration categories}
+by studying the associated \emph{$\infty$-categories of frames}}, which provide
+concrete models, thereby avoiding fibrant replacements.
 
 \section{Universal Property}
 
@@ -20,7 +29,7 @@ assumptions.
 
 \begin{defn}
   Let $C$ be a simplicial set and $W\subset C$ a simplicial subset. Given an
-  $\infty$-category $\cD$, we define $\home_W(X,\cD)$ to be the full simplicial
+  $\infty$-category $\cD$, we define $\home_W(C,\cD)$ to be the full simplicial
   subset of $\home(C,\cD)$ whose objects are the morphisms $f\colon
   C\rightarrow\cD$ sending the 1-simplices in $W$ to isomorphisms.
 \end{defn}
@@ -96,11 +105,11 @@ assumptions.
     \arrow[from=2-1, to=2-2]
     \arrow[from=1-2, to=2-2]
     \arrow[from=1-1, to=2-1]
-    \arrow["\sim"', hook, from=2-2, to=3-3]
+    \arrow["\sim"', from=2-2, to=3-3]
     \arrow["\gamma", curve={height=-12pt}, from=1-2, to=3-3]
     \arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
   \end{tikzcd},\]
-  where $C'\rightarrow L(C)$ is an inner anodyne map obtained by taking the
+  where $C'\xrightarrow{\sim} L(C)$ is an inner anodyne map obtained by taking the
   fibrant replacement of $C'$ in the Joyal model structure. This can be done
   functorially via the small object argument.
 
@@ -184,17 +193,19 @@ assumptions.
   $\infty$-category then so is $\overline{W}$.
 
   \noindent
-  We shall say that $W$ is \emph{saturated} if $W=\overline{W}$
+  We shall say that $W$ is \emph{saturated} if $W=\overline{W}$.
 \end{rmk}
 
 \begin{rmk}
-  7.1.6
+  %7.1.6
 
-  The functor $ho(\cC)\rightarrow ho(L(\cC))$ exhibits $ho(L(\cC))$ as the
+  Given an $\infty$-category $\cC$ and a simplicial subset $W$, the functor
+  $ho(\cC)\rightarrow ho(L(\cC))$ exhibits $ho(L(\cC))$ as the
   1-categorical localization of $\cC$ at $\Arr(\tau(W))$, as can be seen by
   using the universal property.
 
-  On the other hand, given a 1-category $\cC$ and localizing at a set of
+  \noindent
+  On the other hand, given a 1-category $\cC$ and considered a set of
   morphisms $W$, not necessarily the induced map $L(N(\cC))\rightarrow
   N(L(\cC))$ is an isomorphism. Indeed, $L(N(\cC))$ can have much better
   properties, as can be seen for example from \ref{756}, and in fact localizing
@@ -202,76 +213,75 @@ assumptions.
   in \cite[Prop.\ 7.3.15]{Cis19}.
 \end{rmk}
 
-\begin{prop}
-  7.1.9
+\begin{rmk}
+  %7.1.9
 
-  Given a universe $\bfU$ and $W$ a simplicial subset of a $\bfU$-small
-  $\infty$-category $\cC$, let $\gamma\colon\cC\rightarrow L(\cC)$ be the
+  Given a universe $\bfU$ and a simplicial subset $W$ of a $\bfU$-small
+  simplicial set $C$, let $\gamma\colon C\rightarrow L(C)$ be the
   associated localization. Then the functor
-  $\gamma^*\colon\home(L(\cC)^{\op},\cS)\rightarrow\home(\cC^{\op},\cS)$ is
-  fully faithful and its essential image consists of all presheaves
-  $F\colon\cC^{\op}\rightarrow\cS$ sending maps $u\colon x\rightarrow y$ in $W$
-  to invertible maps $u^*\colon Fy\rightarrow Fx$ in $\cS$.
-\end{prop}
-\begin{proof}
-  The map $\gamma$ gives us a morphism
-  \[\gamma^*\colon\home(L(\cC)^{\op},\cS)\simeq\home_{W^{\op}}(\cC^{\op},\cS)\rightarrow\home(\cC^{\op},\cS),\]
-  which has a left adjoint $\gamma_!$ and a right adjoint $\gamma_*$. Now, or
-  any presheaf $F\colon L(\cC)^{\op}\rightarrow\cS$, the unit map
-  $F\rightarrow\gamma_*\gamma^*F$ is invertible and, by adjunction, the same
-  goes for the counit map $\gamma_!\gamma^*F\rightarrow F$, which means that
-  $u^*$ is fully faithful. On the other hand, given a presheaf
-  $F\colon\cC^{\op}\rightarrow\cS$ sending 1-simplices in $W$ to invertible maps,
-  the counit $\gamma^*\gamma_*F\rightarrow F$ and the unit
-  $F\rightarrow\gamma^*\gamma_!F$ are both invertible since the restrictions of
-  these adjunctions to $\home_{W^{\op}}(\cC^{\op},\cS)$ form adjoint
-  equivalences of $\infty$-categories as $\gamma^*$ is an equivalence.
-\end{proof}
+  $$\gamma^*\colon\home(L(C)^{\op},\cS)\rightarrow\home(C^{\op},\cS)$$ is
+  fully faithful because it is obtained as
+  \[\home(L(C)^{\op},\cS)\simeq\home_{W^{\op}}(C^{\op},\cS)\rightarrow\home(C^{\op},\cS).\]
+  It also has a left adjoint $\gamma_!$ and a right adjoint $\gamma_*$ as
+  shown in \cite[Ch.\ 6]{Cis19}. Full faithfulness then implies that for any
+  presheaf $F\colon L(C)^{\op}\rightarrow\cS$ the unit map
+  $F\rightarrow\gamma_*\gamma^*(F)$ is invertible and, by adjunction, the same
+  goes for the counit map $\gamma_!\gamma^*(F)\rightarrow F$.
+
+  \noindent
+  Furthermore, its essential image consists exactly of those presheafs $F\colon
+  C^{\op}\rightarrow\cS$ such that, for any morphism $u\colon x\rightarrow y$ in
+  $W$, the map $Fu\colon Fy\rightarrow Fx$ is invertible in $\cS$. Indeed,
+  restricting
+  $\gamma_!$ and $\gamma_*$ to $\home_{W^{\op}}(C^{\op},\cS)$, we see that they
+  are left and right adjoint to the equivalence of $\infty$-categories induced
+  by $\gamma^*$, meaning that the counit map $\gamma^*\gamma_*(F)\rightarrow F$
+  and the unit map $F\rightarrow\gamma^*\gamma_!(F)$ are invertible.
+\end{rmk}
 
 \begin{prop}\label{7110}
-  7.1.10
-
-  Given an $\infty$-category $\cC$ and a simplicial subset $W$, the localization
-  functor $\gamma\colon\cC\rightarrow L(\cC)$ is final and cofinal. In
-  particular, if $e\colon\Delta^0\rightarrow\cC$ encodes a final or a cofinal
+  Given a simplicial set $C$ and a simplicial subset $W$, the localization
+  functor $\gamma\colon C\rightarrow L(C)$ is final and cofinal. In
+  particular, if $e\colon\Delta^0\rightarrow C$ encodes a final or a cofinal
   object, so does $\gamma(e)$.
 \end{prop}
 \begin{proof}
   First of all, the functor $\gamma^{\op}$ is also a localization, so it
   suffices to prove that $\gamma$ is final. To do this, first we fix a universe
-  $\bfU$ such that $\cC$ is $\bfU$-small and then we remember that there
+  $\bfU$ such that $C$ is $\bfU$-small and then we remember that there
   is an adjunction
-  $\adjunction{\gamma^*}{\home(L(\cC),\cS)}{\home(\cC,\cS)}{\gamma_*}$. Since
-  $\gamma^*$ induces an equivalence when restricting the codomain to
-  $\home_W(\cC,\cS)$, we know that it is fully faithful, thus the unit of the
+  $\adjunction{\gamma^*}{\home(L(C),\cS)}{\home(C,\cS)}{\gamma_*}$ and, by the
+  above remark, the unit of the
   adjunction is invertible, hence $1\cong\gamma_*\gamma^*$. This gives us that
-  \[\lim_{\cC}F\cong\lim_{\cC}\gamma_*\gamma^*F\cong\lim_{L(\cC)}\gamma^*F,\]
-  for any presheaf $F\colon\cC\rightarrow\cS$, which is enough to prove that
-  $\gamma$ is final (\cite[Thm.\ 6.4.5]{Cis19}).
+  \[\lim_{C}F\cong\lim_{C}\gamma_*\gamma^*(F)\cong\lim_{L(C)}\gamma^*(F),\]
+  for any presheaf $F\colon C\rightarrow\cS$, which is enough to prove that
+  $\gamma$ is final by \cite[Thm.\ 6.4.5]{Cis19}.
 \end{proof}
 
 \begin{prop}
-  7.1.11
-  Let's fix a universe $\bfU$, a $\bfU$-small $\infty$-category $\cC$ and a
-  simplicial subset $W$. Consider then a functor $f\colon\cC\rightarrow\cD$,
-  where $X$ is a small $\infty$-category. Then $f$ exhibits $\cD$ as the
-  localization of $\cC$ by $W$ if and only if the following conditions hold:
+  %7.1.11
+
+  Let's fix a universe $\bfU$, a $\bfU$-small simplicial set $C$ and a
+  simplicial subset $W$. Consider a morphism $f\colon C\rightarrow\cD$,
+  where $\cD$ is a small $\infty$-category. Then $f$ exhibits $\cD$ as the
+  localization of $C$ by $W$ if and only if the following conditions hold:
   \begin{enumerate}
-    \item the functor $f$ sends the 1-simplices of $W$ to invertible maps of
+    \item the morphism $f$ sends the 1-simplices of $W$ to invertible maps of
       $\cD$;
-    \item the functor $f$ is essentially surjective;
-    \item the functor $f^*$ induces an equivalence of $\infty$-categories
-      \[f^*\colon\home(\cD^{\op},\cS)\rightarrow\home_{W^{\op}}(\cC^{\op},\cS).\]
+    \item the morphism $f$ is essentially surjective;
+    \item the morphism $f^*$ induces an equivalence of $\infty$-categories
+      \[f^*\colon\home(\cD^{\op},\cS)\rightarrow\home_{W^{\op}}(C^{\op},\cS).\]
   \end{enumerate}
 \end{prop}
 \begin{proof}
-  One implication is trivial (for (2) look at the construction in \ref{exuniq}).
-  For the converse, let's pick a localization $\gamma\colon\cC\rightarrow
-  L(\cC)$ and, through condition (1), we get a factorization $g\colon
-  L(\cC)\rightarrow\cD$ such that $g\cdot\gamma\cong f$, giving us a triangle
-  \[\begin{tikzcd}
-    {\home(\cD^{\op},\cE)} && {\home(L(\cC)^{\op},\cE)} \\
-                           & {\home_{W^{\op}}(\cC^{\op},\cE)}
+  If $f$ is a localization then the conditions are satisfied (for (2) look at
+  the construction in Prop.\ \ref{exuniq}).
+  For the converse, let's pick a localization $\gamma\colon C\rightarrow
+  L(C)$ and, through condition (1), we get a factorization $g\colon
+  L(C)\rightarrow\cD$ such that $g\cdot\gamma\cong f$, giving us a triangle
+  \[\begin{tikzcd}[column sep=tiny]
+    {\home(\cD^{\op},\cE)} && {\home(L(C)^{\op},\cE)} \\
+                           & {\home_{W^{\op}}(C^{\op},\cE)}
     \arrow["{g^*}", from=1-1, to=1-3]
     \arrow["{f^*}"', from=1-1, to=2-2]
     \arrow["{\gamma^*}", from=1-3, to=2-2]
@@ -279,20 +289,22 @@ assumptions.
   commuting up to $J$-homotopy for any $\infty$-category $\cE$. Picking
   $\cE=\cS$, $\gamma^*$ and $f^*$ are equivalences
   of $\infty$-categories, the latter by (3). It follows by 2-out-of-3 that $g^*$
-  is one too, and therefore the same applies to its left adjoint $g_!$, which is
-  then fully faithful. This is equivalent to $g$ being fully faithful \wfd{(FUN
-  THEOREM, MAYBE STATE IT AT LEAST 6.1.5)} and, since
+  is one too, therefore the same applies to its left adjoint $g_!$, which is
+  then fully faithful. This is equivalent to $g$ being fully
+  faithful by \cite[Prop.\ 6.1.15]{Cis19} and, since
   $f$ is essentially surjective by (2), the same goes for $g$. It follows that
-  $g$ is an equivalence of $\infty$-categories.
+  $g$ is an equivalence of $\infty$-categories. In the above triangle $g^*$ is
+  then an equivalence for any choice of $\cE$ and the same applies to $f^*$ by
+  2-out-of-3. We conclude by using $(-)^{\op}$.
 \end{proof}
 
 \begin{prop}\label{7114}
-  7.1.14
+  %7.1.14
 
-  Let $f\colon\cC\rightarrow\cD$ be a functors between $\infty$-categories with
+  Let $f\colon\cC\rightarrow\cD$ be a functor between $\infty$-categories with
   a right adjoint $g\colon\cD\rightarrow\cC$ and suppose that we are given
   simplicial subsets $V\subset\cC$, $W\subset\cD$ such that $f(V)\subset W$,
-  $g(W)\subset V$. Then we can lift them to an adjunction
+  $g(W)\subset V$. We can lift them to an adjunction
   $\adjunction{\overline{f}}{L(\cC)}{L(\cD)}{\overline{g}}$ such that the
   diagrams
   \[\begin{tikzcd}
@@ -313,6 +325,7 @@ assumptions.
     \arrow["g", from=1-1, to=1-2]
   \end{tikzcd}
   \]
+  commute up to $J$-homotopy.
 \end{prop}
 \begin{proof}
   Let's write $\home_V^W(\cC,\cD)$ for the full subcategory of $\home(\cC,\cD)$
@@ -333,13 +346,14 @@ assumptions.
   \end{tikzcd}\]
   commute up to $J$-homotopy.
 
+  \noindent
   The proof works by observing that our map also lifts natural transformations
   functorially, which allows us to show the triangle identities for the lifted
   unit and counit.
 \end{proof}
 
 \begin{prop}
-  7.1.18
+  %7.1.18
 
   Let $u\colon\cC\rightarrow\cD$ be a functor between $\infty$-categories with a
   fully faithful right adjoint $v$ and consider $W=k(\cD)\times_\cD\cC$, the
@@ -350,17 +364,17 @@ assumptions.
   Given a localization $\gamma\colon\cC\rightarrow L(\cC)$ by $W$, we get a
   functor $\gamma\cdot v\colon\cD\rightarrow L(\cC)$ which, paired with the
   $\overline{u}$ obtained from the construction in the previous proof, lifts the
-  adjunction $u\dashv v$ to the localizations (where $L(\cD)\cong\cD$ as we
+  adjunction $u\dashv v$ to the localizations (where $L(\cD)=\cD$ as we
   localize at the identities). Lifting maintains the counit invertible, which
   allows us to conclude that $\gamma\cdot v$ is fully faithful.
 
   Essential surjectivity
   follows from the fact that, for any object $c$ in $\cC$, the unit $\eta_c$ is
-  such that $\epsilon_{u(c)}\cdot u(\eta_c)=\id_{u(c)}$ and, since $\epsilon$ is
+  such that $\epsilon_{u(c)}\cdot u(\eta_c)=1_{u(c)}$ and, since $\epsilon$ is
   invertible, so is $u(\eta_c)$, thus $\eta_c$ becomes invertible in $L(\cC)$
   and shows that $(\gamma_{\cC}\cdot v)(u(c))=\gamma_{\cC}(vu(c))\cong c$.
   Notice that here we used that $L(\cC)_0=\cC_0$, which is permissible up to
-  equivalence as previously noted.
+  equivalence as noted in Remark \ref{714}.
 
   \wfd{(PLEASE CHECK PROOF)}
 \end{proof}
