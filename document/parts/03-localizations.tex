@@ -13,10 +13,12 @@ may read it for a quick tour. We recommend however to read the original source,
 from which come all of the materials here presented.
 
 \noindent
-Our exposition is divided in two parts: first we define localizations and show
+Our exposition is divided in three parts: first we define localizations and show
 some results derived directly from it, while later we present some facts which
 allow us to give a better description of the localization when the starting
-$\infty$-category has a fibrational structure.
+$\infty$-category has a fibrational structure and finally we introduce some
+conditions under which localizing induces an equivalence of $\infty$-categories,
+from which we derive Theorem \ref{7616}.
 
 \begin{notation}
   We denote generic simplicial sets by $A,B\ldots$, while for
@@ -256,12 +258,14 @@ assumptions.
   suffices to prove that $\gamma$ is final. To do this, first we fix a universe
   $\bfU$ such that $C$ is $\bfU$-small and then we remember that there
   is an adjunction
-  $\adjunction{\gamma^*}{\home(L(C),\cS)}{\home(C,\cS)}{\gamma_*}$ and, by the
-  above remark, the unit of the
-  adjunction is invertible, hence $1\cong\gamma_*\gamma^*$. This gives us that
-  \[\lim_{C}F\cong\lim_{C}\gamma_*\gamma^*(F)\cong\lim_{L(C)}\gamma^*(F),\]
-  for any presheaf $F\colon C\rightarrow\cS$, which is enough to prove that
-  $\gamma$ is final by \cite[Thm.\ 6.4.5]{Cis19}.
+  $\adjunction{\gamma^*}{\home(L(C)^{\op},\cS)}{\home(C^{\op},\cS)}{\gamma_*}$
+  and, by the above remark, the unit of the adjunction is invertible, hence
+  $F\simeq\gamma_*\gamma^*(F)$ for any presheaf $F\colon
+  L(\cC)^{\op}\rightarrow\cS$. This gives us
+  \[\lim_{C^{\op}}F\simeq
+  \lim_{C^{\op}}\gamma_*\gamma^*(F)\simeq
+  \lim_{L(C)^{\op}}\gamma^*(F),\]
+  which is enough to prove that $\gamma$ is final by \cite[Thm.\ 6.4.5]{Cis19}.
 \end{proof}
 
 \begin{prop}
@@ -284,7 +288,7 @@ assumptions.
   the construction in Prop.\ \ref{exuniq}).
   For the converse, let's pick a localization $\gamma\colon C\rightarrow
   L(C)$ and, through condition (1), we get a factorization $g\colon
-  L(C)\rightarrow\cD$ such that $g\cdot\gamma\cong f$, giving us a triangle
+  L(C)\rightarrow\cD$ such that $g\cdot\gamma\simeq f$, giving us a triangle
   \[\begin{tikzcd}[column sep=tiny]
     {\home(\cD^{\op},\cE)} && {\home(L(C)^{\op},\cE)} \\
                            & {\home_{W^{\op}}(C^{\op},\cE)}
@@ -381,7 +385,7 @@ assumptions.
   such that $\epsilon_{u(c)}\cdot u(\eta_c)=1_{u(c)}$ and, since $\epsilon$ is
   invertible, so is $u(\eta_c)$, thus $\gamma(\eta_c)$ is invertible in $L(\cC)$
   and shows that
-  $(\gamma_{\cC}\cdot v)(u(c))=\gamma_{\cC}(vu(c))\cong\gamma_\cC(c)=c$.
+  $(\gamma_{\cC}\cdot v)(u(c))=\gamma_{\cC}(vu(c))\simeq\gamma_\cC(c)=c$.
   Here we used that $L(\cC)_0=\cC_0$, which is permissible up to
   equivalence as noted in Remark \ref{714}.
 \end{proof}
@@ -638,7 +642,7 @@ a concrete model of $L(\cP)$ avoiding fibrant replacements.
   is in $V$ and the same goes for $Ff=Fq\cdot Fs$.
 \end{proof}
 
-\begin{construction}
+\begin{construction}\label{7612}
   Given an $\infty$-category with weak equivalences and fibrations $\cC$ and a
   fibrant object $z$ in it, we write $\cC(z)$ for $(\cC/z)_f$, that is the
   full subcategory $\cC/z$ given by the fibrations $x\rightarrow z$ of $\cC$; we
@@ -942,6 +946,13 @@ and then set $\overline{F}x=Fx'$. The following construction replicates this.
   Proposition \ref{756}.
 \end{proof}
 
+\section{Right Approximation Property}
+
+Here we study some sufficient conditions under which functors induce
+equivalences of $\infty$-categories after localizing. We shall use this to prove
+Theorem \ref{7616}, which specifies some sufficient conditions guaranteeing that
+the localization of an $\infty$-category is locally cartesian closed.
+
 \begin{rmk}
   %\wfd{(WHY DO WE NEED TO SPECIFY THIS?)}
 
@@ -1056,8 +1067,8 @@ As an example, we prove the following.
 \begin{proof}
   %7.3.29, 7.6.2, 7.6.5, 7.6.7
 
-  We trivially have that (i) implies (ii) and, by Proposition \ref{762}, (iii)
-  follows from (ii), hence we only have to show that (iii) gives (i).
+  We trivially have that (1) implies (2) and, by Proposition \ref{762}, (3)
+  follows from (2), hence we only have to show that (3) gives (1).
 
   \noindent
   Let's assume then that $f$ has the right approximation property.
@@ -1122,10 +1133,8 @@ As an example, we prove the following.
   of $\infty$-categories.
 \end{proof}
 
-\wfd{(FROM HERE!)}
-
 \begin{cor}\label{7613}
-  7.6.13
+  %7.6.13
 
   Let $\cC$ be an $\infty$-category with weak equivalences and fibrations and
   consider a localization functor $\gamma\colon\cC\rightarrow L(\cC)$. For any
@@ -1134,46 +1143,49 @@ As an example, we prove the following.
   $\infty$-categories $L(\cC/x)\simeq L(\cC)/\gamma(x)$.
 \end{cor}
 \begin{proof}
-  7.5.18, 7.5.22, 7.5.24, 7.5.28, 7.6.4, 7.6.10
+  %7.5.18, 7.5.22, 7.5.24, 7.5.28, 7.6.4, 7.6.10
 
-  By \ref{7522}, we can assume that $\cC$ is saturated. Our objective is to show
+  By Construction \ref{7522}, we can assume that $\cC$ is saturated. Our
+  objective is to show
   that the induced functor $\phi\colon L(\cC/x)\rightarrow L(\cC)/\gamma(x)$ has
   the right approximation property and it preserves finite limits, which will
-  allow us to apply \ref{7610} and conclude.
+  allow us to apply Theorem \ref{7610} and conclude.
 
-  To show condition (1) we only need to prove that $\phi$ is conservative, which
+  \noindent
+  To show rcondition (1) we only need to prove that $\phi$ is conservative, which
   can be reduced to showing that a map in $\cC/x$ becomes invertible in
-  $L(\cC/x)$ if and only if it becomes an insomorphism in $L(\cC)$. This however
+  $L(\cC/x)$ if and only if it becomes an isomorphism in $L(\cC)$. This however
   is true by
   saturation of $\cC$. We still need to check condition (2), which can be done
   on $\cC/x\rightarrow L(\cC)/\gamma(x)$, but this follows from the fact that
-  $\gamma$ has it, as mentioned in \ref{764}.
+  $\gamma$ has it, as mentioned in Example \ref{764}.
 
-  To apply \ref{7610} we still need to show that $\phi$ preserves limits. To do
-  this, we use the fact that $\cC/x$ has the structure of an
+  \noindent
+  To apply Theorem \ref{7610} we still need to show that $\phi$ preserves finite
+  limits. To do this, we use the fact that $\cC/x$ has the structure of an
   $\infty$-category with weak equivalences and fibrations. Given that $\gamma$
   is left exact, the functor $\cC/x\rightarrow L(\cC)/\gamma(x)$ maps weak
-  equivalences to isomorphisms and we can apply \ref{7524} to prove that $\phi$
-  is its right derived functor. Finally, through \ref{7528} we get that $\phi$
-  is also left exact.
+  equivalences to isomorphisms and we can apply Proposition \ref{7524} to prove
+  that $\phi$ is its right derived functor. Finally, through Proposition
+  \ref{7528} we get that $\phi$ is also left exact.
 \end{proof}
 
 \begin{thm}\label{7616}
-  7.6.16
+  %7.6.16
 
   Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. Given
-  a fibrant object $x$, let $\cC(x)$ be the full subcategory of fibrant objects
-  of $\cC/x$ \wfd{(INCLUDE 7.6.12)}, which will be an $\infty$-category of
-  fibrant objects. Assume that, for any fibration between fibrant objects
+  a fibrant object $x$, consider the associated $\infty$-category $\cC(x)$ as
+  specified in Construction \ref{7612}.
+  Assume that, for any fibration between fibrant objects
   $p\colon x\rightarrow y$, the pullback functor
-  $p^*\colon\cC(y)\rightarrow\cC(x)$, $(y'\rightarrow y)\mapsto(y'\times_y
-  x\rightarrow x)$ has a right adjoint $p_*\colon\cC(x)\rightarrow\cC(y)$
+  \[p^*\colon\cC(y)\rightarrow\cC(x),\quad (y'\rightarrow y)\mapsto(y'\times_y
+  x\rightarrow x)\] has a right adjoint $p_*\colon\cC(x)\rightarrow\cC(y)$
   preserving trivial fibrations. Then, for any map $p\colon x\rightarrow y$ in
   $L(\cC)$, the pullback functor $p^*\colon\cC(y)\rightarrow\cC(x)$ has a right
   adjoint.
 \end{thm}
 \begin{proof}
-  6.1.6, 6.1.7, 6.1.8, 7.1.14, 7.4.14, 7.5.18, 7.6.13
+  %6.1.6, 6.1.7, 6.1.8, 7.1.14, 7.4.14, 7.5.18, 7.6.13
 
   Given a localization functor $\gamma\colon\cC\rightarrow L(\cC)$, one reduces
   the problem to proving that, for any fibration between fibrant objects
@@ -1181,21 +1193,23 @@ As an example, we prove the following.
   \[\gamma(p)^*\colon L(\cC)/\gamma(y)\rightarrow L(\cC)/\gamma(x)\]
   has a right adjoint.
 
-  A consequence of Brown's Lemma \ref{7413} is that any functor preserving
-  trivial fibrations between fibrant objects also preserves weak equivalences,
-  and, since $p^*\colon\cC(y)\rightarrow\cC(x)$ has both a right and a left
+  \noindent
+  By Corollary \ref{7414}, any functor preserving
+  trivial fibrations between fibrant objects also preserves weak equivalences.
+  Also, since $p^*\colon\cC(y)\rightarrow\cC(x)$ has both a right and a left
   adjoint named $p_*$ and $p_!$ (the latter given by post-composing with $p$)
-  which do preserve them, by \ref{7114} we have a pair of adjunctions on the
-  localizations, namely
+  which do preserve them, by Proposition \ref{7114} we have a pair of
+  adjunctions on the localizations, namely
   \[\adjunction{\overline{p}^*}{L(\cC(y))}{L(\cC(x))}{\overline{p}_*},\]
   \[\adjunction{\overline{p}_!}{L(\cC(x))}{L(\cC(y))}{\overline{p}^*}.\]
 
+  \noindent
   Given that $(\cC/z)_f=\cC(z)$ for all fibrant objects $z$ of $\cC$, by
-  \ref{7518} we have that $L(\cC(z))\simeq L(\cC/z)$ and, by $\ref{7613}$, we
-  also know that $L(\cC/z)\simeq L(\cC)/\gamma(z)$, hence $L(\cC(z))\simeq
-  L(\cC)/\gamma(z)$. Notice that $\overline{p}_!$ is equivalent to
-  $\gamma(p)_!\colon L(\cC)/\gamma(x)\rightarrow L(\cC)/\gamma(y)$ and, by
-  essential uniqueness of the adjoints, this extends to $\gamma(p)^*$ and
+  Proposition \ref{7518} we have that $L(\cC(z))\simeq L(\cC/z)$ and, by
+  Corollary $\ref{7613}$, we also know that $L(\cC/z)\simeq L(\cC)/\gamma(z)$, hence
+  $L(\cC(z))\simeq L(\cC)/\gamma(z)$. Notice that $\overline{p}_!$ is equivalent
+  to $\gamma(p)_!\colon L(\cC)/\gamma(x)\rightarrow L(\cC)/\gamma(y)$ and, by
+  essential uniqueness of the adjoints, this also applies to $\gamma(p)^*$ and
   $\overline{p}^*$, therefore $\gamma(p)^*$ has a right adjoint induced by
   $\overline{p}_*$.
 \end{proof}
