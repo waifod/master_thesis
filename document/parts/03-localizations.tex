@@ -14,10 +14,9 @@ from which come all of the materials here presented.
 
 \noindent
 Our exposition is divided in two parts: first we define localizations and show
-some results derived directly from it, while later we present some results which
-allow us to give a better condition of the localization when the starting
+some results derived directly from it, while later we present some facts which
+allow us to give a better description of the localization when the starting
 $\infty$-category has a fibrational structure.
-
 
 \begin{notation}
   We denote generic simplicial sets by $A,B\ldots$, while for
@@ -173,7 +172,7 @@ assumptions.
 \end{rmk}
 
 \begin{rmk}\label{715}
-  7.1.5
+  %7.1.5
 
   In this context, we may define $\overline{W}$, the saturation of $W$ in $C$,
   as the maximal simplicial subset of $C$
@@ -363,7 +362,7 @@ assumptions.
   %7.1.18
 
   Let $u\colon\cC\rightarrow\cD$ be a functor between $\infty$-categories with a
-  fully faithful right adjoint $v$ and consider $W=k(\cD)\times_\cD\cC$, the
+  fully faithful right adjoint $v$ and consider $W\subset\cC$, the
   subcategory of maps of $\cC$ which become invertible in $\cD$. Then $u$
   exhibits $\cD$ as the localization of $\cC$ by $W$.
 \end{prop}
@@ -514,13 +513,13 @@ assumptions.
 %  7.3.11, 7.4.2
 %\end{proof}
 
-\section{Localizations of Fibrational Structures}
+\section{Fibrational Structures}
 
 As anticipated, here we study the localizations of $\infty$-categories $\cC$
-with a fibrational structure, which allows to provide a more explicit
-description of $L(\cC)$ through a \emph{right calculus of fractions}, however,
-we will not be providing the results necessary
-to this description, available in \cite[Ch.\ 7.2-7.4]{Cis19}.
+with a fibrational structure, which allows for a more explicit
+description of $L(\cC)$ through a \emph{right calculus of fractions}. However,
+we will not be providing all of the results necessary
+for this and refer to \cite[Ch.\ 7.2-7.4]{Cis19}.
 
 \noindent
 This generalizes
@@ -528,7 +527,7 @@ previous work by Szumilo and Kapulkin \cite{Szu14,KS15,Kap17}, who proved
 similar results for the simplicial localization of a \emph{fibration category}
 $\cP$ (Def.\ \ref{fibcats})
 by studying the associated \emph{$\infty$-category of frames}, which provides
-a concrete model of $L(\cP)$ and thereby avoids fibrant replacements.
+a concrete model of $L(\cP)$ avoiding fibrant replacements.
 
 \begin{defn}
   An \emph{$\infty$-category with weak equivalences and fibrations} $\cC$ is a
@@ -552,7 +551,7 @@ a concrete model of $L(\cP)$ and thereby avoids fibrant replacements.
       factored as a map in $W$ followed by one in $\fib$.
   \end{enumerate}
   By \emph{fibrant object} we mean an object whose map to the terminal one is in
-  $\fib$ and, if every object is fibrant then $\cC$ is an
+  $\fib$. If every object in $\cC$ is fibrant then we call it an
   \emph{$\infty$-category of fibrant objects}.
 
   \noindent
@@ -738,7 +737,7 @@ a concrete model of $L(\cP)$ and thereby avoids fibrant replacements.
   Let $\bfU$ be a universe and $\cC$ a $\bfU$-small $\infty$-category with weak
   equivalences and fibrations. For any $\infty$-category $\cD$ with $\bfU$-small
   colimits and any functor $F\colon\cC\rightarrow\cD$, we have an isomorphism
-  \[(\gamma_f)_!\iota^*(F)\cong\overline{\iota}^*\gamma_!(F)\]
+  \[(\gamma_f)_!\iota^*(F)\simeq\overline{\iota}^*\gamma_!(F)\]
   induced by the square
   \[\begin{tikzcd}
     {\cC_f} & \cC \\
@@ -748,7 +747,9 @@ a concrete model of $L(\cP)$ and thereby avoids fibrant replacements.
     \arrow["\iota", from=1-1, to=1-2]
     \arrow["{\overline{\iota}}"', from=2-1, to=2-2]
   \end{tikzcd},\]
-  which commutes up to $J$-homotopy.
+  where $\iota$ is the canonical inclusion, $\overline{\iota}$ is induced by the
+  universal property applied to $\gamma\cdot\iota$ and we have commutativity up
+  to $J$-homotopy.
 \end{prop}
 \begin{proof}
   We only need to prove that the evaluation of the canonical map
@@ -761,7 +762,8 @@ a concrete model of $L(\cP)$ and thereby avoids fibrant replacements.
   $\cC/\gamma(x)\rightarrow\cC$ and similarly for $i^*(F)/\gamma_f(x)$. Using
   the commutativity of the square above, we get that the desired
   map is indeed invertible for all $x$ by proving that the functor
-  $\cC_f/\gamma_f(x)\rightarrow\cC/\gamma(x)$ is final.
+  $\cC_f/\gamma_f(x)\rightarrow\cC/\gamma(x)$ is final, which is true
+  by \cite[Thm.\ 7.5.16]{Cis19}.
 \end{proof}
 
 \begin{prop}\label{7518}
@@ -792,7 +794,7 @@ a concrete model of $L(\cP)$ and thereby avoids fibrant replacements.
   indexed by a $\bfU$-small $\infty$-category can be obtained as a colimit of
   representable ones, hence it is enough to check that the condition holds for
   any representable functor $F$. Also, $\gamma_f$ is essentially surjective,
-  which means that it is sufficient to check that the map
+  meaning that it is sufficient to check that the map
   $(\gamma_f)_!\rightarrow\overline{\iota}^*\overline{\iota}_!(\gamma_f)_!$
   (which we get by precomposing the unit with $(\gamma_f)_!$) is invertible.
 
@@ -824,8 +826,8 @@ a concrete model of $L(\cP)$ and thereby avoids fibrant replacements.
   Given an $\infty$-category $\cC$ with weak equivalences and fibrations, we can
   get another one $\overline{\cC}$ with the same underlying $\infty$-category
   and class of fibrations, but where the weak equivalences are given by the
-  saturation $\overline{W}$ as described in \ref{715}. We have that $L(\cC)\cong
-  L(\overline{\cC})$, hence in general we can substitute $\cC$ by
+  saturation $\overline{W}$ as described in Remark \ref{715}. We have that
+  $L(\cC)\simeq L(\overline{\cC})$, hence in general we can substitute $\cC$ by
   $\overline{\cC}$ with no issues. Also, the substitution commutes with the
   formation of slices over fibrant objects, that is, for any fibrant object $x$
   of $\cC$, a map in $\cC/x$ induces invertible in $L(\cC/x)$ if and only
@@ -842,7 +844,7 @@ a concrete model of $L(\cP)$ and thereby avoids fibrant replacements.
   functor of $F$}. Beware that to be precise one would have to specify the
   natural transformation $F\rightarrow\bfR F\cdot\gamma$ exhibiting it as such.
   Dually, a representative of $\Hom(\gamma^*(-),F)$ is the \emph{left derived
-  functor of $F$}. These notions admit a theory which reproduce the
+  functor of $F$}. These notions admit a theory which reproduces the
   corresponding 1-categorical one.
 \end{rmk}
 
@@ -863,35 +865,34 @@ a concrete model of $L(\cP)$ and thereby avoids fibrant replacements.
 \end{proof}
 
 One can not always obtain a left derived functor as in the previous proposition
-because weak equivalences may not always be mapped to isomorphisms,
-however in the 1-categorical case, when working with fibration categories (or
-more commonly with model categories) we can
-define one by taking for every object $x$ a fibrant replacement $x'$ and then
-set $\overline{F}x=Fx'$. The following construction replicates this.
+because not all weak equivalences may be mapped to isomorphisms,
+however in the 1-categorical case, when working with model categories, we can
+define one by taking for every object $x$ a fibrant-cofibrant replacement $x'$
+and then set $\overline{F}x=Fx'$. The following construction replicates this.
 
 \begin{construction}\label{7525}
-  \wfd{(NOT COMPLETE, ONE MAY SHOW THAT OUR CONSTRUCTION DOES GIVE THE RIGHT
-  DERIVED FUNCTOR)}
-
   Let $\cC$ be an $\infty$-category with weak equivalences and fibrations. Any
   functor $F\colon\cC\rightarrow\cD$ sending weak equivalences between fibrant
   objects to invertible maps then has a right derived functor $\bfR F$, which
   may be constructed as follows.
 
+  \noindent
   First we choose a quasi-inverse $R\colon L(\cC)\rightarrow L(\cC_f)$ of the
-  equivalence of $\infty$-categories specified in \ref{7518}, then we pick a
-  functor $\overline{F}\colon L(\cC_f)\rightarrow\cD$ and a natural isomorphism
-  $j\colon\overline{F}\cdot\gamma_f\rightarrow F\cdot\iota$. We set then $\bfR
-  F=\overline{F}\cdot R$.
+  equivalence of $\infty$-categories specified in Prop.\ \ref{7518}, then we
+  pick a functor $\overline{F}\colon L(\cC_f)\rightarrow\cD$ with a natural
+  isomorphism $j\colon\overline{F}\cdot\gamma_f\rightarrow F\cdot\iota$.
+  Finally, we set $\bfR F=\overline{F}\cdot R$.
 
-  What we are doing in this construction is selecting
+  \noindent
+  As anticipated, what we are doing in this construction is selecting
   for every object in $\cC$ a fibrant replacement, exactly like when we talk
-  about right derived functors in the context of model categories. This is
-  necessary because, a priori, we are not sending all weak equivalences to
-  invertible maps in $\cD$, hence we would have to show that before applying the
-  universal property of localizations. Also, for any
-  other functor $G\colon\cD\rightarrow\cE$, we have that $G\cdot\bfR
-  F=\bfR(G\cdot F)$.
+  about right derived functors in the context of model categories.
+  Also, for any other functor $G\colon\cD\rightarrow\cE$, we have that
+  $G\cdot\bfR F=\bfR(G\cdot F)$.
+
+  \noindent
+  It still needs to be verified that the construction does represent
+  $\Hom(F,\gamma^*(-))$, which is done in \cite[Rem.\ 7.5.25]{Cis19}.
 \end{construction}
 
 \begin{defn}
@@ -904,13 +905,19 @@ set $\overline{F}x=Fx'$. The following construction replicates this.
   where $\gamma_\cD$ is the localization functor of of $\cD$ at its weak
   equivalences. This right derived functor of $F$ is denoted by $\bfR F$, that
   is $\bfR F=\bfR(\gamma_{\cD}\cdot F)\colon L(\cC)\rightarrow L(\cD)$, which
-  makes sense since we can apply the construction \ref{7525}.
+  makes sense since we can apply Construction \ref{7525}.
 \end{defn}
 
-There are some interesting remarks which may be included!!!!
+\begin{rmk}
+  The right derived functor of any left exact functor exists by Corollary
+  \ref{7414}. Specifically, the one of the localization functor
+  $\gamma\colon\cC\rightarrow L(\cC)$ for an $\infty$-category with weak
+  equivalences and fibrations $\cC$ is the identity, meaning that the
+  construction is compatible with composition.
+\end{rmk}
 
 \begin{prop}\label{7528}
-  7.5.28
+  %7.5.28
 
   For any left exact functor $F\colon\cC\rightarrow\cD$ between
   $\infty$-categories with weak equivalences and fibrations, the right derived
@@ -932,31 +939,32 @@ There are some interesting remarks which may be included!!!!
   $\infty$-categories and $\overline{F}$ is the functor obtained by restricting
   $F$ to the subcategories of fibrant objects $\cC_f$ and $\cD_f$. It therefore
   suffices to show that $\overline{F}$ is left exact, but this follows from
-  \ref{756}.
+  Proposition \ref{756}.
 \end{proof}
 
 \begin{rmk}
-  \wfd{(WHY DO WE NEED TO SPECIFY THIS?)}
+  %\wfd{(WHY DO WE NEED TO SPECIFY THIS?)}
 
   For the remainder of this chapter, given an $\infty$-category $\cC$,
   subcategories of weak equivalences $W\subset\cC$ are such that the inclusion
   $W\rightarrow\cC$ is an inner fibration. This means that a simplex
   $x\colon\Delta^n\rightarrow\cC$ lies in $W$ if and only if its edges
-  $x|_{\Delta^{\{i,i+1\}}}\colon \{i,i+1\}\rightarrow\cC$ lie in $W$ for $0\leq
-  i<n$.
+  $x|_{\Delta^{\{i,i+1\}}}\colon \{i,i+1\}\rightarrow\cC$ lie in $W$ for all
+  $0\leq i<n$.
 
+  \noindent
   $W$ then contains all invertible maps of $\cC$ if and only if the
   aforementioned inclusion is an isofibration.
 \end{rmk}
 
 \begin{defn}
   Let $\cC$, $\cD$ be $\infty$-categories with subcategories of weak
-  equivalences $W\subset\cC$, $W'\subset\cD$. A functor
+  equivalences $V\subset\cC$, $W\subset\cD$. A functor
   $f\colon\cC\rightarrow\cD$ has the \emph{right approximation property} if the
   following conditions hold:
   \begin{enumerate}
-    \item a morphism in $\cC$ is in $W$ if and only if its image under $f$ is in
-      $W'$;
+    \item a morphism in $\cC$ is in $V$ if and only if its image under $f$ is in
+      $W$;
     \item given objects $c$, $d$ in $\cC$, $\cD$ respectively and a map
       $\psi\colon d\rightarrow f(c)$ in $\cD$, there is a map $\phi\colon
       c'\rightarrow c$ in $\cC$ and a weak equivalence $u\colon d\rightarrow
@@ -972,12 +980,15 @@ There are some interesting remarks which may be included!!!!
   \end{enumerate}
 \end{defn}
 
+As an example, we prove the following.
+
 \begin{prop}\label{762}
-  7.6.2
+  %7.6.2
 
   A functor $f\colon\cC\rightarrow\cD$ between $\infty$-categories such that the
   induced functor on the homotopy categories $ho(f)\colon ho(\cC)\rightarrow
-  ho(\cD)$ is an equivalence of categories has the right approximation property.
+  ho(\cD)$ is an equivalence of categories has the right approximation property
+  if we take $V=k(\cC)$, $W=k(\cD)$ as weak equivalences.
 \end{prop}
 \begin{proof}
   Consider a map $\psi\colon d\rightarrow f(c)$. Since $ho(f)$ is essentially
@@ -991,9 +1002,9 @@ There are some interesting remarks which may be included!!!!
     \arrow["\sim"', from=1-1, to=2-1]
     \arrow["{[\phi]}"', from=2-1, to=1-2]
   \end{tikzcd}\]
-  and, since $ho(f)$ is fully faithful, $\phi$ can be lifted to
-  $\tilde{\phi}\colon c'\rightarrow c$ in $ho(\cC)$. This gives us a commutative
-  triangle
+  and, since $ho(f)$ is fully faithful, $[\phi]$ can be lifted to
+  $[\tilde{\phi}]\colon c'\rightarrow c$ in $ho(\cC)$. This gives us a
+  commutative triangle
   \[\begin{tikzcd}
     d & {f(c)} \\
     {f(c')}
@@ -1012,7 +1023,7 @@ There are some interesting remarks which may be included!!!!
 \begin{exmp}\label{764}
   Given a saturated $\infty$-category with weak equivalences and fibrations
   $\cC$, the localization functor $\cC\rightarrow L(\cC)$ has the right
-  approximation property (\cite[Ex.\ 7.6.4]{Cis19}).
+  approximation property as per \cite[Ex.\ 7.6.4]{Cis19}.
 \end{exmp}
 
 %\begin{lem}
@@ -1030,40 +1041,43 @@ There are some interesting remarks which may be included!!!!
 %\end{proof}
 
 \begin{thm}\label{7610}
-  7.6.10
+  %7.6.10
 
   Let $f\colon\cC\rightarrow\cD$ be a functor between $\infty$-categories with
   finite limits. If $f$ commutes with them, then the following conditions are
   equivalent:
   \begin{enumerate}
     \item the functor $f$ is an equivalence of $\infty$-categories;
-    \item the functor $ho(f)\colon\cC\rightarrow\cD$ is an equivalence of
-      categories;
+    \item the functor $ho(f)\colon ho(\cC)\rightarrow ho(\cD)$ is an equivalence
+      of categories;
     \item the functor $f$ has the right approximation property.
   \end{enumerate}
 \end{thm}
 \begin{proof}
-  7.3.29, 7.6.2, 7.6.5, 7.6.7
+  %7.3.29, 7.6.2, 7.6.5, 7.6.7
 
-  We trivially have that (i) implies (ii) and, by \ref{762}, (iii) follows from
-  (ii), hence we only have to show that (iii) gives (i). Let's assume then that
-  $f$ has the right approximation property.
+  We trivially have that (i) implies (ii) and, by Proposition \ref{762}, (iii)
+  follows from (ii), hence we only have to show that (iii) gives (i).
 
+  \noindent
+  Let's assume then that $f$ has the right approximation property.
   Given a final object $e$ of $\cC$, $f(e)$ is still final in $\cD$ by
-  \ref{7110}, thus for any object $d$ of $\cD$ we have a map $d\rightarrow f(e)$
+  Proposition \ref{7110}, thus for any object $d$ of $\cD$ we have a map
+  $d\rightarrow f(e)$
   and, by the right approximation property, we get a commutative triangle with
-  an isomorphism \wfd{(SPECIFY WHICH STRUCTURE YOU ARE CONSIDERING ON THE
-  $\infty$-CATEGORIES)} $d\rightarrow f(c)$ for some $c$ in $\cC$, which gives
+  an isomorphism $d\rightarrow f(c)$ for some $c$ in $\cC$, which gives
   us essential surjectivity.
 
-  We are still missing full faithfulness. To do this, we use that the right
+  \noindent
+  We are still missing full faithfulness. To prove it, we use that the right
   approximation property implies that we have an equivalence of
-  $\infty$-groupoids $k(f)\colon k(\cC)\rightarrow k(\cD)$ (\cite[Lem.\
-  7.6.7]{Cis19}) and that, for any object $c$ of $\cC$, the map
+  $\infty$-groupoids $k(f)\colon k(\cC)\rightarrow k(\cD)$, as per \cite[Lem.\
+  7.6.7]{Cis19}, and that for any object $c$ of $\cC$ the map
   $\cC/c\rightarrow\cD/f(c)$ induced on the slices still has the right
-  approximation property (\cite[Prop.\ 7.6.7]{Cis19}), therefore again we get an
-  equivalence of $\infty$-groupoids $k(\cC/c)\rightarrow k(\cD/f(c))$.
+  approximation property, which is \cite[Prop.\ 7.6.7]{Cis19}, therefore again
+  we get an equivalence of $\infty$-groupoids $k(\cC/c)\rightarrow k(\cD/f(c))$.
 
+  \noindent
   Keeping these facts in mind, let's look at the projection
   $\cC/c\rightarrow\cC$. This functor is conservative, thus the square
   \[\begin{tikzcd}
@@ -1098,14 +1112,17 @@ There are some interesting remarks which may be included!!!!
     \arrow[from=1-1, to=1-2]
     \arrow[from=2-1, to=2-2]
     \arrow[from=1-1, to=2-1]
-  \end{tikzcd}\]
+  \end{tikzcd},\]
   where the horizontal maps are equivalences of $\infty$-groupoids, the
   induced map $\cC(c',c)\rightarrow\cD(f(c'),f(c))$ is again an equivalence of
   $\infty$-groupoids, which is what we wanted.
 
+  \noindent
   Since $f$ is essentially surjective and fully faithful, it is an equivalence
   of $\infty$-categories.
 \end{proof}
+
+\wfd{(FROM HERE!)}
 
 \begin{cor}\label{7613}
   7.6.13
