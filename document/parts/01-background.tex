@@ -45,6 +45,7 @@ logical ones as presented in \cite[App.\ A.2]{KL12}. Informally, we deal with:
     computation rules.
 \end{enumerate}
 
+\noindent
 Furthermore, we consider the following two rules:
 \begin{enumerate}[resume]
   \item \emph{$\eta$-conversion for functions}: for any type $A$ and any type $B$
@@ -54,6 +55,11 @@ Furthermore, we consider the following two rules:
     $x:A$, given functions $f,g:\Pis(A,B)$, if $\app(f,x)=\app(g,x)$ for every
     $x:A$, then $f=g$.
 \end{enumerate}
+
+\begin{defn}
+  We say that a dependent type theory $\T$ has \emph{$\Pies$-types} if its
+  $\Pi$-types satisfy the $\eta$-conversion for functions.
+\end{defn}
 
 \begin{rmk}
   Observe that when specifying $\eta$-conversion we used a \emph{judgemental
@@ -355,7 +361,7 @@ and \emph{correctness} theorems reminiscent of the ones of \emph{first order
 predicate logic}. In categorical semantics, this corresponds to
 \emph{initiality}.
 
-\begin{named}[Initiality]
+\begin{named}[Initiality]\label{initconj}
   Given a dependent type theory $\T$, its syntactic category $\Syn{\T}$ is
   initial in the category of contextual categories with the appropriate
   structure.
@@ -394,8 +400,9 @@ inductively to a computer how to construct the aforementioned functor.
   as a concrete example, in \cite{KL12}
   one can find a model of Univalent Type Theory produced using Voevodsky's
   previously mentioned methods. More recent results concern the \emph{Internal
-  Languages Conjecture} \cite{KS19}, which was proven in \cite{NU22} and is a
-  direct descendant and a strengthening of Theorem \ref{finalthm}.
+  Languages Conjecture} \cite{KS19} formulated by Kapulkin and Szumilo, which
+  was proven by Nguyen and Uemura in \cite{NU22} and can be seen as a
+  descendant and a strengthening of Theorem \ref{finalthm}.
   \wfd{(UNIVALENT = HOMOTOPY???)}
 \end{rmk}
 
@@ -580,10 +587,10 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
     \arrow["{\app_{A,B}}", curve={height=-12pt}, from=1-1, to=2-3]
     \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
     \arrow["{(1_{p^*_{\Pis(A,B)}A},\app_{A,B})}"{description}, dotted, from=1-1, to=2-2]
-  \end{tikzcd}.\]
+  \end{tikzcd}\]
 \end{rmk}
 
-\begin{construction}
+\begin{construction}\label{idterm}
   Let $\sfC$ be a contextual category with a $\Pis$-structure. We define for any
   object $\Gamma.A$ a map $\id_A\colon\Gamma\rightarrow\Gamma.[A,A]$ as
   $\lambda_{A,p^*_AA}(1_A,1_A)$.
@@ -634,7 +641,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   syntactically corresponds to $\lambda(a:A).\app(f,a):\Pis(A,B)$.
 \end{construction}
 
-\begin{construction}
+\begin{construction}\label{postcomp}
   Let $\sfC$ be a contextual category with a $\Pis$-structure,
   $f\colon\Gamma.A.B\rightarrow\Gamma.A.B'$ a morphism over
   $\Gamma.A$, meaning that in $\Syn{T}$ it is a map $b\mapsto\app(f,b)$ for the
@@ -680,7 +687,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
 
 \begin{notation}
   As noted before, contextual categories with some extra logical structures
-  still define small essentially algebraic theory with sorts indexed by
+  still are models of small essentially algebraic theory with sorts indexed by
   $\bbN+\bbN\times\bbN$. Their categories of models are then specified by
   writing as subscript of $\Cxl$ the corresponding structures, that is we write
   $\Cxl_{\Ids}$, $\Cxl_{\Sigmas,\Ids}$ and so on.

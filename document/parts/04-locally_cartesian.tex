@@ -49,18 +49,18 @@ in \cite[Def.~1.4]{Kap17}.
 \end{rmk}
 
 \begin{rmk}
-  Our definition of bi-invertible map is less general than the original one
-  (which concerns arbitrary contextual categories with an $\Ids$-structure)
-  because that one relies on strong $\Sigmas$-types, which we do not assume.
-  They suggest using the $\Ids$-structure on iterated context extensions
-  as an alternative tool to get the same result in the general case, however we
-  did not provide the construction for arbitrary contextual categories.
+  Our definition of bi-invertible map is less general than the one generally
+  presented (which concerns arbitrary contextual categories with an
+  $\Ids$-structure) because that one relies on strong $\Sigmas$-types, which we
+  do not assume, or on the $\Ids$-structure on iterated context extensions,
+  however we did not provide the construction for arbitrary contextual
+  categories.
 \end{rmk}
 
 \begin{rmk}
-  Our interest in simply bi-invertible morphisms stems from the fact that they
-  model the right notion of invertible map in dependent type theory: indeed,
-  from the
+  Our interest in simply bi-invertible morphisms stems from the fact that simple
+  ones model the right notion of invertible map in dependent type theory:
+  indeed, from the
   required data for a simply bi-invertible map $f$ over $\Gamma$ we can provide
   a section $\Gamma\rightarrow\Gamma.\ishiso{f}$ \wfd{(MAYBE ACTUALLY DO IT?)}
   as defined in \cite[Def.~B.3.3]{KL12}, which itself is the translation into
@@ -78,18 +78,19 @@ in \cite[Def.~1.4]{Kap17}.
 \end{rmk}
 
 \begin{rmk}
-Assuming the Initiality Conjecture, localizing a contextual category with an
-$\Ids$-structure at bi-invertible maps gives us an $\infty$-category modeling a
-dependent type theory with $\Ids$-types. It has been conjectured that such a
-type theory should provide the internal language of $\infty$-categories, but a
-precise statement of this correspondence has not yet been produced and only a
-few results in this direction have been proven so far. A conjecture of this kind
-would amount to an equivalence between an $\infty$-category of contextual
-categories with some extra structures and an $\infty$-category of structured
-$\infty$-categories induced by the localization at bi-invertible maps, which
-means that first have to determine what properties the localization has. Notable
-in this sense is the Internal Languages Conjecture mentioned in Remark
-\ref{internal}.
+  Assuming the Initiality Conjecture \ref{initconj}, localizing a contextual
+  category with an
+  $\Ids$-structure at bi-invertible maps gives us an $\infty$-category modeling a
+  dependent type theory with $\Ids$-types. It has been conjectured that such a
+  type theory should provide the internal language of $\infty$-categories, but a
+  precise statement of this correspondence has not yet been produced and only a
+  few results in this direction have been proven so far. A conjecture of this kind
+  would amount to an equivalence between an $\infty$-category of contextual
+  categories with some extra structures and an $\infty$-category of structured
+  $\infty$-categories induced by the localization at bi-invertible maps, which
+  means that first have to determine what properties the localization has. Notable
+  in this sense is the Internal Languages Conjecture mentioned in Remark
+  \ref{internal}.
 \end{rmk}
 
 To study the localizations of syntactic categories we want to apply
@@ -133,15 +134,17 @@ of fibrations.
   derives our factorization condition from the other properties.
 \end{rmk}
 
+\noindent
 Now we have enough to specify the fibrational structure.
 
 \begin{prop}[\cite{AKL15}]
   Any contextual category with $\Sigmas$-, $\Ids$-, $\Nat$- and
   $\mathsf{1}$-structures $\sfC$ carries the structure of a fibration category,
-  where maps isomorphic to dependent projections are the fibrations and
-  bi-invertible ones are the weak equivalences.
+  where the class of fibrations is given by all maps isomorphic to dependent
+  projections and weak equivalences correspond to all of the bi-invertible ones.
 \end{prop}
 
+\noindent
 The above result can be however generalized.
 
 \begin{prop}\label{fibcat}
@@ -150,8 +153,7 @@ The above result can be however generalized.
   above.
 \end{prop}
 \begin{proof}
-  It suffices to note that at no point the proof by Lumsdaine uses the other
-  structures.
+  It suffices to note that at no point the proof uses the other structures.
 \end{proof}
 
 \begin{rmk}
@@ -160,9 +162,9 @@ The above result can be however generalized.
 \end{rmk}
 
 \begin{rmk}
-  The results as stated rely on the Initiality Conjecture (since in their
-  reasoning the authors used internal languages) and their proof makes use of
-  strong $\Sigmas$-types, which they adopted to say that every dependent
+  The results as stated rely on the Initiality Conjecture \ref{initconj} (since
+  in their reasoning the authors used internal languages) and their proof makes
+  use of strong $\Sigmas$-types, which they adopted to say that every dependent
   projection is isomorphic to a basic one. We
   can avoid relying on strong $\Sigmas$-types by constructing the fibrational
   structure on $\Syn{T}^{cxt}$ (where the condition on dependent projections
@@ -202,14 +204,14 @@ write $\sfC$ for $\Syn{T}$.
   and it is then sufficient to prove that, for any context morphism
   $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$ over
   $\Gamma.\Delta$, there is
-  a unique $\tilde{f}\colon\Gamma.\Psi\rightarrow\Gamma.\Pis(\Delta,\Theta)$
+  a unique $\hat{f}\colon\Gamma.\Psi\rightarrow\Gamma.\Pis(\Delta,\Theta)$
   making the diagram
   \[\begin{tikzcd}
     {\Gamma.\Delta.p^*_\Delta\Psi} \\
     {\Gamma.\Delta.p^*_\Delta\Pis(\Delta,\Theta)} & {\Gamma.\Delta.\Theta}
     \arrow["f", from=1-1, to=2-2]
     \arrow["{\epsilon_{\Gamma.\Delta.\Theta}}"', from=2-1, to=2-2]
-    \arrow["{p^*_\Delta(\tilde{f})}"', dotted, from=1-1, to=2-1]
+    \arrow["{p^*_\Delta(\hat{f})}"', dotted, from=1-1, to=2-1]
   \end{tikzcd}\]
   commute. This will then uniquely define how the right adjoint acts on the
   morphisms.
@@ -226,39 +228,29 @@ write $\sfC$ for $\Syn{T}$.
     \arrow["{p_{\Pis(\Delta,p^*_\Delta\Psi)}}", from=1-2, to=2-2]
     \arrow["{q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))}", from=1-1, to=1-2]
   \end{tikzcd}\]
-  where the map $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ acts as $(y,f)\mapsto
-  f$. If we can provide a section of the left map
+  where the map $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ acts as $(y,g)\mapsto
+  g$. If we can provide a section of the left map
   corresponding to $y\mapsto(y,\lambda(x:\Delta).y)$ we are
   done as we can then compose
   it with $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ to get our unit
   $y\mapsto\lambda(x:\Delta).y$.
   
-  To construct it first we look at the commutative square
-  \[\begin{tikzcd}
-    {\Gamma.\Psi} \\
-    & {\Gamma.\Psi.p^*_\Psi\Psi} & {\Gamma.\Psi} \\
-    & {\Gamma.\Psi} & \Gamma
-    \arrow["{p_\Psi}", from=2-3, to=3-3]
-    \arrow["{p_\Psi}"', from=3-2, to=3-3]
-    \arrow["{p_{p^*_\Psi\Psi}}", from=2-2, to=3-2]
-    \arrow["{q(p_\Psi,\Psi)}"', from=2-2, to=2-3]
-    \arrow[curve={height=12pt}, Rightarrow, no head, from=1-1, to=3-2]
-    \arrow[curve={height=-12pt}, Rightarrow, no head, from=1-1, to=2-3]
-    \arrow["{(1_\Psi,1_\Psi)}"{description}, dotted, from=1-1, to=2-2]
-  \end{tikzcd},\]
-  where the factorization corresponds to $x\mapsto(x,x)$. Then, we pull back
-  along $p_{p^*_\Psi\Delta}$, getting a section
-  $p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi)\colon\Gamma.\Psi.p^*_\Psi\Delta\rightarrow\Gamma.\Psi.p^*_\Psi\Delta.p^*_{p^*_\Psi\Delta}\Psi$.
+  To construct it we pull back the map
+  $\id_{\Psi}\colon\Gamma\rightarrow\Gamma.[\Psi,\Psi]$ from Construction
+  \ref{idterm} along $p_{p^*_\Psi\Delta}$, getting a section
+  \[p^*_{p^*_\Psi\Delta}\id_{\Psi}\colon\Gamma.\Psi.p^*_\Psi\Delta\rightarrow\Gamma.\Psi.p^*_\Psi\Delta.p^*_{p^*_\Psi\Delta}\Psi.\]
 
-  We then apply $\lambda_{\Delta,\Psi}$, which gives us a section
-  \[\lambda_{\Delta,\Psi}(p^*_{p^*_\Psi\Delta}(1_\Psi,1_\Psi))
-    =\lambda(1_{p^*_\Psi\Delta},p_{p^*_\Psi\Delta})
+  We then apply $\lambda_{\Delta,\Psi}$, thereby getting a section
+  \[\lambda_{\Delta,\Psi}(p^*_{p^*_\Psi\Delta}\id_\Psi)
+    =\lambda_{\Delta,\Psi}(1_{p^*_\Psi\Delta},p_{p^*_\Psi\Delta})
 \colon\Gamma.\Psi\rightarrow\Gamma.\Psi.p^*_\Psi\Pis(\Delta,p^*_\Delta\Psi),\]
-which is exactly what we were looking for.
+  which is exactly what we were looking for.
 
-  We then define our lift $\tilde{f}$ as the composite
-  $\Gamma.\Pis(\Delta,f)\cdot\eta_{\Gamma.\Psi}$. The commutativity of the above
-  triangle follows by internal reasoning from
+  \noindent
+  Let us define our lift $\hat{f}$ as the composite
+  $\Gamma.\Pis(\Delta,f)\cdot\eta_{\Gamma.\Psi}$, where $\Gamma.\Pis(\Delta,f)$
+  was specified in Construction \ref{postcomp}. The commutativity of the above
+  triangle follows by type-theoretic reasoning from
   \begin{align*}
     (x,y) \\
     ^{\eta_{\Gamma.\Psi}}
@@ -276,24 +268,31 @@ which is exactly what we were looking for.
   \end{align*}
   and our description of
   $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$ in
-  Remark \ref{applyf}.
-  \wfd{(USED INTERNAL REASONING AGAIN)} while the
-  uniqueness of the $\tilde{f}$ follows from the fact that we can not construct,
+  Remark \ref{applyf}, while the
+  uniqueness of $\hat{f}$ comes from the fact that we can not construct,
   from every term $y:\Psi$, another term
-  $g(y):\Pi(\Delta,\Theta)$ such that $\app(g(y),x)=\app(f,x)$. Indeed, the
-  only way would be through $\eta$-expansion on
-  $\lambda(x:\Delta).\app(f,y)$, but as we noted the
-  $\Pies$-rule implies that this process returns the same term.
+  $g(y):\Pi(\Delta,\Theta)$ such that $\app(g(y),x)\equiv\app(f,y)$ for any
+  $x:\Delta$. Indeed, we can derive
+  \begin{align*}
+    g(y) \\
+         ^{\eta\text{-conversion}}&\equiv\lambda(x:\Delta).\app(g(y),x) \\
+         &\equiv\lambda(x:\Delta).\app(f,y) \\
+         &\equiv\app(\hat{f},y),
+  \end{align*}
+  which concludes the proof.
 
+  \noindent
   This also shows that $(p_{\Delta})_*(f)=\Gamma.\Pis(\Delta,f)$, meaning that
   the construction of $\Gamma.\Pis(\Delta,f)$ is functorial.
 \end{proof}
 
+\noindent
 We know that every fibration in $\sfC$ is isomorphic to a dependent
 projection, so this tells us that every fibration induces an adjunction
 between fibrant slices.
 
-To apply \ref{7616}, we need to show that $(p_\Delta)_*$ is left exact
+\noindent
+To apply Theorem \ref{7616}, we need to show that $(p_\Delta)_*$ is left exact
 (actually, we need to prove that it preserves trivial fibrations, but it
 essentially requires the same amount of work), which we shall do in two steps.
 
@@ -308,7 +307,7 @@ essentially requires the same amount of work), which we shall do in two steps.
   working with $g_1$ and $\eta$ since the other part of the construction
   involving $g_2$ and $\epsilon$ is essentially identical. To do so, we consider
   the commutative diagram
-  \[\begin{tikzcd}
+  \[\begin{tikzcd}[column sep=huge]
     {\Gamma.\Delta.\Psi.(1_\Psi,fg_1)^*\Ids_{\Psi}} & {\Gamma.\Delta.\Psi.p^*_\Psi\Psi.\Ids_\Psi} \\
     {\Gamma.\Delta.\Psi} & {\Gamma.\Delta.\Psi.p^*_\Psi\Psi}
     \arrow["{p_{(1_\Psi,fg_1)^*\Ids_{\Psi}}}", from=1-1, to=2-1]
@@ -319,57 +318,35 @@ essentially requires the same amount of work), which we shall do in two steps.
   \end{tikzcd}\]
   in $\sfC(\Gamma.\Delta)$ and apply the right adjoint $(p_\Delta)_*$, which
   gives us
-  \[\begin{tikzcd}[column sep=huge]
-    {\Gamma.\Pis(\Delta.\Psi.(1_\Psi,fg_1)^*\Ids_{\Psi})} & {\Gamma.\Pis(\Delta.\Psi.p^*_\Psi\Psi.\Ids_\Psi)} \\
-    {\Gamma.\Pis(\Delta.\Psi)} & {\Gamma.\Pis(\Delta,\Psi.p^*_\Psi\Psi)}
-    \arrow["{\Gamma.\Pis(\Delta,p_{(1_\Psi,fg_1)^*\Ids_{\Psi}})}", from=1-1, to=2-1]
-    \arrow["{\Gamma.\Pis(\Delta,\eta)}", curve={height=-12pt}, from=2-1, to=1-1]
-    \arrow["{\Gamma.\Pis(\Delta,p_{\Ids_\Psi})}", from=1-2, to=2-2]
-    \arrow["{\Gamma.\Pis(\Delta,(1_\Psi,fg_1))}"', from=2-1, to=2-2]
-    \arrow["{\Gamma.\Pis(\Delta,q((1_\Psi,fg_1),\Ids_\Psi))}", from=1-1, to=1-2]
-  \end{tikzcd}\]
-  in $\sfC(\Gamma)$.
-
-  We have that
   \begin{align*}
-    \Gamma.\Pis(\Delta,p_{(1_\Psi,fg_1)^*\Ids_{\Psi}})
-    &=\Gamma.\Pis(\Delta,\Psi).\Pis(\Delta,\Psi).\Pis(\Delta,\Ids_\Psi) \\
-    \Gamma.\Pis(\Delta,(1_\Psi,fg_1))
-    &=(\Gamma.\Pis(\Delta,1_\Psi),\Gamma.\Pis(\Delta,fg_1))
-    =(1_{\Pis(\Delta,\Psi)},\Gamma.\Pis(\Delta,f)\cdot
-    \Gamma.\Pis(\Delta,g_1)), \\
-    \Gamma.\Pis(\Delta,p_{(1_\Psi,fg_1)^*\Ids_{\Psi}})
-    &=p_{\Pis(\Delta,\Ids_\Psi)}, \\
-    \Gamma.\Pis(\Delta,q((1_\Psi,fg_1),\Ids_\Psi))
-    &=q((1_{\Pis(\Delta,\Psi)},\Gamma.\Pis(\Delta,fg_1)),
-    \Pis(\Delta,\Ids_\Psi)), \\
-    \Gamma.\Pis(\Delta.\Psi.(1_\Psi,fg_1)^*\Ids_{\Psi})
-    &=\Gamma.\Pis(\Delta,\Psi).
-    (1_{\Pis(\Delta,\Psi)},\Gamma.\Pis(\Delta,fg_1))^*\Ids_{\Pis(\Delta,\Psi)}.
+    (p_\Delta)_*(q((1_\Psi,fg_1),\Ids_\Psi)\cdot\eta) &\colon\Gamma.\Pis(\Delta,\Psi)\rightarrow \\
+                             &\Gamma.\Pis(\Delta,\Psi.p^*_\Psi\Psi.\Ids_\Psi)=
+    \Gamma.\Pis(\Delta,\Psi).p^*_{\Pis(\Delta,\Psi)}\Pis(\Delta,\Psi).\Htp_{\Delta,\Psi}
   \end{align*}
-  Notice that on the right we have suppressed quite a bit of notation in order
-  to avoid making everything unreadable.
-
-  Remember that function
-  extensionality provides us with a map
-  \[\Gamma.\Pis(\Delta,\Psi).\Pis(\Delta,\Psi).\Pis(\Delta,\Ids_\Psi)
+  in $\sfC(\Gamma)$. Postcomposing with the function extensionality map
+  \[\ext_{\Delta,\Psi}\colon
+    \Gamma.\Pis(\Delta,\Psi).p^*_{\Pis(\Delta,\Psi)}\Pis(\Delta,\Psi).\Htp_{\Delta,\Psi}
     \rightarrow
-  \Gamma.\Pis(\Delta,\Psi).\Pis(\Delta,\Psi).\Ids_{\Pis(\Delta,\Psi)}\]
-  over $\Gamma\Pis(\Delta,\Psi).\Pis(\Delta,\Psi)$, which composed with the top
-  map and $\Gamma.\Pis(\Delta,\eta)$ induces a factorization
-  \[\small\begin{tikzcd}
+  \Gamma.\Pis(\Delta,\Psi).p^*_{\Pis(\Delta,\Psi)}\Pis(\Delta,\Psi).\Ids_{\Pis(\Delta,\Psi)},\]
+  we obtain a morphism
+  \[\Gamma.\Pis(\Delta,\Psi)\rightarrow
+  \Gamma.\Pis(\Delta,\Psi).p^*_{\Pis(\Delta,\Psi)}\Pis(\Delta,\Psi).\Ids_{\Pis(\Delta,\Psi)}\]
+  fitting in the commutative diagram
+  \[\scriptsize\begin{tikzcd}[column sep=small]
     {\Gamma.\Pis(\Delta,\Psi)} \\
-    & {\Gamma.\Pis(\Delta,\Psi).(1_{\Psi(\Delta,\Psi)},\Gamma.\Pis(\Delta,(1_\Psi,fg_1))^*\Ids_{\Pis(\Delta,\Psi)}} & {\Gamma.\Pis(\Delta,\Psi).\Pis(\Delta,\Psi).\Ids_{\Pis(\Delta,\Psi)}} \\
-    & {\Gamma.\Pis(\Delta,\Psi)} & {\Gamma.\Pis(\Delta,\Psi).\Pis(\Delta,\Psi)}
-    \arrow["{p_{\Ids(\Delta,\Psi)}}", from=2-3, to=3-3]
+    & {\Gamma.\Pis(\Delta,\Psi).(1_{\Psi(\Delta,\Psi)},\Gamma.\Pis(\Delta,(1_\Psi,fg_1))^*\Ids_{\Pis(\Delta,\Psi)}}
+    & {\Gamma.\Pis(\Delta,\Psi).p^*_{\Pis(\Delta,\Psi)}\Pis(\Delta,\Psi).\Ids_{\Pis(\Delta,\Psi)}} \\
+    & {\Gamma.\Pis(\Delta,\Psi)}
+    & {\Gamma.\Pis(\Delta,\Psi).p^*_{\Pis(\Delta,\Psi)}\Pis(\Delta,\Psi)}
+    \arrow["{p_{\Ids_{\Pis(\Delta,\Psi)}}}", from=2-3, to=3-3]
     \arrow["{(1_{\Psi(\Delta,\Psi)},\Gamma.\Pis(\Delta,(1_\Psi,fg_1)))}"', from=3-2, to=3-3]
     \arrow["{p_{(1_{\Psi(\Delta,\Psi)},\Gamma.\Pis(\Delta,(1_\Psi,fg_1))^*\Ids_{\Pis(\Delta,\Psi)}}}", from=2-2, to=3-2]
     \arrow[from=2-2, to=2-3]
     \arrow[curve={height=-12pt}, from=1-1, to=2-3]
-    \arrow[curve={height=18pt}, Rightarrow, no head, from=1-1, to=3-2]
+    \arrow[curve={height=30pt}, Rightarrow, no head, from=1-1, to=3-2]
     \arrow[dotted, from=1-1, to=2-2]
-  \end{tikzcd},\]
-  which is what we needed.
+  \end{tikzcd}\]
+  and thereby inducing the factorization shown, which is what we needed.
 \end{proof}
 
 \begin{lem}[\cite{Kap17}]\label{lccfc}
@@ -386,11 +363,13 @@ essentially requires the same amount of work), which we shall do in two steps.
 Again, the above extends to all fibrations in $\sfC$ and it allows to prove our
 desired result.
 
-\begin{thm}[\cite{Kap17}]\label{finalthm}
-  The $\infty$-category $L(\sfC)$ is locally cartesian closed.
+\begin{thm}[\cite{Kap14}]\label{finalthm}
+  Given a dependent type theory with $\Sigmas$-, $\Ids$-, $\Pies$-types and
+  function extensionality $\T$ the $\infty$-category $L(\Syn{T})$ is locally
+  cartesian closed.
 \end{thm}
 \begin{proof}
-  We already know that it is finitely complete by \ref{fincompl1}. The
+  We already know that it is finitely complete by Corollary \ref{fincompl1}. The
   hypothesis of Theorem \ref{7616} are satisfied by Lemma \ref{radj} and Lemma
   \ref{lccfc}.
 \end{proof}
