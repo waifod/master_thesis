@@ -599,7 +599,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
 \begin{construction}\label{applyf}
   Let $\sfC$ be a contextual category with a $\Pis$-structure,
   $f\colon\Gamma.A\rightarrow\Gamma.B$ a map over $\Gamma$. We want to provide
-  a section $\tilde{f}\colon\Gamma\rightarrow\Gamma.\Pis(A,B)$ corresponding to
+  a section $\hat{f}\colon\Gamma\rightarrow\Gamma.\Pis(A,B)$ corresponding to
   $f$. We do so by looking at the commutative diagram
   \[\begin{tikzcd}
     {\Gamma.A} \\
@@ -632,11 +632,11 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   we see that $f$ acts as
   \begin{align*}
     a \\
-    ^{q(p_{p^*_AB},\lambda_{A,p^*_AB}(1_A,f))}&\mapsto(a,\tilde{f}) \\
-    ^{\app_{A,B}}&\mapsto(a,\app(\tilde{f},a)) \\
-    ^{q(p_A,B)}&\mapsto\app(\tilde{f},a).
+    ^{q(p_{p^*_AB},\lambda_{A,p^*_AB}(1_A,f))}&\mapsto(a,\hat{f}) \\
+    ^{\app_{A,B}}&\mapsto(a,\app(\hat{f},a)) \\
+    ^{q(p_A,B)}&\mapsto\app(\hat{f},a).
   \end{align*}
-  This justifies writing $f$ for $\tilde{f}$ and $(1_A,f)$ then acts as
+  This justifies writing $f$ for $\hat{f}$ and $(1_A,f)$ then acts as
   $a\mapsto(a,\app(f,a))$, meaning that $\lambda_{A,p^*_AB}(1_A,f)$
   syntactically corresponds to $\lambda(a:A).\app(f,a):\Pis(A,B)$.
 \end{construction}
