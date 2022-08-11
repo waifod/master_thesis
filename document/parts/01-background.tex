@@ -567,6 +567,8 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   $\Gamma.A\rightarrow\Gamma.A.B$ corresponds to \emph{lambda
   abstraction}, hence $\lambda_{A,B}(b)$ specifies the term
   $\lambda(a:A).b(a):\Pis(A,B)$.
+
+  \noindent
   The map on the left of the definition of the $\Pies$-rule is the
   \emph{$\eta$-expansion map}, that is it corresponds syntactically to the map
   \[f\mapsto\lambda(a:A).\app(f,a)\] over $\Gamma$, thus
@@ -574,6 +576,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   \[\Gamma\vdash f\equiv\lambda(a:A).\app(f,a):\Pis(A,B)\]
   which corresponds to $\eta$-conversion.
 
+  \noindent
   The map $(1_{p^*_{\Pis(A,B)}A},\app_{A,B})$ is specified by the following
   factorization through the pullback.
   \[\begin{tikzcd}[column sep=huge]
@@ -636,9 +639,9 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
     ^{\app_{A,B}}&\mapsto(a,\app(\hat{f},a)) \\
     ^{q(p_A,B)}&\mapsto\app(\hat{f},a).
   \end{align*}
-  This justifies writing $f$ for $\hat{f}$ and $(1_A,f)$ then acts as
-  $a\mapsto(a,\app(f,a))$, meaning that $\lambda_{A,p^*_AB}(1_A,f)$
-  syntactically corresponds to $\lambda(a:A).\app(f,a):\Pis(A,B)$.
+  This justifies abusing the notation to write $f$ for $\hat{f}$ and $(1_A,f)$
+  then acts as $a\mapsto(a,\app(f,a))$, meaning that $\lambda_{A,p^*_AB}(1_A,f)$
+  corresponds to $\lambda(a:A).\app(f,a):\Pis(A,B)$ in $\Syn{T}$.
 \end{construction}
 
 \begin{construction}\label{postcomp}
