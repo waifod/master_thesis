@@ -272,8 +272,9 @@ write $\sfC$ for $\Syn{T}$.
   Remark \ref{applyf}, while the
   uniqueness of $\tilde{f}$ comes from the fact that we can not construct,
   from every term $y:\Psi$, another term
-  $g(y):\Pi(\Delta,\Theta)$ such that $\app(g(y),x)\equiv\app(f,y)$ for any
-  $x:\Delta$. Indeed, we can derive
+  $g(y):\Pi(\Delta,\Theta)$ such that
+  \[\Gamma, x:\Delta\vdash\app(g(y),x)\equiv\app(f,y):\Theta.\]
+  Indeed, we can derive
   \begin{align*}
     g(y) \\
          ^{\eta\text{-conversion}}&\equiv\lambda(x:\Delta).\app(g(y),x) \\
