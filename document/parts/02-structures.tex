@@ -3,8 +3,8 @@
 The aim of this section is to construct from a given contextual category $\sfC$
 with extra structure another contextual category $\sfC^{cxt}$ with the same
 structure, but where objects are iterated context extensions, compatibly with a
-canonical contextual functor $\sfC\rightarrow\sfC^{cxt}$ defining an equivalence
-on the underlying categories, thereby
+canonical contextual functor $\sfC\hookrightarrow\sfC^{cxt}$ defining an
+equivalence on the underlying categories, thereby
 generalizing our structures from simple context extensions to arbitrary ones.
 Indeed, we may then take a context extension, look at it in $\sfC^{cxt}$, apply
 the construction and then carry it back through the equivalence. This extension
@@ -13,19 +13,56 @@ been mentioned multiple times in the literature to justify various results at a
 certain level of generality, however nobody actually carried out the necessary
 constructions.
 
+\section{Extended Logical Rules}
+
+On the type theoretical side, extensions of logical rules for $\Ids$-types to
+contexts were first explored by Streicher \cite{Str93}, then by Gambino and
+Garner \cite{GG08} under the name of \emph{identity contexts}, also called
+$\Ids$-contexts. Following them,
+we want to provide such extensions for $\Pis$-types and define from a derivation
+\[\Gamma,x:\Delta\vdash \Theta \text{ context}\]
+a $\Pis$-context $\Pis(\Delta,\Theta)$ in context $\Gamma$, a contextual
+function application and so on.
+
+\begin{notation}
+  We shall make use of theirs, meaning that we write
+  \[\Gamma\vdash x:\Delta\]
+  for a ``term'' $x$ of a derivable context $\Delta$ in context $\Gamma$. Such a
+  term is a tuple of terms $a_1:A_1,\ldots,a_m:A_m$ such that
+  \[\Gamma,a_1:A_1,\ldots a_{i-1}:A_{i-1}\vdash a_i:A_i\]
+  for each $i$, as usual. We can also split it as $a_1:A_1,x':\Delta'$ and write
+  \[\Gamma\vdash a_1:A_1,x':\Delta'(a_1).\]
+
+  Similarly, in
+  \[\Gamma,x:\Delta\vdash y(x):\Theta(x)\]
+  $y(x)$ represents a tuple of terms
+  $b_1(x):B_1(x),\ldots,b_n(x,b_{<n}):B_n(x,b_{<n})$
+  where
+  \[\Gamma,x:\Delta,
+    b_1(x):B_1(x),\ldots,b_{i-1}(x,b_{<i-1}):B_{i-1}(x,b_{<i-1})
+  \vdash b_i(x,b_{<i}):B_i(x,b_{<i})\]
+  for all $i$, meaning that they depend explicitly on $x:\Delta$. Here we have
+  written $b_{<j}$ as a shorthand for the tuple of the $b_k$ with $k<j$.
+\end{notation}
+
+We shall proceed by induction on the lengths of the context extensions
+$\Delta=A_1,\ldots,A_m$, $\Theta=B_1,\ldots,B_n$.
+
+\begin{construction}[Part 1]
+  In this first part we keep $n=1$ and induct on $m$, taking the usual logical
+  rules for $m=1$, meaning that we only have to work on the inductive step.
+
+  \noindent
+  Let's assume then that $m>1$ and to have already provided everything for
+  shorter context extensions. We can split $\Delta$ as $A,\Delta'$ and similarly
+  $x:\Delta$ as $a:A,x':\Delta'$.
+\end{construction}
+
 \section{Constructions}
 
-On the type theoretical side, extensions of logical rules for identity types to
-contexts were first explored by Streicher \cite{Str93}, then by Gambino and
-Garner \cite{GG08} under the name of \emph{identity contexts}. We shall make use
-of their notation, meaning that a ``term'' of a context $x:\Delta$ is a tuple of
-choices $a_1:A_1,\ldots,a_n:A_n$ and therefore we can split it as
-$a_1:A_1,x':\Delta'$.
-
-Lumsdaine later
-claimed that it is possible to model this extension and similar ones for
-$\Sigmas$- and $\Pis$-structures in $\sfC^{cxt}$ \cite[26]{Lum10}. At the time
-Kapulkin proved the theorem this thesis focuses on,
+Lumsdaine claimed that it is possible to provide extensions of the logical
+structures on a contextual category in \cite[26]{Lum10}. At the
+time Kapulkin proved the theorem this thesis focuses on,
 nothing further was available in the literature and only later him and
 Lumsdaine gave more details on these matters \cite{KL18}. In this section we aim
 to partially fix that for $\Pis$-structures specifically, which will be the main
