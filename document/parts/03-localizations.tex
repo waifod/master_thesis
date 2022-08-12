@@ -7,7 +7,7 @@ of $\infty$-categories, which in our case will be quasi-categories. We shall
 provide such a theory as
 developed by Cisinski in \cite[Ch.\ 7]{Cis19} with the aim of
 proving Theorem \ref{7616}, which will do the heavy lifting in showing
-the desired result. Those familiar with the theory may skip the entire chapter
+Theorem \ref{finalthm}. Those familiar with the theory may skip the entire chapter
 keeping in mind the aforementioned theorem, while those who do not know it may
 read it for a quick tour. We recommend however to consult the original source,
 which provides all of the intermediate results and details we gloss over in our
@@ -168,11 +168,43 @@ assumptions.
 
 \begin{rmk}\label{714}
   Through our construction above, one can always choose $L(C)$ so that $\gamma$
-  is a bijection on objects because $C'\rightarrow
-  L(C)$ is an inner anodyne extension and therefore a retract of a countable
+  is a bijection on objects because $C'\rightarrow L(C)$ is an inner anodyne
+  extension and therefore a retract of a countable
   composition of sums of pushouts of maps which are the identity on objects,
   that is the inner horn inclusions.
 \end{rmk}
+
+\begin{rmk}
+  Writing $\weCat$ for the category of \emph{relative categories}
+  \cite{BK12}, there are various ways to construct a localization functor
+  $\weCat\rightarrow\Cat_\infty$ in the literature and Kapulkin refers to
+  simplicial localization when stating Theorem \ref{finalthm} in
+  \cite{KS14}, however it was shown that they are all weakly equivalent (see
+  \cite[Ex.\ 1.6.3]{Bar16}), meaning
+  that they are linked by natural transformations whose arrows are equivalences
+  of $\infty$-categories. In particular, they correspond homotopically to
+  $(\cC,W)\mapsto L(N(\cC))$, where we are localizing $N(\cC)$ at the
+  1-simplices specified by $W$.
+\end{rmk}
+
+\begin{rmk}
+  %7.1.6
+
+  Given an $\infty$-category $\cC$ and a simplicial subset $W$, the functor
+  $ho(\cC)\rightarrow ho(L(\cC))$ exhibits $ho(L(\cC))$ as the
+  1-categorical localization of $\cC$ at $\Arr(\tau(W))$, as can be seen by
+  using the universal property.
+
+  \noindent
+  On the other hand, given a 1-category $\cC$ and considered a set of
+  morphisms $W$, not necessarily the induced map $L(N(\cC))\rightarrow
+  N(L(\cC))$ is an isomorphism. Indeed, $L(N(\cC))$ can have much better
+  properties, as can be seen for example from Proposition \ref{7518}, and in
+  fact localizing nerves of 1-categories gives every $\infty$-category as shown
+  in \cite[Prop.\ 7.3.15]{Cis19}. It should be noted that here we used $L(-)$
+  to refer both to the 1-categorical and the $\infty$-categorical localization.
+\end{rmk}
+
 
 \begin{rmk}\label{715}
   %7.1.5
@@ -203,23 +235,6 @@ assumptions.
 
   \noindent
   We shall say that $W$ is \emph{saturated} if $W=\overline{W}$.
-\end{rmk}
-
-\begin{rmk}
-  %7.1.6
-
-  Given an $\infty$-category $\cC$ and a simplicial subset $W$, the functor
-  $ho(\cC)\rightarrow ho(L(\cC))$ exhibits $ho(L(\cC))$ as the
-  1-categorical localization of $\cC$ at $\Arr(\tau(W))$, as can be seen by
-  using the universal property.
-
-  \noindent
-  On the other hand, given a 1-category $\cC$ and considered a set of
-  morphisms $W$, not necessarily the induced map $L(N(\cC))\rightarrow
-  N(L(\cC))$ is an isomorphism. Indeed, $L(N(\cC))$ can have much better
-  properties, as can be seen for example from \ref{756}, and in fact localizing
-  1-categories after taking their nerves gives every $\infty$-category as shown
-  in \cite[Prop.\ 7.3.15]{Cis19}.
 \end{rmk}
 
 \begin{rmk}
@@ -563,8 +578,6 @@ a concrete model of $L(\cP)$ avoiding fibrant replacements.
   We shall call \emph{weak equivalences} the maps in $W$ and \emph{fibrations}
   the ones in $\fib$. Maps which are both shall be referred to as \emph{trivial
   fibrations}.
-
-  \wfd{CHECK DEF}
 \end{defn}
 
 \begin{construction}\label{fincomplarefib}

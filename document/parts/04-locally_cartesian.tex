@@ -112,7 +112,8 @@ of fibrations.
 \end{defn}
 
 \begin{rmk}
-  Seeing $\cP$, $W$ and $\fib$ in the above definition as $\infty$-categories, we
+  Seeing $\cP$, $W$ and $\fib$ in the above definition as $\infty$-categories by
+  applying the nerve functor, we
   notice that the triple has canonically the structure of an $\infty$-category
   of fibrant objects, hence we shall adopt the conventions we used in that
   context.
@@ -175,7 +176,7 @@ The above result can be however generalized.
 
 \begin{cor}\label{fincompl1}
   Given a dependent type theory with $\Sigmas$- and $\Ids$-types $\T$, the
-  $\infty$-category $L(\Syn{T})$ is finitely complete.
+  $\infty$-category $L(N(\Syn{T}))$ is finitely complete.
 \end{cor}
 \begin{proof}
   It follows directly from Proposition \ref{fibcat} and Proposition \ref{7518}.
@@ -204,14 +205,14 @@ write $\sfC$ for $\Syn{T}$.
   and it is then sufficient to prove that, for any context morphism
   $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$ over
   $\Gamma.\Delta$, there is
-  a unique $\hat{f}\colon\Gamma.\Psi\rightarrow\Gamma.\Pis(\Delta,\Theta)$
+  a unique $\tilde{f}\colon\Gamma.\Psi\rightarrow\Gamma.\Pis(\Delta,\Theta)$
   making the diagram
   \[\begin{tikzcd}
     {\Gamma.\Delta.p^*_\Delta\Psi} \\
     {\Gamma.\Delta.p^*_\Delta\Pis(\Delta,\Theta)} & {\Gamma.\Delta.\Theta}
     \arrow["f", from=1-1, to=2-2]
     \arrow["{\epsilon_{\Gamma.\Delta.\Theta}}"', from=2-1, to=2-2]
-    \arrow["{p^*_\Delta(\hat{f})}"', dotted, from=1-1, to=2-1]
+    \arrow["{p^*_\Delta(\tilde{f})}"', dotted, from=1-1, to=2-1]
   \end{tikzcd}\]
   commute. This will then uniquely define how the right adjoint acts on the
   morphisms.
@@ -247,7 +248,7 @@ write $\sfC$ for $\Syn{T}$.
   which is exactly what we were looking for.
 
   \noindent
-  Let us define our lift $\hat{f}$ as the composite
+  Let us define our lift $\tilde{f}$ as the composite
   $\Gamma.\Pis(\Delta,f)\cdot\eta_{\Gamma.\Psi}$, where $\Gamma.\Pis(\Delta,f)$
   was specified in Construction \ref{postcomp}. The commutativity of the above
   triangle follows by type-theoretic reasoning from
@@ -269,7 +270,7 @@ write $\sfC$ for $\Syn{T}$.
   and our description of
   $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$ in
   Remark \ref{applyf}, while the
-  uniqueness of $\hat{f}$ comes from the fact that we can not construct,
+  uniqueness of $\tilde{f}$ comes from the fact that we can not construct,
   from every term $y:\Psi$, another term
   $g(y):\Pi(\Delta,\Theta)$ such that $\app(g(y),x)\equiv\app(f,y)$ for any
   $x:\Delta$. Indeed, we can derive
@@ -277,7 +278,7 @@ write $\sfC$ for $\Syn{T}$.
     g(y) \\
          ^{\eta\text{-conversion}}&\equiv\lambda(x:\Delta).\app(g(y),x) \\
          &\equiv\lambda(x:\Delta).\app(f,y) \\
-         &\equiv\app(\hat{f},y),
+         &\equiv\app(\tilde{f},y),
   \end{align*}
   which concludes the proof.
 
@@ -329,10 +330,10 @@ essentially requires the same amount of work), which we shall do in two steps.
     \rightarrow
   \Gamma.\Pis(\Delta,\Psi).p^*_{\Pis(\Delta,\Psi)}\Pis(\Delta,\Psi).\Ids_{\Pis(\Delta,\Psi)},\]
   we obtain a morphism
-  \[\Gamma.\Pis(\Delta,\Psi)\rightarrow
+  \[h\colon\Gamma.\Pis(\Delta,\Psi)\rightarrow
   \Gamma.\Pis(\Delta,\Psi).p^*_{\Pis(\Delta,\Psi)}\Pis(\Delta,\Psi).\Ids_{\Pis(\Delta,\Psi)}\]
   fitting in the commutative diagram
-  \[\scriptsize\begin{tikzcd}[column sep=small]
+  \[\scriptsize{\begin{tikzcd}[column sep=small]
     {\Gamma.\Pis(\Delta,\Psi)} \\
     & {\Gamma.\Pis(\Delta,\Psi).(1_{\Psi(\Delta,\Psi)},\Gamma.\Pis(\Delta,(1_\Psi,fg_1))^*\Ids_{\Pis(\Delta,\Psi)}}
     & {\Gamma.\Pis(\Delta,\Psi).p^*_{\Pis(\Delta,\Psi)}\Pis(\Delta,\Psi).\Ids_{\Pis(\Delta,\Psi)}} \\
@@ -342,14 +343,14 @@ essentially requires the same amount of work), which we shall do in two steps.
     \arrow["{(1_{\Psi(\Delta,\Psi)},\Gamma.\Pis(\Delta,(1_\Psi,fg_1)))}"', from=3-2, to=3-3]
     \arrow["{p_{(1_{\Psi(\Delta,\Psi)},\Gamma.\Pis(\Delta,(1_\Psi,fg_1))^*\Ids_{\Pis(\Delta,\Psi)}}}", from=2-2, to=3-2]
     \arrow[from=2-2, to=2-3]
-    \arrow[curve={height=-12pt}, from=1-1, to=2-3]
+    \arrow["h", curve={height=-12pt}, from=1-1, to=2-3]
     \arrow[curve={height=30pt}, Rightarrow, no head, from=1-1, to=3-2]
     \arrow[dotted, from=1-1, to=2-2]
-  \end{tikzcd}\]
+  \end{tikzcd}}\]
   and thereby inducing the factorization shown, which is what we needed.
 \end{proof}
 
-\begin{lem}[\cite{Kap17}]\label{lccfc}
+\begin{lem}[\cite{Kap14}]\label{lccfc}
   In the above conditions, the functor
   $(p_\Delta)_*\colon\sfC(\Gamma.\Delta)\rightarrow\sfC(\Gamma)$ is left exact.
 \end{lem}
@@ -365,7 +366,7 @@ desired result.
 
 \begin{thm}[\cite{Kap14}]\label{finalthm}
   Given a dependent type theory with $\Sigmas$-, $\Ids$-, $\Pies$-types and
-  function extensionality $\T$ the $\infty$-category $L(\Syn{T})$ is locally
+  function extensionality $\T$, the $\infty$-category $L(N(\Syn{T}))$ is locally
   cartesian closed.
 \end{thm}
 \begin{proof}

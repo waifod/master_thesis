@@ -262,9 +262,11 @@ of a dependent type theory}, which is constructed as follows.
   \end{tikzcd},\]
   which also shows that
   $$q(f,A_1.\ldots.A_k)=q(q(f,A_1),A_2.\ldots.A_k)=q(q(f,A_1.\ldots.A_{k-1}),A_k).$$
-  As usual, if $k=0$ we have $q(f,\Theta)=f$, $f^*(\Gamma.\Theta)=\Gamma$, while
-  for $k=1$ we have $q(f,A_1)=q(f,\Gamma.A_1)$, $\Delta.f^*A_1=f^*(\Gamma.A_1)$
-  agreeing with the base structure of $\sfC$.
+  As usual, if $k=0$ we have 
+  \[q(f,\Theta)=f,\quad f^*(\Gamma.\Theta)=\Gamma,\]
+  while for $k=1$
+  \[q(f,A_1)=q(f,\Gamma.A_1),\quad \Delta.f^*A_1=f^*(\Gamma.A_1),\]
+  therefore agreeing with the base structure of $\sfC$.
 
   Finally, given a section $a\colon\Gamma\rightarrow\Gamma.A$ and a context
   morphism $f\colon\Delta\rightarrow\Gamma$, we also want to specify $f^*a$,
@@ -302,12 +304,17 @@ of a dependent type theory}, which is constructed as follows.
   arbitrary length.
 
   Finally, when reasoning in a syntactic category, to specify a map
-  $[f]\colon[\Gamma,a_1:A_1,\ldots,a_n:A_n]\rightarrow[\Gamma,b_1:B_1,\ldots,b_m:B_m]$
+  $$[f]\colon[\Gamma,a_1:A_1,\ldots,a_n:A_n]\rightarrow[\Gamma,b_1:B_1,\ldots,b_m:B_m]$$
   stable over $\Gamma$ (that is acting like the identity on the corresponding
   variables) we can suppress the corresponding terms in the tuple. To
   produce such a map, we shall write then
-  $(a_1,\ldots,a_n)\mapsto(f_1,\ldots,f_m)$, in order to clarify how to
-  construct the $f_i$ from the variables in the domain context.
+  $$(a_1,\ldots,a_n)\mapsto(f_1,\ldots,f_m),$$ in order to clarify how to
+  construct the $f_i$ from the variables in the domain context. We will also
+  write
+  \[(f_1,\ldots,f_n)\equiv(g_1,\ldots,g_n)\]
+  if we have
+  $$\Gamma\vdash f_i\equiv g_i : B_i(f_1,\ldots,f_{i-1})$$
+  for every $i$.
 \end{notation}
 
 \begin{rmk}
@@ -632,7 +639,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
     &=f\cdot
     a
   \end{align*}
-  we see that $f$ acts as
+  we see $f$ acting as
   \begin{align*}
     a \\
     ^{q(p_{p^*_AB},\lambda_{A,p^*_AB}(1_A,f))}&\mapsto(a,\hat{f}) \\
