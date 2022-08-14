@@ -32,6 +32,7 @@ Black-Massey theorem, presented in the language of Homotopy Type Theory
   for a dependent term or suppress individual dependencies.
 \end{notation}
 
+\noindent
 We will be considering the structural rules from \cite[App.\ A.1]{KL12} and some
 logical ones as presented in \cite[App.\ A.2]{KL12}. Informally, we deal with:
 \begin{enumerate}
@@ -87,8 +88,9 @@ the handling of the structural rules, namely context substitution, variable
 binding, variable substitution and so on. To avoid this issue, it is convenient
 to work within a \emph{semantic model}, which we now present.
 
+\noindent
 There are many algebraic models of dependent type theory in the literature meant
-to only model these rules, like
+to only satisfy these rules, like
 \emph{category with attributes}, \emph{categories with families} and
 \emph{comprehension categories}, which are
 fairly similar among them.
@@ -145,6 +147,7 @@ others we refer to \cite{nlab:categorical_model_of_dependent_types}.
   an equivalent model of the same kind but with functorial pullbacks.
 \end{rmk}
 
+\noindent
 A motivating example for contextual categories is the \emph{syntactic category
 of a dependent type theory}, which is constructed as follows.
 
@@ -212,6 +215,7 @@ of a dependent type theory}, which is constructed as follows.
   refer to sections of basic dependent projections, without specifying which
   projections unless it creates ambiguity.
 
+\noindent
   The above construction also tells us how to think about the other elements in
   the definition of contextual categories: basic dependent
   projections $p_{\Gamma.A.B}\colon\Gamma.A.B\rightarrow\Gamma.A$ represent
@@ -269,7 +273,8 @@ of a dependent type theory}, which is constructed as follows.
   \[q(f,A_1)=q(f,\Gamma.A_1),\quad \Delta.f^*A_1=f^*(\Gamma.A_1),\]
   therefore agreeing with the base structure of $\sfC$.
 
-  Finally, given a section $a\colon\Gamma\rightarrow\Gamma.A$ and a context
+\noindent
+  Furthermore, given a section $a\colon\Gamma\rightarrow\Gamma.A$ and a context
   morphism $f\colon\Delta\rightarrow\Gamma$, we also want to specify $f^*a$,
   that is the section which we get by switching context. This is given by
   the map $(1_{\Delta},a\cdot f)$ specified by the pullback square
@@ -304,14 +309,14 @@ of a dependent type theory}, which is constructed as follows.
   provided earlier, we extend this construction to contexts extensions of
   arbitrary length.
 
+\noindent
   Finally, when reasoning in a syntactic category, to specify a map
   $$[f]\colon[\Gamma,a_1:A_1,\ldots,a_n:A_n]\rightarrow[\Gamma,b_1:B_1,\ldots,b_m:B_m]$$
   stable over $\Gamma$ (that is acting like the identity on the corresponding
   variables) we can suppress the corresponding terms in the tuple. To
   produce such a map, we shall write then
-  $$(a_1,\ldots,a_n)\mapsto(f_1,\ldots,f_m),$$ in order to clarify how to
-  construct the $f_i$ from the variables in the domain context. We will also
-  write
+  $$(a_1,\ldots,a_n)\mapsto(f_1,\ldots,f_m)$$ and clarify how to construct the
+  $f_i$ from the variables in the domain context. We will also write
   \[(f_1,\ldots,f_n)\equiv(g_1,\ldots,g_n)\]
   if we have
   $$\Gamma\vdash f_i\equiv g_i : B_i(f_1,\ldots,f_{i-1})$$
@@ -347,6 +352,7 @@ of a dependent type theory}, which is constructed as follows.
   models we mentioned.
 \end{rmk}
 
+\noindent
 As we stated, the defining properties of contextual
 categories are meant to model structural rules, so that we can reason about
 dependent type theories in terms of pullbacks, sections and so on while
@@ -359,6 +365,7 @@ categories was developed by Voevodsky in \cite{Voe14b,Voe14b,Voe15a,Voe15b},
   where he starts from a \emph{universe category}.
 \end{exmp}
 
+\noindent
 On the other hand, as noted in \cite[par.\ 1.2]{KL12}, interpreting complicated
 structures in
 contextual categories quickly becomes unreadable, meaning that ideally we would
@@ -394,6 +401,7 @@ which has been worked on in \cite{Isa17, Uem19, Bru20, BHL20, NU22}. \wfd{(ARE
 YOU SURE ABOUT THESE CITATIONS?)}
 \end{rmk}
 
+\noindent
 If we could prove it, then, under the proper conditions,
 for any contextual category $\sfC$ we would have a
 contextual functor $\Syn{\T}\rightarrow\sfC$ explaining how to interpret $\T$ in
@@ -482,7 +490,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   \end{enumerate}
 \end{defn}
 
-\begin{defn}
+\begin{defn}\label{appcomposed}
   A \emph{$\Pis$-structure} on a contextual category $\sfC$ consists of:
   \begin{enumerate}
     \item for each $\Gamma.A.B\in\Ob_{n+2}\sfC$, an object
@@ -511,8 +519,9 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
         \arrow["{(k,a)}"{description}, dotted, from=1-1, to=2-2]
       \end{tikzcd},\]
       we have $p_B\cdot\app_{A,B}(k,a)=a$;
-    \item such that for any $\Gamma.A.B$, $a\colon\Gamma\rightarrow\Gamma.A$
-      and $b\colon\Gamma.A\rightarrow\Gamma.A.B$ we have
+    \item such that for any $\Gamma.A.B$ and sections
+      $a\colon\Gamma\rightarrow\Gamma.A$,
+      $b\colon\Gamma.A\rightarrow\Gamma.A.B$ we have
       \[\app(\lambda_{A,B}(b),a)=b\cdot a;\]
     \item all of the above is compatible with context substitution, that is for
       any $f\colon\Delta\rightarrow\Gamma$ we have
@@ -523,12 +532,14 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
       \end{align*}
   \end{enumerate}
 
+\noindent
   We shall say that the $\Pis$-structure satisfies the
   \emph{$\Pies$-rule} if the equation
   \[q(p_{\Pis(A,B)},\Pis(A,B))\cdot\lambda(1_{p^*_{\Pis(A,B)}A},\app_{A,B})=1_{\Gamma.\Pis(A,B)}\]
   is satisfied, in which case the structure will be called a
   \emph{$\Pies$-structure}. 
 
+\noindent
   A \emph{$\Piext$-structure} on a contextual category with a $\Pis$-structure
   $\sfC$ is an operation giving for each $\Gamma.A.B\in\Ob_{n+2}\sfC$ a map
   \begin{align*}
@@ -552,15 +563,10 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   The definition we provided matches \cite[Def.~2.5]{KL18}, while the one in
   \cite[App.~B.1.1]{KL12} is mildly different as it starts from
   $\app(f,a)$ instead of $\app_{A,B}$ and constructs the latter from the
-  former. We prefer this because it will allow us to more easily extend the
+  former. We prefer ours because it will allow us to more easily extend the
   $\Pis$-structure to arbitrary context extensions and check the necessary
-  properties in the next chapter.
+  properties in Chapter \ref{second}.
 \end{rmk}
-
-\begin{notation}
-  Given $\Gamma.A,\Gamma.B\in\Ob_{n+1}\sfC$, we write $\Gamma.[A,B]$ for
-  $\Gamma.\Pis(A,p^*_AB)$.
-\end{notation}
 
 \begin{exmp}
   Given a dependent type theory $\T$, its syntactic category $\Syn{T}$ has all
@@ -602,7 +608,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
 
 \begin{construction}\label{idterm}
   Let $\sfC$ be a contextual category with a $\Pis$-structure. We define for any
-  object $\Gamma.A$ a map $\id_A\colon\Gamma\rightarrow\Gamma.[A,A]$ as
+  object $\Gamma.A$ a map $\id_A\colon\Gamma\rightarrow\Gamma.\Pis(A,p^*_A)$ as
   $\lambda_{A,p^*_AA}(1_A,1_A)$.
 \end{construction}
 
@@ -625,6 +631,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   \end{tikzcd},\]
   and then taking $\lambda_{A,p^*_AB}(1_A,f)$.
 
+\noindent
   In $\Syn{T}$, using
   \begin{align*}
     q(p_A,B)\cdot
@@ -660,6 +667,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   modeling the postcomposition by $f$, that is
   $g\mapsto\lambda(a:A).\app(f,\app(g,a))$.
 
+\noindent
   We do so by looking at the commutative diagram
   \[\begin{tikzcd}[column sep=huge]
     {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} && {\Gamma.A.B} \\
@@ -698,7 +706,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
 \begin{notation}
   As noted before, contextual categories with some extra logical structures
   still are models of small essentially algebraic theory with sorts indexed by
-  $\bbN+\bbN\times\bbN$. Their categories of models are then specified by
-  writing as subscript of $\Cxl$ the corresponding structures, that is we write
-  $\Cxl_{\Ids}$, $\Cxl_{\Sigmas,\Ids}$ and so on.
+  $\bbN+\bbN\times\bbN$. Their categories of models are then specified in the
+  literature by writing as subscript of $\Cxl$ the corresponding structures,
+  that is we write $\Cxl_{\Ids}$, $\Cxl_{\Sigmas,\Ids}$ and so on.
 \end{notation}

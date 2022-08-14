@@ -1,4 +1,4 @@
-\chapter{Extended Logical Structures}
+\chapter{Extended Logical Structures}\label{second}
 
 The aim of this section is to construct from a given contextual category $\sfC$
 with extra structure another contextual category $\sfC^{\cxt}$ with the same
@@ -17,8 +17,8 @@ constructions.
 
 On the type theoretical side, extensions of logical rules for $\Ids$-types to
 contexts were first explored by Streicher \cite{Str93}, then by Gambino and
-Garner \cite{GG08} under the name of \emph{identity contexts}, also called
-$\Ids$-contexts.
+Garner \cite{GG08,Gar09b} under the name of \emph{identity contexts}, also
+called $\Ids$-contexts.
 
 \begin{notation}
   We shall make use of their notation \cite[4]{GG08} in the second part of this
@@ -31,18 +31,20 @@ $\Ids$-contexts.
   A_n(a_1,\ldots,a_{n-1})\type\]
   by
   \[\Gamma\vdash\Delta\context,\]
-  in which case $\Delta$ is a \emph{dependent context} in context $\Gamma$ and
+  in which case $\Delta$ is a \emph{dependent context in context $\Gamma$} and
   we shall write that $\Delta=A_1,\ldots,A_n$ as a shorthand.
   Similarly,
   \[\Gamma\vdash x:\Delta\]
   abbreviates
-  \[\Gamma\vdash a_1:A_1,\]
-  \[\Gamma,a_1:A_1\vdash a_2:A_2(a_1),\]
-  \[\vdots\]
-  \[\Gamma,a_1:A_1,\ldots,a_{n-1}:A_{n-1}(a_1,\ldots,a_{n-2})\vdash
-  a_n:A_n(a_1,\ldots,a_{n-1})\]
-  and then $x$ is a \emph{dependent term} of $\Delta$ in context $\Gamma$, which
-  can be thought of as a tuple $(a_1,\ldots,a_n)$. Then,
+  \begin{align*}
+    \Gamma &\vdash a_1:A_1, \\
+    \Gamma,a_1:A_1 &\vdash a_2:A_2(a_1), \\
+    \vdots & \\
+    \Gamma,a_1:A_1,\ldots,a_{n-1}:A_{n-1}(a_1,\ldots,a_{n-2})
+           &\vdash a_n:A_n(a_1,\ldots,a_{n-1})
+  \end{align*}
+  and then $x$ is a \emph{dependent term of $\Delta$ in context $\Gamma$}, which
+  can be thought of as a tuple $(a_1,\ldots,a_n)$. Furthermore,
   \[\Gamma,x:\Delta\vdash\Theta(x)\context\]
   specifies the dependency of $\Theta$ on the term $x:\Delta$ in context
   $\Gamma$.
@@ -58,7 +60,7 @@ $\Ids$-contexts.
 \noindent
 
 Lumsdaine claimed that it is possible to provide extensions of the logical
-structures we are studying in \cite[26]{Lum10}. At the
+structures we are studying at \cite[26]{Lum10}. At the
 time Kapulkin proved the theorem this thesis focuses on,
 nothing further was available in the literature and only later him and
 Lumsdaine gave more details on these matters \cite{KL18}. In this section we aim
@@ -67,7 +69,8 @@ contribution of this work. It should be noted that, imitating Gambino and
 Garner, we may derive the
 corresponding logical rules for what would then be called $\Pis$-contexts,
 however we will not do so and focus on the semantics, believing that the
-translation should be straightforward and a simple duplication of work.
+translation should be straightforward and a simple duplication of work. We will
+later sketch the extension for $\Sigmas$-structures.
 
 We begin by constructing the category of iterated contexts, where we
 will extend the structures.
@@ -136,6 +139,12 @@ will extend the structures.
   The above construction defines a monad on $\Cxl$.
 \end{prop}
 
+For the construction of the $\Ids$-structure on $\Syn{T}^{\cxt}$ it is
+enough to translate the logical rules for $\Ids$-context we mentioned earlier. A
+sketch of the construction on $\sfC^{\cxt}$ for an
+arbitrary contextual category with an $\Ids$-structure $\sfC$ is available in
+\cite[Constr.\ 2.17]{KS19}.
+
 We are now ready, given a contextual category $\sfC$, to extend the
 $\Pis$-structure to $\sfC^{\cxt}$. We shall do so in two parts, first in full
 generality and then under extra assumptions.
@@ -154,7 +163,7 @@ extensions.
     \app_{\Delta,\Theta} &=1_{\Gamma.\Delta}, \\
     \lambda_{\Delta,\Theta}(b) &=1_\Gamma.
   \end{align*}
-  Notice that the only possible $b$ in the latter case is given by
+  Notice that the only possible section $b$ in the latter case is given by
   $1_{\Gamma.\Theta}$. This is not really necessary to specify the
   $\Pis$-structure, however we shall need it later in Lemma \ref{radj}.
 
@@ -163,19 +172,20 @@ extensions.
   $\Gamma.\Delta=\Gamma.A$ and therefore have to simply set our structure to
   coincide with the one in $\sfC$.
 
-  If $n-1>0$, we have
+  If $n-1>0$, we have, for a section
+  $b\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.B$,
   $\Gamma.\Delta=\Gamma.\Delta'.A$ and then set
   \begin{align*}
     \Gamma.\Pis(\Delta,B)
-    &=\Gamma.\Pis(\Delta'.A,B)=\Gamma.\Pi(\Delta',\Pi(A,B)) \\
-    \app_{\Delta,B} 
+    &=\Gamma.\Pis(\Delta'.A,B)=\Gamma.\Pi(\Delta',\Pi(A,B)), \\
+    \app_{\Delta,B}
     &\colon
     \Gamma.\Pis(\Delta',\Pi(A,B)).\Delta'.A
                     \xrightarrow{q(\app_{\Delta',\Pis(A,B)},p^*_{\Pi(A,B)}A)} \\
     &\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
     \Gamma.\Delta'.\Pi(A,B).A
     \xrightarrow{\app_{A,B}}
-    \Gamma.\Delta'.A.B \\
+    \Gamma.\Delta'.A.B, \\
     \lambda_{\Delta,B}(b)
     &\colon
     \Gamma
@@ -186,20 +196,17 @@ extensions.
   B,C)\cong\Set(A,\Set(B,C))$. The map $\app_{\Delta,B}$ is then naturally
   interpreted as a sequence of partial evaluations and the phenomenon is
   commonly known as \emph{currying-uncurrying}.
-
 \end{construction}
 
-  We have fully specified the construction for
-  $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+1$ in $\sfC$, hence we shall move on
-  to the case where $\Delta$ has arbitrary length and construct the necessary
-  structure by inducting on the length of $\Theta$.
+  We have dealt with the construction for $n=1$ in $\sfC$, hence we shall move
+  on to the case where $\Delta$ has arbitrary length and induct on $n$.
 
-We will do so for syntactic categories and in contextual categories where a
+We will work only with syntactic categories and in contextual categories where a
 section $c\colon\Gamma\rightarrow\Gamma.A.B$ can be split as
 two sections $a\colon\Gamma\rightarrow\Gamma.A$,
 $b\colon\Gamma.A\rightarrow\Gamma.A.B$.
 We see that $p_B\cdot c=p_B\cdot b\cdot a=a$. Syntactically, this means that if
-we pick two terms $a:A$, $b:B(a)$ over $\Gamma$ at once, then we can also
+we pick two terms $a:A,b:B(a)$ over $\Gamma$ at once, then we can also
 specify for each choice of a term $a':A$ over $\Gamma$ a term $b':B(a')$ such
 that $b\equiv b'$ when $a\equiv a'$. We later point out the
 difficulties encountered without our assumption and exploit our previously
@@ -213,40 +220,45 @@ $\Syn{T}^{\cxt}$ as if we were working with $\Syn{T}$.
   the context as $\Gamma.\Delta.\Theta'.B$.
 
   If we are working with a contextual category $\sfC$ where sections split, we
-  make use of our assumption on
-  $y\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta'.B$ to get $b\cdot y'$.
+  make use of our assumption on a section
+  $y\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta'.B$ to get a
+  factorization as $b\cdot y'$ through $\Gamma.\Delta.\Theta'$.
   \begin{align*}
     \Gamma.\Pis(\Delta,\Theta)
-    &=\Gamma.\Pis(\Delta,\Theta'.B)=\Gamma.\Pi(\Delta,\app^*_{\Delta,\Theta'}B) \\
+    &=\Gamma.\Pis(\Delta,\Theta'.B)=\Gamma.\Pi(\Delta,\app^*_{\Delta,\Theta'}B), \\
     \app_{\Delta,\Theta}
     &\colon\Gamma.\Pis(\Delta,\Theta').\Pi(\Delta,\app^*_{\Delta,\Theta'}B).\Delta
     \xrightarrow{\app_{\Delta,\app^*_{\Delta,\Theta'}B}} \\
-    &\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
+    &\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
     \Gamma.\Pis(\Delta,\Theta').\Delta.\app^*_{\Delta,\Theta'}B
-    \xrightarrow{q(\app_{\Delta,\Theta'},B)} \\
-    &\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
-    \Gamma.\Delta.\Theta'.B \\
+    \xrightarrow{q(\app_{\Delta,\Theta'},B)}
+    \Gamma.\Delta.\Theta'.B, \\
     \lambda_{\Delta,\Theta}(y)
     &\colon\Gamma
     \xrightarrow{\lambda_{\Delta,\Theta'}(y')}
     \Gamma.\Pis(\Delta,\Theta')
     \xrightarrow{\lambda_{p^*_{\Pis(\Delta,\Theta')}\Delta,\app^*_{\Delta,\Theta'}B}(\app_{\Delta,\Theta'}^*b')}
-    \Gamma.\Pis(\Delta,\Theta').\Pi(\Delta,\app^*_{\Delta,\Theta'}B)
+    \Gamma.\Pis(\Delta,\Theta').\Pi(\Delta,\app^*_{\Delta,\Theta'}B).
   \end{align*}
 
+  \noindent
   If we are instead in $\Syn{T}$, we can define $\lambda_{\Delta,\Theta}(y)$ in
-  the following way: from $y':\Theta(x),b:B(x,y')$ in context $\Gamma,x:\Delta$
-  we can indeed simply take the section specified
+  the following way: from $y'(x):\Theta(x),b(x,y'(x)):B(x,y'(x))$ in context
+  $\Gamma,x:\Delta$ we can indeed simply take the section specified
   by $\lambda(x:\Delta).y(x):\Pis(\Delta,\Theta)$ that is the pair
-  \[\lambda(x:\Delta).y'(x):\Pis(\Delta,\Theta'),\]
-  \[\lambda(x:\Delta).b'(x,y'(x)):\Pis(x:\Delta,B(\app(\lambda(x:\Delta).y'(x),x))),\]
+  \begin{align*}
+    \lambda(x:\Delta).y'(x): &\Pis(\Delta,\Theta'), \\
+    \lambda(x:\Delta).b'(x,y'(x)): &\Pis(x:\Delta,B(\app(\lambda(x:\Delta).y'(x),x))),
+  \end{align*}
   where we have made explicit the dependencies of the type $B$.
 
 Finally, given $a\colon\Gamma\rightarrow\Gamma.\Delta$,
 $f\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta$, we construct
-$\app_{\Delta,\Theta}(f,a)$ as in the definition of $\Pis$-structures.
+$\app_{\Delta,\Theta}(f,x)$ for sections
+$f\colon\Gamma\rightarrow\Gamma.\Pis(\Delta,\Theta)$,
+$x\colon\Gamma\rightarrow\Gamma.\Delta$ as in the definition of
+$\Pis$-structures \ref{appcomposed}.
 \end{construction}
-
 
 This fully specifies the data needed for a $\Pis$-structure on $\sfC^{\cxt}$,
 however we still have to check that it is indeed one, which we will do in the
@@ -268,56 +280,47 @@ constructed in $\Syn{T}$ by looking at the projection maps described in
   \begin{align*}
     \Gamma.\Sigmas(A,\Theta)
     &=\Gamma.\Sigmas(A,B.\Theta')
-    =\Gamma.\Sigmas(A,\Sigmas(B,\Theta')) \\
+    =\Gamma.\Sigmas(A,\Sigmas(B,\Theta')), \\
     \pair_{A,\Theta}
     &\colon
     \Gamma.A.B.\Theta'
     \xrightarrow{\pair_{B,\Theta'}}
     \Gamma.A.\Sigmas(B,\Theta')
     \xrightarrow{\pair_{A,\Sigmas(B,\Theta')}}
-    \Gamma.\Sigmas(A,\Sigmas(B,\Theta')),
+    \Gamma.\Sigmas(A,\Sigmas(B,\Theta')).
   \end{align*}
-  however we are still missing for all maps
-  $z\colon\Gamma.A.\Theta\rightarrow\Gamma.\Sigmas(A,\Theta).\Psi$
-  such that $p_\Psi\cdot z=\pair_{A,\Theta}$ a section
-  $\csplit_z\colon\Gamma\Sigmas(A,\Theta)
-  \rightarrow\Gamma.\Sigmas(A,\Theta).\Psi$ satisfying
-  $\csplit_z\cdot\pair_{A,\Theta}=z$. This will be done using
-  $\unpair_{A,\Theta}$, which is constructed like $\pair_{A,\Theta}$.
-\end{construction}
 
-\begin{construction}
-  Let $\sfC$ be a contextual category with an $\Ids$-structure. Given a dependent
-  context $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ with
-  $l(\Gamma.\Delta)=l(\Gamma)+n$ in $\sfC$ we proceed by induction on $n>0$.
-
-  If $n=1$,
+  To deal with the case where $m>1$ and therefore
+  $\Gamma.\Delta.\Theta=\Gamma.\Delta'.A.\Theta$, we choose
   \begin{align*}
-    \Gamma.\Ids_A &=\Gamma.\Ids_A, \\
-    r_A &=r_A, \\
-    J_{\Theta,C,d} &=J(\Theta,C,d),
+    \Gamma.\Sigmas(\Delta,\Theta)
+    &=\Gamma.\Sigmas(\Delta'.A,\Theta)
+    =\Gamma.\Sigmas(\Delta',A.\Theta), \\
+    \pair_{\Delta,\Theta}
+    &=\pair_{\Delta',A.\Theta}.
   \end{align*}
-  where the objects on the right are the ones given by the $\Ids$-structure on
-  $\sfC$.
 
-  If $n>1$, assuming to have extended the $\Ids$-structure to shorter context
-  extensions in $\sfC$, we write instead
-  \begin{align*}
-    \Gamma.\Ids_{\Delta} &=\Gamma.\Ids_{\Delta'.A}=\Gamma.\Ids_{\Delta'}.\Ids_A \\
-    r_{\Delta} &= q(,)\cdot r_A
-  \end{align*}
+  To complete the construction, one has to define for all maps
+  \[z\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Sigmas(\Delta,\Theta).\Psi\]
+  such that $p_\Psi\cdot z=\pair_{\Delta,\Theta}$ a section
+  \[\csplit_z\colon\Gamma.\Sigmas(\Delta,\Theta)
+  \rightarrow\Gamma.\Sigmas(\Delta,\Theta).\Psi\]
+  satisfying
+  $\csplit_z\cdot\pair_{\Delta,\Theta}=z$ and it is here that one uses the
+  morphism $\unpair_{\Delta,\Theta}$.
 \end{construction}
-
 
 \section{Properties}
 
-In this section we verify that the desired properties hold.
+In this section we verify that the desired properties hold for our
+constructions.
 
-\begin{prop}
-  Given a contextual category with a $\Pis$-structure $\sfC$, the above data
-  defines a $\Pis$-structure on $\sfC^{\cxt}$ which is compatible with the natural
-  contextual functor $\sfC\rightarrow\sfC^{\cxt}$.
-\end{prop}
+\begin{lem}
+  Given a dependent type theory with $\Pis$-types $\T$, the data provided
+  defines a $\Pis$-structure on $\Syn{T}^{\cxt}$ which is
+  compatible with the natural contextual functor
+  $\Syn{T}\hookrightarrow\Syn{T}^{\cxt}$.
+\end{lem}
 \begin{proof}
   We have to
   show that it is a $\Pis$-structure, which we will do inductively by verifying
@@ -325,16 +328,17 @@ In this section we verify that the desired properties hold.
   The compatibility with the contextual functor will then follow directly from
   the way we defined the base case.
 
-  Let's consider an object $\Gamma.\Delta.\Theta$ in $\sfC^{\cxt}$ such that
-  $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n=l(\Gamma)+m+n$ in $\sfC$. The only
-  interesting case is the one where $m,n>0$ and at least one of them is
-  $>1$: indeed, the desired properties in the other cases are either
-  trivial or follow directly from the fact that they hold in $\sfC$.
+  Let's consider an object $\Gamma.\Delta.\Theta$ in $\Syn{T}^{\cxt}$ such that
+  $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n=l(\Gamma)+m+n$ in $\Syn{T}$. The
+  only interesting case is the one where least one of $m,n$ is
+  $>1$: indeed, the desired properties in the other cases are
+  follow directly from the fact that they hold in $\Syn{T}$.
 
   We start as before by working on $m>1$, $n=1$, so we write
   $\Gamma.\Delta.\Theta=\Gamma.\Delta.B=\Gamma.\Delta'.A.B$ and assume that
   the desired properties hold for shorter context extensions.
-  We can then write
+  Picking a section $b\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.B$, we can
+  then write
   \begin{align*}
     p_B\cdot\app_{\Delta,B}
     &=p_B\cdot
@@ -358,36 +362,33 @@ In this section we verify that the desired properties hold.
     \lambda_{\Delta',\Pis(A,B)}(\lambda_{A,B}(b)) \\
     &=1_\Gamma.
   \end{align*}
-  \wfd{PLEASE VERIFY, LIKELY WRONG}
-  To justify $\app_{\Delta,B}(\lambda_{\Delta,B}(b),y)=b\cdot y$ we shall use
-  type-theoretic reasoning. The section
-  $b\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.B$ is
-  such that\[y\equiv (y',a)\mapsto(y',a,b(y',a))\equiv(y,b(y)),\] thus
+  To justify $\app_{\Delta,B}(\lambda_{\Delta,B}(b),x)=b\cdot x$ we shall work
+  type-theoretically. The section
+  $b$ is such that\[x\equiv (x',a)\mapsto(x',a,b(x',a))\equiv(x,b(x)),\] thus
   applying $\lambda_{A,B}$ and then $\lambda_{\Delta',\Pis(A,B)}$ we get
-  $\lambda(y':\Delta').(\lambda(a:A).b(y',a))\equiv\lambda(y:\Delta).b(y)$.
-  Also, $\app_{\Delta,B}$ acts type-theoretically as
+  \[\lambda(x':\Delta').(\lambda(a:A).b(x',a))
+  \equiv\lambda(x:\Delta).b(x):\Gamma.\Pis(\Delta,B).\]
+  Also, $\app_{\Delta,B}$ acts as
   \begin{align*}
-    (f,y) \\
-    ^{\text{split } y}&\equiv(f,y',a) \\
+    (f,x) \\
+    ^{\text{split } x}&\equiv(f,x',a) \\
     ^{q(\app_{\Delta',\Pis(A,B)},p^*_{\Pi(A,B)}A)}&\mapsto
-    (y',\app(f,y'),a) \\
+    (x',\app(f,x'),a) \\
     ^{\app_{A,B}}&\mapsto
-    (y',a,\app(\app(f,y'),a)) \\
+    (x',a,\app(\app(f,x'),a)) \\
     &\equiv(y,\app(f,y)),
   \end{align*}
   thus in this case we get
   \begin{align*}
-    (\lambda(y:\Delta).b(y),y) \\
-    &\equiv(\lambda(y':\Delta').(\lambda(a:A).b(y',a)),y',a) \\
+    (\lambda(x:\Delta).b(x),x) \\
+    &\equiv(\lambda(x':\Delta').(\lambda(a:A).b(x',a)),x',a) \\
     &\mapsto
-    (y',\lambda(a:A).b(y',a),a) \\
+    (x',\lambda(a:A).b(x',a),a) \\
     &\mapsto
-    (y',a,b(y',a)) \\
-    &\equiv(y,b(y)),
+    (x',a,b(x',a)) \\
+    &\equiv(x,b(x)),
   \end{align*}
-  where the inductive hypothesis has been used in the second step. Notice that
-  we used the hypothesis about splitting sections, which was unnecessary in the
-  corresponding part of the construction.
+  where the inductive hypothesis has been used in the second step.
   
   We now check inductively on the length of $\Theta$.
   \begin{align*}
@@ -406,42 +407,44 @@ In this section we verify that the desired properties hold.
     p_{\Pis(\Delta,\app^*_{\Delta,\Theta'}B)},\Delta) \\
     &=q(p_{\Pis(\Delta,\Theta').\Pi(\Delta,\app^*_{\Delta,\Theta'}B)},\Delta) \\
     &=q(p_{\Pis(\Delta,\Theta)},\Delta) \\
-    p_\Theta\cdot\app_{\Delta,\Theta}(f,a)
-    &=p_\Theta\cdot\app_{\Delta,\Theta}\cdot(a,f) \\
-    &=q(p_{\Pis(\Delta,\Theta)},\Delta)\cdot(a,f) \\
-    &=a \\
+    p_\Theta\cdot\app_{\Delta,\Theta}(f,x)
+    &=p_\Theta\cdot\app_{\Delta,\Theta}\cdot(f,x) \\
+    &=q(p_{\Pis(\Delta,\Theta)},\Delta)\cdot(f,x) \\
+    &=x \\
     p_{\Pis(\Delta,\Theta)}\cdot
-    \lambda_{\Delta,\Theta}(b)
+    \lambda_{\Delta,\Theta}(y)
     &=p_{\Pis(\Delta,\Theta')}\cdot
     p_{\Pis(p_{\Pi(\Delta,\Theta')}^*\Delta,\app^*_{\Delta,\Theta'}B')}\cdot
-    \lambda_{p^*_{\Pis(\Delta,\Theta')}\Delta,\app^*_{\Delta,\Theta'}B}(\app_{\Delta,\Theta'}^*b'')\cdot
-    \lambda_{\Delta,\Theta'}(b') \\
+    \lambda_{p^*_{\Pis(\Delta,\Theta')}\Delta,\app^*_{\Delta,\Theta'}B}(\app_{\Delta,\Theta'}^*b)\cdot
+    \lambda_{\Delta,\Theta'}(y) \\
     &=p_{\Pis(\Delta,\Theta')}\cdot
-    \lambda_{\Delta,\Theta'}(b') \\
+    \lambda_{\Delta,\Theta'}(y) \\
     &=1_\Gamma.
   \end{align*}
   Again, to justify
-  $\app_{\Delta,\Theta}(\lambda(b),y)=b\cdot y$ we use internal reasoning.
-  We know that, given a factorization $b=b''\cdot b'$, $b$ acts as
-  \[y\mapsto(y,b(y))\equiv(y,b'(y),b''(y,b'(y))),\]
+  $\app_{\Delta,\Theta}(\lambda_{\Delta,\Theta}(y),x)=y\cdot x$ we use
+  type-theoretic reasoning.
+  Splitting $y:\Theta(x)$ in context $\Gamma,x:\Delta$ as $(y'(x),b(x,y'))$, we
+  know that $y\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta$ acts as
+  \[x\mapsto(x,y(x))\equiv(x,y(x),b(x,y'(x))),\]
   thus our construction provides us with
-  \[\lambda(y:\Delta).b(y)\equiv
-  (\lambda(y:\Delta).b'(y),\lambda(y:\Delta).b''(y,b'(y))).\]
+  \[\lambda(x:\Delta).y(x)\equiv
+  (\lambda(x:\Delta).y'(x),\lambda(x:\Delta).b(x,y'(x))).\]
   Also, $\app_{\Delta,\Theta}$ acts internally as
   \begin{align*}
-    (f,y) \\
-    ^{\text{split }f}&\equiv(f',f'',y) \\
-    ^{\app_{\Delta,\app^*_{\Delta,\Theta'}B}}&\mapsto(f',y,\app(f'',y)) \\
-    ^{q(\app_{\Delta,\Theta'},B)}&\mapsto(y,\app(f',y),\app(f'',y)) \\
-    &\equiv(y,\app(f,y)),
+    (f,x) \\
+    ^{\text{split }f}&\equiv(f',f'',x) \\
+    ^{\app_{\Delta,\app^*_{\Delta,\Theta'}B}}&\mapsto(f',x,\app(f'',x)) \\
+    ^{q(\app_{\Delta,\Theta'},B)}&\mapsto(x,\app(f',x),\app(f'',x)) \\
+    &\equiv(x,\app(f,x)),
   \end{align*}
   which here translates to
   \begin{align*}
-    (\lambda(y:\Delta).b(y),y) \\
-    &\equiv(\lambda(y:\Delta).b'(y),\lambda(y:\Delta).b''(y,b'(y)),y) \\
-    &\mapsto(\lambda(y:\Delta).b'(y),y,b''(y,b'(y))) \\
-    &\mapsto(y,b'(y),b''(y,b'(y))) \\
-    &\equiv(y,b(y)),
+    (\lambda(x:\Delta).y(x),x) \\
+    &\equiv(\lambda(x:\Delta).y'(x),\lambda(x:\Delta).b(x,y'(x)),x) \\
+    &\mapsto(\lambda(x:\Delta).y'(x),x,b(x,y'(x))) \\
+    &\mapsto(x,y'(x),b(x,y'(x))) \\
+    &\equiv(x,y(x)),
   \end{align*}
   where the inductive hypothesis has been used in the second step.
 
@@ -449,20 +452,26 @@ In this section we verify that the desired properties hold.
   compatible with context substitution.
 \end{proof}
 
+\begin{rmk}
+  The above theorem can be generalized to contextual categories with a
+  $\Pis$-structure $\sfC$ as long as sections of dependent projections can be
+  factored as described, in which case this hypothesis is used when we split
+  dependent terms. The proof is essentially the same, albeit harder to read.
+\end{rmk}
 
 We shall also need the following lemma.
 
-\begin{lem}[\cite{Kap17}]\label{piequal}
-  Given an iterated context extension $\Gamma.\Delta.\Theta.\Psi$ in a
-  contextual category with $\Pis$-types $\sfC$, the contexts
+\begin{lem}[{\cite[Lem.\ 5.6]{Kap17}}]\label{piequal}
+  Given a dependent type theory with $\Pis$-types $\T$ and an iterated context
+  extension $\Gamma.\Delta.\Theta.\Psi$ in $\Syn{T}$, the contexts
   \[\Gamma.\Pis(\Delta,\Theta.\Psi),\quad\Gamma.\Pis(\Delta,\Theta).\Pis(p^*_{\Pis(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi)\]
-  are equal in $\sfC$. Also,
+  are equal in $\Syn{T}$. Also,
   $\Gamma.\Pis(\Delta,p_{\Psi})=p_{\Pis(\Delta,\app^*_{\Delta,\Theta}\Psi)}$.
 \end{lem}
 \begin{proof}
   For the first claim, it is enough to notice that the two contexts reduce to
-  the same one in $\sfC$ after applying the inductive construction we defined on
-  $\sfC^{\cxt}$ to reduce $\Psi$.
+  the same one in $\Syn{T}$ after applying the inductive construction we defined
+  on $\Syn{T}^{\cxt}$ to reduce $\Psi$.
 
   For the second claim instead we consider the chain of equalities
   \begin{align*}
@@ -472,36 +481,30 @@ We shall also need the following lemma.
     &=p_{\Pis(\Delta,\app^*_{\Delta,\Theta}\Psi)}\cdot
     p_{\Pis(\Delta,\Theta)}\cdot
     \lambda_{\Delta,\Theta}(1_{p^*_{\Pis(\Delta,\Theta)}\Delta},p_\Psi\cdot\app_{\Delta,\Theta.\Psi}) \\
-    &=p_{\Pis(\Delta,\app^*_{\Delta,\Theta}\Psi)}.
+    &=p_{\Pis(\Delta,\app^*_{\Delta,\Theta}\Psi)},
   \end{align*}
-  \wfd{(PLEASE CHECK)}
+  which can be checked type-theoretically.
 \end{proof}
 
+We conclude by presenting the following propositions without proof. It is worth
+noting that the original statements mention contextual categories, but to do so
+they rely on the Initiality Conjecture \ref{initconj} and here our focus is on
+syntactic categories.
 
-\begin{prop}\cite[Prop.\ 3.3.1]{Gar09b}
-  Given a contextual category with an $\Ids$-structure $\sfC$, $\sfC^{\cxt}$ also
-  carries a natural $\Ids$-structure compatible with the contextual functor
-  $\sfC\rightarrow\sfC^{\cxt}$ as described in REFS 0808.
-\end{prop}
-
-\begin{lem}\cite[Lemma 2.28]{1808}
-  Given a contextual category with $\Ids$, $\Pies$ structures and function
-  extensionality $\sfC$, the latter can also be extended to $\sfC^{\cxt}$
-  compatibly with the extended $\Ids$ and $\Pis$ structures.
+\begin{lem}[{\cite[Prop.\ 3.3.1]{Gar09b}}]
+  Given a dependent type theory with $\Ids$-types $\T$, the contextual category
+  $\Syn{T}^{\cxt}$ carries a natural $\Ids$-structure compatible with the
+  natural contextual functor $\Syn{T}\hookrightarrow\Syn{T}^{\cxt}$.
 \end{lem}
 
-%\begin{cor}\cite[Lemma 2.29]{1808}
-%  Under the conditions of the previous theorem, if
-%  $f\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Delta.\Psi$ is
-%  bi-invertible over $\Gamma.\Delta$, then the same goes for the induced map
-%  $\Gamma.\Pis(\Delta,\Theta)\rightarrow\Gamma.\Pi(\Delta,\Psi)$.
-%\end{cor}
+\begin{lem}[{\cite[Lemma 2.28]{KS19}}]
+  Given a dependent type theory with $\Ids$-, $\Pies$-types structures and
+  function extensionality $\T$, the latter can also be lifted from $\Syn{T}$ to
+  $\Syn{T}^{\cxt}$ compatibly with the natural contextual functor
+  $\Syn{T}\hookrightarrow\Syn{T}^{\cxt}$.
+\end{lem}
 
 \begin{rmk}
-  Lumsdaine noted that the lift of $\Ids$ and $\Pis$
-  structures is not compatible with the monad we provided earlier because they
-  are not compatible with the multiplication. On the other
-  hand, with a strategy along the line of the one we presented for
-  $\Pis$-structures we can also lift $\Sigmas$-structures compatibly with the
-  monad, meaning that $(-)^{\cxt}$ restricts to one on $\Cxl_{\Sigmas}$.
+  Lumsdaine notes in \cite{Lum10} that such extended structures are not all
+  compatible with the 
 \end{rmk}

@@ -4,8 +4,9 @@ In this chapter we finally talk about localizing syntactic categories. To do
 this, we first specify a class of maps we localize at, explaining the rationale
 behind our choice, and then from this we present a fibrational structure which
 will allow us to apply the results from the previous section to prove
-Theorem \ref{finalthm}. We also briefly mention the \emph{Internal Languages
-Conjecture}.
+Theorem \ref{finalthm}. The main difference between our proof and Kapulkin's
+will be our usage of extended logical structures. We also briefly mention the
+\emph{Internal Languages Conjecture}.
 
 \section{Bi-Invertibility}
 
@@ -25,6 +26,7 @@ As anticipated, we introduce a notion of weak equivalence in our context.
   \end{enumerate}
 \end{defn}
 
+\noindent
 We now generalize the above definition to arbitrary context extensions in
 $\Syn{T}$ by working as usual with $\Syn{T}^{\cxt}$ to provide the notion given
 in \cite[Def.~1.4]{Kap17}.
@@ -67,14 +69,15 @@ in \cite[Def.~1.4]{Kap17}.
   the language of contextual categories of the notion of bi-invertible map in
   type theory \cite[Def~4.3.1]{Uni13}.
 
+\noindent
   It is important to note that, while type theory has no way to encode
   internally the concept of isomorphism of the contextual model, it does have
-  its own internal notion of isomorphism. However, given a map $f$, the type
-  $\isiso{f}$ is not, in general, a \emph{mere proposition}
-  \cite[Def.~3.3.1]{Uni13}, unlike $\ishiso{f}$
-  \cite[Thm.~4.3.2]{Uni13}, which makes the latter
+  its own internal notion of isomorphism. However, given a type-theoretic map
+  $f$, the associated type $\isiso{f}$ is not, in general, a \emph{mere
+  proposition} \cite[Def.\ 3.3.1]{Uni13}, unlike $\ishiso{f}$
+  \cite[Thm.\ 4.3.2]{Uni13}, which makes the latter
   preferable. Also, every bi-invertible map can be given the structure of an
-  isomorphism and viceversa, hence they are closely related.
+  type-theoretic isomorphism and viceversa, hence they are closely related.
 \end{rmk}
 
 \begin{rmk}
@@ -93,6 +96,7 @@ in \cite[Def.~1.4]{Kap17}.
   \ref{internal}.
 \end{rmk}
 
+\noindent
 To study the localizations of syntactic categories we want to apply
 the results from the previous section, which require us to specify a
 fibrational structure by also providing a class
@@ -100,7 +104,7 @@ of fibrations.
 
 \begin{defn}[\cite{Bro73}]\label{fibcats}
   A \emph{fibration category} is a triple $(\cP,W,\fib)$ where $\cP$ is a
-  category and $W$, $\fib$ are wide subcategories such that:
+  category and $W$, $\fib$ are subcategories such that:
   \begin{enumerate}
     \item $\cP$ has a terminal object;
     \item maps to the terminal object lie in $\fib$;
@@ -138,7 +142,7 @@ of fibrations.
 \noindent
 Now we have enough to specify the fibrational structure.
 
-\begin{prop}[\cite{AKL15}]
+\begin{prop}[{\cite[Thm.\ 3.2.5]{AKL15}}]
   Any contextual category with $\Sigmas$-, $\Ids$-, $\Nat$- and
   $\mathsf{1}$-structures $\sfC$ carries the structure of a fibration category,
   where the class of fibrations is given by all maps isomorphic to dependent
@@ -176,7 +180,7 @@ The above result can be however generalized.
 
 \begin{cor}\label{fincompl1}
   Given a dependent type theory with $\Sigmas$- and $\Ids$-types $\T$, the
-  $\infty$-category $L(N(\Syn{T}))$ is finitely complete.
+  associated $\infty$-category $L(N(\Syn{T}))$ is finitely complete.
 \end{cor}
 \begin{proof}
   It follows directly from Proposition \ref{fibcat} and Proposition \ref{7518}.
@@ -190,7 +194,7 @@ extensionality $\T$, the hypothesis of Theorem \ref{7616} are satisfied by
 $\Syn{T}$ with respect to the above fibrational structure. Henceforth, we shall
 write $\sfC$ for $\Syn{T}$.
 
-\begin{lem}[\cite{Kap17}]\label{radj}
+\begin{lem}[{\cite[Thm.\ 9.3.15]{Kap14}}]\label{radj}
   For any dependent projection $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ in
   $\sfC$, the pullback functor
   $p_\Delta^*\colon\sfC(\Gamma)\rightarrow\sfC(\Gamma.\Delta)$ between the
@@ -217,9 +221,11 @@ write $\sfC$ for $\Syn{T}$.
   commute. This will then uniquely define how the right adjoint acts on the
   morphisms.
 
+\noindent
   We start by specifying the unit
   $\eta_{\Gamma.\Psi}\colon\Gamma.\Psi\rightarrow\Gamma.\Pis(\Delta,p^*_{\Delta}\Psi)$.
 
+\noindent
   Let's consider the commutative square
   \[\begin{tikzcd}[column sep=huge]
     {\Gamma.\Psi.p^*_\Psi\Pis(\Delta,p^*_\Delta\Psi)} & {\Gamma.\Pis(\Delta,p^*_\Delta\Psi)} \\
@@ -236,11 +242,13 @@ write $\sfC$ for $\Syn{T}$.
   it with $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ to get our unit
   $y\mapsto\lambda(x:\Delta).y$.
   
+\noindent
   To construct it we pull back the map
   $\id_{\Psi}\colon\Gamma\rightarrow\Gamma.[\Psi,\Psi]$ from Construction
   \ref{idterm} along $p_{p^*_\Psi\Delta}$, getting a section
   \[p^*_{p^*_\Psi\Delta}\id_{\Psi}\colon\Gamma.\Psi.p^*_\Psi\Delta\rightarrow\Gamma.\Psi.p^*_\Psi\Delta.p^*_{p^*_\Psi\Delta}\Psi.\]
 
+\noindent
   We then apply $\lambda_{\Delta,\Psi}$, thereby getting a section
   \[\lambda_{\Delta,\Psi}(p^*_{p^*_\Psi\Delta}\id_\Psi)
     =\lambda_{\Delta,\Psi}(1_{p^*_\Psi\Delta},p_{p^*_\Psi\Delta})
@@ -298,7 +306,7 @@ To apply Theorem \ref{7616}, we need to show that $(p_\Delta)_*$ is left exact
 (actually, we need to prove that it preserves trivial fibrations, but it
 essentially requires the same amount of work), which we shall do in two steps.
 
-\begin{lem}[\cite{KL18}]\label{wepreserved}
+\begin{lem}[{\cite[Lem.\ 2.29]{KL18}}]\label{wepreserved}
   Consider a bi-invertible
   map $f\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Delta.\Psi$ over
   $\Gamma.\Delta$ in $\sfC$. The
@@ -351,7 +359,7 @@ essentially requires the same amount of work), which we shall do in two steps.
   and thereby inducing the factorization shown, which is what we needed.
 \end{proof}
 
-\begin{lem}[\cite{Kap14}]\label{lccfc}
+\begin{lem}[{\cite[Thm.\ 9.3.15]{Kap14}}]\label{lccfc}
   In the above conditions, the functor
   $(p_\Delta)_*\colon\sfC(\Gamma.\Delta)\rightarrow\sfC(\Gamma)$ is left exact.
 \end{lem}
@@ -362,10 +370,11 @@ essentially requires the same amount of work), which we shall do in two steps.
   goes for weak equivalences, which concludes the proof.
 \end{proof}
 
+\noindent
 Again, the above extends to all fibrations in $\sfC$ and it allows to prove our
 desired result.
 
-\begin{thm}[\cite{Kap14}]\label{finalthm}
+\begin{thm}[{\cite[Thm.\ 9.3.17]{Kap14}}]\label{finalthm}
   Given a dependent type theory with $\Sigmas$-, $\Ids$-, $\Pies$-types and
   function extensionality $\T$, the $\infty$-category $L(N(\Syn{T}))$ is locally
   cartesian closed.
