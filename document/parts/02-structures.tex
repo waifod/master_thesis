@@ -13,20 +13,6 @@ been mentioned multiple times in the literature to justify various results at a
 certain level of generality, however nobody actually carried out the necessary
 constructions.
 
-\section{Extended Logical Rules}
-
-
-Following them,
-we want to provide such extensions for $\Pis$-types and define from a derivation
-\[\Gamma,x:\Delta\vdash\Theta(x)\context\]
-a $\Pis$-context $\Pis(\Delta,\Theta)$ in context $\Gamma$, a contextual
-function application and so on.
-
-
-We shall proceed constructing the logical rules pertaining to $\Pis$-contexts by
-induction on the lengths of the dependent contexts $\Delta=A_1,\ldots,A_m$,
-$\Theta=B_1,\ldots,B_n$.
-
 \section{Constructions}
 
 On the type theoretical side, extensions of logical rules for $\Ids$-types to
@@ -36,7 +22,7 @@ $\Ids$-contexts.
 
 \begin{notation}
   We shall make use of their notation \cite[4]{GG08} in the second part of this
-  section and the final chapter of this thesis to study $\Syn(\T)$, meaning that
+  section and the final chapter of this thesis to study $\Syn{\T}$, meaning that
   we abbreviate the sequence of judgements
   \[\Gamma\vdash A_1\type,\]
   \[\Gamma,a_1:A_1\vdash A_2(a_1)\type,\]
@@ -72,7 +58,7 @@ $\Ids$-contexts.
 \noindent
 
 Lumsdaine claimed that it is possible to provide extensions of the logical
-structures on a contextual category in \cite[26]{Lum10}. At the
+structures we are studying in \cite[26]{Lum10}. At the
 time Kapulkin proved the theorem this thesis focuses on,
 nothing further was available in the literature and only later him and
 Lumsdaine gave more details on these matters \cite{KL18}. In this section we aim
@@ -188,8 +174,7 @@ extensions.
                     \xrightarrow{q(\app_{\Delta',\Pis(A,B)},p^*_{\Pi(A,B)}A)} \\
     &\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
     \Gamma.\Delta'.\Pi(A,B).A
-    \xrightarrow{\app_{A,B}} \\
-    &\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
+    \xrightarrow{\app_{A,B}}
     \Gamma.\Delta'.A.B \\
     \lambda_{\Delta,B}(b)
     &\colon
@@ -252,31 +237,59 @@ $\Syn{T}^{\cxt}$ as if we were working with $\Syn{T}$.
   If we are instead in $\Syn{T}$, we can define $\lambda_{\Delta,\Theta}(y)$ in
   the following way: from $y':\Theta(x),b:B(x,y')$ in context $\Gamma,x:\Delta$
   we can indeed simply take the section specified
-  by $\lambda(x:\Delta).y(x):\Pis(\Delta,\Theta)$, or equivalently
-  $$\lambda(x:\Delta).y'(x):\Pis(\Delta,\Theta'),
-  \lambda(x:\Delta).b'(x,y'(x)):\Pis(x:\Delta,B(\app(\lambda(x:\Delta).y'(x),x))).$$
-\end{construction}
+  by $\lambda(x:\Delta).y(x):\Pis(\Delta,\Theta)$ that is the pair
+  \[\lambda(x:\Delta).y'(x):\Pis(\Delta,\Theta'),\]
+  \[\lambda(x:\Delta).b'(x,y'(x)):\Pis(x:\Delta,B(\app(\lambda(x:\Delta).y'(x),x))),\]
+  where we have made explicit the dependencies of the type $B$.
 
-Given $a\colon\Gamma\rightarrow\Gamma.\Delta$,
+Finally, given $a\colon\Gamma\rightarrow\Gamma.\Delta$,
 $f\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta$, we construct
 $\app_{\Delta,\Theta}(f,a)$ as in the definition of $\Pis$-structures.
+\end{construction}
+
 
 This fully specifies the data needed for a $\Pis$-structure on $\sfC^{\cxt}$,
 however we still have to check that it is indeed one, which we will do in the
-next section. First, however, we sketch the extension for a $\Sigmas$- and a
-$\Ids$-structure on a contextual category.
+next section. First, however, we sketch the extension for $\Sigmas$-structures
+by assuming to have a left inverse $\unpair_{A,B}$
+of $\pair_{A,B}$ for any context $\Gamma.A.B$. Such a left inverse can be
+constructed in $\Syn{T}$ by looking at the projection maps described in
+\cite[Sec.\ 1.6]{Uni13}.
+
+\begin{construction}
+  Let $\sfC$ be a contextual category with a $\Sigmas$-structure. Given a
+  dependent context $p_\Delta\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Delta$
+  with $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n=l(\Gamma)+m+n$ in $\sfC$ we
+  proceed by induction on $m,n>0$.
+
+  Let's fix $m=1$. If $n=1$, like for $\Pis$-structures we are forced to take
+  the definition from $\sfC$, so we can focus on $n>1$. We have then
+  $\Gamma.\Delta.\Theta=\Gamma.\Delta.\Theta'.B$, so we take
+  \begin{align*}
+    \Gamma.\Sigmas(\Delta,\Theta)
+    &=\Gamma.\Sigmas(\Delta,\Theta'.B)
+    =\Gamma.\Sigmas(\Delta,\Sigmas(\Theta',B)) \\
+    \pair_{\Delta,\Theta}
+    &\colon
+    \Gamma.\Delta.\Theta'.B
+    \xrightarrow{\pair_{\Theta',B}}
+    \Gamma.\Delta.\Sigmas(\Theta',B)
+    \xrightarrow{\pair_{\Delta,\Sigmas(\Theta',B)}}
+    \Gamma.\Sigmas(\Delta,\Sigmas(\Theta',B)),
+  \end{align*}
+  however we are still missing for all maps
+  $z\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Sigmas(\Delta,\Theta).\Psi$
+  such that $p_\Psi\cdot z=\pair_{\Delta,\Theta}$ a section
+  $\csplit_z\colon\Gamma\Sigmas(\Delta,\Theta)
+  \rightarrow\Gamma.\Sigmas(\Delta,\Theta).\Psi$ satisfying
+  $\csplit_z\cdot\pair_{\Delta,\Theta}=z$. This will be done using
+  $\unpair_{\Delta,\Theta}$, which is constructed like $\pair_{\Delta,\Theta}$.
+\end{construction}
 
 \begin{construction}
   Let $\sfC$ be a contextual category with an $\Ids$-structure. Given a dependent
   context $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ with
-  $l(\Gamma.\Delta)=l(\Gamma)+n$ in $\sfC$ we proceed by induction on $n$.
-
-  If $n=0$, then
-  \begin{align*}
-    \Gamma.\Ids_\Delta &=\Gamma, \\
-    r_\Delta &=1_\Gamma, \\
-    J_{\Theta,C,d} &=d.
-  \end{align*}
+  $l(\Gamma.\Delta)=l(\Gamma)+n$ in $\sfC$ we proceed by induction on $n>0$.
 
   If $n=1$,
   \begin{align*}
