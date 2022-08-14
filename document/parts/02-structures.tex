@@ -264,26 +264,26 @@ constructed in $\Syn{T}$ by looking at the projection maps described in
 
   Let's fix $m=1$. If $n=1$, like for $\Pis$-structures we are forced to take
   the definition from $\sfC$, so we can focus on $n>1$. We have then
-  $\Gamma.\Delta.\Theta=\Gamma.\Delta.\Theta'.B$, so we take
+  $\Gamma.\Delta.\Theta=\Gamma.A.B.\Theta'$, so we take
   \begin{align*}
-    \Gamma.\Sigmas(\Delta,\Theta)
-    &=\Gamma.\Sigmas(\Delta,\Theta'.B)
-    =\Gamma.\Sigmas(\Delta,\Sigmas(\Theta',B)) \\
-    \pair_{\Delta,\Theta}
+    \Gamma.\Sigmas(A,\Theta)
+    &=\Gamma.\Sigmas(A,B.\Theta')
+    =\Gamma.\Sigmas(A,\Sigmas(B,\Theta')) \\
+    \pair_{A,\Theta}
     &\colon
-    \Gamma.\Delta.\Theta'.B
-    \xrightarrow{\pair_{\Theta',B}}
-    \Gamma.\Delta.\Sigmas(\Theta',B)
-    \xrightarrow{\pair_{\Delta,\Sigmas(\Theta',B)}}
-    \Gamma.\Sigmas(\Delta,\Sigmas(\Theta',B)),
+    \Gamma.A.B.\Theta'
+    \xrightarrow{\pair_{B,\Theta'}}
+    \Gamma.A.\Sigmas(B,\Theta')
+    \xrightarrow{\pair_{A,\Sigmas(B,\Theta')}}
+    \Gamma.\Sigmas(A,\Sigmas(B,\Theta')),
   \end{align*}
   however we are still missing for all maps
-  $z\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Sigmas(\Delta,\Theta).\Psi$
-  such that $p_\Psi\cdot z=\pair_{\Delta,\Theta}$ a section
-  $\csplit_z\colon\Gamma\Sigmas(\Delta,\Theta)
-  \rightarrow\Gamma.\Sigmas(\Delta,\Theta).\Psi$ satisfying
-  $\csplit_z\cdot\pair_{\Delta,\Theta}=z$. This will be done using
-  $\unpair_{\Delta,\Theta}$, which is constructed like $\pair_{\Delta,\Theta}$.
+  $z\colon\Gamma.A.\Theta\rightarrow\Gamma.\Sigmas(A,\Theta).\Psi$
+  such that $p_\Psi\cdot z=\pair_{A,\Theta}$ a section
+  $\csplit_z\colon\Gamma\Sigmas(A,\Theta)
+  \rightarrow\Gamma.\Sigmas(A,\Theta).\Psi$ satisfying
+  $\csplit_z\cdot\pair_{A,\Theta}=z$. This will be done using
+  $\unpair_{A,\Theta}$, which is constructed like $\pair_{A,\Theta}$.
 \end{construction}
 
 \begin{construction}
