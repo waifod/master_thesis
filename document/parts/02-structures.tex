@@ -1,12 +1,12 @@
 \chapter{Extended Logical Structures}
 
 The aim of this section is to construct from a given contextual category $\sfC$
-with extra structure another contextual category $\sfC^{cxt}$ with the same
+with extra structure another contextual category $\sfC^{\cxt}$ with the same
 structure, but where objects are iterated context extensions, compatibly with a
-canonical contextual functor $\sfC\hookrightarrow\sfC^{cxt}$ defining an
+canonical contextual functor $\sfC\hookrightarrow\sfC^{\cxt}$ defining an
 equivalence on the underlying categories, thereby
 generalizing our structures from simple context extensions to arbitrary ones.
-Indeed, we may then take a context extension, look at it in $\sfC^{cxt}$, apply
+Indeed, we may then take a context extension, look at it in $\sfC^{\cxt}$, apply
 the construction and then carry it back through the equivalence. This extension
 shall be heavily exploited in the final part of the thesis. This technique has
 been mentioned multiple times in the literature to justify various results at a
@@ -15,50 +15,61 @@ constructions.
 
 \section{Extended Logical Rules}
 
-On the type theoretical side, extensions of logical rules for $\Ids$-types to
-contexts were first explored by Streicher \cite{Str93}, then by Gambino and
-Garner \cite{GG08} under the name of \emph{identity contexts}, also called
-$\Ids$-contexts. Following them,
+
+Following them,
 we want to provide such extensions for $\Pis$-types and define from a derivation
-\[\Gamma,x:\Delta\vdash \Theta \text{ context}\]
+\[\Gamma,x:\Delta\vdash\Theta(x)\context\]
 a $\Pis$-context $\Pis(\Delta,\Theta)$ in context $\Gamma$, a contextual
 function application and so on.
 
-\begin{notation}
-  We shall make use of theirs, meaning that we write
-  \[\Gamma\vdash x:\Delta\]
-  for a ``term'' $x$ of a derivable context $\Delta$ in context $\Gamma$. Such a
-  term is a tuple of terms $a_1:A_1,\ldots,a_m:A_m$ such that
-  \[\Gamma,a_1:A_1,\ldots a_{i-1}:A_{i-1}\vdash a_i:A_i\]
-  for each $i$, as usual. We can also split it as $a_1:A_1,x':\Delta'$ and write
-  \[\Gamma\vdash a_1:A_1,x':\Delta'(a_1).\]
 
-  Similarly, in
-  \[\Gamma,x:\Delta\vdash y(x):\Theta(x)\]
-  $y(x)$ represents a tuple of terms
-  $b_1(x):B_1(x),\ldots,b_n(x,b_{<n}):B_n(x,b_{<n})$
-  where
-  \[\Gamma,x:\Delta,
-    b_1(x):B_1(x),\ldots,b_{i-1}(x,b_{<i-1}):B_{i-1}(x,b_{<i-1})
-  \vdash b_i(x,b_{<i}):B_i(x,b_{<i})\]
-  for all $i$, meaning that they depend explicitly on $x:\Delta$. Here we have
-  written $b_{<j}$ as a shorthand for the tuple of the $b_k$ with $k<j$.
-\end{notation}
-
-We shall proceed by induction on the lengths of the context extensions
-$\Delta=A_1,\ldots,A_m$, $\Theta=B_1,\ldots,B_n$.
-
-\begin{construction}[Part 1]
-  In this first part we keep $n=1$ and induct on $m$, taking the usual logical
-  rules for $m=1$, meaning that we only have to work on the inductive step.
-
-  \noindent
-  Let's assume then that $m>1$ and to have already provided everything for
-  shorter context extensions. We can split $\Delta$ as $A,\Delta'$ and similarly
-  $x:\Delta$ as $a:A,x':\Delta'$.
-\end{construction}
+We shall proceed constructing the logical rules pertaining to $\Pis$-contexts by
+induction on the lengths of the dependent contexts $\Delta=A_1,\ldots,A_m$,
+$\Theta=B_1,\ldots,B_n$.
 
 \section{Constructions}
+
+On the type theoretical side, extensions of logical rules for $\Ids$-types to
+contexts were first explored by Streicher \cite{Str93}, then by Gambino and
+Garner \cite{GG08} under the name of \emph{identity contexts}, also called
+$\Ids$-contexts.
+
+\begin{notation}
+  We shall make use of their notation \cite[4]{GG08} in the second part of this
+  section and the final chapter of this thesis to study $\Syn(\T)$, meaning that
+  we abbreviate the sequence of judgements
+  \[\Gamma\vdash A_1\type,\]
+  \[\Gamma,a_1:A_1\vdash A_2(a_1)\type,\]
+  \[\vdots\]
+  \[\Gamma,a_1:A_1,\ldots,a_{n-1}:A_{n-1}(a_1,\ldots,a_{n-2})\vdash
+  A_n(a_1,\ldots,a_{n-1})\type\]
+  by
+  \[\Gamma\vdash\Delta\context,\]
+  in which case $\Delta$ is a \emph{dependent context} in context $\Gamma$ and
+  we shall write that $\Delta=A_1,\ldots,A_n$ as a shorthand.
+  Similarly,
+  \[\Gamma\vdash x:\Delta\]
+  abbreviates
+  \[\Gamma\vdash a_1:A_1,\]
+  \[\Gamma,a_1:A_1\vdash a_2:A_2(a_1),\]
+  \[\vdots\]
+  \[\Gamma,a_1:A_1,\ldots,a_{n-1}:A_{n-1}(a_1,\ldots,a_{n-2})\vdash
+  a_n:A_n(a_1,\ldots,a_{n-1})\]
+  and then $x$ is a \emph{dependent term} of $\Delta$ in context $\Gamma$, which
+  can be thought of as a tuple $(a_1,\ldots,a_n)$. Then,
+  \[\Gamma,x:\Delta\vdash\Theta(x)\context\]
+  specifies the dependency of $\Theta$ on the term $x:\Delta$ in context
+  $\Gamma$.
+
+  \noindent
+  It is also possible to introduce further expressions, like
+  \[\Gamma\vdash \Delta\equiv\Theta\context\]
+  for judgmental equality between dependent contexts and
+  \[\Gamma\vdash x\equiv x':\Delta,\]
+  for judgmental equality between dependent terms, defined as pointwise
+  judgmental equalities. The details are straightforward and therefore omitted.
+\end{notation}
+\noindent
 
 Lumsdaine claimed that it is possible to provide extensions of the logical
 structures on a contextual category in \cite[26]{Lum10}. At the
@@ -66,9 +77,10 @@ time Kapulkin proved the theorem this thesis focuses on,
 nothing further was available in the literature and only later him and
 Lumsdaine gave more details on these matters \cite{KL18}. In this section we aim
 to partially fix that for $\Pis$-structures specifically, which will be the main
-contribution of this work. It should be noted that we may derive the
+contribution of this work. It should be noted that, imitating Gambino and
+Garner, we may derive the
 corresponding logical rules for what would then be called $\Pis$-contexts,
-however we will not do so and focus on the semantics, maintaining that the
+however we will not do so and focus on the semantics, believing that the
 translation should be straightforward and a simple duplication of work.
 
 We begin by constructing the category of iterated contexts, where we
@@ -76,16 +88,16 @@ will extend the structures.
 
 \begin{construction}\cite[21]{Lum10}
   Given a contextual category $\sfC$, we construct a contextual category
-  $\sfC^{cxt}$ in the following way:
+  $\sfC^{\cxt}$ in the following way:
   \begin{enumerate}
-    \item the set $\Ob_n\sfC^{cxt}$ is given by $n$-iterated non-trivial context
+    \item the set $\Ob_n\sfC^{\cxt}$ is given by $n$-iterated non-trivial context
       extensions
       \[\Gamma_1.\Gamma_2.\ldots.\Gamma_n\]
       in $\sfC$;
     \item morphisms
       $\Gamma_1.\Gamma_2.\ldots.\Gamma_n\rightarrow\Delta_1.\Delta_2.\ldots.\Delta_m$
       are morphisms between them seen as objects of $\sfC$;
-    \item $*$ is the only element of $\Ob_0\sfC^{cxt}$;
+    \item $*$ is the only element of $\Ob_0\sfC^{\cxt}$;
     \item
       $\cft(\Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1})=\Gamma_1.\Gamma_2.\ldots.\Gamma_n$;
     \item the map $p_{\Gamma_1.\Gamma_2.\ldots.\Gamma_n.\Gamma_{n+1}}\colon
@@ -97,49 +109,52 @@ will extend the structures.
       basic dependent projections, as in the original contextual category.
   \end{enumerate}
 
-  As we can see, any object of $\sfC^{cxt}$ either is the empty context or is
+  As we can see, any object of $\sfC^{\cxt}$ either is the empty context or is
   isomorphic to one in
-  $\Ob_1\sfC^{cxt}$, that is the one which we get by looking at the associated object
+  $\Ob_1\sfC^{\cxt}$, that is the one which we get by looking at the associated object
   in $\sfC$ and then taking the dependent projection from it to the terminal
   object, which exhibits it as a 1-iterated context extension. The isomorphism
-  is then given by the map in $\sfC^{cxt}$ corresponding to the identity of the
-  object in $\sfC$. We now specify a monad $\sfC\mapsto\sfC^{cxt}$ on $\Cxl$.
+  is then given by the map in $\sfC^{\cxt}$ corresponding to the identity of the
+  object in $\sfC$. We now specify a monad $\sfC\mapsto\sfC^{\cxt}$ on $\Cxl$.
 
-  The unit $\sfC\rightarrow\sfC^{cxt}$ sends every $n$-object in $\sfC$ to
+  The unit $\sfC\rightarrow\sfC^{\cxt}$ sends every $n$-object in $\sfC$ to
   the corresponding $n$-iterated (simple) context extension and every morphism
   to the one it represents.
 
   Before we construct the multiplication, let's study this contextual functor.
   Every $n$-iterated
-  context in $\sfC^{cxt}$ is isomorphic to one in the image of the unit, namely
+  context in $\sfC^{\cxt}$ is isomorphic to one in the image of the unit, namely
   the one which we get by reducing it to an iterated simple context extension,
   meaning that the functor is essentially surjective. Also, it is fully faithful
   by construction and therefore it defines an equivalence on the underlying
   categories.
 
-  Let's construct the multiplication. An $n$-object of $(\sfC^{cxt})^{cxt}$ is an
+  Let's construct the multiplication. An $n$-object of $(\sfC^{\cxt})^{\cxt}$ is an
   $n$-iterated context extension where each extension is itself an iterated
   context extension in $\sfC$, that is
   \[(\Gamma_1.\ldots.\Gamma_{i_1}).(\Gamma_{i_1+1}.\ldots.\Gamma_{i_2}).\ldots.(\Gamma_{i_{n-1}+1}.\ldots.\Gamma_{i_n}).\]
   Since composing dependent projections gives dependent projections,
   seeing $\Gamma_{i_{j-1}+1}.\ldots.\Gamma_{i_j}$ as a single context extension
   $\Delta_j$ in $\sfC$, we can naturally
-  map the object of $(\sfC^{cxt})^{cxt}$ to $\Delta_1.\ldots.\Delta_n$ in
-  $\sfC^{cxt}$ and, again, every morphism
-  in $(\sfC^{cxt})^{cxt}$ corresponds to a unique one in $\sfC^{cxt}$ once we
+  map the object of $(\sfC^{\cxt})^{\cxt}$ to $\Delta_1.\ldots.\Delta_n$ in
+  $\sfC^{\cxt}$ and, again, every morphism
+  in $(\sfC^{\cxt})^{\cxt}$ corresponds to a unique one in $\sfC^{\cxt}$ once we
   specify domain and codomain. By construction, this functor is again contextual
   and an equivalence of categories.
 
   The monad axioms follow from the fact that, essentially, both unit and
-  multiplication are ``identities'' on objects and morphisms, which concludes
-  our construction.
+  multiplication are ``identities'' on objects and morphisms.
 \end{construction}
 
+\begin{prop}
+  The above construction defines a monad on $\Cxl$.
+\end{prop}
+
 We are now ready, given a contextual category $\sfC$, to extend the
-$\Pis$-structure to $\sfC^{cxt}$. We shall do so in two parts, first in full
+$\Pis$-structure to $\sfC^{\cxt}$. We shall do so in two parts, first in full
 generality and then under extra assumptions.
 
-Given $\Gamma.\Delta.\Theta$ in $\sfC^{cxt}$, where
+Given $\Gamma.\Delta.\Theta$ in $\sfC^{\cxt}$, where
 $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n=l(\Gamma)+m+n$ in $\sfC$, we
 build $\Gamma.\Pis(\Delta,\Theta)$ by induction on the length of the context
 extensions involved, taking the
@@ -155,12 +170,12 @@ extensions.
   \end{align*}
   Notice that the only possible $b$ in the latter case is given by
   $1_{\Gamma.\Theta}$. This is not really necessary to specify the
-  $\Pis$-structure, however we shall need it later in \wfd{(WHERE?)}.
+  $\Pis$-structure, however we shall need it later in Lemma \ref{radj}.
 
-  We now work with the case where $m>0$, $n=1$, thus we shall write
+  We now work with the case where $m>0$, $n=1$, thus we can write
   $\Gamma.\Delta.\Theta=\Gamma.\Delta.B$. In the base case, $m=1$, we have
-  $\Gamma.\Delta=\Gamma.A$ and therefore we simply set our structure to be the
-  one in $\sfC$.
+  $\Gamma.\Delta=\Gamma.A$ and therefore have to simply set our structure to
+  coincide with the one in $\sfC$.
 
   If $n-1>0$, we have
   $\Gamma.\Delta=\Gamma.\Delta'.A$ and then set
@@ -199,10 +214,12 @@ section $c\colon\Gamma\rightarrow\Gamma.A.B$ can be split as
 two sections $a\colon\Gamma\rightarrow\Gamma.A$,
 $b\colon\Gamma.A\rightarrow\Gamma.A.B$.
 We see that $p_B\cdot c=p_B\cdot b\cdot a=a$. Syntactically, this means that if
-we pick two terms $x:A$, $y:B(x)$ over $\Gamma$ at once, then we can also
-specify for each choice of a term $x':A$ over $\Gamma$ a term $y':B(x')$ such
-that $y\equiv y'$ when $x\equiv x'$. We shall later point out the
-difficulties encountered without our assumption.
+we pick two terms $a:A$, $b:B(a)$ over $\Gamma$ at once, then we can also
+specify for each choice of a term $a':A$ over $\Gamma$ a term $b':B(a')$ such
+that $b\equiv b'$ when $a\equiv a'$. We later point out the
+difficulties encountered without our assumption and exploit our previously
+presented notation for extended type-theoretic rules to reason about
+$\Syn{T}^{\cxt}$ as if we were working with $\Syn{T}$.
 
 \begin{construction}[Part 2]
   Suppose that
@@ -212,7 +229,7 @@ difficulties encountered without our assumption.
 
   If we are working with a contextual category $\sfC$ where sections split, we
   make use of our assumption on
-  $b\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta'.B$ to get $b''\cdot b'$.
+  $y\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta'.B$ to get $b\cdot y'$.
   \begin{align*}
     \Gamma.\Pis(\Delta,\Theta)
     &=\Gamma.\Pis(\Delta,\Theta'.B)=\Gamma.\Pi(\Delta,\app^*_{\Delta,\Theta'}B) \\
@@ -224,25 +241,27 @@ difficulties encountered without our assumption.
     \xrightarrow{q(\app_{\Delta,\Theta'},B)} \\
     &\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
     \Gamma.\Delta.\Theta'.B \\
-    \lambda_{\Delta,\Theta}(b)
+    \lambda_{\Delta,\Theta}(y)
     &\colon\Gamma
-    \xrightarrow{\lambda_{\Delta,\Theta'}(b')}
+    \xrightarrow{\lambda_{\Delta,\Theta'}(y')}
     \Gamma.\Pis(\Delta,\Theta')
-    \xrightarrow{\lambda_{p^*_{\Pis(\Delta,\Theta')}\Delta,\app^*_{\Delta,\Theta'}B}(\app_{\Delta,\Theta'}^*b'')}
+    \xrightarrow{\lambda_{p^*_{\Pis(\Delta,\Theta')}\Delta,\app^*_{\Delta,\Theta'}B}(\app_{\Delta,\Theta'}^*b')}
     \Gamma.\Pis(\Delta,\Theta').\Pi(\Delta,\app^*_{\Delta,\Theta'}B)
   \end{align*}
 
-  If we are instead in $\Syn{T}$, the only thing that changes is how we define
-  $\lambda_{\Delta,\Theta}(b)$: we can indeed simply take the section specified
-  by $\lambda(y:\Delta).b(y):\Pis(\Delta,\Theta)$, or equivalently
-  $$\lambda(y:\Delta).b'(y):\Pis(\Delta,\Theta'),\lambda(y:\Delta).b''(y,b'(y)):\Pis(y:\Delta,B(\app(\lambda(y:\Delta).b'(y),y))).$$
+  If we are instead in $\Syn{T}$, we can define $\lambda_{\Delta,\Theta}(y)$ in
+  the following way: from $y':\Theta(x),b:B(x,y')$ in context $\Gamma,x:\Delta$
+  we can indeed simply take the section specified
+  by $\lambda(x:\Delta).y(x):\Pis(\Delta,\Theta)$, or equivalently
+  $$\lambda(x:\Delta).y'(x):\Pis(\Delta,\Theta'),
+  \lambda(x:\Delta).b'(x,y'(x)):\Pis(x:\Delta,B(\app(\lambda(x:\Delta).y'(x),x))).$$
 \end{construction}
 
 Given $a\colon\Gamma\rightarrow\Gamma.\Delta$,
 $f\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta$, we construct
 $\app_{\Delta,\Theta}(f,a)$ as in the definition of $\Pis$-structures.
 
-This fully specifies the data needed for a $\Pis$-structure on $\sfC^{cxt}$,
+This fully specifies the data needed for a $\Pis$-structure on $\sfC^{\cxt}$,
 however we still have to check that it is indeed one, which we will do in the
 next section. First, however, we sketch the extension for a $\Sigmas$- and a
 $\Ids$-structure on a contextual category.
@@ -283,8 +302,8 @@ In this section we verify that the desired properties hold.
 
 \begin{prop}
   Given a contextual category with a $\Pis$-structure $\sfC$, the above data
-  defines a $\Pis$-structure on $\sfC^{cxt}$ which is compatible with the natural
-  contextual functor $\sfC\rightarrow\sfC^{cxt}$.
+  defines a $\Pis$-structure on $\sfC^{\cxt}$ which is compatible with the natural
+  contextual functor $\sfC\rightarrow\sfC^{\cxt}$.
 \end{prop}
 \begin{proof}
   We have to
@@ -293,7 +312,7 @@ In this section we verify that the desired properties hold.
   The compatibility with the contextual functor will then follow directly from
   the way we defined the base case.
 
-  Let's consider an object $\Gamma.\Delta.\Theta$ in $\sfC^{cxt}$ such that
+  Let's consider an object $\Gamma.\Delta.\Theta$ in $\sfC^{\cxt}$ such that
   $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n=l(\Gamma)+m+n$ in $\sfC$. The only
   interesting case is the one where $m,n>0$ and at least one of them is
   $>1$: indeed, the desired properties in the other cases are either
@@ -430,7 +449,7 @@ We shall also need the following lemma.
 \begin{proof}
   For the first claim, it is enough to notice that the two contexts reduce to
   the same one in $\sfC$ after applying the inductive construction we defined on
-  $\sfC^{cxt}$ to reduce $\Psi$.
+  $\sfC^{\cxt}$ to reduce $\Psi$.
 
   For the second claim instead we consider the chain of equalities
   \begin{align*}
@@ -447,14 +466,14 @@ We shall also need the following lemma.
 
 
 \begin{prop}\cite[Prop.\ 3.3.1]{Gar09b}
-  Given a contextual category with an $\Ids$-structure $\sfC$, $\sfC^{cxt}$ also
+  Given a contextual category with an $\Ids$-structure $\sfC$, $\sfC^{\cxt}$ also
   carries a natural $\Ids$-structure compatible with the contextual functor
-  $\sfC\rightarrow\sfC^{cxt}$ as described in REFS 0808.
+  $\sfC\rightarrow\sfC^{\cxt}$ as described in REFS 0808.
 \end{prop}
 
 \begin{lem}\cite[Lemma 2.28]{1808}
   Given a contextual category with $\Ids$, $\Pies$ structures and function
-  extensionality $\sfC$, the latter can also be extended to $\sfC^{cxt}$
+  extensionality $\sfC$, the latter can also be extended to $\sfC^{\cxt}$
   compatibly with the extended $\Ids$ and $\Pis$ structures.
 \end{lem}
 
@@ -471,5 +490,5 @@ We shall also need the following lemma.
   are not compatible with the multiplication. On the other
   hand, with a strategy along the line of the one we presented for
   $\Pis$-structures we can also lift $\Sigmas$-structures compatibly with the
-  monad, meaning that $(-)^{cxt}$ restricts to one on $\Cxl_{\Sigmas}$.
+  monad, meaning that $(-)^{\cxt}$ restricts to one on $\Cxl_{\Sigmas}$.
 \end{rmk}

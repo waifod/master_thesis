@@ -26,7 +26,7 @@ As anticipated, we introduce a notion of weak equivalence in our context.
 \end{defn}
 
 We now generalize the above definition to arbitrary context extensions in
-$\Syn{T}$ by working as usual with $\Syn{T}^{cxt}$ to provide the notion given
+$\Syn{T}$ by working as usual with $\Syn{T}^{\cxt}$ to provide the notion given
 in \cite[Def.~1.4]{Kap17}.
 
 \begin{defn}
@@ -34,7 +34,7 @@ in \cite[Def.~1.4]{Kap17}.
   $f\colon\Gamma.\Delta\rightarrow\Gamma.\Theta$ over $\Gamma$ in $\Syn{T}$ is
   \emph{bi-invertible over $\Gamma$} if it is simply bi-invertible over $\Gamma$
   as a morphism between the two corresponding simple context extensions of
-  $\Gamma$ in $\Syn{T}^{cxt}$. It is then called \emph{bi-invertible} if
+  $\Gamma$ in $\Syn{T}^{\cxt}$. It is then called \emph{bi-invertible} if
   $\Gamma$ is the empty context.
 \end{defn}
 
@@ -168,10 +168,10 @@ The above result can be however generalized.
   use of strong $\Sigmas$-types, which they adopted to say that every dependent
   projection is isomorphic to a basic one. We
   can avoid relying on strong $\Sigmas$-types by constructing the fibrational
-  structure on $\Syn{T}^{cxt}$ (where the condition on dependent projections
+  structure on $\Syn{T}^{\cxt}$ (where the condition on dependent projections
   holds by construction) to later carry it back to $\Syn{T}$ through the
   equivalence, while we do not need the Initiality Conjecture because we can
-  argue in $\Syn{T}^{cxt}$ using the dependent type theory $\T$.
+  argue in $\Syn{T}^{\cxt}$ using the dependent type theory $\T$.
 \end{rmk}
 
 \begin{cor}\label{fincompl1}
@@ -271,15 +271,15 @@ write $\sfC$ for $\Syn{T}$.
   $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$ in
   Remark \ref{applyf}, while the
   uniqueness of $\tilde{f}$ comes from the fact that we can not construct,
-  from every term $y:\Psi$, another term
-  $g(y):\Pi(\Delta,\Theta)$ such that
-  \[\Gamma, x:\Delta\vdash\app(g(y),x)\equiv\app(f,y):\Theta.\]
+  from every term $y:\Psi$, another term $g:\Pi(\Delta,\Theta)$ such that
+  \[\Gamma,x:\Delta\vdash\app(g,x)\equiv\app(f,y):\Theta.\]
   Indeed, we can derive
   \begin{align*}
-    g(y) \\
-         ^{\eta\text{-conversion}}&\equiv\lambda(x:\Delta).\app(g(y),x) \\
-         &\equiv\lambda(x:\Delta).\app(f,y) \\
-         &\equiv\app(\tilde{f},y),
+    y\mapsto \\
+        & g \\
+        ^{\eta\text{-conversion}}&\equiv\lambda(x:\Delta).\app(g,x) \\
+        &\equiv\lambda(x:\Delta).\app(f,y) \\
+        &\equiv\app(\tilde{f},y),
   \end{align*}
   which concludes the proof.
 
