@@ -366,15 +366,16 @@ categories was developed by Voevodsky in \cite{Voe14b,Voe14b,Voe15a,Voe15b},
 \end{exmp}
 
 \noindent
-On the other hand, as noted in \cite[par.\ 1.2]{KL12}, interpreting complicated
+On the other hand, as noted in \cite[Par.\ 1.2]{KL12}, interpreting complicated
 structures in
 contextual categories quickly becomes unreadable, meaning that ideally we would
-like to be able to switch from a syntactic to a semantic presentation
-and viceversa freely, so that we may work with the most
+like to be able to switch from a syntactic to a semantic (i.e.\ algebraic)
+presentation and viceversa freely, so that we may work with the most
 convenient one for a given situation. This would amount to some \emph{soundness}
 and \emph{correctness} theorems reminiscent of the ones of \emph{first order
-predicate logic}. In categorical semantics, this corresponds to
-\emph{initiality}.
+predicate logic} establishing an equivalence between the two and allowing us to
+think of contextual categories as if they were dependent type theories. In
+categorical semantics, this corresponds to \emph{initiality}.
 
 \begin{named}[Initiality]\label{initconj}
   Given a dependent type theory $\T$, its syntactic category $\Syn{\T}$ is
@@ -421,10 +422,11 @@ inductively to a computer how to construct the aforementioned functor.
 \end{rmk}
 
 \begin{rmk}
-Another reason researchers often assume this conjecture to be true is that,
-thanks to what is known in folklore as the \emph{syntax-semantic adjunction}, it
-provides \emph{internal languages}, an intuitive but not yet formalized notation
-to reason about contextual categories. We shall not use such instruments
+A reason researchers often assume this conjecture to be true which was briefly
+is that, thanks to what is known in folklore as the \emph{syntax-semantic
+adjunction}, it provides for each contextual category an \emph{internal
+language}, that is a dependent type theory corresponding to it and allowing to
+think of it as such, as we alluded earlier. We shall not use such instruments
 and instead restrict ourselves to working with syntactic categories, with the
 idea that a generalization of our results to arbitrary contextual categories
 should be straightforward once we have a proof of the conjecture and all of the
