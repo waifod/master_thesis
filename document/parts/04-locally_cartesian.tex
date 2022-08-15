@@ -92,8 +92,8 @@ in \cite[Def.~1.4]{Kap17}.
   categories with some extra structures and an $\infty$-category of structured
   $\infty$-categories induced by the localization at bi-invertible maps, which
   means that first have to determine what properties the localization has. Notable
-  in this sense is the Internal Languages Conjecture mentioned in Remark
-  \ref{internal}.
+  in this sense is the already mentioned Internal Languages Conjecture
+  \ref{intlang}.
 \end{rmk}
 
 \noindent
@@ -386,3 +386,51 @@ desired result.
 \end{proof}
 
 \section{Conclusions}
+
+We wrap up by summarizing what we have done and presenting developments which
+followed Kapulkin's result.
+
+In Chapter \ref{chapter1} we introduced dependent type theories, specifying the
+logical rules we would consider throughout, and then contextual categories, a
+class of algebraic models for type-theoretic structural rules. As a motivating
+example, we introduced the syntactic category of a dependent type theory
+$\Syn{T}$. Later, we presented extra structures on contextual categories meant
+to interpret logical rules and some constructions derived from
+$\Pis$-structures, showing what they correspond to in $\Syn{T}$. We were careful
+to explain the role of the Initiality Conjecture \ref{initconj} in the field and
+in Remark \ref{internal} we
+referred to some results derived from it and our theorem, like the Internal
+Languages Conjecture \cite[Conj.\ 3.7]{KL16}, which we now state and explain.
+
+\begin{named}[Internal Languages]\label{intlang}
+  The horizontal functors structures
+  \[\begin{tikzcd}
+    {\Cxl_{\Sigmas,\mathsf{1},\Ids,\Pis\text{-ext}}} & \LCCCi \\
+    {\Cxl_{\Sigmas,\mathsf{1},\Ids}} & \Lexi
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=1-2, to=2-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=1-1, to=1-2]
+  \end{tikzcd}\]
+  given by simplicial localization are $DK$-equivalences between the homotopical
+  categories of contextual categories with the indicated logical structures and
+  the ones of locally cartesian closed $\infty$-categories and finitely complete
+  ones, respectively $\LCCCi$ and $\Lexi$.
+\end{named}
+
+A candidate proof was provided in \cite{NU22} assuming initiality and this
+conjecture means that dependent type theories with the
+specified logical rules can be modelled by $\infty$-categories with the
+appropriate structures, exactly like Homotopy Type theory. There is currently an
+ongoing project to 
+extend the above diagram by introducing a simplicial localization
+functor $\Cxl_{\mathsf{HoTT}}\rightarrow\ElToposi$ which should itself be a
+$DK$-equivalence, and indeed the idea is that the ``correct'' definition of
+elementary $\infty$-topos should be one which would make the
+statement true.
+
+Going back to our summary, in Chapter \ref{chapter2} we moved on to extending
+the logical structures so that we may talk about $\Gamma.\Pis(\Delta,\Theta)$,
+$\Gamma.\Delta.p^*_\Delta\Delta.\Ids_\Delta$ and so on even when $\Delta,\Theta$
+are not simple context extensions. This was instrumental 
+extensions
