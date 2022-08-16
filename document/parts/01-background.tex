@@ -59,7 +59,8 @@ Furthermore, we consider the following two rules:
 
 \begin{defn}
   We say that a dependent type theory $\T$ has \emph{$\Pies$-types} if its
-  $\Pi$-types satisfy the $\eta$-conversion for functions.
+  $\Pis$-types satisfy the $\eta$-conversion for functions and, if it also
+  provides function extensionality, then we talk about $\Piext$-types.
 \end{defn}
 
 \begin{rmk}
@@ -412,13 +413,14 @@ inductively to a computer how to construct the aforementioned functor.
 \begin{rmk}\label{internal}
   From the Initiality Conjecture researchers have also derived some homotopical
   models, which are the great drivers
-  of research in the field. Specifically, it was shown
-  that \emph{$\infty$-toposes} can model Homotopy Type Theory \cite{Shu19} and,
-  as a concrete example, in \cite{KL12}
-  one can find a model of Univalent Type Theory produced using Voevodsky's
-  previously mentioned methods. More recent results concern the \emph{Internal
+  of research in the field.
+
+  \noindent
+  Specifically, as a concrete example, in \cite{KL12} one can find a model of
+  Homotopy Type Theory produced using Voevodsky's previously mentioned methods.
+  Furthermore, it was shown that \emph{$\infty$-toposes} can also provide a
+  semantic for it \cite{Shu19}. More recent results concern the \emph{Internal
   Languages Conjecture} \ref{intlang}.
-  \wfd{(UNIVALENT = HOMOTOPY???)}
 \end{rmk}
 
 \begin{rmk}

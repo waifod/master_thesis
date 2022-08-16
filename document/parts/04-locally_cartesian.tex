@@ -92,8 +92,8 @@ in \cite[Def.~1.4]{Kap17}.
   would amount to an equivalence between an $\infty$-category of contextual
   categories with some extra structures and an $\infty$-category of structured
   $\infty$-categories induced by the localization at bi-invertible maps, which
-  means that first have to determine what properties the localization has. Notable
-  in this sense is the already mentioned Internal Languages Conjecture
+  means that first have to determine what properties the localization has.
+  Notable in this sense is the already mentioned Internal Languages Conjecture
   \ref{intlang}.
 \end{rmk}
 
@@ -279,13 +279,15 @@ write $\sfC$ for $\Syn{T}$.
   and our description of
   $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$ in
   Remark \ref{applyf}, while the
-  uniqueness of $\tilde{f}$ comes from the fact that we can not construct,
-  from every term $y:\Psi$, another term $g:\Pi(\Delta,\Theta)$ such that
-  \[\Gamma,x:\Delta\vdash\app(g,x)\equiv\app(f,y):\Theta.\]
+  uniqueness of $\tilde{f}$ comes from the fact that we can not construct
+  another derivation of the form
+  \[\Gamma,x:\Delta,y:\Psi\vdash g:\Pis(\Delta,\Theta)\]
+  such that
+  \[\Gamma,x:\Delta,y:\Psi\vdash\app(g,x)\equiv\app(f,y):\Theta(x).\]
   Indeed, we can derive
   \begin{align*}
-    y\mapsto \\
-        & g \\
+    y \\
+        &\mapsto g \\
         ^{\eta\text{-conversion}}&\equiv\lambda(x:\Delta).\app(g,x) \\
         &\equiv\lambda(x:\Delta).\app(f,y) \\
         &\equiv\app(\tilde{f},y),
@@ -391,6 +393,7 @@ desired result.
 We wrap up by summarizing what we have done and presenting developments which
 followed Kapulkin's result.
 
+\noindent
 In Chapter \ref{chapter1} we introduced dependent type theories, specifying the
 logical rules we would consider throughout, and then contextual categories, a
 class of algebraic models for type-theoretic structural rules. As a motivating
@@ -400,45 +403,87 @@ to interpret logical rules and some constructions derived from
 $\Pis$-structures, showing what they correspond to in $\Syn{T}$. We were careful
 to explain the role of the Initiality Conjecture \ref{initconj} in the field and
 in Remark \ref{internal} we referred to some results derived from it and our
-theorem, like the Internal Languages Conjecture \cite[Conj.\ 3.7]{KL16}, which
-we now state and briefly explain.
+theorem, like the Internal Languages Conjecture, which we will get to at the end
+of this section.
+
+\noindent
+Going back to our summary, in Chapter \ref{chapter2} we moved on to extending
+the logical structures so that we may talk about $\Gamma.\Pis(\Delta,\Theta)$,
+$\Gamma.\Delta.p^*_\Delta\Delta.\Ids_\Delta$ and so on even when $\Delta,\Theta$
+are not simple context extensions, focusing specifically on $\Pis$-structures
+(see Lemma \ref{extpistruct}). This was instrumental in our proof of Theorem
+\ref{finalthm} and a deviation from Kapulkin's approach in \cite{Kap14}, but
+identical to the one he took instead in \cite{Kap17}.
+
+\noindent
+In Chapter \ref{chapter3} we presented a theory of localizations of
+$\infty$-categories referring to Cisinski's work \ref{Cis19}. Our objective was
+to provide some sufficient conditions under which the localization of an
+$\infty$-category would be locally cartesian closed and to do this we introduced
+$\infty$-categories with weak equivalences and fibrations \ref{fibicat}, which
+generalize model categories and, more specifically, fibration categories
+\ref{fibcat}. The conditions were then given by Theorem \ref{7616}.
+
+\noindent
+Finally, in Chapter \ref{chapter4} we introduced, for a class of dependent type
+theories $\T$, a notion of bi-invertible map in $\Syn{T}$ describing the weak
+equivalences we intended to localize at and then a fibrational structure,
+allowing us to refer to the results of the previous section when talking about
+$L(N(\Syn{T}))$. To prove that this latter $\infty$-category is locally
+cartesian closed, we aimed to apply Theorem \ref{7616}, for which
+we provided a right adjoint to the pullback functor between fibrant
+slices $p^*_\Delta\colon\Syn{T}(\Gamma)\rightarrow\Syn{T}(\Gamma.\Delta)$
+through Lemma \ref{radj} and then showed that it is left exact, leading up to
+Theorem \ref{finalthm}, our objective.
+
+\noindent
+A generalization of this result produced by Kapulkin in \cite{Kap17}
+applies to all contextual categories with the
+logical structures meant to model the considered logical rules and a similar one
+concerns finitely complete $\infty$-categories as a corollary of Szumilo's
+work on fibration categories \cite{Szu14}
+or, more recently, Theorem \ref{7518}. This lead to
+the formulation of the Internal Languages Conjecture \cite{KL16}, which we now
+briefly explain as anticipated.
 
 \begin{named}[Internal Languages]\label{intlang}
   The horizontal functors structures
   \[\begin{tikzcd}
-    {\Cxl_{\Sigmas,\mathsf{1},\Ids,\Pis\text{-ext}}} & \LCCCi \\
+    {\Cxl_{\Sigmas,\mathsf{1},\Ids,\Piext}} & \LCCCi \\
     {\Cxl_{\Sigmas,\mathsf{1},\Ids}} & \Lexi
     \arrow[from=2-1, to=2-2]
     \arrow[from=1-2, to=2-2]
     \arrow[from=1-1, to=2-1]
     \arrow[from=1-1, to=1-2]
   \end{tikzcd}\]
-  given by simplicial localization are $DK$-equivalences between the homotopical
-  categories of contextual categories with the indicated logical structures and
-  the ones of locally cartesian closed $\infty$-categories and finitely complete
-  ones, respectively $\LCCCi$ and $\Lexi$.
+  given by simplicial localization are $DK$-equivalences, where the homotopical
+  categories involved are the ones of contextual categories with the indicated
+  logical structures and those of properly structured $\infty$-categories.
+  Specifically, $\Lexi$ and $\LCCCi$ have respectively finitely complete and
+  locally cartesian closed $\infty$-categories as objects, while their morphisms
+  are left exact functors.
 \end{named}
 
-A candidate proof was provided in \cite{NU22} assuming Initiality and this
+\noindent
+A candidate proof was provided by Nguyen and Uemura \cite{NU22} assuming
+Initiality and this
 conjecture means that providing an $\infty$-category with the appropriate
 properties is equivalent to producing a contextual category with the specified
 logical structures and, therefore, a dependent type theory with the
-corresponding logical rules, its internal language.
+corresponding logical rules, then called its internal language, through which
+one may equivalently reason about the $\infty$-category and viceversa,
+establishing a strong link between the two theories.
 However, so far we have
 been unable to explicitly construct the corresponding contextual category from
 an $\infty$-category which is not locally presentable, meaning that we do not
 have a concrete definition of the homotopical inverses to the localization
 functors.
+
+\noindent
 There is currently an ongoing project to 
 extend the above diagram by introducing a simplicial localization
 functor $\Cxl_{\mathsf{HoTT}}\rightarrow\ElToposi$ which should itself be a
 $DK$-equivalence, and indeed the idea is that the ``correct'' definition of
 elementary $\infty$-topos should be one which would make the statement true (see
-\cite{Ras18} for a candidate).
-
-Going back to our summary, in Chapter \ref{chapter2} we moved on to extending
-the logical structures so that we may talk about $\Gamma.\Pis(\Delta,\Theta)$,
-$\Gamma.\Delta.p^*_\Delta\Delta.\Ids_\Delta$ and so on even when $\Delta,\Theta$
-are not simple context extensions. This was instrumental in our proof of Theorem
-\ref{finalthm} and a deviation from Kapulkin's approach in \cite{Kap14}, but
-identical to the one he took instead in \cite{Kap17}.
+\cite{Ras18} for a candidate). This would allow further advances in the study of
+Homotopy Type Theory and its extensions.

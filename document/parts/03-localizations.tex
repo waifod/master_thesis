@@ -1,4 +1,5 @@
 \chapter{Localizations of \texorpdfstring{$\infty$}{∞}-Categories}
+\label{chapter3}
 
 To prove that by localizing a syntactic category of a dependent type theory with
 some logical rules we get a locally
@@ -549,7 +550,7 @@ $\cP$ (see Definition \ref{fibcats})
 by studying the associated \emph{$\infty$-category of frames}, which provides
 a concrete model of $L(N(\cP))$ avoiding inexplicit fibrant replacements.
 
-\begin{defn}
+\begin{defn}\label{fibicat}
   An \emph{$\infty$-category with weak equivalences and fibrations} $\cC$ is a
   triple
   $(\cC,W,\fib)$ where $\cC$ is an $\infty$-category with a final object,
@@ -662,7 +663,8 @@ a concrete model of $L(N(\cP))$ avoiding inexplicit fibrant replacements.
   full subcategory $\cC/z$ given by the fibrations $x\rightarrow z$ of $\cC$; we
   shall refer to $\cC(z)$ as the \emph{fibrant slice of $\cC$ over $z$}.
   For any morphism $f\colon x\rightarrow y$ between fibrant objects, we have a
-  left exact functor $f^*\colon\cC(y)\rightarrow\cC(x)$ induced pulling back
+  left exact functor $$f^*\colon\cC(y)\rightarrow\cC(x),\quad (z\rightarrow
+  y)\mapsto(z\times_y x\rightarrow x)$$ induced by pulling back
   along $f$. The existence follows from the fact that pullbacks along
   fibrations with fibrant codomain exist, while
   left exactness comes from limits
