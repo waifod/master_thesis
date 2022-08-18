@@ -10,6 +10,7 @@ for various reasons, chiefly among them the fact that every object is a set and
 its treatment of equality, which lead to some rather counter intuitive
 conclusions.
 
+\noindent
 An alternative foundation which has become of interest in the past decades is
 Type Theory, whose origins we can trace back to Russel's \emph{Principia
 Mathematica}, where it was used as a tool to block some paradoxes of Set Theory,
@@ -26,8 +27,8 @@ An important variant is Martin-L{\"o}f Type Theory, which is
 intuitionistic and introduces \emph{dependent types}, that is types which are
 allowed to depend on elements of other types. This is fairly convenient in
 mathematical practice, where often the type of an object depends on other
-objects, like in the statement ``for any natural number $n$ and field
-$k$, let $V$ be a $k$-vector space of dimension $n$...''. This version was meant
+objects, like in the statement ``for any field
+$k$, let $V$ be a $k$-vector space''. This version was meant
 to capture a notion of computation, exploiting the link with Computer Science
 made evident by \emph{System F}, a formalism for parametric polymorphism in
 programming languages. This connection
@@ -75,11 +76,11 @@ prove the following result by Kapulkin \cite[Thm.\ 9.3.17]{Kap14} using
 Cisinski's theory on localizations of $\infty$-categories \cite{Cis19} and
 thereby avoiding the less general theory of frames \cite{Szu14,KS15}.
 
-\begin{thm}[\ref{finalthm}]
+\begin{finalthm}
   Let $\T$ be a dependent type theory with $\Sigmas$-, $\Ids$- and
   $\Piext$-types. The localization of the nerve of $\Syn{T}$ at bi-invertible
   maps $L(N(\Syn{T}))$ is a locally Cartesian closed $\infty$-category.
-\end{thm}
+\end{finalthm}
 
 \noindent
 Following this result, Kapulkin and Lumsdaine formulated the \emph{Internal
@@ -94,7 +95,7 @@ $\infty$-toposes, whose definition is still under discussion. It should be noted
 however that it was shown that $\infty$-toposes do provide models for it
 \cite{Shu19}.
 
-\begin{defn}
+\begin{organization}
   We begin in the first chapter by presenting our setting. Namely, in
   Chapter \ref{chapter1} we specify the foundations we use, the structural rules of our
   dependent type theories and the logical rules we will be considering; after
@@ -111,4 +112,4 @@ however that it was shown that $\infty$-toposes do provide models for it
   objective, whose statement we provide only at the end. We conclude with a
   recap of what we have done and presenting some progress which followed
   Kapulkin's proof.
-\end{defn}
+\end{organization}
