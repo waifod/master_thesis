@@ -27,6 +27,7 @@
 \usepackage{pict2e}
 \usepackage{eucal}
 \usepackage{csquotes}
+\usepackage{thmtools, thm-restate}
 %\usepackage{bbold}
 
 %\DeclareMathSizes{12}{10}{10}{8}
@@ -59,3 +60,11 @@
 \newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{.5em}{\thmnote{#3 }#1}
 \theoremstyle{named}
 \newtheorem*{named}{Conjecture}
+
+%\newtheorem*{theorem**}{Theorem\theoremnum}
+%\newenvironment{theorem*}[1][]{
+%  \edef\theoremnum{\if\relax\detokenize{#1}\relax\else~#1\fi}
+%  \begin{theorem**}
+%}{
+%  \end{theorem**}
+%}

@@ -3,9 +3,9 @@
 In this chapter we finally talk about localizing syntactic categories. To do
 this, we first specify a class of maps we localize at, explaining the rationale
 behind our choice, and then from this we present a fibrational structure which
-will allow us to apply the results from the previous section to prove
-Theorem \ref{finalthm}. The main difference between our proof and Kapulkin's
-original in one \cite{Kap14} will be our usage of extended logical structures,
+will allow us to apply the results from the previous section to prove Kapulkin's
+Theorem \ref{finalthm}. The main difference between our proof and his
+original one \cite{Kap14} will be our usage of extended logical structures,
 mimicking his later methods from \cite{Kap17}. We conclude with a section
 summarizing what we have done.
 
@@ -190,10 +190,9 @@ The above result can be however generalized.
 \section{Local Cartesian Closure}
 
 We are now ready to provide a few results needed to show that, given a dependent
-type theory with $\Sigmas$-, $\Ids$-, $\Pies$-types and function
-extensionality $\T$, the hypothesis of Theorem \ref{7616} are satisfied by
-$\Syn{T}$ with respect to the above fibrational structure. Henceforth, we shall
-write $\sfC$ for $\Syn{T}$.
+type theory with $\Sigmas$-, $\Ids$- and $\Piext$-types $\T$, the hypothesis of
+Theorem \ref{7616} are satisfied by $\Syn{T}$ with respect to the above
+fibrational structure. Henceforth, we shall write $\sfC$ for $\Syn{T}$.
 
 \begin{lem}[{\cite[Thm.\ 9.3.15]{Kap14}}]\label{radj}
   For any dependent projection $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ in
@@ -378,9 +377,10 @@ Again, the above extends to all fibrations in $\sfC$ and it allows to prove our
 desired result.
 
 \begin{thm}[{\cite[Thm.\ 9.3.17]{Kap14}}]\label{finalthm}
-  Given a dependent type theory with $\Sigmas$-, $\Ids$-, $\Pies$-types and
-  function extensionality $\T$, the $\infty$-category $L(N(\Syn{T}))$ is locally
-  cartesian closed.
+  Let $\T$ be a dependent type theory with $\Sigmas$-, $\Ids$- and
+  $\Piext$-types. The localization of the nerve of $\Syn{T}$ at
+  bi-invertible maps $L(N(\Syn{T}))$ is a locally Cartesian closed
+  $\infty$-category.
 \end{thm}
 \begin{proof}
   We already know that it is finitely complete by Corollary \ref{fincompl1}. The
@@ -465,7 +465,7 @@ This led to the formulation of the Internal Languages Conjecture \cite[Conj.\
 \end{named}
 
 \noindent
-A candidate proof was provided by Nguyen and Uemura \cite{NU22} and this
+A proof was recently provided by Nguyen and Uemura \cite{NU22} and this
 conjecture means that providing an $\infty$-category with the appropriate
 properties is equivalent to producing a contextual category with the specified
 logical structures and, therefore, a dependent type theory with the

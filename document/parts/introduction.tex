@@ -1,66 +1,114 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-We can also rewrite the paper by Kapulkin about LCCC arising from TT using the
-language of localizations of quasi-categories. There they develop the relevant
-theory showing that under some conditions the frame associated to a fibration
-category is locally cartesian closed, but using Cisinski's results we can prove
-the same theorem directly using a more mainstream theory.
+The theme of the foundations of mathematics is one which since its inception in
+the nineteenth century has seen a rich history, with a crisis and a change in
+perspective due to G{\"o}del's theorems. Various theories have since then been
+devised to serve this role and the most notorious and successful among them is
+Set Theory, in the form of of ZFC. This is however an unsatisfactory foundation
+for various reasons, chiefly among them the fact that every object is a set and
+its treatment of equality, which lead to some rather counter intuitive
+conclusions.
 
-What should be included in such an overview?
+An alternative foundation which has become of interest in the past decades is
+Type Theory, whose origins we can trace back to Russel's \emph{Principia
+Mathematica}, where it was used as a tool to block some paradoxes of Set Theory,
+namely the existence of the set of all sets. This theory allows us to talk about
+the \emph{type} of a mathematical
+object and make equality a local concept (that is making sense only in terms of
+two elements of the same type) and a more structured one, meaning that we can
+talk about in what sense two objects are equal. Furthermore, proofs are
+internalized by the theory and it is possible to distinguish between what
+logicians refer to as \emph{property} and \emph{structure}.
 
-1- Cisinski's theory of localizations (of fibration $\infty$-categories)
+\noindent
+An important variant is Martin-L{\"o}f Type Theory, which is
+intuitionistic and introduces \emph{dependent types}, that is types which are
+allowed to depend on elements of other types. This is fairly convenient in
+mathematical practice, where often the type of an object depends on other
+objects, like in the statement ``for any natural number $n$ and field
+$k$, let $V$ be a $k$-vector space of dimension $n$...''. This version was meant
+to capture a notion of computation, exploiting the link with Computer Science
+made evident by \emph{System F}, a formalism for parametric polymorphism in
+programming languages. This connection
+has made it extremely interesting, as it led to the
+creation of proof assistants like Coq, Lean, Agda and others. These are software
+tools through which we can formalize and check mathematical reasoning, but also
+automatically produce proofs of statements, thereby lifting a heavy burden from
+the shoulders of mathematicians who often skip the ``obvious'' but tedious
+details of proofs. In particular, Coq rose to notoriety because it was used to
+prove the \emph{Four Colors Theorem} and a few years ago a project was born to
+build a mathematical library through Lean.
 
-2- an introduction to contextual categories: where do they come from? Why are
-they useful? Check out Voevodsky's papers about C-systems
+\noindent
+While it was clear early on that there was a link between categories and type
+theories, leading to various notions of categorical models (like
+\emph{contextual categories}) allowing a supposedly
+equivalent approach to the study of these foundations, a central piece of this
+connection still has not been provided, namely the \emph{Initiality Conjecture}.
+This would allow us to switch between algebraic and syntactic statements freely,
+however even providing a rigorous statement has proven difficult as it would
+require a precise definition of what a type theory is.
 
-We explain what dependent type theory is (Martin-Lof's notes from 1984) and why
-it's an interesting foundation of mathematics. We mention Homotopy Type Theory
-as an effort to provide homotopical foundations which better model how we think
-about identities, which explains why intensional identity types are more
-interesting to us than extensional ones.
+\noindent
+Relatedly, further interest came from the Homotopy Theory community when it was
+shown that the category of groupoids $\Gpd$ could provide a model for an
+extension of Martin-L{\"o}f Type Theory, which only became stronger because of
+the development of
+Homotopy Type Theory and its simplicial model in the category of
+$\infty$-groupoids $\Gpdi$ by
+Voevodsky, meaning that we may prove statements about Homotopy Theory by working
+syntetically through Type Theory, leading to new proofs of older theorems like
+the Black-Massey Theorem. Since then there has been an effort to unify the
+fields of $\infty$-Category Theory and Type Theory and thereby provide a
+satisfactory foundation for mathematics with homotopical semantics. Such link is
+obvious to the researchers in the field, but so far we have struggled to
+progress: indeed, to unify the two we would need a procedure to construct a type
+theory from an $\infty$-category and viceversa, however the first direction is
+fairly problematic and a construction was provided only under the notion of
+local presentability.
 
-We move on to defining contextual categories (1211.2851, 1406.7413, 1507.02648)
-and what
-the Pi, Sigma and Id structures are (1406.7413, 1211.2851 Appendix B). To
-understand what the link between such structures and syntactically presented
-type theories we refer to 1507.02648, Sec.\ 1.1, while the statement of the
-conjectured correspondence is in 1304.0680, Sec.\ 2.1.
+\noindent
+This thesis focuses on the other direction, from a type theory to an
+$\infty$-category, which itself is known only partially. Specifically, we aim to
+prove the following result by Kapulkin \cite[Thm.\ 9.3.17]{Kap14} using
+Cisinski's theory on localizations of $\infty$-categories \cite{Cis19} and
+thereby avoiding the less general theory of frames \cite{Szu14,KS15}.
 
-Where does the link between dependent type theories and $\infty$-categories come
-from? We see that $\infty$-categories intuitively model the behavior of type
-theories and their type constructions, especially when considering Homotopy Type
-Theory, however this relation is known only
-partially (references in the intro of 1507.02648). The idea is that the type
-theory we are interested in should be the internal language of some class of
-$\infty$-categories and a precise statement would require us to provide
-homotopical functors in both directions which induce an equivalence on the
-associated $\infty$-categories. The idea is to construct the
-functor from contextual categories as a localization functor, that is we need to
-provide a homotopical structure on contextual categories, as they do in
-1507.02648 (there should be an older reference) which then provides an
-associated $\infty$-category. This is the object of the Initiality Conjecture,
-stated in 1610.00037, in the hope that such a correspondence will extend to
-Homotopy Type Theory and some notion of Elementary Higher Toposes, perhaps the
-one specified in 1805.03805. At the moment we know that HoTT can be interpreted
-in Higher Toposes with some structure. Current progress: 1709.09519, an upcoming
-paper by Nguyen-Uemura (HoTTest talk).
+\begin{thm}[\ref{finalthm}]
+  Let $\T$ be a dependent type theory with $\Sigmas$-, $\Ids$- and
+  $\Piext$-types. The localization of the nerve of $\Syn{T}$ at bi-invertible
+  maps $L(N(\Syn{T}))$ is a locally Cartesian closed $\infty$-category.
+\end{thm}
 
-Our aim is to show that when taking contextual categories with the structure we
-specified earlier we obtain a locally cartesian closed $\infty$-category. To do
-so we provide a fibrational structure on contextual categories (1304.0680,
-1507.02648), which as we anticipate will imply that their simplicial
-localizations are finitely complete. We also prove that the hypothesis of
-\cite[Thm.\ 7.6.16]{Cis19} are satisfied, informing that this will be sufficient
-to prove Kapulkin's main result from 1507.02648.
+\noindent
+Following this result, Kapulkin and Lumsdaine formulated the \emph{Internal
+Languages Conjecture}, stating an equivalence between the
+$\infty$-categories of properly structured $\infty$-categories and the ones of
+contextual categories with some extra data
+This conjecture
+was recently proven by Nguyen and Uemura \cite{NU22}. Current research aims to
+extend this result by proving an equivalence between an $\infty$-category of
+contextual categories modeling Homotopy Type Theory and the one of elementary
+$\infty$-toposes, whose definition is still under discussion. It should be noted
+however that it was shown that $\infty$-toposes do provide models for it
+\cite{Shu19}.
 
-We then develop the theory of localizations of $\infty$-categories by Cisinski
-and specifically develop the results concerning $\infty$-categories with
-fibrations and weak equivalences. Localizations of such $\infty$-categories are
-finitely complete. The objective is to show \cite[Thm.\ 7.6.16]{Cis19}. How in
-depth should we go?
-
-Why all of this is interesting: we are proving Kapulkin's result internalizing
-all of the discussion within the language of $\infty$-category theory and
-relying only on its simplicial model.
-
+\begin{defn}
+  We begin in the first chapter by presenting our setting. Namely, in
+  Chapter \ref{chapter1} we specify the foundations we use, the structural rules of our
+  dependent type theories and the logical rules we will be considering; after
+  this, we present the background material pertaining to the categorical side,
+  introducing the syntactic category $\Syn{T}$, the Initiality Conjecture
+  \ref{initconj} and various constructions
+  with their type-theoretical meaning. In Chapter \ref{chapter2} we produce
+  extensions of the categorical data modeling the logical rules and in Chapter
+  \ref{chapter3} we introduce Cisinski's theory on localizations of
+  $\infty$-category, leading to Theorem \ref{7616}, which is instrumental in our
+  objective, and generalizing the theory of model categories. Finally, in
+  Chapter \ref{chapter4} we proceed to prove our result by introducing a
+  fibrational structure on $\Syn{T}$ and some preliminary lemmas leading to our
+  objective, whose statement we provide only at the end. We conclude with a
+  recap of what we have done and presenting some progress which followed
+  Kapulkin's proof.
+\end{defn}
