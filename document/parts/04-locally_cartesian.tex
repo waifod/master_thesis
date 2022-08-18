@@ -373,10 +373,10 @@ essentially requires the same amount of work), which we shall do in two steps.
 \end{proof}
 
 \noindent
-Again, the above extends to all fibrations in $\sfC$ and it allows to prove our
-desired result.
+Again, the above extends to all fibrations in $\sfC$ and it allows to prove
+Kapulkin's result \cite[Thm.\ 9.3.17]{Kap14}.
 
-\begin{thm}[{\cite[Thm.\ 9.3.17]{Kap14}}]\label{finalthm}
+\begin{thm}\label{finalthm}
   Let $\T$ be a dependent type theory with $\Sigmas$-, $\Ids$- and
   $\Piext$-types. The localization of the nerve of $\Syn{T}$ at
   bi-invertible maps $L(N(\Syn{T}))$ is a locally Cartesian closed
@@ -391,7 +391,7 @@ desired result.
 \section{Conclusions}
 
 We wrap up by summarizing what we have done and presenting developments which
-followed Kapulkin's result.
+followed the proof.
 
 \noindent
 In Chapter \ref{chapter1} we introduced dependent type theories, specifying the
@@ -418,7 +418,7 @@ identical to the one he took instead in \cite{Kap17}.
 
 \noindent
 In Chapter \ref{chapter3} we presented a theory of localizations of
-$\infty$-categories referring to Cisinski's work \ref{Cis19}. Our objective was
+$\infty$-categories referring to Cisinski's work \cite{Cis19}. Our objective was
 to provide some sufficient conditions under which the localization of an
 $\infty$-category would be locally cartesian closed and to do this we introduced
 $\infty$-categories with weak equivalences and fibrations \ref{fibicat}, which
@@ -447,7 +447,7 @@ This led to the formulation of the Internal Languages Conjecture \cite[Conj.\
 3.7]{KL16}, which we now briefly explain as anticipated.
 
 \begin{named}[Internal Languages]\label{intlang}
-  The horizontal functors structures
+  The horizontal functors
   \[\begin{tikzcd}
     {\Cxl_{\Sigmas,\mathsf{1},\Ids,\Piext}} & \LCCCi \\
     {\Cxl_{\Sigmas,\mathsf{1},\Ids}} & \Lexi
@@ -466,17 +466,16 @@ This led to the formulation of the Internal Languages Conjecture \cite[Conj.\
 
 \noindent
 A proof was recently provided by Nguyen and Uemura \cite{NU22} and this
-conjecture means that providing an $\infty$-category with the appropriate
-properties is equivalent to producing a contextual category with the specified
+conjecture means that producing an $\infty$-category with the appropriate
+properties is equivalent to presenting a contextual category with the specified
 logical structures and, therefore, a dependent type theory with the
 corresponding logical rules (its internal language) through which
 one may equivalently reason about the $\infty$-category and viceversa,
 establishing a strong link between the two theories.
-However, so far we have
-been unable to explicitly construct the corresponding contextual category from
-an $\infty$-category which is not locally presentable, meaning that we do not
-have a concrete definition of the homotopical inverses to the localization
-functors.
+However, so far we have been able to explicitly construct the corresponding
+contextual category from an $\infty$-category only if the latter is locally
+presentable, meaning that we do not have a concrete definition of the
+homotopical inverses to the localization functors.
 
 \noindent
 There is currently an ongoing project to 
