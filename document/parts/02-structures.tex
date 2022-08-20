@@ -216,10 +216,10 @@ extensions.
 
   \noindent
 We will work only with syntactic categories and in contextual categories where a
-section $c\colon\Gamma\rightarrow\Gamma.A.B$ can be split as
+section $x\colon\Gamma\rightarrow\Gamma.A.B$ can be split as
 two sections $a\colon\Gamma\rightarrow\Gamma.A$,
 $b\colon\Gamma.A\rightarrow\Gamma.A.B$.
-We see that $p_B\cdot c=p_B\cdot b\cdot a=a$. Syntactically, this means that if
+We see that $p_B\cdot x=p_B\cdot b\cdot a=a$. Syntactically, this means that if
 we pick two terms $a:A,b:B(a)$ over $\Gamma$ at once, then we can also
 specify for each choice of a term $a':A$ over $\Gamma$ a term $b':B(a')$ such
 that $b\equiv b'$ when $a\equiv a'$. We later point out the
@@ -480,7 +480,10 @@ constructions.
   The above theorem can be generalized to contextual categories with a
   $\Pis$-structure $\sfC$ as long as sections of dependent projections can be
   factored as described, in which case this hypothesis is used when we split
-  dependent terms. The proof is essentially the same, albeit harder to read.
+  dependent terms. If we can't, we are unable to show that
+  $\app_{\Delta,\Theta}(\lambda_{\Delta,\Theta}(y),x)=y\cdot x$, and in fact we
+  can not even produce $\lambda_{\Delta,\Theta}(y)$ the way we did in the case
+  where $m>1$. The proof is essentially the same, albeit harder to read.
 \end{rmk}
 
   \noindent

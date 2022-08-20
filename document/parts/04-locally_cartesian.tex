@@ -171,7 +171,8 @@ The above result can be however generalized.
   structure on $\Syn{T}^{\cxt}$ (where the condition on dependent projections
   holds by construction) to later carry it back to $\Syn{T}$ through the
   equivalence, while we do not need the Initiality Conjecture because we can
-  argue in $\Syn{T}^{\cxt}$ using the dependent type theory $\T$.
+  argue in $\Syn{T}^{\cxt}$ using the dependent type theory $\T$ and the
+  extended logical rules.
 \end{rmk}
 
 \begin{cor}\label{fincompl1}
@@ -187,7 +188,8 @@ The above result can be however generalized.
 We are now ready to provide a few results needed to show that, given a dependent
 type theory with $\Sigmas$-, $\Ids$- and $\Piext$-types $\T$, the hypothesis of
 Theorem \ref{7616} are satisfied by $\Syn{T}$ with respect to the above
-fibrational structure. Henceforth, we shall write $\sfC$ for $\Syn{T}$.
+fibrational structure. Henceforth we shall write $\sfC$ for this syntactic
+category.
 
 \begin{lem}[{\cite[Thm.\ 9.3.15]{Kap14}}]\label{radj}
   For any dependent projection $p_\Delta\colon\Gamma.\Delta\rightarrow\Gamma$ in
@@ -253,8 +255,9 @@ fibrational structure. Henceforth, we shall write $\sfC$ for $\Syn{T}$.
   \noindent
   Let us define our lift $\tilde{f}$ as the composite
   $\Gamma.\Pis(\Delta,f)\cdot\eta_{\Gamma.\Psi}$, where $\Gamma.\Pis(\Delta,f)$
-  was specified in Construction \ref{postcomp}. The commutativity of the above
-  triangle follows by type-theoretic reasoning from
+  was specified in Construction \ref{postcomp}. The map corresponds to
+  \[y\mapsto\lambda(x:\Delta).\app(\hat{f},y),\] so the commutativity of the
+  above triangle follows from
   \begin{align*}
     (x,y) \\
     ^{\eta_{\Gamma.\Psi}}
@@ -278,13 +281,12 @@ fibrational structure. Henceforth, we shall write $\sfC$ for $\Syn{T}$.
   \[\Gamma,x:\Delta,y:\Psi\vdash g:\Pis(\Delta,\Theta)\]
   such that
   \[\Gamma,x:\Delta,y:\Psi\vdash\app(g,x)\equiv\app(\hat{f},y):\Theta(x).\]
-  Indeed, we can derive
+  Indeed, we see that
   \begin{align*}
     y \\
         &\mapsto g \\
         ^{\eta\text{-conversion}}&\equiv\lambda(x:\Delta).\app(g,x) \\
-                                 &\equiv\lambda(x:\Delta).\app(\hat{f},y) \\
-                                 &\equiv\app(\hat{\tilde{f}},y),
+                                 &\equiv\lambda(x:\Delta).\app(\hat{f},y),
   \end{align*}
   which concludes the proof.
 
@@ -299,7 +301,7 @@ projection, so this tells us that every fibration induces an adjunction
 between fibrant slices.
 
 \noindent
-To apply Theorem \ref{7616}, we need to show that $(p_\Delta)_*$ is left exact
+To apply Theorem \ref{7616} we need to show that $(p_\Delta)_*$ is left exact
 (actually, we need to prove that it preserves trivial fibrations, but it
 essentially requires the same amount of work), which we shall do in two steps.
 
