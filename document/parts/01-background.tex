@@ -658,19 +658,18 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
     ^{\app_{A,B}}&\mapsto(a,\app(\hat{f},a)) \\
     ^{q(p_A,B)}&\mapsto\app(\hat{f},a).
   \end{align*}
-  This justifies abusing the notation to write $f$ for $\hat{f}$ and $(1_A,f)$
-  then acts as $a\mapsto(a,\app(f,a))$, meaning that $\lambda_{A,p^*_AB}(1_A,f)$
-  corresponds to $\lambda(a:A).\app(f,a):\Pis(A,B)$ in $\Syn{T}$.
+  Also, $\lambda_{A,p^*_AB}(1_A,f)$
+  corresponds to $\lambda(a:A).\app(\hat{f},a):\Pis(A,B)$ in $\Syn{T}$.
 \end{construction}
 
 \begin{construction}\label{postcomp}
   Let $\sfC$ be a contextual category with a $\Pis$-structure,
   $f\colon\Gamma.A.B\rightarrow\Gamma.A.B'$ a morphism over
   $\Gamma.A$, meaning that in $\Syn{T}$ it is a map $b\mapsto\app(f,b)$ for the
-  term $f:\Pis(B,B')$ it induces. We want to construct a morphism
+  term $\hat{f}:\Pis(B,B')$ it induces. We want to construct a morphism
   $$\Gamma.\Pis(A,f)\colon\Gamma.\Pis(A,B)\rightarrow\Gamma.\Pis(A,B')$$
-  modeling the postcomposition by $f$, that is
-  $g\mapsto\lambda(a:A).\app(f,\app(g,a))$.
+  modeling the postcomposition by $\hat{f}$, that is
+  $g\mapsto\lambda(a:A).\app(\hat{f},\app(g,a))$.
 
 \noindent
   We do so by looking at the commutative diagram

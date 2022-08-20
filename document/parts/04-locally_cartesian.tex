@@ -154,7 +154,7 @@ Now we have enough to specify the fibrational structure.
 The above result can be however generalized.
 
 \begin{prop}\label{fibcat}
-  A contextual category with $\Sigmas$- and $\Ids$- structures $\sfC$ carries
+  A contextual category with $\Sigmas$- and $\Ids$-structures $\sfC$ carries
   the structure of a fibration category given by the same classes of maps as
   above.
 \end{prop}
@@ -239,8 +239,8 @@ fibrational structure. Henceforth, we shall write $\sfC$ for $\Syn{T}$.
   
 \noindent
   To construct it we pull back the map
-  $\id_{\Psi}\colon\Gamma\rightarrow\Gamma.[\Psi,\Psi]$ from Construction
-  \ref{idterm} along $p_{p^*_\Psi\Delta}$, getting a section
+  $\id_{\Psi}\colon\Gamma\rightarrow\Gamma.\Pis(\Psi,p^*_\Psi\Psi)$ from
+  Construction \ref{idterm} along $p_{p^*_\Psi\Delta}$, getting a section
   \[p^*_{p^*_\Psi\Delta}\id_{\Psi}\colon\Gamma.\Psi.p^*_\Psi\Delta\rightarrow\Gamma.\Psi.p^*_\Psi\Delta.p^*_{p^*_\Psi\Delta}\Psi.\]
 
 \noindent
@@ -260,15 +260,15 @@ fibrational structure. Henceforth, we shall write $\sfC$ for $\Syn{T}$.
     ^{\eta_{\Gamma.\Psi}}
     &\mapsto(x,\lambda(x:\Delta).y) \\
     ^{\Gamma.\Pis(\Delta,f)}
-    &\mapsto(x,\lambda(x:\Delta).\app(f,\app(\lambda(x:\Delta).y,x))) \\
+    &\mapsto(x,\lambda(x:\Delta).\app(\hat{f},\app(\lambda(x:\Delta).y,x))) \\
     ^{\beta\text{-reduction}}
-    &\equiv(x,\lambda(x:\Delta).\app(f,y)) \\
+    &\equiv(x,\lambda(x:\Delta).\app(\hat{f},y)) \\
     ^{\exch_{\Pis(\Delta,\Psi),\Delta}}
-    &\mapsto(\lambda(x:\Delta).\app(f,y),x) \\
+    &\mapsto(\lambda(x:\Delta).\app(\hat{f},y),x) \\
     ^{\app_{\Delta,\Psi}}
-    &\mapsto(x,\app(\lambda(x:\Delta).\app(f,y),x)) \\
+    &\mapsto(x,\app(\lambda(x:\Delta).\app(\hat{f},y),x)) \\
     ^{\beta\text{-reduction}}
-    &\equiv(x,\app(f,y))
+    &\equiv(x,\app(\hat{f},y))
   \end{align*}
   and our description of
   $f\colon\Gamma.\Delta.p^*_\Delta\Psi\rightarrow\Gamma.\Delta.\Theta$ in
@@ -277,14 +277,14 @@ fibrational structure. Henceforth, we shall write $\sfC$ for $\Syn{T}$.
   another derivation of the form
   \[\Gamma,x:\Delta,y:\Psi\vdash g:\Pis(\Delta,\Theta)\]
   such that
-  \[\Gamma,x:\Delta,y:\Psi\vdash\app(g,x)\equiv\app(f,y):\Theta(x).\]
+  \[\Gamma,x:\Delta,y:\Psi\vdash\app(g,x)\equiv\app(\hat{f},y):\Theta(x).\]
   Indeed, we can derive
   \begin{align*}
     y \\
         &\mapsto g \\
         ^{\eta\text{-conversion}}&\equiv\lambda(x:\Delta).\app(g,x) \\
-        &\equiv\lambda(x:\Delta).\app(f,y) \\
-        &\equiv\app(\tilde{f},y),
+                                 &\equiv\lambda(x:\Delta).\app(\hat{f},y) \\
+                                 &\equiv\app(\hat{\tilde{f}},y),
   \end{align*}
   which concludes the proof.
 
@@ -358,7 +358,8 @@ essentially requires the same amount of work), which we shall do in two steps.
 
 \begin{lem}[{\cite[Thm.\ 9.3.15]{Kap14}}]\label{lccfc}
   In the above conditions, the functor
-  $(p_\Delta)_*\colon\sfC(\Gamma.\Delta)\rightarrow\sfC(\Gamma)$ is left exact.
+  $$(p_\Delta)_*\colon\sfC(\Gamma.\Delta)\rightarrow\sfC(\Gamma),\quad
+  \Gamma.\Delta.\Theta\mapsto\Gamma.\Pis(\Delta,\Theta)$$ is left exact.
 \end{lem}
 \begin{proof}
   As a right adjoint, $(p_\Delta)_*$ preserves limits and in particular
