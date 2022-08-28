@@ -281,13 +281,18 @@ category.
   another derivation of the form
   \[\Gamma,x:\Delta,y:\Psi\vdash g:\Pis(\Delta,\Theta)\]
   such that
-  \[\Gamma,x:\Delta,y:\Psi\vdash\app(g,x)\equiv\app(\hat{f},y):\Theta(x).\]
+  \begin{equation}\label{pointwise}
+    \Gamma,x:\Delta,y:\Psi\vdash\app(g,x)\equiv\app(\hat{f},y):\Theta(x)
+  \end{equation}
+  is derivable.
+
+  \noindent
   Indeed, we see that
   \begin{align*}
     y \\
         &\mapsto g \\
         ^{\eta\text{-conversion}}&\equiv\lambda(x:\Delta).\app(g,x) \\
-                                 &\equiv\lambda(x:\Delta).\app(\hat{f},y),
+        ^{\text{from }\ref{pointwise}}&\equiv\lambda(x:\Delta).\app(\hat{f},y),
   \end{align*}
   which concludes the proof.
 
