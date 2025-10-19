@@ -14,7 +14,6 @@ read it for a quick tour. We recommend however to consult the original source,
 which provides all of the intermediate results and details we gloss over in our
 sketched proofs.
 
-\noindent
 Our exposition is divided in three parts: first we define localizations and show
 some results derived directly from it, while later we present some facts which
 allow us to give a better description of the localization when the starting
@@ -35,16 +34,16 @@ assumptions.
 
 \begin{defn}
   Let $C$ be a simplicial set and $W\subset C$ a simplicial subset. Given an
-  $\infty$-category $\cD$, we define $\home_W(C,\cD)$ to be the full simplicial
-  subset of $\home(C,\cD)$ whose objects are the morphisms $f\colon
+  $\infty$-category $\cD$, we define $\Home_W(C,\cD)$ to be the full simplicial
+  subset of $\Home(C,\cD)$ whose objects are the morphisms $f\colon
   C\rightarrow\cD$ sending the 1-simplices in $W$ to isomorphisms.
 \end{defn}
 
 \begin{rmk}
   The above definition induces a canonical pullback square
   \[\begin{tikzcd}
-    {\home_W(C,\cD)} & {\home(C,\cD)} \\
-    {\home_W(W,\cD)} & {\home(W,\cD)}
+    {\Home_W(C,\cD)} & {\Home(C,\cD)} \\
+    {\Home_W(W,\cD)} & {\Home(W,\cD)}
     \arrow[from=1-1, to=2-1]
     \arrow[from=2-1, to=2-2]
     \arrow[from=1-2, to=2-2]
@@ -56,19 +55,18 @@ assumptions.
 
 \begin{defn}
   Given a simplicial set $C$ and a simplicial subset $W$, a \emph{localization
-  of $C$ by $W$} is a morphism $\gamma\colon C\rightarrow L(C)$ in $\sSet$ such
+  of $C$ by $W$} is a morphism $\gamma\colon C\rightarrow L_W(C)$ in $\sSet$ such
   that:
   \begin{enumerate}
-    \item $L(C)$ is an $\infty$-category;
-    \item $\gamma$ sends the 1-simplices of $W$ to isomorphisms in $L(C)$;
+    \item $L_W(C)$ is an $\infty$-category;
+    \item $\gamma$ sends the 1-simplices of $W$ to isomorphisms in $L_W(C)$;
     \item for any $\infty$-category $\cD$ there is an equivalence of
       $\infty$-categories
-      \[\home(L(C),\cD)\rightarrow\home_W(C,\cD)\]
+      \[\Home(L_W(C),\cD)\rightarrow\Home_W(C,\cD)\]
       given by precomposing with $\gamma$.
   \end{enumerate}
 
-  \noindent
-  We will often refer to $L(C)$ as the localization of $C$ by $W$, without
+  We will often refer to $L_W(C)$ as the localization of $C$ by $W$, without
   providing $\gamma$ explicitly.
 \end{defn}
 
@@ -78,20 +76,18 @@ assumptions.
 \begin{proof}
   We begin by proving that a localization exists in the case where $W=C$.
 
-  \noindent
-  In this context, $\home_W(C,\cD)\cong\home(C,\cD^{\cong})$ canonically,
+  In this context, $\Home_W(C,\cD)\cong\Home(C,\cD^{\cong})$ canonically,
   where $\cD^{\cong}$ is the maximal subgroupoid of $\cD$.
   Factoring $C\rightarrow\Delta^0$ in the Kan model structure, we find an
   anodyne map $C\rightarrow C'$. We then choose this map for $\gamma$ and set
-  $L(C)=C'$.
+  $L_W(C)=C'$.
 
-  \noindent
   Remember that for any anodyne map $A\rightarrow B$ we get a trivial fibration
-  $\home(B,\cD^{\cong})\rightarrow\home(A,\cD^{\cong})$. Looking then at the
+  $\Home(B,\cD^{\cong})\rightarrow\Home(A,\cD^{\cong})$. Looking then at the
   commutative diagram
   \[\begin{tikzcd}
-    {\Hom(L(C),\cD^{\cong})} & {\Hom_W(C,\cD^{\cong})} \\
-    {\home(L(C),\cD)} & {\home_W(C,\cD)}
+    {\Hom(L_W(C),\cD^{\cong})} & {\Hom_W(C,\cD^{\cong})} \\
+    {\Home(L_W(C),\cD)} & {\Home_W(C,\cD)}
     \arrow["\gamma^*", "\sim"', two heads, from=1-1, to=1-2]
     \arrow[from=1-1, to=2-1]
     \arrow["{\gamma^*}"', from=2-1, to=2-2]
@@ -100,16 +96,16 @@ assumptions.
   \end{tikzcd},\]
   we see that the lower $\gamma^*$ is a trivial fibration, thus we have
   constructed a valid localization of $C$ by $W$.
-  
+
   We now move on to the general case. First of all, notice that as a particular
   case of the previous one we get that localizing $\Delta^1$ at its non-trivial
-  morphism our construction provides $L(\Delta^1)=J\sim\Delta^0$, while $\gamma$
+  morphism our construction provides $L_{\{f\}}(\Delta^1)=J\sim\Delta^0$, while $\gamma$
   is the inclusion $\Delta^1\rightarrow J$. Taking then $W\subset C$, we
   consider the commutative diagram
   \[\begin{tikzcd}
     {\coprod_{f\in W_1}\Delta^1} & C \\
     {\coprod_{f\in W_1}J} & {C'} \\
-    && {L(C)}
+    && {L_W(C)}
     \arrow[from=1-1, to=1-2]
     \arrow[from=1-1, to=2-1]
     \arrow[from=2-1, to=2-2]
@@ -119,16 +115,15 @@ assumptions.
     \arrow["\gamma", curve={height=-12pt}, from=1-2, to=3-3]
     \arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
   \end{tikzcd},\]
-  where $C'\xrightarrow{\sim} L(C)$ is an inner anodyne map obtained by taking the
+  where $C'\xrightarrow{\sim} L_W(C)$ is an inner anodyne map obtained by taking the
   fibrant replacement of $C'$ in the Joyal model structure. This can be done
   functorially via the small object argument.
 
-  \noindent
   For any $\infty$-category $\cD$, we get a trivial fibration
-  $\home(L(C),\cD)\dhxrightarrow{\sim}\home(C',\cD)$ and a pullback square
+  $\Home(L_W(C),\cD)\dhxrightarrow{\sim}\Home(C',\cD)$ and a pullback square
   \[\begin{tikzcd}
-    {\home(C',\cD)} & {\home(C,\cD)} \\
-    {\Pi_{f\in W_1}\home(J,\cD)} & {\Pi_{f\in W_1}\home(\Delta^1,\cD)}
+    {\Home(C',\cD)} & {\Home(C,\cD)} \\
+    {\Pi_{f\in W_1}\Home(J,\cD)} & {\Pi_{f\in W_1}\Home(\Delta^1,\cD)}
     \arrow[from=1-2, to=2-2]
     \arrow[from=2-1, to=2-2]
     \arrow[from=1-1, to=2-1]
@@ -136,8 +131,8 @@ assumptions.
   \end{tikzcd},\]
   which together with the pullback
   \[\begin{tikzcd}
-    {\home_W(C,\cD)} & {\home(C,\cD)} \\
-    {\Pi_{f\in W_1}\home(\Delta^1,\cD^{\cong})} & {\Pi_{f\in W_1}\home(\Delta^1,\cD)}
+    {\Home_W(C,\cD)} & {\Home(C,\cD)} \\
+    {\Pi_{f\in W_1}\Home(\Delta^1,\cD^{\cong})} & {\Pi_{f\in W_1}\Home(\Delta^1,\cD)}
     \arrow[from=1-2, to=2-2]
     \arrow[from=2-1, to=2-2]
     \arrow[from=1-1, to=2-1]
@@ -145,8 +140,8 @@ assumptions.
   \end{tikzcd}\]
   implies by pasting that
   \[\begin{tikzcd}
-    {\home(C',\cD)} & {\home_W(C,\cD)} \\
-    {\Pi_{f\in W_1}\home(J,\cD)} & {\Pi_{f\in W_1}\home(\Delta^1,\cD^{\cong})}
+    {\Home(C',\cD)} & {\Home_W(C,\cD)} \\
+    {\Pi_{f\in W_1}\Home(J,\cD)} & {\Pi_{f\in W_1}\Home(\Delta^1,\cD^{\cong})}
     \arrow[from=1-2, to=2-2]
     \arrow[from=1-1, to=1-2]
     \arrow[from=1-1, to=2-1]
@@ -155,12 +150,12 @@ assumptions.
   \end{tikzcd}\]
   is also a pullback and therefore the upper arrow is a trivial fibration.
   Composing it with the other one we get
-  $\gamma^*\colon\home(L(C),\cD)\rightarrow\home_W(C,\cD)$, which is then a
+  $\gamma^*\colon\Home(L(C),\cD)\rightarrow\Home_W(C,\cD)$, which is then a
   trivial fibration and therefore an equivalence of $\infty$-categories.
 
   We now move on to proving that the localization is essentially unique. For
   this, we notice that $\gamma^*$ establishes then an isomorphism between
-  $\pi_0(k(\home_W(C,-)))$ and $\pi_0(\home(L(C),-))=ho(\sSet)(L(C),-)$
+  $\pi_0(k(\Home_W(C,-)))$ and $\pi_0(\Home(L(C),-))=ho(\sSet)(L(C),-)$
   with respect to the Joyal model structure, thus by Yoneda the pair
   $(L(\cC),\gamma)$ satisfying the universal property is
   unique up to unique isomorphism in $ho(\sSet)$ and up to a contractible space
@@ -176,9 +171,9 @@ assumptions.
 \end{rmk}
 
 \begin{rmk}
-  Writing $\weCat$ for the category of \emph{relative categories}
+  Writing $\wCat$ for the category of \emph{relative categories}
   \cite{BK12}, there are various ways to construct a localization functor
-  $\weCat\rightarrow\Cat_\infty$ in the literature and Kapulkin refers to
+  $\wCat\rightarrow\Cat_\infty$ in the literature and Kapulkin refers to
   simplicial localization when stating Theorem \ref{finalthm} in
   \cite{Kap14}, however it was shown that they are all weakly equivalent (see
   \cite[Ex.\ 1.6.3]{Bar16}), meaning
@@ -196,7 +191,6 @@ assumptions.
   1-categorical localization of $\cC$ at $\Arr(\tau(W))$, as can be seen by
   using the universal property.
 
-  \noindent
   On the other hand, given a 1-category $\cC$ and considered a set of
   morphisms $W$, not necessarily the induced map $L(N(\cC))\rightarrow
   N(L(\cC))$ is an isomorphism. Indeed, $L(N(\cC))$ can have much better
@@ -205,8 +199,6 @@ assumptions.
   in \cite[Prop.\ 7.3.15]{Cis19}. It should be noted that here we used $L(-)$
   to refer both to the 1-categorical and the $\infty$-categorical localization.
 \end{rmk}
-
-
 \begin{rmk}\label{715}
   %7.1.5
 
@@ -224,17 +216,15 @@ assumptions.
     \arrow[from=1-1, to=2-1]
   \end{tikzcd}\]
 
-  \noindent
   We have inclusions $Sk_1(W)\subset W\subset\overline{W}$ and, for any
   $\infty$-category $\cD$, this induces equalities
-  \[\home_{Sk_1(W)}(C,\cD)=\home_{W}(C,\cD)=\home_{\overline{W}}(C,\cD),\]
+  \[\Home_{Sk_1(W)}(C,\cD)=\Home_{W}(C,\cD)=\Home_{\overline{W}}(C,\cD),\]
   implying that $(L(C),\gamma)$ is also the localization of $C$ by $Sk_1(W)$
   and the one by $\overline{W}$. It can be noted that the inclusion
   $\overline{W}\rightarrow C$ is a fibration with respect to the Joyal model
   structure as it is the pullback of one, implying that if $C$ is an is an
   $\infty$-category then so is $\overline{W}$.
 
-  \noindent
   We shall say that $W$ is \emph{saturated} if $W=\overline{W}$.
 \end{rmk}
 
@@ -244,21 +234,20 @@ assumptions.
   Given a universe $\bfU$ and a simplicial subset $W$ of a $\bfU$-small
   simplicial set $C$, let $\gamma\colon C\rightarrow L(C)$ be the
   associated localization. Then the functor
-  $$\gamma^*\colon\home(L(C)^{\op},\cS)\rightarrow\home(C^{\op},\cS)$$ is
+  $$\gamma^*\colon\Home(L(C)^{\op},\cS)\rightarrow\Home(C^{\op},\cS)$$ is
   fully faithful because it is obtained as
-  \[\home(L(C)^{\op},\cS)\simeq\home_{W^{\op}}(C^{\op},\cS)\rightarrow\home(C^{\op},\cS).\]
+  \[\Home(L(C)^{\op},\cS)\simeq\Home_{W^{\op}}(C^{\op},\cS)\rightarrow\Home(C^{\op},\cS).\]
   It also has a left adjoint $\gamma_!$ and a right adjoint $\gamma_*$ as
   shown in \cite[Ch.\ 6]{Cis19}. Full faithfulness then implies that for any
   presheaf $F\colon L(C)^{\op}\rightarrow\cS$ the unit map
   $F\rightarrow\gamma_*\gamma^*(F)$ is invertible and, by adjunction, the same
   goes for the counit map $\gamma_!\gamma^*(F)\rightarrow F$.
 
-  \noindent
   Furthermore, its essential image consists exactly of those presheafs $F\colon
   C^{\op}\rightarrow\cS$ such that, for any morphism $u\colon x\rightarrow y$ in
   $W$, the map $Fu\colon Fy\rightarrow Fx$ is invertible in $\cS$. Indeed,
   restricting
-  $\gamma_!$ and $\gamma_*$ to $\home_{W^{\op}}(C^{\op},\cS)$, we see that they
+  $\gamma_!$ and $\gamma_*$ to $\Home_{W^{\op}}(C^{\op},\cS)$, we see that they
   are left and right adjoint to the equivalence of $\infty$-categories induced
   by $\gamma^*$, meaning that the counit map $\gamma^*\gamma_*(F)\rightarrow F$
   and the unit map $F\rightarrow\gamma^*\gamma_!(F)$ are invertible.
@@ -275,7 +264,7 @@ assumptions.
   suffices to prove that $\gamma$ is final. To do this, first we fix a universe
   $\bfU$ such that $C$ is $\bfU$-small and then we remember that there
   is an adjunction
-  $\adjunction{\gamma^*}{\home(L(C)^{\op},\cS)}{\home(C^{\op},\cS)}{\gamma_*}$
+  $\adjunction{\gamma^*}{\Home(L(C)^{\op},\cS)}{\Home(C^{\op},\cS)}{\gamma_*}$
   and, by the above remark, the unit of the adjunction is invertible, hence
   $F\simeq\gamma_*\gamma^*(F)$ for any presheaf $F\colon
   L(\cC)^{\op}\rightarrow\cS$. This gives us
@@ -297,7 +286,7 @@ assumptions.
       $\cD$;
     \item the morphism $f$ is essentially surjective;
     \item the morphism $f^*$ induces an equivalence of $\infty$-categories
-      \[f^*\colon\home(\cD^{\op},\cS)\rightarrow\home_{W^{\op}}(C^{\op},\cS).\]
+      \[f^*\colon\Home(\cD^{\op},\cS)\rightarrow\Home_{W^{\op}}(C^{\op},\cS).\]
   \end{enumerate}
 \end{prop}
 \begin{proof}
@@ -307,8 +296,8 @@ assumptions.
   L(C)$ and, through condition (1), we get a factorization $g\colon
   L(C)\rightarrow\cD$ such that $g\cdot\gamma\simeq f$, giving us a triangle
   \[\begin{tikzcd}[column sep=tiny]
-    {\home(\cD^{\op},\cE)} && {\home(L(C)^{\op},\cE)} \\
-                           & {\home_{W^{\op}}(C^{\op},\cE)}
+    {\Home(\cD^{\op},\cE)} && {\Home(L(C)^{\op},\cE)} \\
+                           & {\Home_{W^{\op}}(C^{\op},\cE)}
     \arrow["{g^*}", from=1-1, to=1-3]
     \arrow["{f^*}"', from=1-1, to=2-2]
     \arrow["{\gamma^*}", from=1-3, to=2-2]
@@ -355,12 +344,12 @@ assumptions.
   commute up to $J$-homotopy.
 \end{prop}
 \begin{proof}
-  Let's write $\home_V^W(\cC,\cD)$ for the full subcategory of $\home(\cC,\cD)$
+  Let's write $\Home_V^W(\cC,\cD)$ for the full subcategory of $\Home(\cC,\cD)$
   whose objects are functors $\phi$ such that $\phi(V)\subset W$. The
   equivalence
-  $\gamma^*_\cC\colon\Hom(L(\cC),L(\cD))\rightarrow\home_V(\cC,L(\cD))$ allows
+  $\gamma^*_\cC\colon\Hom(L(\cC),L(\cD))\rightarrow\Home_V(\cC,L(\cD))$ allows
   us to construct a functor
-  $\home^W_V(\cC,\cD)\rightarrow\home_V(\cC,L(\cD))\rightarrow\home(L(\cC),L(\cD))$
+  $\Home^W_V(\cC,\cD)\rightarrow\Home_V(\cC,L(\cD))\rightarrow\Home(L(\cC),L(\cD))$
   which associates to any $\phi$ as above a functor $\overline{\phi}$ making the
   square
   \[\begin{tikzcd}
@@ -373,7 +362,6 @@ assumptions.
   \end{tikzcd}\]
   commute up to $J$-homotopy.
 
-  \noindent
   The proof works by observing that our map also lifts natural transformations
   functorially, which allows us to show the triangle identities for the lifted
   unit and counit.
@@ -396,7 +384,6 @@ assumptions.
   the counit is still invertible, which allows us to conclude that $\gamma\cdot
   v$ is fully faithful.
 
-  \noindent
   Essential surjectivity
   follows from the fact that, for any object $c$ in $\cC$, the unit $\eta_c$ is
   such that $\epsilon_{u(c)}\cdot u(\eta_c)=1_{u(c)}$ and, since $\epsilon$ is
@@ -542,7 +529,6 @@ description of $L(\cC)$ through a \emph{right calculus of fractions}. However,
 we will not be providing all of the results necessary
 for this and refer to \cite[Ch.\ 7.2-7.4]{Cis19}.
 
-\noindent
 This generalizes
 previous work by Szumilo-Kapulkin \cite{Szu14,KS15}, who proved
 similar results for the simplicial localization of a \emph{fibration category}
@@ -551,13 +537,13 @@ by studying the associated \emph{$\infty$-category of frames}, which provides
 a concrete model of $L(N(\cP))$ avoiding inexplicit fibrant replacements.
 
 \begin{defn}\label{fibicat}
-  An \emph{$\infty$-category with weak equivalences and fibrations} $\cC$ is a
+  An \emph{$\infty$-category $\cC$ with weak equivalences $W$ and fibrations $\Fib$} is a
   triple
-  $(\cC,W,\fib)$ where $\cC$ is an $\infty$-category with a final object,
+  $(\cC,W,\Fib)$ where $\cC$ is an $\infty$-category with a final object,
   $W\subset\cC$ is a subcategory with the 2-out-of-3 property and
-  $\fib\subset\cC$ a subsimplicial set such that:
+  $\Fib\subset\cC$ a subsimplicial set such that:
   \begin{enumerate}
-    \item for any morphism $p\colon x\rightarrow y$ in $\fib$ (and $W$) with
+    \item for any morphism $p\colon x\rightarrow y$ in $\Fib$ (and $W$) with
       $y,y'$ fibrant, there is in $\cC$ a pullback square
       \[\begin{tikzcd}
         {x'} & x \\
@@ -567,28 +553,27 @@ a concrete model of $L(N(\cP))$ avoiding inexplicit fibrant replacements.
         \arrow["v"', from=2-1, to=2-2]
         \arrow["u", from=1-1, to=1-2]
       \end{tikzcd}\]
-      where $p'$ also lies in $\fib$ (and $W$);
+      where $p'$ also lies in $\Fib$ (and $W$);
     \item for any map $f\colon x\rightarrow y$ with fibrant codomain can be
-      factored as a map in $W$ followed by one in $\fib$.
+      factored as a map in $W$ followed by one in $\Fib$.
   \end{enumerate}
   By \emph{fibrant object} we mean an object whose map to the terminal one is in
-  $\fib$. If every object in $\cC$ is fibrant then we call it an
+  $\Fib$. If every object in $\cC$ is fibrant then we call it an
   \emph{$\infty$-category of fibrant objects}.
 
-  \noindent
   We shall call \emph{weak equivalences} the maps in $W$ and \emph{fibrations}
-  the ones in $\fib$. Maps which are both shall be referred to as \emph{trivial
+  the ones in $\Fib$. Maps which are both shall be referred to as \emph{trivial
   fibrations}.
 \end{defn}
 
 \begin{construction}\label{fincomplarefib}
   Any finitely complete $\infty$-category $\cC$ can be given the structure of an
-  $\infty$-category with weak equivalences and fibrations by setting $W=k(\cC)$,
-  $\fib=\cC$, which we will be doing henceforth.
+  $\infty$-category $\cC$ with weak equivalences $W$ and fibrations $\Fib$ by setting $W=k(\cC)$,
+  $\Fib=\cC$, which we will be doing henceforth.
 \end{construction}
 
 \begin{construction}
-  For any $\infty$-category with weak equivalences and fibrations $\cC$ and a
+  For any $\infty$-category $\cC$ with weak equivalences $W$ and fibrations $\Fib$ and a
   fibrant object $c$, we can give to the slice category $\cC/c$ the structure of an
   $\infty$-category with weak equivalences and fibrations by specifying as weak
   equivalences the morphisms which are mapped to weak equivalences of $\cC$ by
@@ -599,7 +584,7 @@ a concrete model of $L(N(\cP))$ avoiding inexplicit fibrant replacements.
   For any $\infty$-category with weak equivalences and fibrations $\cC$, its
   full subcategory given by fibrant objects is canonically an $\infty$-category
   of fibrant objects. We shall denote it by $\cC_f$ and its weak equivalences
-  are given by $W_f=W\cap\cC_f$, its fibrations by $\fib_f=\fib\cap\cC_f$.
+  are given by $W_f=W\cap\cC_f$, its fibrations by $\Fib_f=\Fib\cap\cC_f$.
   Furthermore, we write $\gamma_f$ for the localization functor
   $\cC_f\rightarrow L(\cC_f)$.
 \end{construction}
@@ -671,8 +656,6 @@ a concrete model of $L(N(\cP))$ avoiding inexplicit fibrant replacements.
   commuting and weak equivalences being preserved as a consequence of
   Corollary \ref{7414}.
 \end{construction}
-
-
 %\begin{cor}
 %  7.4.14
 %\end{cor}
@@ -803,7 +786,7 @@ a concrete model of $L(N(\cP))$ avoiding inexplicit fibrant replacements.
   functors are essentially surjective themselves, thus it is enough to prove
   that it is fully faithful. To do this, we may fix a universe $\bfU$ such that
   $\cC$ is $\bfU$-small, prove that the functor
-  \[\overline{\iota}_!\colon\home(L(\cC_f),\cS)\rightarrow\home(L(\cC),\cS)\]
+  \[\overline{\iota}_!\colon\Home(L(\cC_f),\cS)\rightarrow\Home(L(\cC),\cS)\]
   is fully faithful and use \cite[Prop.\ 6.1.15]{Cis19}. Remember that this full
   faithfulness condition is equivalent to the unit map
   $1\rightarrow\overline{\iota}^*\overline{\iota}_!$ of the adjunction
@@ -842,7 +825,7 @@ a concrete model of $L(N(\cP))$ avoiding inexplicit fibrant replacements.
 
 \begin{construction}\label{7522}
   %7.5.22
-  
+
   Given an $\infty$-category $\cC$ with weak equivalences and fibrations, we can
   get another one $\overline{\cC}$ with the same underlying $\infty$-category
   and class of fibrations, but where the weak equivalences are given by the
@@ -857,9 +840,9 @@ a concrete model of $L(N(\cP))$ avoiding inexplicit fibrant replacements.
 \begin{rmk}
   Let $\cC$ be an $\infty$-category with weak equivalences $W$ and
   $F\colon\cC\rightarrow\cD$ be a functor. The precomposition functor
-  $\gamma^*\colon\home(L(\cC),\cD)\rightarrow\home(\cC,\cD)$ does not have a
+  $\gamma^*\colon\Home(L(\cC),\cD)\rightarrow\Home(\cC,\cD)$ does not have a
   left adjoint in general, but we may ask whether $\Hom(F,\gamma^*(-))$ is
-  representable in $\home(L(\cC),\cD)$. If it is, a representative is denoted by
+  representable in $\Home(L(\cC),\cD)$. If it is, a representative is denoted by
   $\bfR F\colon L(\cC)\rightarrow\cD$ and is called the \emph{right derived
   functor of $F$}. Beware that to be precise one would have to specify the
   natural transformation $F\rightarrow\bfR F\cdot\gamma$ exhibiting it as such.
@@ -879,7 +862,7 @@ a concrete model of $L(N(\cP))$ avoiding inexplicit fibrant replacements.
   Let's fix a universe $\bfU$ such that $\cC$ and $\cD$ are $\bfU$-small and let
   $G\colon L(\cC)\rightarrow\cD$ be any functor. Then the invertible map
   $\overline{F}\cdot\gamma\simeq F$ and the equivalence of $\infty$-categories
-  $\home(L(\cC),\cD)\simeq\home_W(\cC,\cD)$ induce invertible maps
+  $\Home(L(\cC),\cD)\simeq\Home_W(\cC,\cD)$ induce invertible maps
   \[\Hom(\overline{F},G)\simeq\Hom(\overline{F}\cdot\gamma,G\cdot\gamma)\simeq\Hom(F,G\cdot\gamma)\]
   in $\cS$, functorially in $G$.
 \end{proof}
@@ -896,28 +879,25 @@ and then set $\overline{F}x=Fx'$. The following construction replicates this.
   objects to invertible maps then has a right derived functor $\bfR F$, which
   may be constructed as follows.
 
-  \noindent
   First we choose a quasi-inverse $R\colon L(\cC)\rightarrow L(\cC_f)$ of the
   equivalence of $\infty$-categories specified in Prop.\ \ref{7518}, then we
   pick a functor $\overline{F}\colon L(\cC_f)\rightarrow\cD$ with a natural
   isomorphism $j\colon\overline{F}\cdot\gamma_f\rightarrow F\cdot\iota$.
   Finally, we set $\bfR F=\overline{F}\cdot R$.
 
-  \noindent
   As anticipated, what we are doing in this construction is selecting
   for every object in $\cC$ a fibrant replacement, exactly like when we talk
   about right derived functors in the context of model categories.
   Also, for any other functor $G\colon\cD\rightarrow\cE$, we have that
   $G\cdot\bfR F=\bfR(G\cdot F)$.
 
-  \noindent
   It still needs to be verified that the construction does represent
   $\Hom(F,\gamma^*(-))$, which is done in \cite[Rem.\ 7.5.25]{Cis19}.
 \end{construction}
 
 \begin{defn}
   Given an $\infty$-category with weak equivalences and fibrations $\cC$ and an
-  $\infty$-category with weak equivalences $\cD$, let's consider a functor
+  $\infty$-category $\cD$ with weak equivalences $V$, let's consider a functor
   $F\colon\cC\rightarrow\cD$ preserving weak equivalences between fibrant
   objects of $\cC$. We call the \emph{right derived functor of} $F$ the right
   derived functor of the composition
@@ -978,7 +958,6 @@ generalizes \cite[Thm.\ 5.3]{Kap17}.
   $x|_{\Delta^{\{i,i+1\}}}\colon \{i,i+1\}\rightarrow\cC$ lie in $W$ for all
   $0\leq i<n$.
 
-  \noindent
   $W$ then contains all invertible maps of $\cC$ if and only if the
   aforementioned inclusion is an isofibration.
 \end{rmk}
@@ -1052,20 +1031,6 @@ As an example, we prove the following.
   approximation property as per \cite[Ex.\ 7.6.4]{Cis19}.
 \end{exmp}
 
-%\begin{lem}
-%  7.6.5
-%\end{lem}
-%\begin{proof}
-%  4.2.9
-%\end{proof}
-
-%\begin{lem}
-%  7.6.7
-%\end{lem}
-%\begin{proof}
-%  4.3.15, 7.4.19, 7.5.5
-%\end{proof}
-
 \begin{thm}\label{7610}
   %7.6.10
 
@@ -1085,7 +1050,6 @@ As an example, we prove the following.
   We trivially have that (1) implies (2) and, by Proposition \ref{762}, (3)
   follows from (2), hence we only have to show that (3) gives (1).
 
-  \noindent
   Let's assume then that $f$ has the right approximation property.
   Given a final object $e$ of $\cC$, $f(e)$ is still final in $\cD$ by
   Proposition \ref{7110}, thus for any object $d$ of $\cD$ we have a map
@@ -1094,7 +1058,6 @@ As an example, we prove the following.
   an isomorphism $d\rightarrow f(c)$ for some $c$ in $\cC$, which gives
   us essential surjectivity.
 
-  \noindent
   We are still missing full faithfulness. To prove it, we use that the right
   approximation property implies that we have an equivalence of
   $\infty$-groupoids $k(f)\colon k(\cC)\rightarrow k(\cD)$, as per \cite[Lem.\
@@ -1103,7 +1066,6 @@ As an example, we prove the following.
   approximation property, which is \cite[Prop.\ 7.6.7]{Cis19}, therefore again
   we get an equivalence of $\infty$-groupoids $k(\cC/c)\rightarrow k(\cD/f(c))$.
 
-  \noindent
   Keeping these facts in mind, let's look at the projection
   $\cC/c\rightarrow\cC$. This functor is conservative, thus the square
   \[\begin{tikzcd}
@@ -1143,7 +1105,6 @@ As an example, we prove the following.
   induced map $\cC(c',c)\rightarrow\cD(f(c'),f(c))$ is again an equivalence of
   $\infty$-groupoids, which is what we wanted.
 
-  \noindent
   Since $f$ is essentially surjective and fully faithful, it is an equivalence
   of $\infty$-categories.
 \end{proof}
@@ -1166,7 +1127,6 @@ As an example, we prove the following.
   the right approximation property and it preserves finite limits, which will
   allow us to apply Theorem \ref{7610} and conclude.
 
-  \noindent
   To show rcondition (1) we only need to prove that $\phi$ is conservative, which
   can be reduced to showing that a map in $\cC/x$ becomes invertible in
   $L(\cC/x)$ if and only if it becomes an isomorphism in $L(\cC)$. This however
@@ -1175,7 +1135,6 @@ As an example, we prove the following.
   on $\cC/x\rightarrow L(\cC)/\gamma(x)$, but this follows from the fact that
   $\gamma$ has it, as mentioned in Example \ref{764}.
 
-  \noindent
   To apply Theorem \ref{7610} we still need to show that $\phi$ preserves finite
   limits. To do this, we use the fact that $\cC/x$ has the structure of an
   $\infty$-category with weak equivalences and fibrations. Given that $\gamma$
@@ -1208,7 +1167,6 @@ As an example, we prove the following.
   \[\gamma(p)^*\colon L(\cC)/\gamma(y)\rightarrow L(\cC)/\gamma(x)\]
   has a right adjoint.
 
-  \noindent
   By Corollary \ref{7414}, any functor preserving
   trivial fibrations between fibrant objects also preserves weak equivalences.
   Also, since $p^*\colon\cC(y)\rightarrow\cC(x)$ has both a right and a left
@@ -1218,7 +1176,6 @@ As an example, we prove the following.
   \[\adjunction{\overline{p}^*}{L(\cC(y))}{L(\cC(x))}{\overline{p}_*},\]
   \[\adjunction{\overline{p}_!}{L(\cC(x))}{L(\cC(y))}{\overline{p}^*}.\]
 
-  \noindent
   Given that $(\cC/z)_f=\cC(z)$ for all fibrant objects $z$ of $\cC$, by
   Proposition \ref{7518} we have that $L(\cC(z))\simeq L(\cC/z)$ and, by
   Corollary $\ref{7613}$, we also know that $L(\cC/z)\simeq L(\cC)/\gamma(z)$, hence
@@ -1228,4 +1185,3 @@ As an example, we prove the following.
   $\overline{p}^*$, therefore $\gamma(p)^*$ has a right adjoint induced by
   $\overline{p}_*$.
 \end{proof}
-

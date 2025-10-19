@@ -27,13 +27,12 @@ As anticipated, we introduce a notion of weak equivalence in our context.
   \end{enumerate}
 \end{defn}
 
-\noindent
 We now generalize the above definition to arbitrary context extensions in
 $\Syn{T}$ by working as usual with $\Syn{T}^{\cxt}$ to provide the notion given
 in \cite[Def.~1.4]{Kap17}.
 
 \begin{defn}
-  Given a dependent type theory with $\Ids$-types $\T$, a morphism
+  Given a dependent type theory with $\Ids$-types $\bfT$, a morphism
   $f\colon\Gamma.\Delta\rightarrow\Gamma.\Theta$ over $\Gamma$ in $\Syn{T}$ is
   \emph{bi-invertible over $\Gamma$} if it is simply bi-invertible over $\Gamma$
   as a morphism between the two corresponding simple context extensions of
@@ -65,17 +64,16 @@ in \cite[Def.~1.4]{Kap17}.
   ones model the right notion of invertible map in dependent type theory:
   indeed, from the
   required data for a simply bi-invertible map $f$ over $\Gamma$ we can provide
-  a section $\Gamma\rightarrow\Gamma.\ishiso{f}$
+  a section $\Gamma\rightarrow\Gamma.\isHIso{f}$
   as defined in \cite[Def.\ B.3.3]{KL12}, which itself is the translation into
   the language of contextual categories of the notion of bi-invertible map in
   type theory \cite[Def.\ 4.3.1]{Uni13}.
 
-\noindent
   It is important to note that, while type theory has no way to encode
   internally the concept of isomorphism of the contextual model, it does have
   its own internal notion of isomorphism. However, given a type-theoretic map
-  $f$, the associated type $\isiso{f}$ is not, in general, a \emph{mere
-  proposition} \cite[Def.\ 3.3.1]{Uni13}, unlike $\ishiso{f}$
+  $f$, the associated type $\isIso{f}$ is not, in general, a \emph{mere
+  proposition} \cite[Def.\ 3.3.1]{Uni13}, unlike $\isHIso{f}$
   \cite[Thm.\ 4.3.2]{Uni13}, which makes the latter
   preferable. Also, every bi-invertible map can be given the structure of an
   type-theoretic isomorphism and viceversa, hence they are closely related.
@@ -97,27 +95,26 @@ in \cite[Def.~1.4]{Kap17}.
   \ref{intlang}.
 \end{rmk}
 
-\noindent
 To study the localizations of syntactic categories we want to apply
 the results from the previous section, which require us to specify a
 fibrational structure by also providing a class
 of fibrations.
 
 \begin{defn}[\cite{Bro73}]\label{fibcats}
-  A \emph{fibration category} is a triple $(\cP,W,\fib)$ where $\cP$ is a
-  category and $W$, $\fib$ are subcategories such that:
+  A \emph{fibration category} is a triple $(\cP,W,\Fib)$ where $\cP$ is a
+  category and $W$, $\Fib$ are subcategories such that:
   \begin{enumerate}
     \item $\cP$ has a terminal object;
-    \item maps to the terminal object lie in $\fib$;
-    \item $\fib$ and $W\cap \fib$ are closed under pullback along any map in $\cP$;
+    \item maps to the terminal object lie in $\Fib$;
+    \item $\Fib$ and $W\cap \Fib$ are closed under pullback along any map in $\cP$;
     \item every map in $\cP$ can be factored as a map in $W$ followed by one in
-      $\fib$;
+      $\Fib$;
     \item $W$ has the 2-out-of-6 property.
   \end{enumerate}
 \end{defn}
 
 \begin{rmk}
-  Seeing $\cP$, $W$ and $\fib$ in the above definition as $\infty$-categories by
+  Seeing $\cP$, $W$ and $\Fib$ in the above definition as $\infty$-categories by
   applying the nerve functor, we
   notice that the triple has canonically the structure of an $\infty$-category
   of fibrant objects, hence we shall adopt the conventions we used in that
@@ -133,14 +130,13 @@ of fibrations.
   \begin{enumerate}
     \item $W$ has the 2-out-of-6 property;
     \item $W$ has the 2-out-of-3 and is saturated, that is a morphism in $\cP$
-      becomes invertible in $\ho(\cP)$ if and only if it lies in $W$.
+      becomes invertible in $\Ho{\cP}$ if and only if it lies in $W$.
   \end{enumerate}
   See \cite[Thm.~7.2.7]{RB06}. Another difference is that Brown only requires
   factorizations of the diagonal maps $X\rightarrow X\times X$, but then he
   derives our factorization condition from the other properties.
 \end{rmk}
 
-\noindent
 Now we have enough to specify the fibrational structure.
 
 \begin{prop}[{\cite[Thm.\ 3.2.5]{AKL15}}]
@@ -150,7 +146,6 @@ Now we have enough to specify the fibrational structure.
   projections and weak equivalences correspond to all of the bi-invertible ones.
 \end{prop}
 
-\noindent
 The above result can be however generalized.
 
 \begin{prop}\label{fibcat}
@@ -171,12 +166,12 @@ The above result can be however generalized.
   structure on $\Syn{T}^{\cxt}$ (where the condition on dependent projections
   holds by construction) to later carry it back to $\Syn{T}$ through the
   equivalence, while we do not need the Initiality Conjecture because we can
-  argue in $\Syn{T}^{\cxt}$ using the dependent type theory $\T$ and the
+  argue in $\Syn{T}^{\cxt}$ using the dependent type theory $\bfT$ and the
   extended logical rules.
 \end{rmk}
 
 \begin{cor}\label{fincompl1}
-  Let $\T$ be a dependent type theory with $\Sigmas$- and $\Ids$-types. The
+  Let $\bfT$ be a dependent type theory with $\Sigmas$- and $\Ids$-types. The
   localization of the nerve of $\Syn{T}$ at bi-invertible maps $L(N(\Syn{T}))$
   is a finitely complete $\infty$-category.
 \end{cor}
@@ -187,7 +182,7 @@ The above result can be however generalized.
 \section{Local Cartesian Closure}
 
 We are now ready to provide a few results needed to show that, given a dependent
-type theory with $\Sigmas$-, $\Ids$- and $\Piext$-types $\T$, the hypothesis of
+type theory with $\Sigmas$-, $\Ids$- and $\Piext$-types $\bfT$, the hypothesis of
 Theorem \ref{7616} are satisfied by $\Syn{T}$ with respect to the above
 fibrational structure. Henceforth we shall write $\sfC$ for this syntactic
 category.
@@ -219,11 +214,9 @@ category.
   commute. This will then uniquely define how the right adjoint acts on the
   morphisms.
 
-\noindent
   We start by specifying the unit
   $\eta_{\Gamma.\Psi}\colon\Gamma.\Psi\rightarrow\Gamma.\Pis(\Delta,p^*_{\Delta}\Psi)$.
 
-\noindent
   Let's consider the commutative square
   \[\begin{tikzcd}[column sep=huge]
     {\Gamma.\Psi.p^*_\Psi\Pis(\Delta,p^*_\Delta\Psi)} & {\Gamma.\Pis(\Delta,p^*_\Delta\Psi)} \\
@@ -239,21 +232,18 @@ category.
   done as we can then compose
   it with $q(p_\Psi,\Pis(\Delta,p^*_\Delta\Psi))$ to get our unit
   $y\mapsto\lambda(x:\Delta).y$.
-  
-\noindent
+
   To construct it we pull back the map
   $\id_{\Psi}\colon\Gamma\rightarrow\Gamma.\Pis(\Psi,p^*_\Psi\Psi)$ from
   Construction \ref{idterm} along $p_{p^*_\Psi\Delta}$, getting a section
   \[p^*_{p^*_\Psi\Delta}\id_{\Psi}\colon\Gamma.\Psi.p^*_\Psi\Delta\rightarrow\Gamma.\Psi.p^*_\Psi\Delta.p^*_{p^*_\Psi\Delta}\Psi.\]
 
-\noindent
   We then apply $\lambda_{\Delta,\Psi}$, thereby getting a section
   \[\lambda_{\Delta,\Psi}(p^*_{p^*_\Psi\Delta}\id_\Psi)
     =\lambda_{\Delta,\Psi}(1_{p^*_\Psi\Delta},p_{p^*_\Psi\Delta})
 \colon\Gamma.\Psi\rightarrow\Gamma.\Psi.p^*_\Psi\Pis(\Delta,p^*_\Delta\Psi),\]
   which is exactly what we were looking for.
 
-  \noindent
   Let us define our lift $\tilde{f}$ as the composite
   $\Gamma.\Pis(\Delta,f)\cdot\eta_{\Gamma.\Psi}$, where $\Gamma.\Pis(\Delta,f)$
   was specified in Construction \ref{postcomp}. The map corresponds to
@@ -286,7 +276,6 @@ category.
   \end{equation}
   is derivable.
 
-  \noindent
   Indeed, we see that
   \begin{align*}
     y \\
@@ -296,17 +285,14 @@ category.
   \end{align*}
   which concludes the proof.
 
-  \noindent
   This also shows that $(p_{\Delta})_*(f)=\Gamma.\Pis(\Delta,f)$, meaning that
   the construction of $\Gamma.\Pis(\Delta,f)$ is functorial.
 \end{proof}
 
-\noindent
 We know that every fibration in $\sfC$ is isomorphic to a dependent
 projection, so this tells us that every fibration induces an adjunction
 between fibrant slices.
 
-\noindent
 To apply Theorem \ref{7616} we need to show that $(p_\Delta)_*$ is left exact
 (actually, we need to prove that it preserves trivial fibrations, but it
 essentially requires the same amount of work), which we shall do in two steps.
@@ -376,12 +362,11 @@ essentially requires the same amount of work), which we shall do in two steps.
   goes for weak equivalences, which concludes the proof.
 \end{proof}
 
-\noindent
 Again, the above extends to all fibrations in $\sfC$ and it allows to prove
 Kapulkin's result \cite[Thm.\ 9.3.17]{Kap14}.
 
 \begin{thm}\label{finalthm}
-  Let $\T$ be a dependent type theory with $\Sigmas$-, $\Ids$- and
+  Let $\bfT$ be a dependent type theory with $\Sigmas$-, $\Ids$- and
   $\Piext$-types. The localization of the nerve of $\Syn{T}$ at
   bi-invertible maps $L(N(\Syn{T}))$ is a locally Cartesian closed
   $\infty$-category.
@@ -397,7 +382,6 @@ Kapulkin's result \cite[Thm.\ 9.3.17]{Kap14}.
 We wrap up by summarizing what we have done and presenting developments which
 followed the proof.
 
-\noindent
 In Chapter \ref{chapter1} we introduced dependent type theories, specifying the
 logical rules we would consider throughout, and then contextual categories, a
 class of algebraic models for type-theoretic structural rules. As a motivating
@@ -411,7 +395,6 @@ in Remark \ref{internal} we showed some results and ideas derived from it and ou
 theorem, like the Internal Languages Conjecture \ref{intlang}, which we will
 get to at the end of this section.
 
-\noindent
 Going back to our summary, in Chapter \ref{chapter2} we moved on to extending
 the logical structures so that we may talk about $\Gamma.\Pis(\Delta,\Theta)$,
 $\Gamma.\Delta.p^*_\Delta\Delta.\Ids_\Delta$ and so on even when $\Delta,\Theta$
@@ -420,7 +403,6 @@ are not simple context extensions, focusing specifically on $\Pis$-structures
 \ref{finalthm} and a deviation from Kapulkin's approach in \cite{Kap14}, but
 identical to the one he took instead in \cite{Kap17}.
 
-\noindent
 In Chapter \ref{chapter3} we presented a theory of localizations of
 $\infty$-categories referring to Cisinski's work \cite{Cis19}. Our objective was
 to provide some sufficient conditions under which the localization of an
@@ -429,9 +411,8 @@ $\infty$-categories with weak equivalences and fibrations \ref{fibicat}, which
 generalize model categories and, more specifically, fibration categories
 \ref{fibcat}. The conditions were then given by Theorem \ref{7616}.
 
-\noindent
 Finally, in Chapter \ref{chapter4} we introduced, for a class of dependent type
-theories $\T$, a notion of bi-invertible map in $\Syn{T}$ describing the weak
+theories $\bfT$, a notion of bi-invertible map in $\Syn{T}$ describing the weak
 equivalences we intended to localize at and then a fibrational structure,
 allowing us to refer to the results of the previous section when talking about
 $L(N(\Syn{T}))$. To prove that this latter $\infty$-category is locally
@@ -441,7 +422,6 @@ slices $p^*_\Delta\colon\Syn{T}(\Gamma)\rightarrow\Syn{T}(\Gamma.\Delta)$
 through Lemma \ref{radj} and then showed that it is left exact, leading up to
 Theorem \ref{finalthm}, our objective.
 
-\noindent
 A generalization of this result produced by Kapulkin in \cite{Kap17}
 applies to all contextual categories with the
 logical structures meant to model the considered logical rules and a similar one
@@ -468,7 +448,6 @@ This led to the formulation of the Internal Languages Conjecture \cite[Conj.\
   are left exact functors.
 \end{intlang}
 
-\noindent
 A proof was recently provided by Nguyen-Uemura \cite{NU22} and this
 conjecture means that producing an $\infty$-category with the appropriate
 properties is equivalent to presenting a contextual category with the specified
@@ -481,7 +460,6 @@ contextual category from a locally Cartesian closed $\infty$-category only if
 the latter is locally presentable \cite{Shu14}, meaning that we do not have a
 concrete definition of the homotopical inverses to the localization functors.
 
-\noindent
 There is currently an ongoing project to 
 extend the above diagram by introducing a simplicial localization
 functor $\Cxl_{\mathsf{HoTT}}\rightarrow\ElToposi$ which should itself be a
@@ -491,7 +469,6 @@ elementary $\infty$-topos should be one which would make the statement true (see
 univalence in $\infty$-categories). This would allow further advances in the
 study of Homotopy Type Theory and its extensions.
 
-\noindent
 Throughout our work we didn't mention what would happen if instead of taking
 intensional $\Ids$-types we chose \emph{extensional} ones. This case is, in our
 opinion, less interesting as such identity types are less structured and they

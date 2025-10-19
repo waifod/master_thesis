@@ -12,7 +12,6 @@ for various reasons, chiefly among them the fact that every object is a set and
 its treatment of equality, which lead to some rather counterintuitive
 conclusions.
 
-\noindent
 An alternative foundation which has become of interest in the past decades is
 Type Theory, whose origins we can trace back to Russel \cite{Rus08,RW97},
 who saw it as a tool to
@@ -24,7 +23,6 @@ two elements of the same type) and a more structured one, meaning that we can
 talk about in what sense two objects are equal. Furthermore, proofs are
 internalized by the theory as elements of types.
 
-\noindent
 An important variant is Martin-L{\"o}f Type Theory \cite{ML84}, which is
 intuitionistic and introduces \emph{dependent types}, that is types which are
 allowed to depend on elements of other types. This is fairly convenient in
@@ -43,7 +41,6 @@ details of proofs. In particular, Coq rose to notoriety because it was used to
 prove the \emph{Four-Color Theorem} \cite{Gon08} and recently a project
 was born to build the Lean Mathematical Library \cite{mat20}.
 
-\noindent
 While it was clear early on that there was a link between categories and type
 theories, leading to various notions of categorical models (like
 Cartmell's \emph{contextual categories} \cite{Car78}) allowing a supposedly
@@ -55,7 +52,6 @@ however even providing a rigorous statement has proven difficult as it would
 require a precise definition of what a type theory is, which constitutes an
 object of current research \cite{BHL20}.
 
-\noindent
 Relatedly, further interest came from the Homotopy Theory community when
 Hofmann-Streicher \cite{HS98} showed that the category of groupoids $\Gpd$ could
 provide a model for an extension of Martin-L{\"o}f Type Theory, which only
@@ -73,7 +69,6 @@ theory from an $\infty$-category and viceversa, however the first direction is
 fairly problematic and a construction was provided only under the hypothesis of
 local Cartesian closure and local presentability \cite{Shu14}.
 
-\noindent
 This thesis focuses on the other direction, from a type theory to an
 $\infty$-category, which itself is known only partially. Specifically, we aim to
 prove the following result by Kapulkin \cite[Thm.\ 9.3.17]{Kap14} using
@@ -81,12 +76,11 @@ Cisinski's theory on localizations of $\infty$-categories \cite{Cis19} and
 thereby avoiding the less general theory of frames \cite{Szu14,KS15}.
 
 \begin{finalthm}
-  Let $\T$ be a dependent type theory with $\Sigmas$-, $\Ids$- and
+  Let $\bfT$ be a dependent type theory with $\Sigmas$-, $\Ids$- and
   $\Piext$-types. The localization of the nerve of $\Syn{T}$ at bi-invertible
   maps $L(N(\Syn{T}))$ is a locally Cartesian closed $\infty$-category.
 \end{finalthm}
 
-\noindent
 Following this result, Kapulkin and Lumsdaine formulated the \emph{Internal
 Languages Conjecture} \cite[Conj.\ 3.7]{KL16}, implying an equivalence between
 the $\infty$-categories of properly structured $\infty$-categories and the ones

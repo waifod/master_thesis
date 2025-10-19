@@ -16,7 +16,7 @@
 \end{minipage}}
 
 % Date and signature
-\newcommand{\datesign}[2]{% First the date, then the signature
+\newcommand{\datesign}{% Parameters removed as they were unused
   \fillfield{Regensburg, Germany}\hfill\fillfield{Matteo Durante}
 }
 
@@ -28,9 +28,16 @@
 % Basic Math Operators
 % ============================================================================
 
-\DeclareMathOperator{\Ob}{\operatorname{Ob}}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\ob}{\operatorname{Ob}}
+\DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\arr}{Arr}
 \DeclareMathOperator{\Arr}{Arr}
+\DeclareMathOperator{\id}{\mathsf{id}}
+\DeclareMathOperator{\Id}{Id}
 \DeclareMathOperator{\op}{op}
+\DeclareMathOperator{\eq}{\operatorname{eq}}
 
 % ============================================================================
 % Type Theory Operators
@@ -43,12 +50,11 @@
 \DeclareMathOperator{\Piext}{\mathsf{\Pi_{ext}}}
 \DeclareMathOperator{\Htp}{\mathsf{Htp}}
 \DeclareMathOperator{\ext}{\mathsf{ext}}
-\DeclareMathOperator{\type}{\mathsf{type}}
-\DeclareMathOperator{\context}{\mathsf{context}}
+\DeclareMathOperator{\T}{\mathbf{T}}
+\DeclareMathOperator{\type}{\ \mathsf{type}}
+\DeclareMathOperator{\context}{\ \mathsf{context}}
 \DeclareMathOperator{\cxt}{\mathsf{cxt}}
 \DeclareMathOperator{\app}{\mathsf{app}}
-\DeclareMathOperator{\id}{\mathsf{id}}
-\DeclareMathOperator{\Id}{Id}
 \DeclareMathOperator{\refl}{\mathsf{refl}}
 \DeclareMathOperator{\exch}{\mathsf{exch}}
 \DeclareMathOperator{\cft}{\mathsf{ft}}
@@ -61,31 +67,42 @@
 \newcommand{\Syn}[1]{\mathsf{Syn}(\mathbf{#1})}
 
 % Isomorphism types
-\newcommand{\isHIso}[1]{\mathsf{isHIso}({#1})}
-\newcommand{\isIso}[1]{\mathsf{isIso}({#1})}
+\newcommand{\ishiso}[1]{\mathsf{isHIso}({#1})}
+\newcommand{\isiso}[1]{\mathsf{isIso}({#1})}
 
 % ============================================================================
 % Category Theory Operators
 % ============================================================================
 
+\DeclareMathOperator{\plim}{\varprojlim}
 \DeclareMathOperator{\colim}{colim}
+\DeclareMathOperator{\sst}{\subseteq}
 \DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\Home}{\underline{Hom}}
-\DeclareMathOperator{\Fib}{Fib}
-\newcommand{\Ho}[1]{\mathbf{Ho}(#1)}
+\DeclareMathOperator{\ihom}{\underline{Hom}}
+\DeclareMathOperator{\home}{\underline{Hom}}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\fib}{Fib}
+\DeclareMathOperator{\ho}{\mathbf{Ho}}
+\DeclareMathOperator{\hoi}{\mathbf{Ho}_\infty}
 
 % Categories and spaces
+\DeclareMathOperator{\sSeten}{\underline{\mathbf{sSet}}}
 \DeclareMathOperator{\sSet}{\mathbf{sSet}}
+\DeclareMathOperator{\mSet}{\mathbf{mSet}}
 \DeclareMathOperator{\Set}{\mathbf{Set}}
 \DeclareMathOperator{\Cxl}{\mathsf{CxlCat}}
 \DeclareMathOperator{\Cat}{\mathbf{Cat}}
-\DeclareMathOperator{\wCat}{\mathbf{wCat}}
+\DeclareMathOperator{\weCat}{\mathbf{weCat}}
 \DeclareMathOperator{\Gpd}{\mathbf{Gpd}}
 \DeclareMathOperator{\Gpdi}{\mathbf{Gpd}_\infty}
+\DeclareMathOperator{\FibCat}{\mathsf{FibCat}}
+\DeclareMathOperator{\Trb}{\mathsf{Trb}}
 \DeclareMathOperator{\LCCCi}{\mathsf{LCCC}_\infty}
 \DeclareMathOperator{\Lexi}{\mathsf{Lex}_\infty}
 \DeclareMathOperator{\ElToposi}{\mathsf{ElTopos}_\infty}
-\newcommand{\Lang}[1]{\mathsf{Lang}(#1)}
+\DeclareMathOperator{\Lang}{\mathsf{Lang}(\mathsf{C})}
+\DeclareMathOperator{\Hoi}{\mathbf{Ho}_\infty}
+\DeclareMathOperator{\Map}{\mathbf{Map}}
 
 % ============================================================================
 % Special Arrows

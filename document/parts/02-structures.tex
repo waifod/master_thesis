@@ -22,15 +22,15 @@ called $\Ids$-contexts.
 
 \begin{notation}
   We shall make use of their notation \cite[4]{GG08} in the second part of this
-  section and the final chapter of this thesis to study $\Syn{\T}$, meaning that
+  section and the final chapter of this thesis to study $\Syn{\bfT}$, meaning that
   we abbreviate the sequence of judgements
-  \[\Gamma\vdash A_1\type,\]
-  \[\Gamma,a_1:A_1\vdash A_2(a_1)\type,\]
+  \[\Gamma\vdash A_1\ \type,\]
+  \[\Gamma,a_1:A_1\vdash A_2(a_1)\ \type,\]
   \[\vdots\]
   \[\Gamma,a_1:A_1,\ldots,a_{n-1}:A_{n-1}(a_1,\ldots,a_{n-2})\vdash
-  A_n(a_1,\ldots,a_{n-1})\type\]
+  A_n(a_1,\ldots,a_{n-1})\ \type\]
   by
-  \[\Gamma\vdash\Delta\context,\]
+  \[\Gamma\vdash\Delta\ \context,\]
   in which case $\Delta$ is a \emph{dependent context in context $\Gamma$} and
   we shall write that $\Delta=A_1,\ldots,A_n$ as a shorthand.
   Similarly,
@@ -45,21 +45,18 @@ called $\Ids$-contexts.
   \end{align*}
   and then $x$ is a \emph{dependent term of $\Delta$ in context $\Gamma$}, which
   can be thought of as a tuple $(a_1,\ldots,a_n)$. Furthermore,
-  \[\Gamma,x:\Delta\vdash\Theta(x)\context\]
+  \[\Gamma,x:\Delta\vdash\Theta(x)\ \context\]
   specifies the dependency of $\Theta$ on the term $x:\Delta$ in context
   $\Gamma$.
 
-  \noindent
   It is also possible to introduce further expressions, like
-  \[\Gamma\vdash \Delta\equiv\Theta\context\]
+  \[\Gamma\vdash \Delta\equiv\Theta\ \context\]
   for judgmental equality between dependent contexts and
   \[\Gamma\vdash x\equiv x':\Delta,\]
   for judgmental equality between dependent terms, defined as pointwise
   judgmental equalities. The details are straightforward and therefore omitted.
 \end{notation}
-\noindent
 
-\noindent
 Lumsdaine claimed that it is possible to provide extensions of the logical
 structures we are studying in \cite[Rem.\ 1.3.1]{Lum10}. At the
 time Kapulkin proved the theorem this thesis focuses on,
@@ -73,7 +70,6 @@ however we will not do so and focus on the semantics, believing that the
 translation should be straightforward and a simple duplication of work. We will
 later sketch the extension for $\Sigmas$-structures.
 
-\noindent
 We begin by constructing the category of iterated contexts, where we
 will extend the structures.
 
@@ -100,7 +96,6 @@ will extend the structures.
       basic dependent projections, as in the original contextual category.
   \end{enumerate}
 
-  \noindent
   As we can see, any object of $\sfC^{\cxt}$ either is the empty context or is
   isomorphic to one in
   $\Ob_1\sfC^{\cxt}$, that is the one which we get by looking at the associated object
@@ -109,12 +104,10 @@ will extend the structures.
   is then given by the map in $\sfC^{\cxt}$ corresponding to the identity of the
   object in $\sfC$. We now specify a monad $\sfC\mapsto\sfC^{\cxt}$ on $\Cxl$.
 
-  \noindent
   The unit $\sfC\rightarrow\sfC^{\cxt}$ sends every $n$-object in $\sfC$ to
   the corresponding $n$-iterated (simple) context extension and every morphism
   to the one it represents.
 
-  \noindent
   Before we construct the multiplication, let's study this contextual functor.
   Every $n$-iterated
   context in $\sfC^{\cxt}$ is isomorphic to one in the image of the unit, namely
@@ -123,7 +116,6 @@ will extend the structures.
   by construction and therefore it defines an equivalence on the underlying
   categories.
 
-  \noindent
   Let's construct the multiplication. An $n$-object of $(\sfC^{\cxt})^{\cxt}$ is an
   $n$-iterated context extension where each extension is itself an iterated
   context extension in $\sfC$, that is
@@ -137,7 +129,6 @@ will extend the structures.
   specify domain and codomain. By construction, this functor is again contextual
   and an equivalence of categories.
 
-  \noindent
   The monad axioms follow from the fact that, essentially, both unit and
   multiplication are ``identities'' on objects and morphisms.
 \end{construction}
@@ -146,19 +137,16 @@ will extend the structures.
   The above construction defines a monad on $\Cxl$.
 \end{prop}
 
-  \noindent
 For the construction of the $\Ids$-structure on $\Syn{T}^{\cxt}$ it is
 enough to translate the logical rules for $\Ids$-context we mentioned earlier. A
 sketch of the construction on $\sfC^{\cxt}$ for an
 arbitrary contextual category with an $\Ids$-structure $\sfC$ is available in
 \cite[Constr.\ 2.17]{KS19}.
 
-  \noindent
 We are now ready, given a contextual category $\sfC$, to extend the
 $\Pis$-structure to $\sfC^{\cxt}$. We shall do so in two parts, first in full
 generality and then under extra assumptions.
 
-  \noindent
 Given $\Gamma.\Delta.\Theta$ in $\sfC^{\cxt}$, where
 $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n=l(\Gamma)+m+n$ in $\sfC$, we
 build $\Gamma.\Pis(\Delta,\Theta)$ by induction on the length of the context
@@ -177,13 +165,11 @@ extensions.
   $1_{\Gamma.\Theta}$. This is not really necessary to specify the
   $\Pis$-structure, however we shall need it later in Lemma \ref{radj}.
 
-  \noindent
   We now work with the case where $m>0$, $n=1$, thus we can write
   $\Gamma.\Delta.\Theta=\Gamma.\Delta.B$. In the base case, $m=1$, we have
   $\Gamma.\Delta=\Gamma.A$ and therefore have to simply set our structure to
   coincide with the one in $\sfC$.
 
-  \noindent
   If $n-1>0$, we have, for a section
   $b\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.B$,
   $\Gamma.\Delta=\Gamma.\Delta'.A$ and then set
@@ -210,11 +196,9 @@ extensions.
   commonly known as \emph{currying-uncurrying}.
 \end{construction}
 
-  \noindent
   We have dealt with the construction for $n=1$ in $\sfC$, hence we shall move
   on to the case where $\Delta$ has arbitrary length and induct on $n$.
 
-  \noindent
 We will work only with syntactic categories and in contextual categories where a
 section $x\colon\Gamma\rightarrow\Gamma.A.B$ can be split as
 two sections $a\colon\Gamma\rightarrow\Gamma.A$,
@@ -233,7 +217,6 @@ $\Syn{T}^{\cxt}$ as if we were working with $\Syn{T}$.
   provided the relevant constructions up to $n-1$. We again decompose
   the context as $\Gamma.\Delta.\Theta'.B$.
 
-  \noindent
   If we are working with a contextual category $\sfC$ where sections split, we
   make use of our assumption on a section
   $y\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta'.B$ to get a
@@ -256,7 +239,6 @@ $\Syn{T}^{\cxt}$ as if we were working with $\Syn{T}$.
     \Gamma.\Pis(\Delta,\Theta').\Pi(\Delta,\app^*_{\Delta,\Theta'}B).
   \end{align*}
 
-  \noindent
   If we are instead in $\Syn{T}$, we can define $\lambda_{\Delta,\Theta}(y)$ in
   the following way: from $y'(x):\Theta(x),b(x,y'(x)):B(x,y'(x))$ in context
   $\Gamma,x:\Delta$ we can indeed simply take the section specified
@@ -267,7 +249,6 @@ $\Syn{T}^{\cxt}$ as if we were working with $\Syn{T}$.
   \end{align*}
   where we have made explicit the dependencies of the type $B$.
 
-  \noindent
 Finally, given $a\colon\Gamma\rightarrow\Gamma.\Delta$,
 $f\colon\Gamma.\Delta\rightarrow\Gamma.\Delta.\Theta$, we construct
 $\app_{\Delta,\Theta}(f,x)$ for sections
@@ -276,7 +257,6 @@ $x\colon\Gamma\rightarrow\Gamma.\Delta$ as in the definition of
 $\Pis$-structures \ref{appcomposed}.
 \end{construction}
 
-  \noindent
 This fully specifies the data needed for a $\Pis$-structure on $\sfC^{\cxt}$,
 however we still have to check that it is indeed one, which we will do in the
 next section. First, however, we sketch the extension for $\Sigmas$-structures
@@ -291,7 +271,6 @@ constructed in $\Syn{T}$ by looking at the projection maps described in
   with $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n=l(\Gamma)+m+n$ in $\sfC$ we
   proceed by induction on $m,n>0$.
 
-  \noindent
   Let's fix $m=1$. If $n=1$, like for $\Pis$-structures we are forced to take
   the definition from $\sfC$, so we can focus on $n>1$. We have then
   $\Gamma.\Delta.\Theta=\Gamma.A.B.\Theta'$, so we take
@@ -308,7 +287,6 @@ constructed in $\Syn{T}$ by looking at the projection maps described in
     \Gamma.\Sigmas(A,\Sigmas(B,\Theta')).
   \end{align*}
 
-  \noindent
   To deal with the case where $m>1$ and therefore
   $\Gamma.\Delta.\Theta=\Gamma.\Delta'.A.\Theta$, we choose
   \begin{align*}
@@ -319,7 +297,6 @@ constructed in $\Syn{T}$ by looking at the projection maps described in
     &=\pair_{\Delta',A.\Theta}.
   \end{align*}
 
-  \noindent
   To complete the construction, one has to define for all maps
   \[z\colon\Gamma.\Delta.\Theta\rightarrow\Gamma.\Sigmas(\Delta,\Theta).\Psi\]
   such that $p_\Psi\cdot z=\pair_{\Delta,\Theta}$ a section
@@ -336,7 +313,7 @@ In this section we verify that the desired properties hold for our
 constructions.
 
 \begin{lem}\label{extpistruct}
-  Given a dependent type theory with $\Pis$-types $\T$, the data provided
+  Given a dependent type theory with $\Pis$-types $\bfT$, the data provided
   defines a $\Pis$-structure on $\Syn{T}^{\cxt}$ which is
   compatible with the natural contextual functor
   $\Syn{T}\hookrightarrow\Syn{T}^{\cxt}$.
@@ -348,14 +325,12 @@ constructions.
   The compatibility with the contextual functor will then follow directly from
   the way we defined the base case.
 
-  \noindent
   Let's consider an object $\Gamma.\Delta.\Theta$ in $\Syn{T}^{\cxt}$ such that
   $l(\Gamma.\Delta.\Theta)=l(\Gamma.\Delta)+n=l(\Gamma)+m+n$ in $\Syn{T}$. The
   only interesting case is the one where least one of $m,n$ is
   $>1$: indeed, the desired properties in the other cases are
   follow directly from the fact that they hold in $\Syn{T}$.
 
-  \noindent
   We start as before by working on $m>1$, $n=1$, so we write
   $\Gamma.\Delta.\Theta=\Gamma.\Delta.B=\Gamma.\Delta'.A.B$ and assume that
   the desired properties hold for shorter context extensions.
@@ -411,8 +386,7 @@ constructions.
     &\equiv(x,b(x)),
   \end{align*}
   where the inductive hypothesis has been used in the second step.
-  
-  \noindent
+
   We now check inductively on the length of $\Theta$.
   \begin{align*}
     p_{\Theta}\cdot\app_{\Delta,\Theta}
@@ -471,7 +445,6 @@ constructions.
   \end{align*}
   where the inductive hypothesis has been used in the second step.
 
-  \noindent
   To conclude the proof one would still need to verify that the construction is
   compatible with context substitution.
 \end{proof}
@@ -486,11 +459,10 @@ constructions.
   where $m>1$. The proof is essentially the same, albeit harder to read.
 \end{rmk}
 
-  \noindent
 We shall also need the following lemma.
 
 \begin{lem}[{\cite[Lem.\ 5.6]{Kap17}}]\label{piequal}
-  Given a dependent type theory with $\Pis$-types $\T$ and an iterated context
+  Given a dependent type theory with $\Pis$-types $\bfT$ and an iterated context
   extension $\Gamma.\Delta.\Theta.\Psi$ in $\Syn{T}$, the contexts
   \[\Gamma.\Pis(\Delta,\Theta.\Psi),\quad\Gamma.\Pis(\Delta,\Theta).\Pis(p^*_{\Pis(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi)\]
   are equal in $\Syn{T}$. Also,
@@ -501,7 +473,6 @@ We shall also need the following lemma.
   the same one in $\Syn{T}$ after applying the inductive construction we defined
   on $\Syn{T}^{\cxt}$ to reduce $\Psi$.
 
-  \noindent
   For the second claim instead we consider the chain of equalities
   \begin{align*}
     \Gamma.\Pis(\Delta,p_{\Psi})
@@ -515,21 +486,20 @@ We shall also need the following lemma.
   which can be checked type-theoretically.
 \end{proof}
 
-  \noindent
 We conclude by presenting the following propositions without proof. It is worth
 noting that the original statements mention contextual categories, but to do so
 they rely on the Initiality Conjecture \ref{initconj} and here our focus is on
 syntactic categories.
 
 \begin{lem}[{\cite[Prop.\ 3.3.1]{Gar09b}}]
-  Given a dependent type theory with $\Ids$-types $\T$, the contextual category
+  Given a dependent type theory with $\Ids$-types $\bfT$, the contextual category
   $\Syn{T}^{\cxt}$ carries a natural $\Ids$-structure compatible with the
   natural contextual functor $\Syn{T}\hookrightarrow\Syn{T}^{\cxt}$.
 \end{lem}
 
 \begin{lem}[{\cite[Lemma 2.28]{KS19}}]
   Given a dependent type theory with $\Ids$- and $\Piext$-types
-  $\T$, the latter can also be lifted from $\Syn{T}$ to
+  $\bfT$, the latter can also be lifted from $\Syn{T}$ to
   $\Syn{T}^{\cxt}$ compatibly with the natural contextual functor
   $\Syn{T}\hookrightarrow\Syn{T}^{\cxt}$.
 \end{lem}

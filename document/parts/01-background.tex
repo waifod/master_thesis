@@ -34,7 +34,6 @@ Theory \cite{Uni13}.
   for a dependent term or suppress individual dependencies.
 \end{notation}
 
-\noindent
 We will be considering the structural rules from \cite[App.\ A.1]{KL12} and some
 logical ones as presented in \cite[App.\ A.2]{KL12}. Informally, we deal with:
 \begin{enumerate}
@@ -48,7 +47,6 @@ logical ones as presented in \cite[App.\ A.2]{KL12}. Informally, we deal with:
     computation rules.
 \end{enumerate}
 
-\noindent
 Furthermore, we consider the following two rules:
 \begin{enumerate}[resume]
   \item \emph{$\eta$-conversion for functions}: for any type $A$ and any type $B$
@@ -60,8 +58,8 @@ Furthermore, we consider the following two rules:
 \end{enumerate}
 
 \begin{defn}
-  We say that a dependent type theory $\T$ has \emph{$\Pies$-types} if its
-  $\Pis$-types satisfy the $\eta$-conversion for functions and, if it also
+  We say that a dependent type theory $\bfT$ has \emph{$\Pies$-types} if its
+  $\Pis$-types satisfy the $\eta$-conversion for functions. If it also
   provides function extensionality, then we talk about $\Piext$-types.
 \end{defn}
 
@@ -91,7 +89,6 @@ the handling of the structural rules, namely context substitution, variable
 binding, variable substitution and so on. To avoid this issue, it is convenient
 to work within a \emph{semantic model}, which we now present.
 
-\noindent
 There are many algebraic models of dependent type theory in the literature meant
 to only satisfy these rules, like
 \emph{category with attributes}, \emph{categories with families} and
@@ -151,14 +148,13 @@ others we refer to \cite{nlab:categorical_model_of_dependent_types}.
   pullbacks.
 \end{rmk}
 
-\noindent
 A motivating example for contextual categories is the \emph{syntactic category
 of a dependent type theory}, which is constructed as follows.
 
 \begin{construction}\cite[2.6]{Car78}
-  Given a dependent type theory $\T$, its syntactic category $\Syn{\T}$ has:
+  Given a dependent type theory $\bfT$, its syntactic category $\Syn{\bfT}$ has:
   \begin{enumerate}
-    \item $\Ob_n\Syn{\T}$ given by contexts $[x_1:A_1,\ldots,x_n:A_n]$ of length
+    \item $\Ob_n\Syn{\bfT}$ given by contexts $[x_1:A_1,\ldots,x_n:A_n]$ of length
       $n$, modulo judgemental equality and renaming of free variables;
     \item maps are \emph{context morphisms}, or \emph{substitutions}, modulo
       judgemental equalities and renaming of free variables. This means that a
@@ -210,16 +206,15 @@ of a dependent type theory}, which is constructed as follows.
 \end{construction}
 
 \begin{rmk}
-  Given a dependent type theory $\T$, the terms $a:A$ of a type over a context
+  Given a dependent type theory $\bfT$, the terms $a:A$ of a type over a context
   $\Gamma$ can be recovered (up to definitional equality) from the syntactic
-  category $\Syn{\T}$ by looking at sections of the basic dependent projection
+  category $\Syn{\bfT}$ by looking at sections of the basic dependent projection
   $p_{[\Gamma,x:A]}\colon[\Gamma,x:A]\rightarrow[\Gamma]$, which indeed act as
   identities over $\Gamma$ and furthermore specify a term $\Gamma\vdash a:A$.
   Given the importance of such maps, we shall often simply write ``sections'' to
   refer to sections of basic dependent projections, without specifying which
   projections unless it creates ambiguity.
 
-\noindent
   The above construction also tells us how to think about the other elements in
   the definition of contextual categories: basic dependent
   projections $p_{\Gamma.A.B}\colon\Gamma.A.B\rightarrow\Gamma.A$ represent
@@ -277,7 +272,6 @@ of a dependent type theory}, which is constructed as follows.
   \[q(f,A_1)=q(f,\Gamma.A_1),\quad \Delta.f^*A_1=f^*(\Gamma.A_1),\]
   therefore agreeing with the base structure of $\sfC$.
 
-\noindent
   Furthermore, given a section $a\colon\Gamma\rightarrow\Gamma.A$ and a context
   morphism $f\colon\Delta\rightarrow\Gamma$, we also want to specify $f^*a$,
   that is the section which we get by switching context. This is given by
@@ -313,7 +307,6 @@ of a dependent type theory}, which is constructed as follows.
   provided earlier, we extend this construction to contexts extensions of
   arbitrary length.
 
-\noindent
   Finally, when reasoning in a syntactic category, to specify a map
   $$[f]\colon[\Gamma,a_1:A_1,\ldots,a_n:A_n]\rightarrow[\Gamma,b_1:B_1,\ldots,b_m:B_m]$$
   stable over $\Gamma$ (that is acting like the identity on the corresponding
@@ -356,7 +349,6 @@ of a dependent type theory}, which is constructed as follows.
   models we mentioned.
 \end{rmk}
 
-\noindent
 As we stated, the defining properties of contextual
 categories are meant to model structural rules, so that we can reason about
 dependent type theories in terms of pullbacks, sections and so on while
@@ -369,7 +361,6 @@ categories was developed by Voevodsky in \cite{Voe14b,Voe14b,Voe15a,Voe15b},
   where he starts from a \emph{universe category}.
 \end{exmp}
 
-\noindent
 On the other hand, as noted in \cite[Par.\ 1.2]{KL12}, interpreting complicated
 structures in
 contextual categories quickly becomes unreadable, meaning that ideally we would
@@ -382,7 +373,7 @@ think of contextual categories as if they were dependent type theories. In
 categorical semantics, this corresponds to \emph{initiality}.
 
 \begin{initiality}\label{initconj}
-  Given a dependent type theory $\T$, its syntactic category $\Syn{\T}$ is
+  Given a dependent type theory $\bfT$, its syntactic category $\Syn{\bfT}$ is
   initial in the category of contextual categories with the appropriate
   structure.
 \end{initiality}
@@ -405,10 +396,9 @@ notion of dependent type theory,
 which has been worked on in \cite{Isa17, Uem19, Bru20, BHL20, NU22}.
 \end{rmk}
 
-\noindent
 If we could prove it, then, under the proper conditions,
 for any contextual category $\sfC$ we would have a
-contextual functor $\Syn{\T}\rightarrow\sfC$ explaining how to interpret $\T$ in
+contextual functor $\Syn{\bfT}\rightarrow\sfC$ explaining how to interpret $\bfT$ in
 $\sfC$. This is essentially an algorithmic problem: it reduces to explaining
 inductively to a computer how to construct the aforementioned functor.
 
@@ -417,7 +407,6 @@ inductively to a computer how to construct the aforementioned functor.
   models, which are the great drivers
   of research in the field.
 
-  \noindent
   Specifically, as a concrete example, in \cite{KL12} one can find a model of
   Homotopy Type Theory produced in the category of $\infty$-groupoids using
   Voevodsky's previously mentioned methods.
@@ -537,14 +526,12 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
       \end{align*}
   \end{enumerate}
 
-\noindent
   We shall say that the $\Pis$-structure satisfies the
   \emph{$\Pies$-rule} if the equation
   \[q(p_{\Pis(A,B)},\Pis(A,B))\cdot\lambda(1_{p^*_{\Pis(A,B)}A},\app_{A,B})=1_{\Gamma.\Pis(A,B)}\]
   is satisfied, in which case the structure will be called a
   \emph{$\Pies$-structure}. 
 
-\noindent
   A \emph{$\Piext$-structure} on a contextual category with a $\Pis$-structure
   $\sfC$ is an operation giving for each $\Gamma.A.B\in\Ob_{n+2}\sfC$ a map
   \begin{align*}
@@ -574,7 +561,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
 \end{rmk}
 
 \begin{exmp}
-  Given a dependent type theory $\T$, its syntactic category $\Syn{T}$ has all
+  Given a dependent type theory $\bfT$, its syntactic category $\Syn{T}$ has all
   of the logical structures corresponding to its logical rules. We now proceed
   to show what some of the above maps correspond to in this category.
 \end{exmp}
@@ -586,7 +573,6 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   $\Gamma.A\rightarrow\Gamma.A.B$ corresponds to \emph{lambda abstraction},
   hence $\lambda_{A,B}(b)$ specifies the term $\lambda(a:A).b(a):\Pis(A,B)$.
 
-  \noindent
   The map on the left of the definition of the $\Pies$-rule is the
   \emph{$\eta$-expansion map}, that is it corresponds syntactically to the map
   \[f\mapsto\lambda(a:A).\app(f,a)\] over $\Gamma$, thus
@@ -594,7 +580,6 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   \[\Gamma\vdash f\equiv\lambda(a:A).\app(f,a):\Pis(A,B)\]
   which corresponds to $\eta$-conversion.
 
-  \noindent
   The map $(1_{p^*_{\Pis(A,B)}A},\app_{A,B})$ is specified by the following
   factorization through the pullback.
   \[\begin{tikzcd}[column sep=huge]
@@ -635,8 +620,6 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
     \arrow["{p_{p^*_AB}}", from=2-2, to=3-2]
   \end{tikzcd},\]
   and then taking $\hat{f}=\lambda_{A,p^*_AB}(1_A,f)$.
-
-\noindent
   In $\Syn{T}$, using
   \begin{align*}
     q(p_A,B)\cdot
@@ -670,8 +653,6 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   $$\Gamma.\Pis(A,f)\colon\Gamma.\Pis(A,B)\rightarrow\Gamma.\Pis(A,B')$$
   modeling the postcomposition by $\hat{f}$, that is
   $g\mapsto\lambda(a:A).\app(\hat{f},\app(g,a))$.
-
-\noindent
   We do so by looking at the commutative diagram
   \[\begin{tikzcd}[column sep=huge]
     {\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A} && {\Gamma.A.B} \\
