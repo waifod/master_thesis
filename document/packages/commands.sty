@@ -1,4 +1,13 @@
-% Date and signature
+% ============================================================================
+% Custom Commands and Math Operators
+% ============================================================================
+% This file contains all custom commands, math operators, and macros
+
+% ============================================================================
+% Document-specific Commands
+% ============================================================================
+
+% Date and signature field
 \newcommand{\fillfield}[1]{% Text under the line
 \noindent\begin{minipage}{6cm}
     \noindent\vspace{3cm}\par
@@ -6,15 +15,19 @@
     \noindent #1
 \end{minipage}}
 
+% Date and signature
 \newcommand{\datesign}[2]{% First the date, then the signature
   \fillfield{Regensburg, Germany}\hfill\fillfield{Matteo Durante}
 }
 
-% Comments
+% Comment commands (for collaborative editing)
 \newcommand{\kim}[1]{\textcolor{red}{#1}}
 \newcommand{\wfd}[1]{\textcolor{blue}{#1}}
 
-% Math shorthands
+% ============================================================================
+% Basic Math Operators
+% ============================================================================
+
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\cod}{cod}
 \DeclareMathOperator{\ob}{\operatorname{Ob}}
@@ -23,6 +36,13 @@
 \DeclareMathOperator{\Arr}{Arr}
 \DeclareMathOperator{\id}{\mathsf{id}}
 \DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\op}{op}
+\DeclareMathOperator{\eq}{\operatorname{eq}}
+
+% ============================================================================
+% Type Theory Operators
+% ============================================================================
+
 \DeclareMathOperator{\Sigmas}{\mathsf{\Sigma}}
 \DeclareMathOperator{\Ids}{\mathsf{Id}}
 \DeclareMathOperator{\Pis}{\mathsf{\Pi}}
@@ -30,24 +50,42 @@
 \DeclareMathOperator{\Piext}{\mathsf{\Pi_{ext}}}
 \DeclareMathOperator{\Htp}{\mathsf{Htp}}
 \DeclareMathOperator{\ext}{\mathsf{ext}}
-\DeclareMathOperator{\op}{op}
-\DeclareMathOperator{\sto}{\twoheadrightarrow}
 \DeclareMathOperator{\T}{\mathbf{T}}
 \DeclareMathOperator{\type}{\ \mathsf{type}}
 \DeclareMathOperator{\context}{\ \mathsf{context}}
 \DeclareMathOperator{\cxt}{\mathsf{cxt}}
+\DeclareMathOperator{\app}{\mathsf{app}}
+\DeclareMathOperator{\refl}{\mathsf{refl}}
+\DeclareMathOperator{\exch}{\mathsf{exch}}
+\DeclareMathOperator{\cft}{\mathsf{ft}}
+\DeclareMathOperator{\pair}{\mathsf{pair}}
+\DeclareMathOperator{\unpair}{\mathsf{unpair}}
+\DeclareMathOperator{\csplit}{\mathsf{split}}
+\DeclareMathOperator{\Nat}{\mathsf{Nat}}
+
+% Syntactic category
+\newcommand{\Syn}[1]{\mathsf{Syn}(\mathbf{#1})}
+
+% Isomorphism types
+\newcommand{\ishiso}[1]{\mathsf{isHIso}({#1})}
+\newcommand{\isiso}[1]{\mathsf{isIso}({#1})}
+
+% ============================================================================
+% Category Theory Operators
+% ============================================================================
 
 \DeclareMathOperator{\plim}{\varprojlim}
 \DeclareMathOperator{\colim}{colim}
-
 \DeclareMathOperator{\sst}{\subseteq}
-\DeclareMathOperator{\eq}{\operatorname{eq}}
-
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\ihom}{\underline{Hom}}
 \DeclareMathOperator{\home}{\underline{Hom}}
 \DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\fib}{Fib}
+\DeclareMathOperator{\ho}{\mathbf{Ho}}
+\DeclareMathOperator{\hoi}{\mathbf{Ho}_\infty}
 
+% Categories and spaces
 \DeclareMathOperator{\sSeten}{\underline{\mathbf{sSet}}}
 \DeclareMathOperator{\sSet}{\mathbf{sSet}}
 \DeclareMathOperator{\mSet}{\mathbf{mSet}}
@@ -65,34 +103,29 @@
 \DeclareMathOperator{\Lang}{\mathsf{Lang}(\mathsf{C})}
 \DeclareMathOperator{\Hoi}{\mathbf{Ho}_\infty}
 \DeclareMathOperator{\Map}{\mathbf{Map}}
-\DeclareMathOperator{\app}{\mathsf{app}}
-\DeclareMathOperator{\refl}{\mathsf{refl}}
-\DeclareMathOperator{\exch}{\mathsf{exch}}
-\DeclareMathOperator{\cft}{\mathsf{ft}}
-\DeclareMathOperator{\pair}{\mathsf{pair}}
-\DeclareMathOperator{\unpair}{\mathsf{unpair}}
-\DeclareMathOperator{\csplit}{\mathsf{split}}
-\DeclareMathOperator{\Nat}{\mathsf{Nat}}
-\newcommand{\Syn}[1]{\mathsf{Syn}(\mathbf{#1})}
-\DeclareMathOperator{\fib}{Fib}
-\DeclareMathOperator{\ho}{\mathbf{Ho}}
-\DeclareMathOperator{\hoi}{\mathbf{Ho}_\infty}
-\newcommand{\ishiso}[1]{\mathsf{isHIso}({#1})}
-\newcommand{\isiso}[1]{\mathsf{isIso}({#1})}
 
+% ============================================================================
+% Special Arrows
+% ============================================================================
+
+\DeclareMathOperator{\sto}{\twoheadrightarrow}
+
+% Double right arrow
 \newcommand\dhrightarrow{%
   \mathrel{\ooalign{$\rightarrow$\cr%
   $\mkern3.5mu\rightarrow$}}
 }
 
+% Double extensible right arrow
 \newcommand\dhxrightarrow[2][]{%
   \mathrel{\ooalign{$\xrightarrow[#1\mkern4mu]{#2\mkern4mu}$\cr%
   \hidewidth$\rightarrow\mkern4mu$}}
 }
 
+% ============================================================================
+% Adjunctions and Equivalences
+% ============================================================================
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Commands to draw adjunctions and equivalences
 \newcommand{\longrightharpoonup}{\relbar\joinrel\rightharpoonup}
 \newcommand{\longleftharpoondown}{\leftharpoondown\joinrel\relbar}
 \newcommand{\noloc}{%
@@ -114,6 +147,7 @@
   \endgroup
 }
 
+% Draw adjunction: F : C ⇄ D : G
 \newcommand{\adjunction}[4]{%
   % #1 : #2 <arrows> #3 : #4
   #1\colon #2%
@@ -130,6 +164,7 @@
   #3 \noloc #4%
 }
 
+% Draw equivalence: F : C ⇄ D : G
 \newcommand{\equivalence}[4]{%
   % #1 : #2 <arrows> #3 : #4
   #1\colon #2%
@@ -144,14 +179,20 @@
   }}%
   #3 \noloc #4%
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Use yo for Yoneda!
+% ============================================================================
+% Special Symbols
+% ============================================================================
+
+% Yoneda embedding symbol
 \DeclareFontFamily{U}{min}{}
 \DeclareFontShape{U}{min}{m}{n}{<-> udmj30}{}
 \DeclareMathOperator{\yo}{\text{\usefont{U}{min}{m}{n}\symbol{'210}}}
 
-% Nice font commands
+% ============================================================================
+% Font Abbreviation Macros
+% ============================================================================
+
 \ExplSyntaxOn
 \NewDocumentCommand{\makeabbrev}{mmm}
 {
@@ -167,17 +208,23 @@
 }
 \ExplSyntaxOff
 
+% Blackboard bold: \bbA, \bbB, etc.
 \makeabbrev{\mathbb}{bb#1}{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
 
+% Bold: \bfa, \bfA, etc.
 \makeabbrev{\mathbf}{bf#1}{a,b,c,d,e,g,h,i,j,k,l,m,n,o,p,q,r,t,u,v,w,x,y,z,%
 	A,B,C,D,E,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
 
+% Bold symbol: \bsa, \bsA, etc.
 \makeabbrev{\boldsymbol}{bs#1}{a,b,c,d,e,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,%
 	A,B,C,D,E,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
 
+% Calligraphic: \cA, \cB, etc.
 \makeabbrev{\mathcal}{c#1}{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
 
+% Fraktur: \fa, \fA, etc.
 \makeabbrev{\mathfrak}{f#1}{a,b,c,d,e,f,g,h,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,%
 	A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
 
+% Sans-serif: \sfA, \sfB, etc.
 \makeabbrev{\mathsf}{sf#1}{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}

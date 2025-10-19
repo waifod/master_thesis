@@ -1,66 +1,36 @@
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[utf8]{inputenc}
-\usepackage[british]{babel}
-\usepackage[margin=3cm]{geometry}
-\geometry{a4paper,top=3cm,bottom=3cm,left=3.5cm,right=3.5cm,heightrounded,bindingoffset=5mm}
-\usepackage{color}
-\usepackage{amsthm,amsmath,amssymb}
-\usepackage{graphicx}
-\usepackage{mathtools}
-\usepackage{listings}
-%\usepackage{newlfont}
-%\usepackage[all,cmtip]{xy}
-%\usepackage{tikz}
-\usepackage{fullpage}
-%\usepackage{tkz-berge}
-%\usepackage[position=top]{subfig}
-\usepackage{rotating}
-\usepackage{marvosym}
-\usepackage{extarrows}
-\usepackage{enumitem}
-\usepackage{subcaption}
-\usepackage{booktabs}
-\usepackage{MnSymbol}
-%\usepackage{emptypage}
-\usepackage{hyperref}
-\usepackage{pict2e}
-\usepackage{eucal}
-\usepackage{csquotes}
-\usepackage{thmtools, thm-restate}
-%\usepackage{bbold}
+% ============================================================================
+% Document Settings
+% ============================================================================
+% This file contains document formatting, geometry, and bibliography settings
 
+% ============================================================================
+% Page Geometry
+% ============================================================================
+\geometry{
+  a4paper,
+  top=3cm,
+  bottom=3cm,
+  left=3.5cm,
+  right=3.5cm,
+  heightrounded,
+  bindingoffset=5mm
+}
+
+% ============================================================================
+% Math Sizes (uncomment if needed)
+% ============================================================================
 %\DeclareMathSizes{12}{10}{10}{8}
 
+% ============================================================================
+% Bibliography Configuration
+% ============================================================================
 \usepackage[
   backend=biber,
-	bibencoding=utf8,
-	style=alphabetic,
-	citestyle=alphabetic,
-	uniquename=false,
-	%backref=true,
-	giveninits=true
+  bibencoding=utf8,
+  style=alphabetic,
+  citestyle=alphabetic,
+  uniquename=false,
+  %backref=true,
+  giveninits=true
 ]{biblatex}
 \addbibresource{references.bib}
-
-\theoremstyle{definition}
-
-\newtheorem{thm}{Theorem}[section] % reset theorem numbering for each section
-
-\newtheorem{defn}[thm]{Definition} % numbering depends on thm
-\newtheorem{prop}[thm]{Proposition}
-\newtheorem{lem}[thm]{Lemma}
-\newtheorem{cor}[thm]{Corollary}
-\newtheorem{conj}[thm]{Conjecture}
-\newtheorem{rmk}[thm]{Remark}
-\newtheorem{exmp}[thm]{Example}
-\newtheorem{construction}[thm]{Construction}
-\newtheorem{notation}[thm]{Notation}
-\newtheorem*{organization}{Organization}
-\newtheorem*{finalthm}{Theorem 4.2.4}
-\newtheorem{initiality}[thm]{Initiality Conjecture}
-\newtheorem{intlang}[thm]{Internal Languages Conjecture}
-
-%\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{.5em}{\thmnote{#3 }#1}
-%\theoremstyle{named}
-%\newtheorem*{named}{Conjecture}

@@ -1,0 +1,42 @@
+% ============================================================================
+% Theorem Environments
+% ============================================================================
+% This file contains all theorem-like environment definitions
+
+% Set theorem style to definition (non-italic body text)
+\theoremstyle{definition}
+
+% ============================================================================
+% Numbered Theorem Environments
+% ============================================================================
+% All numbered environments share the same counter (numbered by section)
+
+\newtheorem{thm}{Theorem}[section]
+
+% Additional environments sharing the same counter as thm
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{construction}[thm]{Construction}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{initiality}[thm]{Initiality Conjecture}
+\newtheorem{intlang}[thm]{Internal Languages Conjecture}
+
+% ============================================================================
+% Unnumbered Theorem Environments
+% ============================================================================
+
+\newtheorem*{organization}{Organization}
+\newtheorem*{finalthm}{Theorem 4.2.4}
+
+% ============================================================================
+% Custom Theorem Styles (commented out, uncomment if needed)
+% ============================================================================
+
+%\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{.5em}{\thmnote{#3 }#1}
+%\theoremstyle{named}
+%\newtheorem*{named}{Conjecture}

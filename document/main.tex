@@ -1,7 +1,20 @@
 \documentclass[a4paper,fontsize=12pt,titlepage,twoside]{scrbook}
+
+% ============================================================================
+% Package Loading Order
+% ============================================================================
+% 1. quiver      - Self-contained commutative diagram support
+% 2. packages    - All basic LaTeX package imports
+% 3-5. The following depend on packages being loaded first:
+%      settings     - Document configuration (uses geometry, biblatex, etc.)
+%      commands     - Custom commands and math operators (uses color, amsmath, etc.)
+%      environments - Theorem environments (uses amsthm)
+
 \usepackage{packages/quiver}
+\usepackage{packages/packages}
 \usepackage{packages/settings}
 \usepackage{packages/commands}
+\usepackage{packages/environments}
 
 \begin{document}
   \include{parts/titlepage}
