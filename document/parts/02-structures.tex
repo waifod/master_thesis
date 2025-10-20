@@ -58,24 +58,25 @@ called $\Ids$-contexts.
 \end{notation}
 
 Lumsdaine claimed that it is possible to provide extensions of the logical
-structures we are studying in \cite[Rem.\ 1.3.1]{Lum10}. At the
-time Kapulkin proved the theorem this thesis focuses on,
-nothing further was available in the literature and only later him and
-Lumsdaine gave more details on these matters \cite{KL18}. In this section we aim
-to partially fix that for $\Pis$-structures specifically, which will be the main
-contribution of this work. It should be noted that, imitating Gambino and
-Garner, we may derive the
-corresponding logical rules for what would then be called $\Pis$-contexts,
-however we will not do so and focus on the semantics, believing that the
-translation should be straightforward and a simple duplication of work. We will
+structures we are studying in \cite[Rem.\ 1.3.1]{Lum10}. However, when
+Kapulkin proved the theorem this thesis focuses on,
+nothing further was available in the literature. Only later did Kapulkin and
+Lumsdaine provide more details on these matters \cite{KL18}. 
+
+In this section, we aim
+to partially address this gap for $\Pis$-structures specifically, which will be the main
+contribution of this work. Note that, following Gambino and
+Garner, we could derive the
+corresponding logical rules for what would be called $\Pis$-contexts.
+However, we will focus on the semantics instead, believing that such a
+translation would be straightforward and merely duplicate existing work. We will
 later sketch the extension for $\Sigmas$-structures.
 
 We begin by constructing the category of iterated contexts, where we
 will extend the structures.
 
 \begin{construction}\cite[21]{Lum10}
-  Given a contextual category $\sfC$, we construct a contextual category
-  $\sfC^{\cxt}$ in the following way:
+  Given a contextual category $\sfC$, we construct $\sfC^{\cxt}$ in the following way:
   \begin{enumerate}
     \item the set $\Ob_n\sfC^{\cxt}$ is given by $n$-iterated non-trivial context
       extensions
@@ -203,8 +204,8 @@ We will work only with syntactic categories and in contextual categories where a
 section $x\colon\Gamma\rightarrow\Gamma.A.B$ can be split as
 two sections $a\colon\Gamma\rightarrow\Gamma.A$,
 $b\colon\Gamma.A\rightarrow\Gamma.A.B$.
-We see that $p_B\cdot x=p_B\cdot b\cdot a=a$. Syntactically, this means that if
-we pick two terms $a:A,b:B(a)$ over $\Gamma$ at once, then we can also
+We see that $p_B\cdot x=p_B\cdot b\cdot a=a$. Syntactically, if
+we pick two terms $a:A,b:B(a)$ over $\Gamma$ at once, we can also
 specify for each choice of a term $a':A$ over $\Gamma$ a term $b':B(a')$ such
 that $b\equiv b'$ when $a\equiv a'$. We later point out the
 difficulties encountered without our assumption and exploit our previously
@@ -313,7 +314,7 @@ In this section we verify that the desired properties hold for our
 constructions.
 
 \begin{lem}\label{extpistruct}
-  Given a dependent type theory with $\Pis$-types $\bfT$, the data provided
+  Given a dependent type theory $\bfT$ with $\Pis$-types, the data provided
   defines a $\Pis$-structure on $\Syn{T}^{\cxt}$ which is
   compatible with the natural contextual functor
   $\Syn{T}\hookrightarrow\Syn{T}^{\cxt}$.
@@ -462,7 +463,7 @@ constructions.
 We shall also need the following lemma.
 
 \begin{lem}[{\cite[Lem.\ 5.6]{Kap17}}]\label{piequal}
-  Given a dependent type theory with $\Pis$-types $\bfT$ and an iterated context
+  Given a dependent type theory $\bfT$ with $\Pis$-types and an iterated context
   extension $\Gamma.\Delta.\Theta.\Psi$ in $\Syn{T}$, the contexts
   \[\Gamma.\Pis(\Delta,\Theta.\Psi),\quad\Gamma.\Pis(\Delta,\Theta).\Pis(p^*_{\Pis(\Delta,\Theta)}\Delta,\app^*_{\Delta,\Theta}\Psi)\]
   are equal in $\Syn{T}$. Also,
@@ -492,14 +493,14 @@ they rely on the Initiality Conjecture \ref{initconj} and here our focus is on
 syntactic categories.
 
 \begin{lem}[{\cite[Prop.\ 3.3.1]{Gar09b}}]
-  Given a dependent type theory with $\Ids$-types $\bfT$, the contextual category
+  Given a dependent type theory $\bfT$ with $\Ids$-types, the contextual category
   $\Syn{T}^{\cxt}$ carries a natural $\Ids$-structure compatible with the
   natural contextual functor $\Syn{T}\hookrightarrow\Syn{T}^{\cxt}$.
 \end{lem}
 
 \begin{lem}[{\cite[Lemma 2.28]{KS19}}]
-  Given a dependent type theory with $\Ids$- and $\Piext$-types
-  $\bfT$, the latter can also be lifted from $\Syn{T}$ to
+  Given a dependent type theory $\bfT$ with $\Ids$- and $\Piext$-types,
+  the latter can also be lifted from $\Syn{T}$ to
   $\Syn{T}^{\cxt}$ compatibly with the natural contextual functor
   $\Syn{T}\hookrightarrow\Syn{T}^{\cxt}$.
 \end{lem}

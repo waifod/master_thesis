@@ -1,20 +1,22 @@
 \chapter{Localizations of Syntactic Categories}\label{chapter4}
 
-In this chapter we finally talk about localizing syntactic categories. To do
-this, we first specify a class of maps we localize at, explaining the rationale
-behind our choice, and then from this we present a fibrational structure which
-will allow us to apply the results from the previous section to prove Kapulkin's
-Theorem \ref{finalthm}. The main difference between our proof and his
-original one \cite{Kap14} will be our usage of extended logical structures,
-mimicking his later methods from \cite{Kap17}. We conclude with a section
-summarizing what we have done.
+In this chapter, we finally discuss localizing syntactic categories. To accomplish
+this, we first specify a class of maps at which we localize, explaining the rationale
+behind our choice. We then present a fibrational structure that
+allows us to apply the results from the previous chapter to prove Kapulkin's
+Theorem \ref{finalthm}. 
+
+The main difference between our proof and Kapulkin's
+original approach \cite{Kap14} is our use of extended logical structures,
+following his later methods from \cite{Kap17}. We conclude with a section
+summarizing our work.
 
 \section{Bi-Invertibility}
 
 As anticipated, we introduce a notion of weak equivalence in our context.
 
 \begin{defn}
-  Given a contextual category with $\Ids$-structure $\sfC$, a morphism
+  Given a contextual category $\sfC$ with $\Ids$-structure, a morphism
   $f\colon\Gamma.A\rightarrow\Gamma.B$ over $\Gamma$ is \emph{simply
     bi-invertible over $\Gamma$} if there exist:
   \begin{enumerate}
@@ -32,7 +34,7 @@ $\Syn{T}$ by working as usual with $\Syn{T}^{\cxt}$ to provide the notion given
 in \cite[Def.~1.4]{Kap17}.
 
 \begin{defn}
-  Given a dependent type theory with $\Ids$-types $\bfT$, a morphism
+  Given a dependent type theory $\bfT$ with $\Ids$-types, a morphism
   $f\colon\Gamma.\Delta\rightarrow\Gamma.\Theta$ over $\Gamma$ in $\Syn{T}$ is
   \emph{bi-invertible over $\Gamma$} if it is simply bi-invertible over $\Gamma$
   as a morphism between the two corresponding simple context extensions of
@@ -51,8 +53,8 @@ in \cite[Def.~1.4]{Kap17}.
 \end{rmk}
 
 \begin{rmk}
-  Our definition of bi-invertible map is less general than the one generally
-  presented (which concerns arbitrary contextual categories with an
+  Our definition of bi-invertible map is in a way less general than the one 
+  generally presented (which concerns arbitrary contextual categories with an
   $\Ids$-structure) because that one relies on strong $\Sigmas$-types, which we
   do not assume, or on the $\Ids$-structure on iterated context extensions,
   however we did not provide the construction for arbitrary contextual
@@ -140,8 +142,8 @@ of fibrations.
 Now we have enough to specify the fibrational structure.
 
 \begin{prop}[{\cite[Thm.\ 3.2.5]{AKL15}}]
-  Any contextual category with $\Sigmas$-, $\Ids$-, $\Nat$- and
-  $\mathsf{1}$-structures $\sfC$ carries the structure of a fibration category,
+  Any contextual category $\sfC$ with $\Sigmas$-, $\Ids$-, $\Nat$- and
+  $\mathsf{1}$-structures carries the structure of a fibration category,
   where the class of fibrations is given by all maps isomorphic to dependent
   projections and weak equivalences correspond to all of the bi-invertible ones.
 \end{prop}
@@ -149,7 +151,7 @@ Now we have enough to specify the fibrational structure.
 The above result can be however generalized.
 
 \begin{prop}\label{fibcat}
-  A contextual category with $\Sigmas$- and $\Ids$-structures $\sfC$ carries
+  A contextual category $\sfC$ with $\Sigmas$- and $\Ids$-structures carries
   the structure of a fibration category given by the same classes of maps as
   above.
 \end{prop}
@@ -182,7 +184,7 @@ The above result can be however generalized.
 \section{Local Cartesian Closure}
 
 We are now ready to provide a few results needed to show that, given a dependent
-type theory with $\Sigmas$-, $\Ids$- and $\Piext$-types $\bfT$, the hypothesis of
+type theory $\bfT$ with $\Sigmas$-, $\Ids$- and $\Piext$-types, the hypothesis of
 Theorem \ref{7616} are satisfied by $\Syn{T}$ with respect to the above
 fibrational structure. Henceforth we shall write $\sfC$ for this syntactic
 category.
@@ -406,7 +408,7 @@ identical to the one he took instead in \cite{Kap17}.
 In Chapter \ref{chapter3} we presented a theory of localizations of
 $\infty$-categories referring to Cisinski's work \cite{Cis19}. Our objective was
 to provide some sufficient conditions under which the localization of an
-$\infty$-category would be locally cartesian closed and to do this we introduced
+$\infty$-category would be locally Cartesian closed and to do this we introduced
 $\infty$-categories with weak equivalences and fibrations \ref{fibicat}, which
 generalize model categories and, more specifically, fibration categories
 \ref{fibcat}. The conditions were then given by Theorem \ref{7616}.
@@ -416,7 +418,7 @@ theories $\bfT$, a notion of bi-invertible map in $\Syn{T}$ describing the weak
 equivalences we intended to localize at and then a fibrational structure,
 allowing us to refer to the results of the previous section when talking about
 $L(N(\Syn{T}))$. To prove that this latter $\infty$-category is locally
-cartesian closed we aimed to apply Theorem \ref{7616}, for which
+Cartesian closed we aimed to apply Theorem \ref{7616}, for which
 we provided a right adjoint to the pullback functor between fibrant
 slices $p^*_\Delta\colon\Syn{T}(\Gamma)\rightarrow\Syn{T}(\Gamma.\Delta)$
 through Lemma \ref{radj} and then showed that it is left exact, leading up to
@@ -444,20 +446,21 @@ This led to the formulation of the Internal Languages Conjecture \cite[Conj.\
   categories involved are the ones of contextual categories with the indicated
   logical structures and those of properly structured $\infty$-categories.
   Specifically, $\Lexi$ and $\LCCCi$ have respectively finitely complete and
-  locally cartesian closed $\infty$-categories as objects, while their morphisms
+  locally Cartesian closed $\infty$-categories as objects, while their morphisms
   are left exact functors.
 \end{intlang}
 
-A proof was recently provided by Nguyen-Uemura \cite{NU22} and this
-conjecture means that producing an $\infty$-category with the appropriate
+A proof was recently provided by Nguyen-Uemura \cite{NU22}. This
+conjecture has profound implications: producing an $\infty$-category with the appropriate
 properties is equivalent to presenting a contextual category with the specified
-logical structures and, therefore, a dependent type theory with the
-corresponding logical rules (its internal language) through which
-one may equivalently reason about the $\infty$-category and viceversa,
+logical structures. This, in turn, corresponds to presenting a dependent type theory with the
+appropriate logical rules (its internal language). This equivalence means
+we can reason about the $\infty$-category and the type theory interchangeably,
 establishing a strong link between the two theories.
-However, so far we have been able to explicitly construct the corresponding
-contextual category from a locally Cartesian closed $\infty$-category only if
-the latter is locally presentable \cite{Shu14}, meaning that we do not have a
+
+However, we can only explicitly construct the corresponding
+contextual category from a locally Cartesian closed $\infty$-category under restrictive conditions. Specifically,
+when the latter is locally presentable \cite{Shu14}. This means we lack a
 concrete definition of the homotopical inverses to the localization functors.
 
 There is currently an ongoing project to 
@@ -473,6 +476,6 @@ Throughout our work we didn't mention what would happen if instead of taking
 intensional $\Ids$-types we chose \emph{extensional} ones. This case is, in our
 opinion, less interesting as such identity types are less structured and they
 lack an homotopical interpretation, while also making equality undecidable,
-however Seely \cite{See84} managed to relate it to locally cartesian closed
+however Seely \cite{See84} managed to relate it to locally Cartesian closed
 categories and to construct for each of them the associated dependent type
 theory.

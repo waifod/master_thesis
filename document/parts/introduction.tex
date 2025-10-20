@@ -1,79 +1,76 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-The theme of the foundations of mathematics is one which since its inception in
-the nineteenth century has seen a rich history, with a crisis and a change in
-perspective due to G{\"o}del's theorems. Various theories have since then been
-devised to serve this role and the most notorious and successful among them is
-Propositional Calculus with
-Set Theory \cite{Jec13}, in the form of ZFC. This is however an
-unsatisfactory foundation
-for various reasons, chiefly among them the fact that every object is a set and
-its treatment of equality, which lead to some rather counterintuitive
+The foundations of mathematics have seen a rich history since their inception in
+the nineteenth century, including a crisis and a fundamental change in
+perspective due to Gödel's theorems. Various theories have since been
+devised to serve as foundations. The most notorious and successful among them is
+Set Theory in the form of ZFC \cite{Jec13}. However, this is an
+unsatisfactory foundation for various reasons. Chief among them are the fact that every object must be a set and
+the treatment of equality, which lead to counterintuitive
 conclusions.
 
-An alternative foundation which has become of interest in the past decades is
-Type Theory, whose origins we can trace back to Russel \cite{Rus08,RW97},
-who saw it as a tool to
-block some paradoxes of Set Theory,
-namely the existence of the set of all sets. This theory allows us to talk about
-the \emph{type} of a mathematical
-object and make equality a local concept (that is making sense only in terms of
-two elements of the same type) and a more structured one, meaning that we can
-talk about in what sense two objects are equal. Furthermore, proofs are
-internalized by the theory as elements of types.
+An alternative foundation that has gained interest in recent decades is
+Type Theory. Its origins trace back to Russell \cite{Rus08,RW97},
+who developed it as a tool to
+block certain paradoxes of Set Theory,
+namely the existence of the set of all sets. Type Theory allows us to talk about
+the \emph{type} of a mathematical object and treats equality as a local concept
+(making sense only for two elements of the same type). Moreover, equality becomes
+more structured, allowing us to discuss in what sense two objects are equal.
+Furthermore, proofs are internalized by the theory as elements of types.
 
 An important variant is Martin-L{\"o}f Type Theory \cite{ML84}, which is
-intuitionistic and introduces \emph{dependent types}, that is types which are
-allowed to depend on elements of other types. This is fairly convenient in
-mathematical practice, where often the type of an object depends on other
-objects, like in the statement ``for any field
-$k$, let $V$ be a $k$-vector space''. This version was meant
+intuitionistic and introduces \emph{dependent types}: types that are
+allowed to depend on elements of other types. This is convenient in
+mathematical practice, where the type of an object often depends on other
+objects. For example, consider the statement ``for any field
+$k$, let $V$ be a $k$-vector space''. This version was designed
 to capture a notion of computation, exploiting the link with Computer Science
 made evident by \emph{System F} \cite{Gir89}, a formalism for parametric
 polymorphism in programming languages. This connection
-has made it extremely interesting, as it led to the
-creation of proof assistants like Coq, Lean, Agda and others. These are software
-tools through which we can formalize and check mathematical reasoning, but also
-automatically produce proofs of statements, thereby lifting a heavy burden from
-the shoulders of mathematicians who often skip the ``obvious'' but tedious
-details of proofs. In particular, Coq rose to notoriety because it was used to
-prove the \emph{Four-Color Theorem} \cite{Gon08} and recently a project
-was born to build the Lean Mathematical Library \cite{mat20}.
+has made Type Theory particularly interesting, leading to the
+creation of proof assistants such as Coq, Lean, and Agda. These software
+tools allow us to formalize and verify mathematical reasoning, and can also
+automatically generate proofs of statements. They thereby lift a heavy burden from
+mathematicians, who often skip the ``obvious'' but tedious
+details of proofs. Notably, Coq rose to prominence when it was used to
+prove the \emph{Four-Color Theorem} \cite{Gon08}. More recently, a project
+was launched to build the Lean Mathematical Library \cite{mat20}.
 
-While it was clear early on that there was a link between categories and type
-theories, leading to various notions of categorical models (like
-Cartmell's \emph{contextual categories} \cite{Car78}) allowing a supposedly
-equivalent approach to the study of these foundations, a central piece of this
-connection still has not been provided, namely the \emph{Initiality Conjecture}
+The link between categories and type theories was recognized early on. This led to various notions of categorical models, such as
+Cartmell's \emph{contextual categories} \cite{Car78}, which allow a supposedly
+equivalent approach to studying these foundations. However, a central piece of this
+connection remains unproven: the \emph{Initiality Conjecture}
 \cite{Str91}.
-This would allow us to switch between algebraic and syntactic statements freely,
-however even providing a rigorous statement has proven difficult as it would
-require a precise definition of what a type theory is, which constitutes an
-object of current research \cite{BHL20}.
+This conjecture would allow us to switch freely between algebraic and syntactic statements.
+Yet even providing a rigorous statement has proven difficult, as it requires
+a precise definition of what constitutes a type theory, a question that remains an active area of research \cite{BHL20}.
 
-Relatedly, further interest came from the Homotopy Theory community when
+Further interest came from the Homotopy Theory community when
 Hofmann-Streicher \cite{HS98} showed that the category of groupoids $\Gpd$ could
-provide a model for an extension of Martin-L{\"o}f Type Theory, which only
-became stronger because of the development of Homotopy Type Theory and its
+provide a model for an extension of Martin-L{\"o}f Type Theory. This connection
+became even stronger with the development of Homotopy Type Theory and its
 simplicial model in the category of $\infty$-groupoids $\Gpdi$ by
-Voevodsky \cite{KL12}, meaning that we may prove statements about Homotopy
+Voevodsky \cite{KL12}. This means we can prove statements about Homotopy
 Theory by working synthetically through Type Theory, leading to new proofs of
-older theorems like the Black-Massey Theorem \cite{HFLL16}. Since then there has
+older theorems such as the Black-Massey Theorem \cite{HFLL16}. 
+
+Since then, there has
 been an effort to unify the
-fields of $\infty$-Category Theory and Type Theory and thereby provide a
-satisfactory foundation for mathematics with homotopical semantics. Such link is
-obvious to the researchers in the field, but so far we have struggled to
-progress: indeed, to unify the two we would need a procedure to construct a type
-theory from an $\infty$-category and viceversa, however the first direction is
-fairly problematic and a construction was provided only under the hypothesis of
+fields of $\infty$-Category Theory and Type Theory, thereby providing a
+satisfactory foundation for mathematics with homotopical semantics. Such a link is
+obvious to researchers in the field, but progress has been limited.
+Indeed, unifying the two requires a procedure to construct a type
+theory from an $\infty$-category and vice versa. However, the first direction is
+problematic, and a construction was provided only under the restrictive hypotheses of
 local Cartesian closure and local presentability \cite{Shu14}.
 
 This thesis focuses on the other direction, from a type theory to an
 $\infty$-category, which itself is known only partially. Specifically, we aim to
 prove the following result by Kapulkin \cite[Thm.\ 9.3.17]{Kap14} using
 Cisinski's theory on localizations of $\infty$-categories \cite{Cis19} and
-thereby avoiding the less general theory of frames \cite{Szu14,KS15}.
+thereby avoiding the less general Frame Theory \cite{Szu14,KS15}.
 
 \begin{finalthm}
   Let $\bfT$ be a dependent type theory with $\Sigmas$-, $\Ids$- and
@@ -82,34 +79,37 @@ thereby avoiding the less general theory of frames \cite{Szu14,KS15}.
 \end{finalthm}
 
 Following this result, Kapulkin and Lumsdaine formulated the \emph{Internal
-Languages Conjecture} \cite[Conj.\ 3.7]{KL16}, implying an equivalence between
-the $\infty$-categories of properly structured $\infty$-categories and the ones
-of contextual categories with some extra data. This conjecture
-was recently proven by Nguyen-Uemura \cite{NU22}. Current research aims to
-extend this result by proving an equivalence between an $\infty$-category of
-contextual categories modeling Homotopy Type Theory and the one of elementary
-$\infty$-toposes, whose definition is still under discussion, however we already
-know that $\infty$-toposes do provide models for it \cite{Shu19}.
+Languages Conjecture} \cite[Conj.\ 3.7]{KL16}. This conjecture implies an equivalence between
+the $\infty$-categories of properly structured $\infty$-categories and those
+of contextual categories with appropriate extra data. This conjecture
+was recently proven by Nguyen-Uemura \cite{NU22}. 
+
+Current research aims to
+extend this result further. Specifically, researchers seek to prove an equivalence between an $\infty$-category of
+contextual categories modeling Homotopy Type Theory and the category of elementary
+$\infty$-toposes. While the definition of elementary $\infty$-toposes is still under discussion,
+we already know that $\infty$-toposes do provide models for Homotopy Type Theory \cite{Shu19}.
 
 \begin{organization}
-  We begin in the first chapter by presenting our setting. Namely, in
-  Chapter \ref{chapter1} we specify the foundations we use, the structural rules of our
-  dependent type theories and the logical rules we will be considering; after
-  this, we present the background material pertaining to the categorical side,
-  introducing the syntactic category $\Syn{T}$, the Initiality Conjecture
-  \ref{initconj} and various constructions
-  with their type-theoretical meaning. In Chapter \ref{chapter2} we follow
-  a later paper by Kapulkin \cite{Kap17} to produce
-  extensions of the categorical data modeling the logical rules which we will
-  and in Chapter
-  \ref{chapter3} we introduce Cisinski's theory of localizations of
-  $\infty$-category, leading to Theorem \ref{7616}, which is instrumental in our
-  objective, and generalizing the theory of model categories. Finally, in
-  Chapter \ref{chapter4} we proceed to prove our result by introducing a
-  fibrational structure on $\Syn{T}$ \cite{AKL15} and some preliminary lemmas
-  which allow us
-  to apply the aforementioned theorem to $\Syn{T}$ and prove our result,
-  whose statement we provide only at the end. We conclude with a
-  recap of what we have done and presenting some progress which followed
+  We begin in Chapter \ref{chapter1} by presenting our setting. Specifically, 
+  we specify the foundations we use, the structural rules of our dependent type 
+  theories, and the logical rules we will be considering. We then present the 
+  background material pertaining to the categorical side, introducing the 
+  syntactic category $\Syn{T}$, the Initiality Conjecture \ref{initconj}, and 
+  various constructions with their type-theoretical meaning.
+  
+  In Chapter \ref{chapter2}, we follow a later paper by Kapulkin \cite{Kap17} 
+  to produce extensions of the categorical data modeling the logical rules we 
+  consider.
+  
+  Chapter \ref{chapter3} introduces Cisinski's theory of localizations of 
+  $\infty$-categories, leading to Theorem \ref{7616}, which is instrumental to 
+  our objective and generalizes the theory of model categories.
+  
+  Finally, Chapter \ref{chapter4} proceeds to prove our main result by 
+  introducing a fibrational structure on $\Syn{T}$ \cite{AKL15} and some 
+  preliminary lemmas. These allow us to apply the aforementioned theorem to 
+  $\Syn{T}$ and prove our result, whose statement we provide only at the end. 
+  We conclude with a summary of our work and some developments that followed 
   Kapulkin's proof.
 \end{organization}

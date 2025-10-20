@@ -8,13 +8,11 @@ algebraic models.
 As a foundation, we choose to work within ZFC with Grothendieck universes
 \cite{Jec13}.
 Furthermore, we assume familiarity with some kind of dependent type theory,
-preferably Martin-L\"{o}f Type Theory \cite{ML84} or an extension, which
-should be enough to understand our setting. This has become a popular formal
-theory of logic to start from when creating an alternative foundation of
-mathematics since it provides a more nuanced concept of equality, the
-possibility of creating powerful proof assistants and, thanks to its relation to
-homotopy theory, cleaner and more general proofs of some theorems, like the
-Black-Massey Theorem \cite{HFLL16}, presented in the language of Homotopy Type
+preferably Martin-L{\"o}f Type Theory \cite{ML84} or an extension, which
+should be sufficient to understand our setting. Martin-L{\"o}f Type Theory has become a popular formal
+foundation for mathematics for several reasons: it provides a more nuanced concept of equality, enables
+the creation of powerful proof assistants, and offers cleaner and more general proofs of some theorems.
+For example, the Black-Massey Theorem \cite{HFLL16} has been elegantly presented in the language of Homotopy Type
 Theory \cite{Uni13}.
 
 \begin{notation}
@@ -101,8 +99,7 @@ $C$\emph{-systems} \cite{Voe14a}. For information on the
 others we refer to \cite{nlab:categorical_model_of_dependent_types}.
 
 \begin{defn}
-  A contextual category $\sfC$ is a small category, also denoted $\sfC$,
-  with the following data:
+  A contextual category $\sfC$ is a small category with the following data:
   \begin{enumerate}
     \item a length function $l\colon\Ob\sfC\rightarrow\bbN$ or, equivalently, a
       grading on objects $\Ob\sfC=\coprod_{n\in\bbN}\Ob_n\sfC$, also called
@@ -228,7 +225,7 @@ of a dependent type theory}, which is constructed as follows.
   Namely, given a contextual category $\sfC$ and an object $\Gamma\in\Ob_n\sfC$,
   we shall write $\Gamma.A_1.\ldots.A_k$ and $\Gamma.\Delta$ interchangeably
   for an object $X$ in $\Ob_{n+k}\sfC$ with $\cft^kX=\Gamma$ and call it a
-  \emph{context extension of $\Gamma$ of length $k$}. We shall
+  \emph{context extension} of $\Gamma$ of length $k$. We shall
   also write $p_{A_1.\ldots.A_k}$ and $p_\Delta$ for the
   composition of the basic dependent projections
   $p_{\Gamma.A_1.\ldots.A_i}$, with $i$
@@ -362,13 +359,13 @@ categories was developed by Voevodsky in \cite{Voe14b,Voe14b,Voe15a,Voe15b},
 \end{exmp}
 
 On the other hand, as noted in \cite[Par.\ 1.2]{KL12}, interpreting complicated
-structures in
-contextual categories quickly becomes unreadable, meaning that ideally we would
-like to be able to switch from a syntactic to a semantic (i.e.\ algebraic)
-presentation and viceversa freely, so that we may work with the most
-convenient one for a given situation. This would amount to some \emph{soundness}
-and \emph{correctness} theorems reminiscent of the ones of \emph{first order
-predicate logic} establishing an equivalence between the two and allowing us to
+structures in contextual categories quickly becomes unreadable. Ideally, we would
+like to be able to switch freely between a syntactic and a semantic (i.e.\ algebraic)
+presentation, so that we may work with the most convenient one for each situation. 
+
+This would require \emph{soundness}
+and \emph{correctness} theorems reminiscent of those in \emph{first order
+predicate logic}. Such theorems would establish an equivalence between the two presentations, allowing us to
 think of contextual categories as if they were dependent type theories. In
 categorical semantics, this corresponds to \emph{initiality}.
 
@@ -389,7 +386,7 @@ with them. We will introduce the such structures in the next section.
 \begin{rmk}
 This conjecture has been partially proven for a simple variant of dependent type
 theory in \cite{Str91} and a proof formalized in Agda
-for Martin-L\"{o}f Type Theory was provided by de Boer-Brunerie
+for Martin-L{\"o}f Type Theory was provided by de Boer-Brunerie
 \cite{Boe20}, however we still do not have a fully
 rigorous general statement. Such a statement would first require a general
 notion of dependent type theory,
@@ -416,16 +413,18 @@ inductively to a computer how to construct the aforementioned functor.
 \end{rmk}
 
 \begin{rmk}
-A reason researchers often assume this conjecture to be true which was briefly
-is that, thanks to what is known in folklore as the \emph{syntax-semantics
-adjunction}, it provides for each contextual category an \emph{internal
-language}, that is a dependent type theory corresponding to it and allowing to
-think of it as such, as we alluded earlier. We shall not use such instruments
-and instead restrict ourselves to working with syntactic categories, with the
-idea that a generalization of our results to arbitrary contextual categories
-should be straightforward once we have a proof of the conjecture and all of the
-tools mentioned above. Unfortunately,
-this will also mean that we will not be able to rely on some results and
+A key reason researchers often assume this conjecture to be true
+is the \emph{syntax-semantics adjunction} known in folklore. This adjunction provides 
+for each contextual category an \emph{internal
+language}: a dependent type theory corresponding to it that allows us to
+reason about the category as if it were a type theory, as we alluded earlier. 
+
+We shall not use such instruments in this work.
+Instead, we restrict ourselves to working with syntactic categories. Our approach assumes that 
+a generalization of our results to arbitrary contextual categories
+will be straightforward once we have a proof of the conjecture and all the
+associated tools. Unfortunately,
+this restriction means that we cannot rely on some results and
 definitions as originally stated.
 \end{rmk}
 
@@ -491,7 +490,7 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
       $\Gamma.\Pis(A,B)\in\Ob_{n+1}\sfC$;
     \item for each $\Gamma.A.B\in\Ob_{n+2}\sfC$, a map
       $\app_{A,B}\colon\Gamma.\Pis(A,B).p^*_{\Pis(A,B)}A\rightarrow\Gamma.A.B$
-      over $\Gamma$, that is such that $p_B\cdot\app_{A,B}=q(\Pis(A,B),A)$;
+      over $\Gamma$, such that $p_B\cdot\app_{A,B}=q(\Pis(A,B),A)$;
     \item for each $\Gamma.A.B\in\Ob_{n+2}\sfC$ and section
       $b\colon\Gamma.A\rightarrow\Gamma.A.B$, a section
       $\lambda_{A,B}(b)\colon\Gamma\rightarrow\Gamma.\Pis(A,B)$;
@@ -532,8 +531,8 @@ earlier. Our definitions shall be taken from \cite{KL12,KL18}.
   is satisfied, in which case the structure will be called a
   \emph{$\Pies$-structure}. 
 
-  A \emph{$\Piext$-structure} on a contextual category with a $\Pis$-structure
-  $\sfC$ is an operation giving for each $\Gamma.A.B\in\Ob_{n+2}\sfC$ a map
+  A \emph{$\Piext$-structure} on a contextual category $\sfC$ with a $\Pis$-structure
+  is an operation giving for each $\Gamma.A.B\in\Ob_{n+2}\sfC$ a map
   \begin{align*}
     \ext_{A,B} &\colon
     \Gamma.\Pis(A,B).p^*_{\Pis(A,B)}\Pis(A,B).\Htp_{A,B}\rightarrow \\
