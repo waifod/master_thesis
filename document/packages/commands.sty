@@ -2,9 +2,18 @@
 % Custom Commands and Math Operators
 % ============================================================================
 % This file contains all custom commands, math operators, and macros
+%
+% Organization:
+% 1. Document-specific commands
+% 2. Font abbreviation macros
+% 3. Basic category theory
+% 4. Type theory
+% 5. Special arrows
+% 6. Adjunctions and equivalences
+% 7. Special symbols
 
 % ============================================================================
-% Document-specific Commands
+% 1. Document-specific Commands
 % ============================================================================
 
 % Date and signature field
@@ -20,161 +29,10 @@
   \fillfield{Regensburg, Germany}\hfill\fillfield{Matteo Durante}
 }
 
-% Comment commands (for collaborative editing)
-\newcommand{\kim}[1]{\textcolor{red}{#1}}
-\newcommand{\wfd}[1]{\textcolor{blue}{#1}}
-
 % ============================================================================
-% Basic Math Operators
+% 2. Font Abbreviation Macros
 % ============================================================================
-
-\DeclareMathOperator{\Ob}{\operatorname{Ob}}
-\DeclareMathOperator{\Arr}{Arr}
-\DeclareMathOperator{\op}{op}
-
-% ============================================================================
-% Type Theory Operators
-% ============================================================================
-
-\DeclareMathOperator{\Sigmas}{\mathsf{\Sigma}}
-\DeclareMathOperator{\Ids}{\mathsf{Id}}
-\DeclareMathOperator{\Pis}{\mathsf{\Pi}}
-\DeclareMathOperator{\Pies}{\mathsf{\Pi}_\eta}
-\DeclareMathOperator{\Piext}{\mathsf{\Pi_{ext}}}
-\DeclareMathOperator{\Htp}{\mathsf{Htp}}
-\DeclareMathOperator{\ext}{\mathsf{ext}}
-\DeclareMathOperator{\type}{\mathsf{type}}
-\DeclareMathOperator{\context}{\mathsf{context}}
-\DeclareMathOperator{\cxt}{\mathsf{cxt}}
-\DeclareMathOperator{\app}{\mathsf{app}}
-\DeclareMathOperator{\id}{\mathsf{id}}
-\DeclareMathOperator{\Id}{Id}
-\DeclareMathOperator{\refl}{\mathsf{refl}}
-\DeclareMathOperator{\exch}{\mathsf{exch}}
-\DeclareMathOperator{\cft}{\mathsf{ft}}
-\DeclareMathOperator{\pair}{\mathsf{pair}}
-\DeclareMathOperator{\unpair}{\mathsf{unpair}}
-\DeclareMathOperator{\csplit}{\mathsf{split}}
-\DeclareMathOperator{\Nat}{\mathsf{Nat}}
-
-% Syntactic category
-\newcommand{\Syn}[1]{\mathsf{Syn}(\mathbf{#1})}
-
-% Isomorphism types
-\newcommand{\isHIso}[1]{\mathsf{isHIso}({#1})}
-\newcommand{\isIso}[1]{\mathsf{isIso}({#1})}
-
-% ============================================================================
-% Category Theory Operators
-% ============================================================================
-
-\DeclareMathOperator{\colim}{colim}
-\DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\Home}{\underline{Hom}}
-\DeclareMathOperator{\Fib}{Fib}
-\newcommand{\Ho}[1]{\mathbf{Ho}(#1)}
-
-% Categories and spaces
-\DeclareMathOperator{\sSet}{\mathbf{sSet}}
-\DeclareMathOperator{\Set}{\mathbf{Set}}
-\DeclareMathOperator{\Cxl}{\mathsf{CxlCat}}
-\DeclareMathOperator{\Cat}{\mathbf{Cat}}
-\DeclareMathOperator{\wCat}{\mathbf{wCat}}
-\DeclareMathOperator{\Gpd}{\mathbf{Gpd}}
-\DeclareMathOperator{\Gpdi}{\mathbf{Gpd}_\infty}
-\DeclareMathOperator{\LCCCi}{\mathsf{LCCC}_\infty}
-\DeclareMathOperator{\Lexi}{\mathsf{Lex}_\infty}
-\DeclareMathOperator{\ElToposi}{\mathsf{ElTopos}_\infty}
-\newcommand{\Lang}[1]{\mathsf{Lang}(#1)}
-
-% ============================================================================
-% Special Arrows
-% ============================================================================
-
-\DeclareMathOperator{\sto}{\twoheadrightarrow}
-
-% Double right arrow
-\newcommand\dhrightarrow{%
-  \mathrel{\ooalign{$\rightarrow$\cr%
-  $\mkern3.5mu\rightarrow$}}
-}
-
-% Double extensible right arrow
-\newcommand\dhxrightarrow[2][]{%
-  \mathrel{\ooalign{$\xrightarrow[#1\mkern4mu]{#2\mkern4mu}$\cr%
-  \hidewidth$\rightarrow\mkern4mu$}}
-}
-
-% ============================================================================
-% Adjunctions and Equivalences
-% ============================================================================
-
-\newcommand{\longrightharpoonup}{\relbar\joinrel\rightharpoonup}
-\newcommand{\longleftharpoondown}{\leftharpoondown\joinrel\relbar}
-\newcommand{\noloc}{%
-  \nobreak
-  \mspace{6mu plus 1mu}
-  {:}
-  \nonscript\mkern-\thinmuskip
-  \mathpunct{}
-  \mspace{2mu}
-}
-
-\newcommand{\smallbot}{%
-  \begingroup\setlength\unitlength{.15em}%
-  \begin{picture}(1,1)
-  \roundcap
-  \polyline(0,0)(1,0)
-  \polyline(0.5,0)(0.5,1)
-  \end{picture}%
-  \endgroup
-}
-
-% Draw adjunction: F : C ⇄ D : G
-\newcommand{\adjunction}[4]{%
-  % #1 : #2 <arrows> #3 : #4
-  #1\colon #2%
-  \mathrel{\vcenter{%
-    \offinterlineskip\m@th
-    \ialign{%
-      \hfil$##$\hfil\cr
-      \longrightharpoonup\cr
-      \noalign{\kern-.3ex}
-      \smallbot\cr
-      \longleftharpoondown\cr
-    }%
-  }}%
-  #3 \noloc #4%
-}
-
-% Draw equivalence: F : C ⇄ D : G
-\newcommand{\equivalence}[4]{%
-  % #1 : #2 <arrows> #3 : #4
-  #1\colon #2%
-  \mathrel{\vcenter{%
-    \offinterlineskip\m@th
-    \ialign{%
-      \hfil$##$\hfil\cr
-      \longrightharpoonup\cr
-      \noalign{\kern-.3ex}
-      \longleftharpoondown\cr
-    }%
-  }}%
-  #3 \noloc #4%
-}
-
-% ============================================================================
-% Special Symbols
-% ============================================================================
-
-% Yoneda embedding symbol
-\DeclareFontFamily{U}{min}{}
-\DeclareFontShape{U}{min}{m}{n}{<-> udmj30}{}
-\DeclareMathOperator{\yo}{\text{\usefont{U}{min}{m}{n}\symbol{'210}}}
-
-% ============================================================================
-% Font Abbreviation Macros
-% ============================================================================
+% These macros automatically generate font commands for all letters
 
 \ExplSyntaxOn
 \NewDocumentCommand{\makeabbrev}{mmm}
@@ -191,23 +49,184 @@
 }
 \ExplSyntaxOff
 
-% Blackboard bold: \bbA, \bbB, etc.
+% Blackboard bold: \bbA, \bbB, ..., \bbZ
 \makeabbrev{\mathbb}{bb#1}{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
 
-% Bold: \bfa, \bfA, etc.
+% Bold: \bfa, \bfb, ..., \bfz, \bfA, \bfB, ..., \bfZ
 \makeabbrev{\mathbf}{bf#1}{a,b,c,d,e,g,h,i,j,k,l,m,n,o,p,q,r,t,u,v,w,x,y,z,%
 	A,B,C,D,E,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
 
-% Bold symbol: \bsa, \bsA, etc.
+% Bold symbol: \bsa, \bsb, ..., \bsz, \bsA, \bsB, ..., \bsZ
 \makeabbrev{\boldsymbol}{bs#1}{a,b,c,d,e,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,%
 	A,B,C,D,E,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
 
-% Calligraphic: \cA, \cB, etc.
+% Calligraphic: \cA, \cB, ..., \cZ
 \makeabbrev{\mathcal}{c#1}{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
 
-% Fraktur: \fa, \fA, etc.
+% Fraktur: \fa, \fb, ..., \fz, \fA, \fB, ..., \fZ
 \makeabbrev{\mathfrak}{f#1}{a,b,c,d,e,f,g,h,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,%
 	A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
 
-% Sans-serif: \sfA, \sfB, etc.
+% Sans-serif: \sfA, \sfB, ..., \sfZ
 \makeabbrev{\mathsf}{sf#1}{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+
+% ============================================================================
+% 3. Basic Category Theory
+% ============================================================================
+
+% --- Basic Operators (Roman font) ---
+\DeclareMathOperator{\Ob}{Ob}                   % Objects of a category
+\DeclareMathOperator{\Arr}{Arr}                 % Arrows/morphisms
+\DeclareMathOperator{\op}{op}                   % Opposite category
+\DeclareMathOperator{\Hom}{Hom}                 % Hom functor
+\DeclareMathOperator{\Home}{\underline{Hom}}    % Internal hom (underlined)
+\DeclareMathOperator{\colim}{colim}             % Colimit
+
+% --- Parametrized Commands ---
+\newcommand{\Ho}[1]{\mathbf{Ho}(#1)}            % Homotopy category Ho(C)
+\newcommand{\Lang}[1]{\mathsf{Lang}(#1)}        % Language functor
+
+% --- Categories (Boldface) ---
+% Font convention: Use bold for standard mathematical/foundational categories
+\DeclareMathOperator{\Set}{\mathbf{Set}}        % Category of sets
+\DeclareMathOperator{\Cat}{\mathbf{Cat}}        % Category of categories
+\DeclareMathOperator{\Gpd}{\mathbf{Gpd}}        % Category of groupoids
+\DeclareMathOperator{\sSet}{\mathbf{sSet}}      % Category of simplicial sets
+\DeclareMathOperator{\wCat}{\mathbf{wCat}}      % Category with weak equivalences
+\DeclareMathOperator{\Gpdi}{\mathbf{Gpd}_\infty} % Category of ∞-groupoids
+
+% --- Categories (Sans-serif) ---
+% Font convention: Use sans-serif for type theory/CS/logic-related categories
+\DeclareMathOperator{\Cxl}{\mathsf{CxlCat}}         % Contextual categories
+\DeclareMathOperator{\LCCCi}{\mathsf{LCCC}_\infty}  % Locally cartesian closed ∞-categories
+\DeclareMathOperator{\Lexi}{\mathsf{Lex}_\infty}    % Left exact ∞-categories
+\DeclareMathOperator{\ElToposi}{\mathsf{ElTopos}_\infty} % Elementary ∞-toposes
+
+% ============================================================================
+% 4. Type Theory
+% ============================================================================
+
+% --- Type Formers (Sans-serif, Capitalized) ---
+\DeclareMathOperator{\Sigmas}{\mathsf{\Sigma}}   % Sigma/dependent sum types
+\DeclareMathOperator{\Pis}{\mathsf{\Pi}}         % Pi/dependent product types
+\DeclareMathOperator{\Ids}{\mathsf{Id}}          % Identity/equality types
+\DeclareMathOperator{\Pies}{\mathsf{\Pi}_\eta}   % Pi types with eta conversion
+\DeclareMathOperator{\Piext}{\mathsf{\Pi_{ext}}} % Pi types with extensionality
+\DeclareMathOperator{\Nat}{\mathsf{Nat}}         % Natural numbers type
+
+% --- Term Constructors and Operations (Sans-serif, lowercase) ---
+\DeclareMathOperator{\app}{\mathsf{app}}         % Application
+\DeclareMathOperator{\ext}{\mathsf{ext}}         % Function extensionality
+\DeclareMathOperator{\id}{\mathsf{id}}           % Identity term constructor
+\DeclareMathOperator{\refl}{\mathsf{refl}}       % Reflexivity
+\DeclareMathOperator{\exch}{\mathsf{exch}}       % Exchange/swap
+\DeclareMathOperator{\pair}{\mathsf{pair}}       % Pairing for Sigma types
+\DeclareMathOperator{\unpair}{\mathsf{unpair}}   % Unpairing for Sigma types
+\DeclareMathOperator{\csplit}{\mathsf{split}}    % Split/eliminator
+\DeclareMathOperator{\cft}{\mathsf{ft}}          % Forget/foot/projection
+
+% --- Judgmental Forms ---
+\DeclareMathOperator{\type}{\mathsf{type}}       % Type judgment
+\DeclareMathOperator{\context}{\mathsf{context}} % Context judgment
+\DeclareMathOperator{\cxt}{\mathsf{cxt}}         % Context marker
+
+% --- Mixed Case Operators ---
+\DeclareMathOperator{\Id}{Id}                    % Identity (Roman, for subscripts)
+\DeclareMathOperator{\Htp}{\mathsf{Htp}}         % Homotopy type
+\DeclareMathOperator{\Fib}{Fib}                  % Fibrations
+
+% --- Parametrized Type Theory Commands ---
+\newcommand{\Syn}[1]{\mathsf{Syn}(\mathbf{#1})}  % Syntactic category Syn(T)
+\newcommand{\isHIso}[1]{\mathsf{isHIso}({#1})}   % Homotopy isomorphism type
+\newcommand{\isIso}[1]{\mathsf{isIso}({#1})}     % Isomorphism type
+
+% ============================================================================
+% 5. Special Arrows
+% ============================================================================
+
+\DeclareMathOperator{\sto}{\twoheadrightarrow}   % Surjective/epi arrow
+
+% Double right arrow (for special morphisms)
+\newcommand\dhrightarrow{%
+  \mathrel{\ooalign{$\rightarrow$\cr%
+  $\mkern3.5mu\rightarrow$}}
+}
+
+% Double extensible right arrow (with labels)
+\newcommand\dhxrightarrow[2][]{%
+  \mathrel{\ooalign{$\xrightarrow[#1\mkern4mu]{#2\mkern4mu}$\cr%
+  \hidewidth$\rightarrow\mkern4mu$}}
+}
+
+% ============================================================================
+% 6. Adjunctions and Equivalences
+% ============================================================================
+
+% Components for drawing adjunctions
+\newcommand{\longrightharpoonup}{\relbar\joinrel\rightharpoonup}
+\newcommand{\longleftharpoondown}{\leftharpoondown\joinrel\relbar}
+
+% Colon with proper spacing for adjunctions
+\newcommand{\noloc}{%
+  \nobreak
+  \mspace{6mu plus 1mu}
+  {:}
+  \nonscript\mkern-\thinmuskip
+  \mathpunct{}
+  \mspace{2mu}
+}
+
+% Small perpendicular symbol for adjunctions
+\newcommand{\smallbot}{%
+  \begingroup\setlength\unitlength{.15em}%
+  \begin{picture}(1,1)
+  \roundcap
+  \polyline(0,0)(1,0)
+  \polyline(0.5,0)(0.5,1)
+  \end{picture}%
+  \endgroup
+}
+
+% Draw adjunction: F : C ⇄ D : G with perpendicular
+% Usage: \adjunction{F}{C}{D}{G}
+\newcommand{\adjunction}[4]{%
+  % #1 : #2 <arrows> #3 : #4
+  #1\colon #2%
+  \mathrel{\vcenter{%
+    \offinterlineskip\m@th
+    \ialign{%
+      \hfil$##$\hfil\cr
+      \longrightharpoonup\cr
+      \noalign{\kern-.3ex}
+      \smallbot\cr
+      \longleftharpoondown\cr
+    }%
+  }}%
+  #3 \noloc #4%
+}
+
+% Draw equivalence: F : C ⇄ D : G without perpendicular  
+% Usage: \equivalence{F}{C}{D}{G}
+\newcommand{\equivalence}[4]{%
+  % #1 : #2 <arrows> #3 : #4
+  #1\colon #2%
+  \mathrel{\vcenter{%
+    \offinterlineskip\m@th
+    \ialign{%
+      \hfil$##$\hfil\cr
+      \longrightharpoonup\cr
+      \noalign{\kern-.3ex}
+      \longleftharpoondown\cr
+    }%
+  }}%
+  #3 \noloc #4%
+}
+
+% ============================================================================
+% 7. Special Symbols
+% ============================================================================
+
+% Yoneda embedding symbol (よ)
+\DeclareFontFamily{U}{min}{}
+\DeclareFontShape{U}{min}{m}{n}{<-> udmj30}{}
+\DeclareMathOperator{\yo}{\text{\usefont{U}{min}{m}{n}\symbol{'210}}}
